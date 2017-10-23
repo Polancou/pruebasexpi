@@ -20,8 +20,11 @@ public class BitacoraRecibos  implements java.io.Serializable {
      private String comentario;
      private int sexo;
      private int clinica;
-
     public BitacoraRecibos() {
+        menuTratamientos = new MenuTratamientos();
+        alumnos = new Alumnos();
+        maestroMaterias = new MaestroMaterias();
+        
     }
 
 	

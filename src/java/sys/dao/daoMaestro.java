@@ -27,7 +27,7 @@ public interface daoMaestro {
     public List<Materias> mostrarMaterias(MaestroMaterias maestroM);
 
     public void insertarMaestroMaterias(MaestroMaterias maestroM);
-
+    
     public String mostrarCodigo();
 
 }

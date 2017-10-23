@@ -5,16 +5,13 @@
  */
 package sys.bean;
 
-import clases.Clave;
 import java.awt.event.ActionEvent;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import javax.inject.Named;
-import javax.enterprise.context.Dependent;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
+import javax.inject.Named;
+
 import javax.faces.view.ViewScoped;
 import sys.dao.daoMaestro;
 import sys.dao.daoMaestroMaterias;
@@ -40,7 +37,9 @@ public class beanMaestroMaterias implements Serializable {
     private List<MaestroMaterias> maestroM;
     private Maestro maestro;
     private Materias materias;
-    
+    private List<SelectItem> listarMaterias;
+    private List<SelectItem> listarGrupo;
+    private List<SelectItem> listarGrado;
 
     public beanMaestroMaterias() {
         maestroMaterias = new MaestroMaterias();
@@ -84,4 +83,46 @@ public class beanMaestroMaterias implements Serializable {
         maestroM = mdao.mostrarMaestroMaterias();
         return maestroM;
     }
+
+    public List<SelectItem> getListarMaterias() {
+         this.listarMaterias = new ArrayList<SelectItem>();
+        daoMaestroMaterias mdao = new MaestroMateriasImp();
+        List<MaestroMaterias> m = mdao.mostrarMaterias(this.maestroMaterias);
+        listarMaterias.clear();
+        for (MaestroMaterias materias : m) {
+            SelectItem materiaItem = new SelectItem(materias.getMaterias().getIdMateria(), materias.getMaterias().getMateria());
+            this.listarMaterias.add(materiaItem);
+        }
+        
+        return listarMaterias;
+    }
+    
+      public List<SelectItem> getListarGrupo() {
+        this.listarGrupo = new ArrayList<SelectItem>();
+        daoMaestroMaterias mdao = new MaestroMateriasImp();
+        List<MaestroMaterias> m = mdao.mostrarGrupo(this.maestroMaterias);
+        listarGrupo.clear();
+        for (MaestroMaterias grupo : m) {
+            SelectItem materiaItem = new SelectItem(grupo.getGrupo());
+            this.listarGrupo.add(materiaItem);
+        }
+
+        return listarGrupo;
+    }
+
+    public List<SelectItem> getListarGrado() {
+         this.listarGrado = new ArrayList<SelectItem>();
+        daoMaestroMaterias mdao = new MaestroMateriasImp();
+        List<MaestroMaterias> m = mdao.mostrarGrupo(this.maestroMaterias);
+        listarGrado.clear();
+        for (MaestroMaterias grupo : m) {
+            SelectItem materiaItem = new SelectItem(grupo.getAño());
+            this.listarGrado.add(materiaItem);
+        }
+        return listarGrado;
+    }
+      
+      
+    
+    
 }

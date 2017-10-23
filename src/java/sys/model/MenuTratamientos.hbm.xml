@@ -14,9 +14,6 @@
         <property name="nameTratamiento" type="string">
             <column name="name_tratamiento" length="50" not-null="true" />
         </property>
-        <property name="importe" type="int">
-            <column name="importe" not-null="true" />
-        </property>
         <set name="bitacoraReciboses" table="bitacora_recibos" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="tratamiento" not-null="true" />

@@ -17,6 +17,12 @@
         <property name="grupo" type="string">
             <column name="grupo" length="10" />
         </property>
+        <set name="listaAlumnoses" table="lista_alumnos" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="matricula" not-null="true" />
+            </key>
+            <one-to-many class="sys.model.ListaAlumnos" />
+        </set>
         <set name="bitacoraReciboses" table="bitacora_recibos" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="alumno" not-null="true" />
@@ -25,3 +31,4 @@
         </set>
     </class>
 </hibernate-mapping>
+

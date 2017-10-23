@@ -11,10 +11,11 @@ import java.util.Set;
 public class Alumnos  implements java.io.Serializable {
 
 
-     private int matricula;
+  private int matricula;
      private String nombreCompleto;
      private String semestre;
      private String grupo;
+     private Set<ListaAlumnos> listaAlumnoses = new HashSet<ListaAlumnos>(0);
      private Set<BitacoraRecibos> bitacoraReciboses = new HashSet<BitacoraRecibos>(0);
 
     public Alumnos() {
@@ -25,11 +26,12 @@ public class Alumnos  implements java.io.Serializable {
         this.matricula = matricula;
         this.nombreCompleto = nombreCompleto;
     }
-    public Alumnos(int matricula, String nombreCompleto, String semestre, String grupo, Set<BitacoraRecibos> bitacoraReciboses) {
+    public Alumnos(int matricula, String nombreCompleto, String semestre, String grupo, Set<ListaAlumnos> listaAlumnoses, Set<BitacoraRecibos> bitacoraReciboses) {
        this.matricula = matricula;
        this.nombreCompleto = nombreCompleto;
        this.semestre = semestre;
        this.grupo = grupo;
+       this.listaAlumnoses = listaAlumnoses;
        this.bitacoraReciboses = bitacoraReciboses;
     }
    
@@ -60,6 +62,13 @@ public class Alumnos  implements java.io.Serializable {
     
     public void setGrupo(String grupo) {
         this.grupo = grupo;
+    }
+    public Set<ListaAlumnos> getListaAlumnoses() {
+        return this.listaAlumnoses;
+    }
+    
+    public void setListaAlumnoses(Set<ListaAlumnos> listaAlumnoses) {
+        this.listaAlumnoses = listaAlumnoses;
     }
     public Set<BitacoraRecibos> getBitacoraReciboses() {
         return this.bitacoraReciboses;

@@ -40,13 +40,14 @@ made subject to such option by the copyright holder.
 Contributor(s):
 -->
 <hibernate-reverse-engineering>
-  <schema-selection match-catalog="facultad_odontologia"/>
-  <table-filter match-name="encargada_clinica"/>
-  <table-filter match-name="maestro"/>
-  <table-filter match-name="alumnos"/>
-  <table-filter match-name="materias"/>
-  <table-filter match-name="bitacora_recibos"/>
-  <table-filter match-name="menu_tratamientos"/>
-  <table-filter match-name="maestro_materias"/>
-  <table-filter match-name="area_tratamientos"/>
+    <schema-selection match-catalog="facultad_odontologia"/>
+    <table-filter match-name="maestro"/>
+    <table-filter match-name="menu_tratamientos"/>
+    <table-filter match-name="encargada_clinica"/>
+    <table-filter match-name="materias"/>
+    <table-filter match-name="alumnos"/>
+    <table-filter match-name="area_tratamientos"/>
+    <table-filter match-name="maestro_materias"/>
+    <table-filter match-name="lista_alumnos"/>
+    <table-filter match-name="bitacora_recibos"/>
 </hibernate-reverse-engineering>

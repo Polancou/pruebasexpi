@@ -13,14 +13,9 @@ import sys.model.Materias;
  *
  * @author Sammy Guergachi <sguergachi at gmail.com>
  */
-public interface daoMaestroMaterias {
-
-    public List<MaestroMaterias> mostrarMaestroMaterias();
+public interface daoListaAlumnos {
     
-    public List<MaestroMaterias> mostrarMaterias(MaestroMaterias maestro);
+    public void insetarAlumno();
     
-    public List<MaestroMaterias> mostrarGrupo(MaestroMaterias maestro);
     
-    public List<MaestroMaterias> mostrarGrado(MaestroMaterias maestro);
-
 }

@@ -4,18 +4,20 @@
  * and open the template in the editor.
  */
 
-package clases;
+package Algoritmos;
 
 /**
  * 
  * @author Sammy Guergachi <sguergachi at gmail.com>
  */
 public class Clave {
-
-     public String clave(){
+    
+    public String clave(){
     
        String clave="";
        String [] abc={"A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"};
+      
+       
       
            int numeroAleatorio1=(int)(Math.random()*25+1);
            int numeroAleatorio2=(int)(Math.random()*25+1);
@@ -25,8 +27,18 @@ public class Clave {
            int numeroAleatorio6=(int)(Math.random()*25+1);
            
            clave=abc[numeroAleatorio1].concat(abc[numeroAleatorio2]).concat(abc[numeroAleatorio3]).concat(abc[numeroAleatorio4]).concat(abc[numeroAleatorio5].concat(abc[numeroAleatorio6]));
-
+           
+       
+       
        return clave;
         
-    }  
+    }
+    
+    public static void main(String []args){
+        
+        Clave c = new Clave();
+            System.out.println(c.clave());
+    }
 }
+
+

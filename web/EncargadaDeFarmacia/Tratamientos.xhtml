@@ -1,0 +1,179 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="./../Plantillas/PlantillaPrincipalEncargada.xhtml">
+
+    <ui:define name="content">
+        <h1>
+
+            <small>Tratamientos</small>
+        </h1>
+        <p:separator/>
+        <p:growl id="mensajeGeneral" autoUpdate="true" showDetail="true" life="3000"/>
+        <h:form>
+            <p:commandButton value="Nueva Area de Tratamiento" oncomplete="PF('dlgNuevoM').show();" 
+                             update=":formInsertarTratamiento" style="font-size: 12px;" />
+
+            <p:commandButton value="Nuevo Tratamiento" oncomplete="PF('dlgNuevoT').show();" 
+                             update=":formInsertarTratamiento" style="font-size: 12px;" />
+            <p:commandButton value="Agregar Tratamiento" oncomplete="PF('dlgNuevoA').show();" 
+                             update=":formAgregarTratamiento" style="font-size: 12px;" />
+        </h:form>
+
+
+        <p:dialog id="dlgNuevoMTratamiento" header="Nuevo Menu Tratamiento" widgetVar="dlgNuevoM" showEffect="drop" hideEffect="drop" modal="true">
+            <h:form id="formInsertarMTratamiento">
+                <p:panelGrid columns="2" style="margin: 0 auto; font-size: 11px;">
+                    <p:outputLabel value="Tratamiento"/>
+                    <p:inputText value="#{beanTratamiento.area.tratamiento}"
+                                 required="true" requiredMessage="Tratamiento es obligatorio"/>
+
+                    <p:commandButton value="Guardar" actionListener="#{beanTratamiento.insertarTratamientos()}" update=":formInsertarTratamiento" 
+                                     oncomplete="PF('dlgNuevoM').hide();"/>
+                    <p:commandButton value="Cancelar"
+                                     update=":formInsertarMTratamiento" immediate="true" 
+                                     onclick="PF('dlgNuevoM').hide();" />
+
+
+                </p:panelGrid>
+            </h:form>
+        </p:dialog>
+
+        <p:dialog id="dlgNuevoTratamiento" header="Nuevo Tratamiento" widgetVar="dlgNuevoT" showEffect="drop" hideEffect="drop" modal="true">
+            <h:form id="formInsertarTratamiento">
+                <p:panelGrid columns="2" style="margin: 0 auto; font-size: 11px;">
+                    <p:outputLabel value="Tratamiento"/>
+                    <p:selectOneMenu id="mtratamiento" value="#{beanTratamiento.menu.areaTratamientos.area}"
+                                     required="true" requiredMessage="Seleccione un grado">
+                        <f:selectItem itemLabel="---Seleccione---"/>
+                        <f:selectItems value="#{beanTratamiento.listArea}"/>
+                        <f:ajax execute="mtratamiento"/>
+                    </p:selectOneMenu>
+
+                    <p:outputLabel value="Tratamiento"/>
+                    <p:inputText value="#{beanTratamiento.menu.nameTratamiento}"
+                                 required="true" requiredMessage="Tratamiento es obligatorio"/>
+
+                    <p:commandButton value="Guardar" actionListener="#{beanTratamiento.insertarMenuTratamientos()}" update=":formAgregarTratamiento"
+                                     oncomplete="PF('dlgNuevoT').hide();"/>
+                    <p:commandButton value="Cancelar"
+                                     update=":formInsertarTratamiento" immediate="true" 
+                                     onclick="PF('dlgNuevoT').hide();" />
+
+                </p:panelGrid>
+            </h:form>
+        </p:dialog>
+
+        <p:dialog id="dlgInsertCollection" header="Agregar Tratamiento" widgetVar="dlgNuevoA" showEffect="drop" hideEffect="drop" modal="true">
+            <h:form id="formAgregarTratamiento">
+                <p:panelGrid columns="2" style="margin: 0 auto; font-size: 11px;">
+                    <p:outputLabel value="Area Tratamientos  "/>
+                    <p:selectOneMenu id="areaTratamientos" value="#{beanTratamiento.bitacora.menuTratamientos.areaTratamientos.area}"
+                                     required="true" requiredMessage="Seleccione un Grupo">
+                        <f:selectItem itemLabel="---Seleccione---"/>
+                        <f:selectItems value="#{beanTratamiento.listArea}"/>
+                        <f:ajax execute="areaTratamientos" render="menuTratamientos"/>
+                    </p:selectOneMenu>
+
+                    <p:outputLabel value="Menu Tratamientos"/>
+                    <p:selectOneMenu id="menuTratamientos" value="#{beanTratamiento.bitacora.menuTratamientos.contador}"
+                                     required="true" requiredMessage="Seleccione una Materia">
+                        <f:selectItem itemLabel="---Seleccione---"/>
+                        <f:selectItems value="#{beanTratamiento.listMenu}"/>
+                    </p:selectOneMenu>
+
+                    <p:outputLabel value="Cantidad"/>
+                    <p:inputText value="#{beanTratamiento.bitacora.cantidad}"
+                                 required="true" requiredMessage="Tratamiento es obligatorio"/>
+
+                    <p:outputLabel value="Folio"/>
+                    <p:inputText value="#{beanTratamiento.bitacora.folio}"
+                                 required="true" requiredMessage="Tratamiento es obligatorio"/>
+
+                    <p:outputLabel value="Paciente"/>
+                    <p:inputText value="#{beanTratamiento.bitacora.nombrePaciente}"
+                                 required="true" requiredMessage="Tratamiento es obligatorio"/>
+
+                    <p:outputLabel value="Alumno"/>
+                    <p:inputText value="#{beanTratamiento.bitacora.alumnos.matricula}"
+                                 required="true" requiredMessage="Tratamiento es obligatorio"/>
+
+                    <p:outputLabel value="Fecha"/>
+                    <p:calendar id="mask" value="#{beanTratamiento.bitacora.fecha}" pattern="dd-MM-yyyy" mask="true" />
+
+                    <p:outputLabel value="Comentarios"/>
+                    <p:inputTextarea rows="6" cols="33" />
+
+
+                    <p:outputLabel value="Sexo"/> 
+                    <p:selectOneMenu id="sexo" value="#{beanTratamiento.bitacora.sexo}"
+                                     required="true" requiredMessage="Seleccione el grado">
+                        <f:selectItem itemLabel="---Seleccione---" itemValue="" noSelectionOption="true"/>
+                        <f:selectItem itemLabel="Masculino" itemValue="1"/>
+                        <f:selectItem itemLabel="Femenino" itemValue="2"/>
+                        <f:ajax execute="sexo"/>
+                    </p:selectOneMenu>
+
+                    <p:outputLabel value="Clinica"/>
+                    <p:selectOneMenu id="clinica" value="#{beanTratamiento.bitacora.clinica}"
+                                     required="true" requiredMessage="Seleccione el grado">
+                        <f:selectItem itemLabel="---Seleccione---" itemValue="" noSelectionOption="true"/>
+                        <f:selectItem itemLabel="Clinica 1" itemValue="1"/>
+                        <f:selectItem itemLabel="Clinica 2" itemValue="2"/>
+                        <f:selectItem itemLabel="Clinica 3" itemValue="2"/>
+                        <f:ajax execute="sexo"/>
+                    </p:selectOneMenu>
+
+                    <p:outputLabel value="Clave"/>
+                    <p:inputText value="#{beanTratamiento.bitacora.maestroMaterias.clave}"
+                                 required="true" requiredMessage="Tratamiento es obligatorio"/>
+
+
+                    <p:commandButton id="btn_reset" value="Reset" type="reset"/>
+                    <p:commandButton id="btn_add" value="Add" update=":formAgregarTratamientos:tablaAgregarTratamientos" action="#{beanTratamiento.reinit()}" >
+                        <p:collector value="#{beanTratamiento.bitacora}" addTo="#{beanTratamiento.bita}" unique="true"/>
+            </p:commandButton>
+
+
+                </p:panelGrid>
+            </h:form>
+        </p:dialog>
+        <p:separator/>
+
+        <h:form id="formAgregarTratamientos">
+            <p:dataTable id="tablaAgregarTratamientos" value="#{beanTratamiento.bita}" var="bita"
+                         emptyMessage="No hay datos" style="font-size: 11px;">
+
+                <p:column headerText="Tratamiento ">
+                    <h:outputText value="#{bita.menuTratamientos.areaTratamientos.area}"/>
+                </p:column>
+                <p:column headerText="Folio ">
+                    <h:outputText value="#{bita.folio}"/>
+                </p:column>
+                <p:column headerText="Fecha ">
+                    <h:outputText value="#{bita.fecha}"/>
+                </p:column>
+                <p:column headerText="Action">
+                    <p:commandLink value="Remove" update=":formAgregarTratamientos:tablaAgregarTratamientos" process=":formAgregarTratamientos:tablaAgregarTratamientos">
+                        <p:collector value="#{bita}" removeFrom="#{beanTratamiento.bita}" unique="true"/>
+                    </p:commandLink>
+                </p:column>
+
+
+
+            </p:dataTable>
+        </h:form>
+
+
+
+
+
+
+    </ui:define>
+
+
+
+</ui:composition>
+

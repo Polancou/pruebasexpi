@@ -14,22 +14,22 @@ public class MenuTratamientos  implements java.io.Serializable {
      private Integer contador;
      private AreaTratamientos areaTratamientos;
      private String nameTratamiento;
-     private int importe;
+   
      private Set<BitacoraRecibos> bitacoraReciboses = new HashSet<BitacoraRecibos>(0);
 
     public MenuTratamientos() {
+        areaTratamientos = new AreaTratamientos();
+      
     }
 
 	
-    public MenuTratamientos(AreaTratamientos areaTratamientos, String nameTratamiento, int importe) {
+    public MenuTratamientos(AreaTratamientos areaTratamientos, String nameTratamiento) {
         this.areaTratamientos = areaTratamientos;
         this.nameTratamiento = nameTratamiento;
-        this.importe = importe;
     }
-    public MenuTratamientos(AreaTratamientos areaTratamientos, String nameTratamiento, int importe, Set<BitacoraRecibos> bitacoraReciboses) {
+    public MenuTratamientos(AreaTratamientos areaTratamientos, String nameTratamiento, Set<BitacoraRecibos> bitacoraReciboses) {
        this.areaTratamientos = areaTratamientos;
        this.nameTratamiento = nameTratamiento;
-       this.importe = importe;
        this.bitacoraReciboses = bitacoraReciboses;
     }
    
@@ -54,13 +54,7 @@ public class MenuTratamientos  implements java.io.Serializable {
     public void setNameTratamiento(String nameTratamiento) {
         this.nameTratamiento = nameTratamiento;
     }
-    public int getImporte() {
-        return this.importe;
-    }
-    
-    public void setImporte(int importe) {
-        this.importe = importe;
-    }
+
     public Set<BitacoraRecibos> getBitacoraReciboses() {
         return this.bitacoraReciboses;
     }

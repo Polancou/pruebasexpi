@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 22/10/2017 12:53:33 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class catalog="facultad_odontologia" name="sys.model.ListaAlumnos" optimistic-lock="version" table="lista_alumnos">
+    <id name="id" type="java.lang.Integer">
+      <column name="Id"/>
+      <generator class="identity"/>
+    </id>
+    <many-to-one class="sys.model.Alumnos" fetch="select" name="alumnos">
+      <column name="matricula" not-null="true"/>
+    </many-to-one>
+    <property name="clave" type="string">
+      <column length="10" name="clave"/>
+    </property>
+  </class>
+</hibernate-mapping>

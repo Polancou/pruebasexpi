@@ -1,0 +1,107 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="./../Plantillas/PlantillaPrincipalMaestro.xhtml">
+
+    <ui:define name="content">
+        <h1>
+            Lista de Alumnos
+            <small>Maestro</small>
+        </h1>
+
+        <p:separator/>
+        <p:growl id="mensajeGeneral" autoUpdate="true" showDetail="true" life="3000"/>
+
+        <h:form id="formInsertar">
+            <p:panel id="panel" header="Materias" style="margin-bottom:5px; font-size: 11px;">
+                <h:panelGrid columns="12" cellpadding="10">
+                    <p:outputLabel value="Materia  "/><p:spacer width="10" height="10"/>
+                    <p:selectOneMenu id="materia" value="#{beanMaestroMaterias.maestroMaterias.materias.idMateria}"
+                                     required="true" requiredMessage="Seleccione una Materia">
+                        <f:selectItem itemLabel="---Seleccione---"/>
+                        <f:selectItems value="#{beanMaestroMaterias.listarMaterias}"/>
+                        <f:ajax execute="materia" render="grupo"/>
+                    </p:selectOneMenu>
+                    <p:spacer width="10" height="10"/>
+                    <p:outputLabel value="Grado"/> <p:spacer width="10" height="10"/>
+                    <p:selectOneMenu id="grupo" value="#{beanMaestroMaterias.maestroMaterias.grupo}"
+                                     required="true" requiredMessage="Seleccione el grupo">
+                        <f:selectItem itemLabel="---Seleccione---"/>
+                        <f:selectItems value="#{beanMaestroMaterias.listarGrupo}"/>
+                        <f:ajax execute="materia" render="grado"/>
+                    </p:selectOneMenu>
+                    <p:spacer width="10" height="10"/>
+                    <p:outputLabel value="Grupo"/><p:spacer width="10" height="10"/>
+                    <p:selectOneMenu id="grado" value="#{beanMaestroMaterias.maestroMaterias.año}"
+                                     required="true" requiredMessage="Seleccione el grado">
+                        <f:selectItem itemLabel="---Seleccione---"/>
+                        <f:selectItems value="#{beanMaestroMaterias.listarGrado}"/>
+                    </p:selectOneMenu>
+                </h:panelGrid>
+            </p:panel>
+        </h:form>
+
+        <p:separator/>
+
+        <h:form id="formMostrarMaestros">
+            <p:dataTable id="tablaMostrarMaestros" var="master" value="#{beanMaestro.listar}" rows="10" paginator="true"
+                         emptyMessage="No hay datos" style="font-size: 11px;">
+
+                <p:column headerText="Id Maestro ">
+                    <h:outputText value="#{master.idEmpleado}"/>
+                </p:column>
+                <p:column headerText="Nombre Maestro ">
+                    <h:outputText value="#{master.nombre} #{master.apellidoPaterno} #{master.apellidoMaterno}"/>
+                </p:column>
+                <p:column headerText="Correo ">
+                    <h:outputText value="#{master.correo}"/>
+                </p:column>
+
+
+
+            </p:dataTable>
+        </h:form>
+        <p:separator/>
+        <h:form>
+        <p:commandButton value="Nuevo Alumno" oncomplete="PF('dlgNuevo').show();" 
+                             update=":formInsertar" style="font-size: 12px;" />
+        </h:form>
+            <p:dialog id="dlgNuevoAlumno" header="Nuevo Alumno" widgetVar="dlgNuevo" showEffect="drop" hideEffect="drop" modal="true">
+                
+            <h:form id="formInsertarAlumno">
+                <p:panelGrid columns="2" style="margin: 0 auto; font-size: 11px;">
+                    <p:outputLabel value="Matricula:"/>
+                    <p:inputText value="#{beanAlumnos.alumnos.matricula}"
+                                 required="true" requiredMessage="Matricula es obligatorio"/>
+
+                    <p:outputLabel value="Nombre:"/>
+                    <p:inputText value="#{beanAlumnos.alumnos.nombreCompleto}"
+                                 required="true" requiredMessage="Nombre es obligatorio"/>
+
+                    <p:outputLabel value="Semestre"/>
+                    <p:inputText value="#{beanAlumnos.alumnos.semestre}"
+                                 required="true" requiredMessage="Semestre"/>
+
+                    <p:outputLabel value="Grupo"/>
+                    <p:inputText value="#{beanAlumnos.alumnos.grupo}"/>
+
+
+                    <p:commandButton value="Guardar" actionListener="#{beanAlumnos.insertarAlumno()}"  
+                                     oncomplete="PF('dlgNuevo').hide();"/>
+                    <p:commandButton value="Cancelar"
+                                     
+                                     onclick="PF('dlgNuevo').hide();" />
+                    
+                </p:panelGrid>
+            </h:form>
+        </p:dialog>
+         
+
+    </ui:define>
+
+
+
+</ui:composition>
+
