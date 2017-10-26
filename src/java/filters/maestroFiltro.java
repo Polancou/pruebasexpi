@@ -23,31 +23,31 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author RamsesMtnz
  */
-@WebFilter(filterName = "farmaciaFiltro", urlPatterns = {"/pages/encargadaDeFarmacia/*"})
-public class farmaciaFiltro implements Filter {
-
+@WebFilter(filterName = "maestroFiltro", urlPatterns = {"/pages/Maestro/*"})
+public class maestroFiltro implements Filter {
+    
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
-      
+        
     }
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-        HttpServletRequest sRequest = (HttpServletRequest)request;
+       HttpServletRequest sRequest = (HttpServletRequest)request;
        HttpServletResponse sResponse = (HttpServletResponse)response;
        Object token = sRequest.getSession().getAttribute("token");
        
        if(token == null){
            sResponse.sendRedirect("/FdO-3.0/pages/Login.xhtml");
        }
+//if(sr.getRequestURI());
        chain.doFilter(request, response);
     }
 
     @Override
     public void destroy() {
-    
+        
     }
-    
-    
+
     
 }
