@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <link rel="stylesheet" type="text/css" href="resources/css/styles.css"/>
+    </h:head>
+    <h:body>
+        <br></br>
+            <div id="login">
+                <h:form>
+                    <h:graphicImage name="images/imagen1.png" ></h:graphicImage>
+                    <p:fieldset id="fieldLogin" legend="Bienvenido" style="margin-bottom:20px">
+                        <p:outputLabel for="nomeUsuario" value="Nombre Usuario: " />
+                        <p:inputText id="nomeUsuario" value="#{LoginMB.usuario.usuario}" />
+                        <br></br>
+                        <p:outputLabel id="senha" value="Contraseña:"/>
+                        <p:password id="senhaUsuario" value="#{LoginMB.usuario.contraseña}" />
+                        <br></br>
+                        <br></br>
+                        <p:commandButton value="Ingresar" icon="ui-icon-star" action="#{LoginMB.login(actionEvent)}" ajax="false" ></p:commandButton>
+                        <br></br>
+                        <br></br>
+                        <p:link id="link" value="¿Nuevo?" href="#" ></p:link>
+
+                    </p:fieldset>
+                </h:form>
+            </div>
+    </h:body>
+</html>

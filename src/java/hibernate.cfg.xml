@@ -56,7 +56,7 @@ Contributor(s):
     <mapping resource="sys/model/AreaTratamientos.hbm.xml"/>
     <mapping resource="sys/model/Materias.hbm.xml"/>
     <mapping resource="sys/model/MenuTratamientos.hbm.xml"/>
-     <mapping resource="sys/model/ListaAlumnos.hbm.xml"/>
     <mapping resource="sys/model/BitacoraRecibos.hbm.xml"/>
+    <mapping class="sys.model.SesionTable"/>
   </session-factory>
 </hibernate-configuration>

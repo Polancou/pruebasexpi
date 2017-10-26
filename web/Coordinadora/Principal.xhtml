@@ -5,21 +5,28 @@
                 xmlns:p="http://primefaces.org/ui"
                 template="./../Plantillas/PlantillaPrincipal.xhtml">
 
-            <ui:define name="content">
-                  <h1>
-                        BIENVENIDO
-                        <small>Coordinadora</small>
-                    </h1>
-                
-                   <p:separator/>
+    <ui:define name="content">
+        <h1>
+            BIENVENIDO
+            <small>Coordinadora</small>
+        </h1>
+        <p:carousel rows="1" autoPlayInterval="2500" effect="easeInStrong" circular="true"
+                    itemStyle="height:500px;width:600px" >
+            <p:graphicImage value="../resources/images/BITA.png" width="600" height="500"/>
+            <p:graphicImage value="../resources/images/imagen1.png" width="600" height="500"/>
+            <p:graphicImage value="../resources/images/2.jpg" width="600" height="500"/>
+            <p:graphicImage value="../resources/images/3.jpg" width="600" height="500"/>
+            <p:graphicImage value="../resources/images/4.JPG" width="600" height="500"/>
+            <p:graphicImage value="../resources/images/odo.jpg" width="600" height="500"/>
+        </p:carousel>
+        <p:separator/>
 
 
         <p:growl id="mensajeGeneral" autoUpdate="true" showDetail="true" life="3000"/>
-        
-            </ui:define>
-    
-    
 
-        </ui:composition>
+    </ui:define>
 
- 
+
+
+</ui:composition>
+
