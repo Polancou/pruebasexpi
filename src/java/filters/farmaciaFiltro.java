@@ -23,7 +23,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author RamsesMtnz
  */
-@WebFilter(filterName = "farmaciaFiltro", urlPatterns = {"/pages/encargadaDeFarmacia/*"})
+@WebFilter(filterName = "farmaciaFiltro", urlPatterns = {"/pages/EncargadaDeFarmacia/*"})
 public class farmaciaFiltro implements Filter {
 
     @Override
@@ -35,7 +35,7 @@ public class farmaciaFiltro implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         HttpServletRequest sRequest = (HttpServletRequest)request;
        HttpServletResponse sResponse = (HttpServletResponse)response;
-       Object token = sRequest.getSession().getAttribute("token");
+       Object token = sRequest.getSession().getAttribute("tokenFarmacia");
        
        if(token == null){
            sResponse.sendRedirect("/FdO-3.0/pages/Login.xhtml");

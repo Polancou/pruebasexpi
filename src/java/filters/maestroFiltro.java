@@ -35,7 +35,7 @@ public class maestroFiltro implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
        HttpServletRequest sRequest = (HttpServletRequest)request;
        HttpServletResponse sResponse = (HttpServletResponse)response;
-       Object token = sRequest.getSession().getAttribute("token");
+       Object token = sRequest.getSession().getAttribute("tokenDocente");
        
        if(token == null){
            sResponse.sendRedirect("/FdO-3.0/pages/Login.xhtml");

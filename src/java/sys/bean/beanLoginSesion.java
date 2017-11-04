@@ -30,6 +30,7 @@ import sys.model.SesionTable;
 public class beanLoginSesion implements Serializable {
 
     private SesionTable usuario;
+    private String usuarioName;
     private List<SesionTable> usuarios;
     private boolean logeado = false;
 
@@ -61,10 +62,6 @@ public class beanLoginSesion implements Serializable {
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "lkasd", "Ha accedido de manera satisfactoria"));
     }
 
-    public String loguear() {
-        return "/Coordinadora/Principal.xhtml";
-    }
-
     public void login(ActionEvent actionEvent) throws IOException {
         RequestContext context = RequestContext.getCurrentInstance();
         daoLoginSesion daoSesion = new LoginSesionImp();
@@ -73,30 +70,32 @@ public class beanLoginSesion implements Serializable {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error", "Lo sentimos, no aparece en el sistema"));
         } else if (tipoUsuario == 1) {
             logeado = true;
-            responseAndRequest("/FdO-3.0/pages/Coordinadora/Principal.xhtml");
+            responseAndRequest("/FdO-3.0/pages/Coordinadora/Principal.xhtml","tokenCoordinacion");
         } else if (tipoUsuario == 2){
             logeado = true;
-            responseAndRequest("/FdO-3.0/pages/Docente/Principal.xhtml");
+            responseAndRequest("/FdO-3.0/pages/Maestro/Principal.xhtml","tokenDocente");
         }else if (tipoUsuario == 3){
             logeado = true;
-            responseAndRequest("/FdO-3.0/pages/EncargadaFarmacia/Principal.xhtml");
+            responseAndRequest("/FdO-3.0/pages/EncargadaDeFarmacia/Principal.xhtml","tokenFarmacia");
         }
 
 //    if (logeado)
 //      context.addCallbackParam("view", "Coordinadora/Principal.xhtml");
     }
 
-    public void logout() {
+    public void logout() throws IOException {
         HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         //session.invalidate();
         session.removeAttribute("token");
         logeado = false;
+        HttpServletResponse sResponse = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
+        sResponse.sendRedirect("/FdO-3.0/pages/Login.xhtml");
     }
 
-    private void responseAndRequest(String ruta) throws IOException {
+    private void responseAndRequest(String ruta,String tokenName) throws IOException {
         HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
         HttpSession session = request.getSession();
-        session.setAttribute("token", usuario.getUsuario());
+        session.setAttribute(tokenName, usuario.getUsuario());
         System.out.println("El usuario del token es: " + usuario.getUsuario().toString());
         HttpServletResponse sResponse = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
         sResponse.sendRedirect(ruta);
