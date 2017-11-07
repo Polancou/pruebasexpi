@@ -27,8 +27,8 @@ public class beanReportes implements Serializable {
         return file;
     }
 
-    public void reporteGeneral() {
-        InputStream stream = FacesContext.getCurrentInstance().getExternalContext().getResourceAsStream("./../resources/images/BITA.png");
+    public beanReportes() {
+        InputStream stream = FacesContext.getCurrentInstance().getExternalContext().getResourceAsStream("/resources/resources/images/BITA.png");
         file = new DefaultStreamedContent(stream, "image/jpg", "downloaded_bita.png");
         System.out.print("Entra a metodo reporte general");
     }
