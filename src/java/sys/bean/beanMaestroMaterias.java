@@ -71,9 +71,6 @@ public class beanMaestroMaterias implements Serializable {
         this.materias = materias;
     }
 
- 
-    
-
     public void setMaestroMaterias(MaestroMaterias maestroMaterias) {
         this.maestroMaterias = maestroMaterias;
     }
@@ -85,25 +82,41 @@ public class beanMaestroMaterias implements Serializable {
     }
 
     public List<SelectItem> getListarMaterias() {
-         this.listarMaterias = new ArrayList<SelectItem>();
+        this.listarMaterias = new ArrayList<SelectItem>();
         daoMaestroMaterias mdao = new MaestroMateriasImp();
         List<MaestroMaterias> m = mdao.mostrarMaterias(this.maestroMaterias);
+
+        List<Materias> dto = new ArrayList<>();
+        m.forEach((MaestroMaterias e) -> {
+            if (!dto.contains(e.getMaterias())) {
+                dto.add(e.getMaterias());
+            }
+        });
+
         listarMaterias.clear();
-        for (MaestroMaterias materias : m) {
-            SelectItem materiaItem = new SelectItem(materias.getMaterias().getIdMateria(), materias.getMaterias().getMateria());
+        for (Materias materias : dto) {
+            SelectItem materiaItem = new SelectItem(materias.getIdMateria(), materias.getMateria());
             this.listarMaterias.add(materiaItem);
         }
-        
+
         return listarMaterias;
     }
-    
-      public List<SelectItem> getListarGrupo() {
+
+    public List<SelectItem> getListarGrupo() {
         this.listarGrupo = new ArrayList<SelectItem>();
         daoMaestroMaterias mdao = new MaestroMateriasImp();
         List<MaestroMaterias> m = mdao.mostrarGrupo(this.maestroMaterias);
+
+        List<Materias> dto = new ArrayList<>();
+        m.forEach((MaestroMaterias e) -> {
+            if (!dto.contains(e.getMaterias())) {
+                dto.add(e.getMaterias());
+            }
+        });
+
         listarGrupo.clear();
-        for (MaestroMaterias grupo : m) {
-            SelectItem materiaItem = new SelectItem(grupo.getGrupo());
+        for (Materias grupo : dto) {
+            SelectItem materiaItem = new SelectItem(grupo.getSemestre());
             this.listarGrupo.add(materiaItem);
         }
 
@@ -111,7 +124,7 @@ public class beanMaestroMaterias implements Serializable {
     }
 
     public List<SelectItem> getListarGrado() {
-         this.listarGrado = new ArrayList<SelectItem>();
+        this.listarGrado = new ArrayList<SelectItem>();
         daoMaestroMaterias mdao = new MaestroMateriasImp();
         List<MaestroMaterias> m = mdao.mostrarGrupo(this.maestroMaterias);
         listarGrado.clear();
@@ -121,8 +134,5 @@ public class beanMaestroMaterias implements Serializable {
         }
         return listarGrado;
     }
-      
-      
-    
-    
+
 }
