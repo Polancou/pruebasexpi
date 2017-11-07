@@ -7,9 +7,8 @@ package sys.bean;
 
 import java.io.InputStream;
 import java.io.Serializable;
+import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
-import javax.faces.view.ViewScoped;
-import javax.inject.Named;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
 
@@ -17,8 +16,7 @@ import org.primefaces.model.StreamedContent;
  *
  * @author RamsesMtnz
  */
-@Named(value = "beanReportes")
-@ViewScoped
+@ManagedBean
 public class beanReportes implements Serializable {
 
     private StreamedContent file;
@@ -28,8 +26,8 @@ public class beanReportes implements Serializable {
     }
 
     public beanReportes() {
-        InputStream stream = FacesContext.getCurrentInstance().getExternalContext().getResourceAsStream("/resources/resources/images/BITA.png");
-        file = new DefaultStreamedContent(stream, "image/jpg", "downloaded_bita.png");
+        InputStream stream = FacesContext.getCurrentInstance().getExternalContext().getResourceAsStream("./../resources/images/fdo.ng");
+        file = new DefaultStreamedContent(stream, "image/png", "bita.png");
         System.out.print("Entra a metodo reporte general");
     }
 
