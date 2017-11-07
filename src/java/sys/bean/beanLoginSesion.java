@@ -33,6 +33,7 @@ public class beanLoginSesion implements Serializable {
     private String usuarioName;
     private List<SesionTable> usuarios;
     private boolean logeado = false;
+    private String userName;
 
     public beanLoginSesion() {
         usuario = new SesionTable();
@@ -71,25 +72,29 @@ public class beanLoginSesion implements Serializable {
         } else if (tipoUsuario == 1) {
             logeado = true;
             responseAndRequest("/FdO-3.0/pages/Coordinadora/Principal.xhtml","tokenCoordinacion");
+            userName=usuario.getUsuario().toString();
         } else if (tipoUsuario == 2){
             logeado = true;
             responseAndRequest("/FdO-3.0/pages/Maestro/Principal.xhtml","tokenDocente");
+            userName=usuario.getUsuario().toString();
+            System.out.println(userName);
         }else if (tipoUsuario == 3){
             logeado = true;
             responseAndRequest("/FdO-3.0/pages/EncargadaDeFarmacia/Principal.xhtml","tokenFarmacia");
+            userName=usuario.getUsuario().toString();
         }
 
 //    if (logeado)
 //      context.addCallbackParam("view", "Coordinadora/Principal.xhtml");
     }
 
-    public void logout() throws IOException {
-        HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
-        //session.invalidate();
-        session.removeAttribute("token");
-        logeado = false;
-        HttpServletResponse sResponse = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
-        sResponse.sendRedirect("/FdO-3.0/pages/Login.xhtml");
+    public void logout(ActionEvent actionEvent) throws IOException {
+//        HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+//        //session.invalidate
+//        session.removeAttribute("");
+//        logeado = false;
+//        HttpServletResponse sResponse = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
+//        sResponse.sendRedirect("/FdO-3.0/pages/Login.xhtml");
     }
 
     private void responseAndRequest(String ruta,String tokenName) throws IOException {
@@ -100,5 +105,5 @@ public class beanLoginSesion implements Serializable {
         HttpServletResponse sResponse = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
         sResponse.sendRedirect(ruta);
     }
-
+    
 }
