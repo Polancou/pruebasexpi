@@ -6,7 +6,7 @@
       xmlns:p="http://primefaces.org/ui">
 
     <h:head>
-        <title>DOCENTES</title>
+        <title>REPORTES</title>
 
         <meta charset="utf-8"/>
         <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -24,10 +24,8 @@
         <h:outputScript name="/Estilos/js/demo.js"/>      
         <h:outputScript name="/Estilos/js/adminlte.min.js"/>
         <h:outputScript name="/Estilos/dist/js/app.min.js"/>
-
     </h:head>
     <h:body class="hold-transition skin-blue sidebar-mini">
-
         <div class="wrapper">
 
             <!-- Main Header -->
@@ -116,7 +114,7 @@
                                     <!-- The user image in the navbar-->
                                     <h:graphicImage library="images" name="men.png" class="user-image" alt="User Image"/>
                                     <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                                    <h:outputText value="Coordinación"/>
+                                    <h:outputText value="Enc. de Farm."/>
                                 </a>
                                 <ul class="dropdown-menu">
                                     <!-- The user image in the menu -->
@@ -167,7 +165,7 @@
                             <img src="../resources/Estilos/img/fo_web_logo.png"  alt="User Image"/>
                         </div>
                         <div class="pull-left info">
-                            <p>Coordinación</p>
+                            <p>Enc. de Farmacia</p>
                             <!-- Status -->
                             <a href="#"><i class="fa fa-circle text-success"></i>Online</a>
                         </div>
@@ -389,6 +387,9 @@
                                     <p:collector value="#{bita}" removeFrom="#{beanTratamiento.bita}" unique="true"/>
                                 </p:commandLink>
                             </p:column>
+
+
+
                         </p:dataTable>
                     </h:form>
 
@@ -410,6 +411,7 @@
         <!-- REQUIRED JS SCRIPTS -->
         <script type="text/javascript" src="/resources/bootstrap/js/bootstrap.min.js"></script> <!-- Correio -->
         <script type="text/javascript" src="/resources/dist/js/app.min.js"></script> <!-- Correio -->
+
     </h:body>
 
 </html>
