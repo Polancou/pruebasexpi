@@ -6,6 +6,9 @@
 package sys.imp;
 
 import java.util.List;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import sys.dao.daoLoginSesion;
@@ -31,22 +34,21 @@ public class LoginSesionImp implements daoLoginSesion {
     @Override
     public int consultarUsuario(SesionTable loguin) {
         int usuario = 0;
+        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        HttpSession sessionUsuario = request.getSession();
         List<SesionTable> usuarioList = null;
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         String hql = "From SesionTable";
+
         try {
-            int i=0;
             usuarioList = session.createQuery(hql).list();
-            for (SesionTable users : usuarioList) 
-            {
-                System.out.println("datos: " + users.getUsuario() + " " + users.getContraseña());
-                System.out.println("datos del list: " + usuarioList.get(i).getUsuario() + " " + usuarioList.get(i).getContraseña());
-                System.out.print("Datos guardados en loguin: " + loguin.getUsuario() + " " + loguin.getContraseña());
+            for (SesionTable users : usuarioList) {
                 if (users.getContraseña().equals(loguin.getContraseña()) && users.getUsuario().equals(loguin.getUsuario())) {
-                    System.out.println("Existe");
+                    System.out.println("Existe\nid del empleado es: "+users.getIdEmpleado());
+                    sessionUsuario.setAttribute("idEmpleado", users.getIdEmpleado());
                     usuario = Integer.parseInt(users.getTipo());
-                }i++;
+                }
             }
             transaction.commit();
             session.close();

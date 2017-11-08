@@ -7,6 +7,9 @@ package sys.imp;
 
 import java.awt.event.ActionEvent;
 import java.util.List;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -23,6 +26,10 @@ import sys.util.HibernateUtil;
  */
 public class MaestroMateriasImp implements daoMaestroMaterias {
 
+    HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        HttpSession sessionUsuario = request.getSession();
+        int user=(int) sessionUsuario.getAttribute("idEmpleado");
+        
     @Override
     public List<MaestroMaterias> mostrarMaestroMaterias() {
         List<MaestroMaterias> mostrarMaMa = null;
@@ -45,7 +52,7 @@ public class MaestroMateriasImp implements daoMaestroMaterias {
         List<MaestroMaterias> mostrarMaMa = null;
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
-        String hql = "from MaestroMaterias as m inner join fetch m.materias where id_empleado='34342'";
+        String hql = "from MaestroMaterias as m inner join fetch m.materias where id_empleado='" + user + "'";
         try {
             Query query = session.createQuery(hql);
             query.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
@@ -64,12 +71,12 @@ public class MaestroMateriasImp implements daoMaestroMaterias {
         List<MaestroMaterias> mostrarGrupo = null;
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
-        String hql = "from MaestroMaterias as m inner join fetch m.materias where id_empleado='34342' and id_materia="+maestro.getMaterias().getIdMateria();
+        String hql = "from MaestroMaterias as m inner join fetch m.materias where id_empleado='"+user+"' and id_materia=" + maestro.getMaterias().getIdMateria();
         try {
-            
+
             Query query = session.createQuery(hql);
             query.setResultTransformer(Criteria.PROJECTION);
-            mostrarGrupo = query.list();    
+            mostrarGrupo = query.list();
             transaction.commit();
             session.close();
         } catch (Exception e) {
@@ -85,7 +92,7 @@ public class MaestroMateriasImp implements daoMaestroMaterias {
         List<MaestroMaterias> mostrarGrado = null;
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
-        String hql = "from MaestroMaterias as m inner join fetch m.materias where id_empleado='34342' and id_materia="+maestro.getMaterias().getIdMateria();
+        String hql = "from MaestroMaterias as m inner join fetch m.materias where id_empleado='"+user+"' and id_materia=" + maestro.getMaterias().getIdMateria();
         try {
             mostrarGrado = session.createQuery(hql).list();
             transaction.commit();
