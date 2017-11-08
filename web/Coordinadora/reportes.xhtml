@@ -1,388 +1,155 @@
-<!DOCTYPE html>
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
-    <h:head>
-        <title>REPORTES</title>
+    <body>
 
-        <meta charset="utf-8"/>
-        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-        <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
-        <h:outputStylesheet name="/css/default.css"/>
-        <h:outputStylesheet name="/css/cssLayout.css"/>
-        <h:outputStylesheet name="/Estilos/bootstrap/css/bootstrap.min.css"/>
-        <h:outputStylesheet name="/Estilos/dist/css/AdminLTE.css"/>
-        <h:outputStylesheet name="/Estilos/dist/css/skins/skin-blue_FDO.css"/>
-        <h:outputStylesheet name="/Estilos/font-awesome/css/font-awesome.min.css"/>
+        <ui:composition template="./../Template/PlantillaCoordinacion.xhtml">
 
-        <h:outputScript name="/Estilos/js/bootstrap.min.js"/>
-        <h:outputScript name="/Estilos/js/jquery.slimscroll.min.js"/>
-        <h:outputScript name="/Estilos/js/fastclick.js"/>
-        <h:outputScript name="/Estilos/js/demo.js"/>      
-        <h:outputScript name="/Estilos/js/adminlte.min.js"/>
-        <h:outputScript name="/Estilos/dist/js/app.min.js"/>
-    </h:head>
-    <h:body class="hold-transition skin-blue sidebar-mini">
-        <div class="wrapper">
+            <ui:define name="content">
+                <!-- Content Wrapper. Contains page content -->
+                <div class="content-wrapper">
 
-            <!-- Main Header -->
-            <header class="main-header">
+                    <!-- Main content -->
+                    <section class="content">
+                        <title>REPORTES</title>
+                        <h1>
+                            Reportes
+                            <small>Coordinación</small>
+                        </h1>
+                        <p:accordionPanel dynamic="true">
+                            <p:tab title="Reporte general">
+                                <h:panelGrid columns="2" cellpadding="10">
+                                    <p:graphicImage value="./../resources/images/pdf.jpg"/>
+                                    <h:outputText value="En esta opcion podrá imprimir toda la información del sistema desde el primer dia en que se implantó hasta
+                                                  el dia de hoy. Contendrá datos de los tratamientos en las diferentes clinicas realizados por los diferentes alumnos" />
+                                </h:panelGrid>
 
-                <!-- Logo -->
-                <a href="Principal.xhtml" class="logo">
-                    <!-- mini logo for sidebar mini 50x50 pixels -->
-                    <span class="logo-mini"><b>F</b>O</span>
-                    <!-- logo for regular state and mobile devices -->
-                    <span class="logo-lg"><b>Fac.</b>ODONTOLOGIA</span>
-                </a>
-
-                <!-- Header Navbar -->
-                <nav class="navbar navbar-static-top" role="navigation">
-                    <!-- Sidebar toggle button-->
-                    <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
-                        <span class="sr-only">Toggle navigation</span>
-                    </a>
-                    <!-- Navbar Right Menu -->
-                    <div class="navbar-custom-menu">
-                        <ul class="nav navbar-nav">
-                            <!-- Messages: style can be found in dropdown.less-->
-                            <li class="dropdown messages-menu">
-                                <!-- Menu toggle button -->
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <i class="fa fa-envelope-o"></i>
-                                    <span class="label label-success">0</span>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li class="header">You don´t have messages</li>
-                                    <li>
-                                        <!-- inner menu: contains the messages -->
-                                        <ul class="menu">
-                                            <li><!-- start message -->
-
-                                            </li><!-- end message -->
-                                        </ul><!-- /.menu -->
-                                    </li>
-                                    <li class="footer"><a href="#">See All Messages</a></li>
-                                </ul>
-                            </li><!-- /.messages-menu -->
-
-                            <!-- Notifications Menu -->
-                            <li class="dropdown notifications-menu">
-                                <!-- Menu toggle button -->
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <i class="fa fa-bell-o"></i>
-                                    <span class="label label-warning">0</span>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li class="header">You dont´n have notifications</li>
-                                    <li>
-                                        <!-- Inner Menu: contains the notifications -->
-                                        <ul class="menu">
-
-                                        </ul>
-                                    </li>
-                                    <li class="footer"><a href="#">View all</a></li>
-                                </ul>
-                            </li>
-                            <!-- Tasks Menu -->
-                            <li class="dropdown tasks-menu">
-                                <!-- Menu Toggle Button -->
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <i class="fa fa-flag-o"></i>
-                                    <span class="label label-danger">0</span>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li class="header">You dont´n have tasks</li>
-                                    <li>
-                                        <!-- Inner menu: contains the tasks -->
-                                        <ul class="menu">
-
-                                        </ul>
-                                    </li>
-                                    <li class="footer">
-                                        <a href="#">View all tasks</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <!-- User Account Menu -->
-                            <li class="dropdown user user-menu">
-                                <!-- Menu Toggle Button -->
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <!-- The user image in the navbar-->
-                                    <h:graphicImage library="images" name="men.png" class="user-image" alt="User Image"/>
-                                    <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                                    <h:outputText value="Coordinación"/>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <!-- The user image in the menu -->
-                                    <li class="user-header">
-                                        <h:graphicImage library="images" name="men.png" class="img-circle" alt="User Image"/>
-
-                                    </li>
-                                    <!-- Menu Body -->
-                                    <li class="user-body">
-                                        <div class="col-xs-4 text-center">
-
-                                        </div>
-                                        <div class="col-xs-4 text-center">
-
-                                        </div>
-                                        <div class="col-xs-4 text-center">
-
-                                        </div>
-                                    </li>
-                                    <!-- Menu Footer-->
-                                    <li class="user-footer">
-
-                                        <div class="pull-right">
-                                            <h:form id="salir">
-                                                <p:commandButton value="Salir" actionListener="#" style="font-size: 12px;" />
-                                            </h:form>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </li>
-                            <!-- Control Sidebar Toggle Button -->
-                            <li>
-                                <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
-                            </li>
-                        </ul>
-                    </div>
-                </nav>
-            </header>
-            <!-- Left side column. contains the logo and sidebar -->
-            <aside class="main-sidebar">
-
-                <!-- sidebar: style can be found in sidebar.less -->
-                <section class="sidebar">
-
-                    <!-- Sidebar user panel (optional) -->
-                    <div class="user-panel">
-                        <div class="pull-left image">
-                            <img src="../resources/Estilos/img/fo_web_logo.png"  alt="User Image"/>
-                        </div>
-                        <div class="pull-left info">
-                            <p>Coordinación</p>
-                            <!-- Status -->
-                            <a href="#"><i class="fa fa-circle text-success"></i>Online</a>
-                        </div>
-                    </div>
-
-                    <!-- search form (Optional) -->
-                    <form action="#" method="get" class="sidebar-form">
-                        <div class="input-group">
-                            <input type="text" name="q" class="form-control" placeholder="Search..."/>
-                            <span class="input-group-btn">
-                                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i></button>
-                            </span>
-                        </div>
-                    </form>
-                    <!-- /.search form -->
-
-                    <!-- Sidebar Menu -->
-                    <ul class="sidebar-menu">
-                        <li class="header">INICIO</li>
-                        <!-- Optionally, you can add icons to the links -->
-                        <li class="treeview">
-                            <a href=""><i class="glyphicon glyphicon-user"></i> <span>Docentes</span>
-                                <span class="pull-right-container">
-                                    <i class="fa fa-angle-left pull-right"></i>
-                                </span>
-                            </a>
-                            <ul class="treeview-menu">
-                                <li><a href="Maestros.xhtml">Docentes</a></li>
-
-                            </ul>
-                        </li>
-
-                        <li class="treeview">
-                            <a href="#"><i class="fa fa-fw fa-user-md"></i> <span>Encargados de Farmacia</span>
-                                <span class="pull-right-container">
-                                    <i class="fa fa-angle-left pull-right"></i>
-                                </span>
-                            </a>
-                            <ul class="treeview-menu">
-                                <li><a href="EncargadaDeFarmacia.xhtml">Encargados</a></li>
-
-                            </ul>
-                        </li>
-                        <li class="treeview">
-                            <a href="#"><i class="fa fa-fw fa-file-text-o"></i> <span>Reportes</span>
-                                <span class="pull-right-container">
-                                    <i class="fa fa-angle-left pull-right"></i>
-                                </span>
-                            </a>
-                            <ul class="treeview-menu">
-                                <li><a href="reportes.xhtml">Generar reporte</a></li>           
-                            </ul>
-                        </li>
-                        <li><a href="#"><i class="fa fa-link"></i> <span>Acerca de</span></a></li>
-
-                        <!--<li class="active"><a href="#"><i class="fa fa-link"></i> <span>Acerca de</span></a></li> -->
-                    </ul>
-                </section>
-                <!-- /.sidebar -->
-            </aside>
-
-            <!-- Content Wrapper. Contains page content -->
-            <div class="content-wrapper">
-
-                <!-- Main content -->
-                <section class="content">
-
-                    <title>REPORTES</title>
-                    <h1>
-                        Reportes
-                        <small>Coordinación</small>
-                    </h1>
-                    <p:accordionPanel dynamic="true">
-                        <p:tab title="Reporte general">
-                            <h:panelGrid columns="2" cellpadding="10">
-                                <p:graphicImage value="./../resources/images/pdf.jpg"/>
-                                <h:outputText value="En esta opcion podrá imprimir toda la información del sistema desde el primer dia en que se implantó hasta
-                                              el dia de hoy. Contendrá datos de los tratamientos en las diferentes clinicas realizados por los diferentes alumnos" />
-                            </h:panelGrid>
-                            
-                            <p:dialog modal="true" widgetVar="statusDialog" header="Status" draggable="false" closable="false" resizable="false">
-                                <p:graphicImage name="../resources/images/cargando.gif" />
-                            </p:dialog>
-
-                            <h:form>
-                                <p:commandButton value="Descargar" ajax="false" onclick="PrimeFaces.monitorDownload(start, stop);" icon="ui-icon-arrowthick-1-s">
-                                    <p:fileDownload value="#{beanReportes.file}" />
-                                </p:commandButton>
-                            </h:form>
-                            <p:separator style="width:1050px;height:10px" />
-                        </p:tab>
-                        <p:tab title="Reporte por clinica">
-                            <h:panelGrid columns="3"  cellpadding="10">
-                                <p:graphicImage value="../resources/images/pdf.jpg" />
-                                <h:outputText value= "Favor de seleccionar una de las clinicas de la lista. Y a continuación se generará un reporte de ésta clínica 
-                                              con toda la información del sistema desde el primer dia en que se implantó hasta el dia de hoy. "/>
-                                <h:selectOneMenu id="txt3" value="" required="true" label="Text 3">
-                                    <f:selectItem itemLabel="Seleccione clinica" itemValue="" noSelectionOption="true" />
-                                    <f:selectItem itemLabel="Option 1" itemValue="1" />
-                                    <f:selectItem itemLabel="Option 2" itemValue="2" />
-                                    <f:selectItem itemLabel="Option 3" itemValue="3" />
-                                </h:selectOneMenu>
-                            </h:panelGrid>
-                            <h:form>
-                                <p:dialog modal="true" widgetVar="statusDialog2" header="Status" draggable="false"
-                                          closable="false">
-                                    <p:graphicImage value="./../resources/images/cargando.gif" />
+                                <p:dialog modal="true" widgetVar="statusDialog" header="Status" draggable="false" closable="false" resizable="false">
+                                    <p:graphicImage name="../resources/images/cargando.gif" />
                                 </p:dialog>
-                                <p:commandButton value="Download" ajax="false"
-                                                 onclick="PrimeFaces.monitorDownload(showStatus, hideStatus)">
-                                    <p:fileDownload value="#{beanReportes.file}"/>
-                                </p:commandButton>
-                            </h:form>
-                            <p:separator style="width:1050px;height:10px" />
-                        </p:tab>
-                        <p:tab title="Reporte de todas las clinicas dentro de fecha determinada">
-                            <h:panelGrid columns="6" cellpadding="30" >
-                                <p:graphicImage value="../resources/images/pdf.jpg" />
-                                <h:outputText value="Usted generá un reporte de todas las clinicas dentro de un determinado tiempo que establezca." />
-                                <p:outputLabel for="popup" value="Desde: " />
-                                <p:calendar id="popup" value="#{calendarView.date2}" />
-                                <p:outputLabel for="popup2" value="Hasta: " />
-                                <p:calendar id="popup2" value="#{calendarView.date2}" />
-                            </h:panelGrid>
-                            <h:form>
-                                <p:dialog modal="true" widgetVar="statusDialog3" header="Status" draggable="false"
-                                          closable="false">
-                                    <p:graphicImage value="./../resources/images/cargando.gif" />
-                                </p:dialog>
-                                <p:commandButton value="Download" ajax="false"
-                                                 onclick="PrimeFaces.monitorDownload(showStatus, hideStatus)">
-                                    <p:fileDownload value="#{beanReportes.reporteGeneral()}"/>
-                                </p:commandButton>
-                            </h:form>
-                            <p:separator style="width:1050px;height:10px" />
-                        </p:tab>
-                        <p:tab title="Reporte por clinica dentro de fecha determinada">
-                            <h:panelGrid columns="7" cellpadding="30" >
-                                <p:graphicImage value="../resources/images/pdf.jpg" />
-                                <h:outputText value="Usted generá un reporte de todas las clinicas dentro de un determinado tiempo que establezca." />
-                                <h:selectOneMenu id="txt4" value="" required="true" label="Text 3">
-                                    <f:selectItem itemLabel="Seleccione clinica" itemValue="" noSelectionOption="true" />
-                                    <f:selectItem itemLabel="Option 1" itemValue="1" />
-                                    <f:selectItem itemLabel="Option 2" itemValue="2" />
-                                    <f:selectItem itemLabel="Option 3" itemValue="3" />
-                                </h:selectOneMenu>
-                                <p:outputLabel for="popup" value="Desde: " />
-                                <p:calendar id="popup3" value="#{calendarView.date2}" />
-                                <p:outputLabel for="popup2" value="Hasta: " />
-                                <p:calendar id="popup4" value="#{calendarView.date2}" />
-                            </h:panelGrid>
-                            <h:form>
-                                <p:dialog modal="true" widgetVar="statusDialog4" header="Status" draggable="false"
-                                          closable="false">
-                                    <p:graphicImage value="./../resources/images/cargando.gif" />
-                                </p:dialog>
-                                <p:commandButton value="Download" ajax="false"
-                                                 onclick="PrimeFaces.monitorDownload(showStatus, hideStatus)">
-                                    <p:fileDownload value="#{beanReportes.reporteGeneral()}"/>
-                                </p:commandButton>
-                            </h:form>
-                            <p:separator style="width:1050px;height:10px" />
-                        </p:tab>
-                        <p:tab title="Reporte de alumnos destacados">
-                            <h:panelGrid columns="3" cellpadding="10">
-                                <p:graphicImage value="../resources/images/pdf.jpg" />
-                                <h:outputText value="Usted generá un reporte de todos los alumnos que destacaron en su desempeño. Seleccione una de las
-                                              clinicas de la lista para generar el reporte." />
-                                <h:selectOneMenu id="txt5" value="" required="true" label="Text 3">
-                                    <f:selectItem itemLabel="Seleccione clinica" itemValue="" noSelectionOption="true" />
-                                    <f:selectItem itemLabel="Option 1" itemValue="1" />
-                                    <f:selectItem itemLabel="Option 2" itemValue="2" />
-                                    <f:selectItem itemLabel="Option 3" itemValue="3" />
-                                </h:selectOneMenu>
-                            </h:panelGrid>
-                            <h:form>
-                                <p:dialog modal="true" widgetVar="statusDialog5" header="Status" draggable="false"
-                                          closable="false">
-                                    <p:graphicImage value="./../resources/images/cargando.gif" />
-                                </p:dialog>
-                                <p:commandButton value="Download" ajax="false"
-                                                 onclick="PrimeFaces.monitorDownload(showStatus, hideStatus)">
-                                    <p:fileDownload value="#{beanReportes.reporteGeneral()}"/>
-                                </p:commandButton>
-                            </h:form>
-                            <p:separator style="width:1050px;height:10px" />
-                        </p:tab>
-                    </p:accordionPanel>
 
-                </section><!-- /.content -->
-            </div><!-- /.content-wrapper -->
-
-            <!-- Main Footer -->
-            <footer class="main-footer">
-                <!-- To the right -->
-                <div class="pull-right hidden-xs">
-                    Prohibida la reproducción o alteración.
+                                <h:form>
+                                    <p:commandButton value="Descargar" ajax="false" onclick="PrimeFaces.monitorDownload(start, stop);" icon="ui-icon-arrowthick-1-s">
+                                        <p:fileDownload value="#{beanReportes.file}" />
+                                    </p:commandButton>
+                                </h:form>
+                                <p:separator style="width:1050px;height:10px" />
+                            </p:tab>
+                            <p:tab title="Reporte por clinica">
+                                <h:panelGrid columns="3"  cellpadding="10">
+                                    <p:graphicImage value="../resources/images/pdf.jpg" />
+                                    <h:outputText value= "Favor de seleccionar una de las clinicas de la lista. Y a continuación se generará un reporte de ésta clínica 
+                                                  con toda la información del sistema desde el primer dia en que se implantó hasta el dia de hoy. "/>
+                                    <h:selectOneMenu id="txt3" value="" required="true" label="Text 3">
+                                        <f:selectItem itemLabel="Seleccione clinica" itemValue="" noSelectionOption="true" />
+                                        <f:selectItem itemLabel="Option 1" itemValue="1" />
+                                        <f:selectItem itemLabel="Option 2" itemValue="2" />
+                                        <f:selectItem itemLabel="Option 3" itemValue="3" />
+                                    </h:selectOneMenu>
+                                </h:panelGrid>
+                                <h:form>
+                                    <p:dialog modal="true" widgetVar="statusDialog2" header="Status" draggable="false"
+                                              closable="false">
+                                        <p:graphicImage value="./../resources/images/cargando.gif" />
+                                    </p:dialog>
+                                    <p:commandButton value="Download" ajax="false"
+                                                     onclick="PrimeFaces.monitorDownload(showStatus, hideStatus)">
+                                        <p:fileDownload value="#{beanReportes.file}"/>
+                                    </p:commandButton>
+                                </h:form>
+                                <p:separator style="width:1050px;height:10px" />
+                            </p:tab>
+                            <p:tab title="Reporte de todas las clinicas dentro de fecha determinada">
+                                <h:panelGrid columns="6" cellpadding="30" >
+                                    <p:graphicImage value="../resources/images/pdf.jpg" />
+                                    <h:outputText value="Usted generá un reporte de todas las clinicas dentro de un determinado tiempo que establezca." />
+                                    <p:outputLabel for="popup" value="Desde: " />
+                                    <p:calendar id="popup" value="#{calendarView.date2}" />
+                                    <p:outputLabel for="popup2" value="Hasta: " />
+                                    <p:calendar id="popup2" value="#{calendarView.date2}" />
+                                </h:panelGrid>
+                                <h:form>
+                                    <p:dialog modal="true" widgetVar="statusDialog3" header="Status" draggable="false"
+                                              closable="false">
+                                        <p:graphicImage value="./../resources/images/cargando.gif" />
+                                    </p:dialog>
+                                    <p:commandButton value="Download" ajax="false"
+                                                     onclick="PrimeFaces.monitorDownload(showStatus, hideStatus)">
+                                        <p:fileDownload value="#{beanReportes.reporteGeneral()}"/>
+                                    </p:commandButton>
+                                </h:form>
+                                <p:separator style="width:1050px;height:10px" />
+                            </p:tab>
+                            <p:tab title="Reporte por clinica dentro de fecha determinada">
+                                <h:panelGrid columns="7" cellpadding="30" >
+                                    <p:graphicImage value="../resources/images/pdf.jpg" />
+                                    <h:outputText value="Usted generá un reporte de todas las clinicas dentro de un determinado tiempo que establezca." />
+                                    <h:selectOneMenu id="txt4" value="" required="true" label="Text 3">
+                                        <f:selectItem itemLabel="Seleccione clinica" itemValue="" noSelectionOption="true" />
+                                        <f:selectItem itemLabel="Option 1" itemValue="1" />
+                                        <f:selectItem itemLabel="Option 2" itemValue="2" />
+                                        <f:selectItem itemLabel="Option 3" itemValue="3" />
+                                    </h:selectOneMenu>
+                                    <p:outputLabel for="popup" value="Desde: " />
+                                    <p:calendar id="popup3" value="#{calendarView.date2}" />
+                                    <p:outputLabel for="popup2" value="Hasta: " />
+                                    <p:calendar id="popup4" value="#{calendarView.date2}" />
+                                </h:panelGrid>
+                                <h:form>
+                                    <p:dialog modal="true" widgetVar="statusDialog4" header="Status" draggable="false"
+                                              closable="false">
+                                        <p:graphicImage value="./../resources/images/cargando.gif" />
+                                    </p:dialog>
+                                    <p:commandButton value="Download" ajax="false"
+                                                     onclick="PrimeFaces.monitorDownload(showStatus, hideStatus)">
+                                        <p:fileDownload value="#{beanReportes.reporteGeneral()}"/>
+                                    </p:commandButton>
+                                </h:form>
+                                <p:separator style="width:1050px;height:10px" />
+                            </p:tab>
+                            <p:tab title="Reporte de alumnos destacados">
+                                <h:panelGrid columns="3" cellpadding="10">
+                                    <p:graphicImage value="../resources/images/pdf.jpg" />
+                                    <h:outputText value="Usted generá un reporte de todos los alumnos que destacaron en su desempeño. Seleccione una de las
+                                                  clinicas de la lista para generar el reporte." />
+                                    <h:selectOneMenu id="txt5" value="" required="true" label="Text 3">
+                                        <f:selectItem itemLabel="Seleccione clinica" itemValue="" noSelectionOption="true" />
+                                        <f:selectItem itemLabel="Option 1" itemValue="1" />
+                                        <f:selectItem itemLabel="Option 2" itemValue="2" />
+                                        <f:selectItem itemLabel="Option 3" itemValue="3" />
+                                    </h:selectOneMenu>
+                                </h:panelGrid>
+                                <h:form>
+                                    <p:dialog modal="true" widgetVar="statusDialog5" header="Status" draggable="false"
+                                              closable="false">
+                                        <p:graphicImage value="./../resources/images/cargando.gif" />
+                                    </p:dialog>
+                                    <p:commandButton value="Download" ajax="false"
+                                                     onclick="PrimeFaces.monitorDownload(showStatus, hideStatus)">
+                                        <p:fileDownload value="#{beanReportes.reporteGeneral()}"/>
+                                    </p:commandButton>
+                                </h:form>
+                                <p:separator style="width:1050px;height:10px" />
+                            </p:tab>
+                        </p:accordionPanel>
+                    </section>
                 </div>
-                <!-- Default to the left -->
-                <strong>Copyright 2017 <a href="http://fi.uacam.mx/"> Facultad Ingenieria. Universidad Autónoma de Campeche</a>.</strong> All rights reserved.
-            </footer>
+            </ui:define>
 
-
-        </div><!-- ./wrapper -->
-        <!-- REQUIRED JS SCRIPTS -->
-        <script type="text/javascript" src="/resources/bootstrap/js/bootstrap.min.js"></script> <!-- Correio -->
-        <script type="text/javascript" src="/resources/dist/js/app.min.js"></script> <!-- Correio -->
+        </ui:composition>
         <script type="text/javascript">
-                                                     function start() {
-                                                         PF('statusDialog').show();
-                                                     }
+            function start() {
+                PF('statusDialog').show();
+            }
 
-                                                     function stop() {
-                                                         PF('statusDialog').hide();
-                                                     }
+            function stop() {
+                PF('statusDialog').hide();
+            }
         </script>
-    </h:body>
-
+    </body>
 </html>
-
