@@ -84,7 +84,7 @@ public class beanLoginSesion implements Serializable {
 //      context.addCallbackParam("view", "Coordinadora/Principal.xhtml");
     }
 
-    public void logout(ActionEvent actionEvent) throws IOException {
+    public void logoutCoordinacion(ActionEvent actionEvent) throws IOException {
         HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         session.removeAttribute("tokenCoordinacion");
         logeado = false;
@@ -92,6 +92,22 @@ public class beanLoginSesion implements Serializable {
         FacesContext.getCurrentInstance().getExternalContext().redirect("/FdO-3.0/pages/Login.xhtml");  
     }
 
+    public void logoutFarmacia(ActionEvent actionEvent) throws IOException {
+        HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+        session.removeAttribute("tokenFarmacia");
+        logeado = false;
+        String path = FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath();
+        FacesContext.getCurrentInstance().getExternalContext().redirect("/FdO-3.0/pages/Login.xhtml");  
+    }
+    
+    public void logoutDocente(ActionEvent actionEvent) throws IOException {
+        HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+        session.removeAttribute("tokenDocente");
+        logeado = false;
+        String path = FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath();
+        FacesContext.getCurrentInstance().getExternalContext().redirect("/FdO-3.0/pages/Login.xhtml");  
+    }
+    
     private void responseAndRequest(String ruta,String tokenName) throws IOException {
         HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
         HttpSession session = request.getSession();
