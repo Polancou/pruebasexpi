@@ -33,31 +33,68 @@
                         </h:form>
 
 
-                        <p:dialog id="dlgNuevoMTratamiento" header="Nuevo Menu Tratamiento" widgetVar="dlgNuevoM" showEffect="drop" hideEffect="drop" modal="true">
+                        <!--                        <p:dialog id="dlgNuevoMTratamiento" header="Nueva área de tratamiento" widgetVar="dlgNuevoM" showEffect="drop" hideEffect="drop" modal="true">
+                                                    <h:form id="formInsertarMTratamiento">
+                                                        <div class="ui-fuid">
+                                                            <p:panelGrid columns="2" columnClasses="ui-grid-col-6" layout="grid" styleClass="ui-panelgrid-blank">
+                                                                <p:outputLabel for="tratamiento" value="Tratamiento"/>
+                                                                <p:inputText id="tratamiento" value="#{beanTratamiento.area.tratamiento}"
+                                                                             required="true" requiredMessage="Tratamiento es obligatorio"/>
+                                                                    <p:commandButton  value="Guardar" actionListener="#{beanTratamiento.insertarTratamientos()}" update=":formInsertarTratamiento" 
+                                                                             oncomplete="PF('dlgNuevoM').hide();"/>
+                                                                    <p:commandButton  value="Cancelar"
+                                                                             update=":formInsertarMTratamiento" immediate="true" 
+                                                                             onclick="PF('dlgNuevoM').hide();" />
+                             
+                                                            </p:panelGrid>
+                                                        </div> 
+                                                        
+                                                    </h:form>
+                                                </p:dialog>-->
+
+                        <p:dialog id="dlgNuevoMTratamiento" header="Nueva área de tratamiento" widgetVar="dlgNuevoM" showEffect="drop" hideEffect="drop" modal="true">
                             <h:form id="formInsertarMTratamiento">
-                                <p:panelGrid columns="2" style="margin: 0 auto; font-size: 11px;">
-                                    <p:outputLabel value="Tratamiento"/>
-                                    <p:inputText value="#{beanTratamiento.area.tratamiento}"
-                                                 required="true" requiredMessage="Tratamiento es obligatorio"/>
-
-                                    <p:commandButton value="Guardar" actionListener="#{beanTratamiento.insertarTratamientos()}" update=":formInsertarTratamiento" 
-                                                     oncomplete="PF('dlgNuevoM').hide();"/>
-                                    <p:commandButton value="Cancelar"
-                                                     update=":formInsertarMTratamiento" immediate="true" 
-                                                     onclick="PF('dlgNuevoM').hide();" />
-
-
-                                </p:panelGrid>
+                                <h:panelGrid columns="2" cellpadding="5" >
+                                    <p:outputLabel for="tratamiento" value="Tratamiento"/>
+                                    <p:inputText id="tratamiento" value="#{beanTratamiento.area.tratamiento}" required="true" requiredMessage="Tratamiento es obligatorio"/>
+                                    <p:spacer></p:spacer>
+                                    <p:spacer></p:spacer>
+                                    <f:facet name="footer" >
+                                        <p:commandButton  value="Guardar" actionListener="#{beanTratamiento.insertarTratamientos()}" update=":formInsertarTratamiento" oncomplete="PF('dlgNuevoM').hide();"/>
+                                        <p:commandButton  value="Cancelar" update=":formInsertarMTratamiento" immediate="true" onclick="PF('dlgNuevoM').hide();" />
+                                    </f:facet>  
+                                </h:panelGrid>
                             </h:form>
                         </p:dialog>
 
+                        <p:dialog id="dlgNuevoTratamiento" header="Nuevo tratamiento" widgetVar="dlgNuevoT" showEffect="drop" hideEffect="drop" modal="true">
+                            <h:form id="formInsertarTratamiento">
+                                <h:panelGrid columns="2" cellpadding="5" >
+                                    <p:outputLabel value="Área tratamiento"/>
+                                    <p:selectOneMenu id="mtratamiento" value="#{beanTratamiento.menu.areaTratamientos.area}" required="true" requiredMessage="Seleccione un grado">
+                                        <f:selectItem itemLabel="---Seleccione---"/>
+                                        <f:selectItems value="#{beanTratamiento.listArea}"/>
+                                        <f:ajax execute="mtratamiento"/>
+                                    </p:selectOneMenu>
+                                    <p:outputLabel value="Tratamiento"/>
+                                    <p:inputText value="#{beanTratamiento.menu.nameTratamiento}" required="true" requiredMessage="Tratamiento es obligatorio"/><p:spacer></p:spacer>
+                                    <p:spacer></p:spacer>
+                                    <p:spacer></p:spacer>
+                                    <f:facet name="footer" >
+                                        <p:commandButton  value="Guardar" actionListener="#{beanTratamiento.insertarTratamientos()}" update=":formInsertarTratamiento" oncomplete="PF('dlgNuevoM').hide();"/>
+                                        <p:commandButton  value="Cancelar" update=":formInsertarMTratamiento" immediate="true" onclick="PF('dlgNuevoM').hide();" />
+                                    </f:facet>  
+                                </h:panelGrid>
+                            </h:form>
+                        </p:dialog>
+<!--
                         <p:dialog id="dlgNuevoTratamiento" header="Nuevo Tratamiento" widgetVar="dlgNuevoT" showEffect="drop" hideEffect="drop" modal="true">
                             <h:form id="formInsertarTratamiento">
                                 <p:panelGrid columns="2" style="margin: 0 auto; font-size: 11px;">
                                     <p:outputLabel value="Tratamiento"/>
                                     <p:selectOneMenu id="mtratamiento" value="#{beanTratamiento.menu.areaTratamientos.area}"
                                                      required="true" requiredMessage="Seleccione un grado">
-                                        <f:selectItem itemLabel="---Seleccione---"/>
+                                        <f:selectItem itemLabel="Seleccione"/>
                                         <f:selectItems value="#{beanTratamiento.listArea}"/>
                                         <f:ajax execute="mtratamiento"/>
                                     </p:selectOneMenu>
@@ -74,7 +111,7 @@
 
                                 </p:panelGrid>
                             </h:form>
-                        </p:dialog>
+                        </p:dialog>-->
 
                         <p:dialog id="dlgInsertCollection" header="Agregar Tratamiento" widgetVar="dlgNuevoA" showEffect="drop" hideEffect="drop" modal="true">
                             <h:form id="formAgregarTratamiento">
