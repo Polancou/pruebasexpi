@@ -2,16 +2,16 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated 22/10/2017 12:53:33 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-  <class catalog="facultad_odontologia" name="sys.model.ListaAlumnos" optimistic-lock="version" table="lista_alumnos">
-    <id name="id" type="java.lang.Integer">
-      <column name="Id"/>
-      <generator class="identity"/>
-    </id>
-    <many-to-one class="sys.model.Alumnos" fetch="select" name="alumnos">
-      <column name="matricula" not-null="true"/>
-    </many-to-one>
-    <property name="clave" type="string">
-      <column length="10" name="clave"/>
-    </property>
-  </class>
+    <class name="sys.model.ListaAlumnos" table="lista_alumnos" catalog="facultad_odontologia" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="alumnos" class="sys.model.Alumnos" fetch="select">
+            <column name="matricula" not-null="true" />
+        </many-to-one>
+        <many-to-one name="maestroMaterias" class="sys.model.MaestroMaterias" fetch="select">
+            <column name="clave" length="10" not-null="true" />
+        </many-to-one>
+    </class>
 </hibernate-mapping>

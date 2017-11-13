@@ -13,10 +13,13 @@ import javax.faces.model.SelectItem;
 import javax.inject.Named;
 
 import javax.faces.view.ViewScoped;
+import sys.dao.daoListaAlumnos;
 import sys.dao.daoMaestro;
 import sys.dao.daoMaestroMaterias;
+import sys.imp.ListaAlumnosImp;
 import sys.imp.MaestroImp;
 import sys.imp.MaestroMateriasImp;
+import sys.model.ListaAlumnos;
 import sys.model.Maestro;
 import sys.model.MaestroMaterias;
 import sys.model.Materias;
@@ -40,11 +43,14 @@ public class beanMaestroMaterias implements Serializable {
     private List<SelectItem> listarMaterias;
     private List<SelectItem> listarGrupo;
     private List<SelectItem> listarGrado;
+    private ListaAlumnos lista;
+    private List<ListaAlumnos> listarAlumnos;
 
     public beanMaestroMaterias() {
         maestroMaterias = new MaestroMaterias();
         maestro = new Maestro();
         materias = new Materias();
+        lista = new ListaAlumnos();
     }
 
     public MaestroMaterias getMaestroMaterias() {
@@ -79,6 +85,27 @@ public class beanMaestroMaterias implements Serializable {
         daoMaestroMaterias mdao = new MaestroMateriasImp();
         maestroM = mdao.mostrarMaestroMaterias();
         return maestroM;
+    }
+
+    public ListaAlumnos getLista() {
+        return lista;
+    }
+
+    public void setLista(ListaAlumnos lista) {
+        this.lista = lista;
+    }
+
+    public List<ListaAlumnos> getListarAlumnos() {
+        return listarAlumnos;
+    }
+
+    public void setListarAlumnos(List<ListaAlumnos> listarAlumnos) {
+        this.listarAlumnos = listarAlumnos;
+    }
+    
+    public void buscarLista(){
+        daoListaAlumnos ldao = new ListaAlumnosImp();
+        listarAlumnos = ldao.MostrarAlumnos(maestroMaterias);
     }
 
     public List<SelectItem> getListarMaterias() {
@@ -134,5 +161,7 @@ public class beanMaestroMaterias implements Serializable {
         }
         return listarGrado;
     }
+    
+    
 
 }

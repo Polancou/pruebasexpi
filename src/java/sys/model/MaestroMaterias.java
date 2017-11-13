@@ -12,41 +12,38 @@ import sys.imp.MaestroImp;
  */
 public class MaestroMaterias  implements java.io.Serializable {
 
-
-     private String clave;
+  private String clave;
      private Maestro maestro;
      private Materias materias;
      private String grupo;
      private String año;
+     private Set<ListaAlumnos> listaAlumnoses = new HashSet<ListaAlumnos>(0);
      private Set<BitacoraRecibos> bitacoraReciboses = new HashSet<BitacoraRecibos>(0);
 
     public MaestroMaterias() {
-        maestro = new Maestro();
-        materias = new Materias();
+       maestro = new Maestro();
+       materias = new Materias();
     }
 
 	
-    public MaestroMaterias(String clave, Maestro maestro) {
+    public MaestroMaterias(String clave) {
         this.clave = clave;
-        this.maestro = maestro;
     }
-    public MaestroMaterias(String clave, Maestro maestro, Materias materias, String grupo, String año, Set<BitacoraRecibos> bitacoraReciboses) {
+    public MaestroMaterias(String clave, Maestro maestro, Materias materias, String grupo, String año, Set<ListaAlumnos> listaAlumnoses, Set<BitacoraRecibos> bitacoraReciboses) {
        this.clave = clave;
        this.maestro = maestro;
        this.materias = materias;
        this.grupo = grupo;
        this.año = año;
+       this.listaAlumnoses = listaAlumnoses;
        this.bitacoraReciboses = bitacoraReciboses;
     }
    
     public String getClave() {
-       
         return this.clave;
     }
     
     public void setClave(String clave) {
-         daoMaestro mdao = new MaestroImp();
-        this.clave = mdao.mostrarCodigo();
         this.clave = clave;
     }
     public Maestro getMaestro() {
@@ -77,6 +74,13 @@ public class MaestroMaterias  implements java.io.Serializable {
     public void setAño(String año) {
         this.año = año;
     }
+    public Set<ListaAlumnos> getListaAlumnoses() {
+        return this.listaAlumnoses;
+    }
+    
+    public void setListaAlumnoses(Set<ListaAlumnos> listaAlumnoses) {
+        this.listaAlumnoses = listaAlumnoses;
+    }
     public Set<BitacoraRecibos> getBitacoraReciboses() {
         return this.bitacoraReciboses;
     }
@@ -84,8 +88,6 @@ public class MaestroMaterias  implements java.io.Serializable {
     public void setBitacoraReciboses(Set<BitacoraRecibos> bitacoraReciboses) {
         this.bitacoraReciboses = bitacoraReciboses;
     }
-
-
 
 
 }

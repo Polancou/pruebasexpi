@@ -11,21 +11,18 @@ import sys.model.Alumnos;
  */
 public class ListaAlumnos  implements java.io.Serializable {
 
-
-     private Integer id;
+   private Integer id;
      private Alumnos alumnos;
-     private String clave;
+     private MaestroMaterias maestroMaterias;
 
     public ListaAlumnos() {
+        alumnos = new Alumnos();
+        maestroMaterias = new MaestroMaterias();
     }
 
-	
-    public ListaAlumnos(Alumnos alumnos) {
-        this.alumnos = alumnos;
-    }
-    public ListaAlumnos(Alumnos alumnos, String clave) {
+    public ListaAlumnos(Alumnos alumnos, MaestroMaterias maestroMaterias) {
        this.alumnos = alumnos;
-       this.clave = clave;
+       this.maestroMaterias = maestroMaterias;
     }
    
     public Integer getId() {
@@ -42,13 +39,14 @@ public class ListaAlumnos  implements java.io.Serializable {
     public void setAlumnos(Alumnos alumnos) {
         this.alumnos = alumnos;
     }
-    public String getClave() {
-        return this.clave;
+    public MaestroMaterias getMaestroMaterias() {
+        return this.maestroMaterias;
     }
     
-    public void setClave(String clave) {
-        this.clave = clave;
+    public void setMaestroMaterias(MaestroMaterias maestroMaterias) {
+        this.maestroMaterias = maestroMaterias;
     }
+
 
 
 

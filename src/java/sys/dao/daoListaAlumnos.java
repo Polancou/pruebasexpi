@@ -6,6 +6,8 @@
 package sys.dao;
 
 import java.util.List;
+import sys.model.Alumnos;
+import sys.model.ListaAlumnos;
 import sys.model.MaestroMaterias;
 import sys.model.Materias;
 
@@ -15,7 +17,7 @@ import sys.model.Materias;
  */
 public interface daoListaAlumnos {
     
-    public void insetarAlumno();
+    public List<ListaAlumnos> MostrarAlumnos(MaestroMaterias mmaterias);
     
     
 }
