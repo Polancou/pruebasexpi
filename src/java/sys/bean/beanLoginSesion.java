@@ -56,12 +56,12 @@ public class beanLoginSesion implements Serializable {
     public void setUsuario(SesionTable usuario) {
         this.usuario = usuario;
     }
-
-    public void usuariosVer() {
-        daoLoginSesion daoSesion = new LoginSesionImp();
-        daoSesion.consultarUsuario(usuario);
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "lkasd", "Ha accedido de manera satisfactoria"));
-    }
+//
+//    public void usuariosVer() {
+//        daoLoginSesion daoSesion = new LoginSesionImp();
+//        daoSesion.consultarUsuario(usuario);
+//        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "lkasd", "Ha accedido de manera satisfactoria"));
+//    }
 
     public void login(ActionEvent actionEvent) throws IOException {
         RequestContext context = RequestContext.getCurrentInstance();
@@ -78,12 +78,15 @@ public class beanLoginSesion implements Serializable {
         }else if (tipoUsuario == 3){
             logeado = true;
             responseAndRequest("/FdO-3.0/pages/EncargadaDeFarmacia/Principal.xhtml","tokenFarmacia");
+        }else if (tipoUsuario == 4){
+            logeado = true;
+            responseAndRequest("/FdO-3.0/pages/Alumnos/Principal.xhtml","tokenAlumno");
         }
 
 //    if (logeado)
 //      context.addCallbackParam("view", "Coordinadora/Principal.xhtml");
     }
-
+    
     public void logoutCoordinacion(ActionEvent actionEvent) throws IOException {
         HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         session.removeAttribute("tokenCoordinacion");
@@ -106,6 +109,13 @@ public class beanLoginSesion implements Serializable {
         logeado = false;
         String path = FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath();
         FacesContext.getCurrentInstance().getExternalContext().redirect("/FdO-3.0/pages/Login.xhtml");  
+    }
+    public void logoutAlumno(ActionEvent actionEvent) throws IOException {
+        HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+        session.removeAttribute("tokenAlumno");
+        logeado = false;
+        String path = FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath();
+        FacesContext.getCurrentInstance().getExternalContext().redirect("/FdO-3.0/pages/LoginAlumno.xhtml");  
     }
     
     private void responseAndRequest(String ruta,String tokenName) throws IOException {

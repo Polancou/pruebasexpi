@@ -61,12 +61,12 @@ body {
   -moz-transition: -moz-transform 0.3s ease-in-out, margin 0.3s ease-in-out;
   -o-transition: -o-transform 0.3s ease-in-out, margin 0.3s ease-in-out;
   transition: transform 0.3s ease-in-out, margin 0.3s ease-in-out;
-  margin-left: 230px;
+  margin-left: 230;
   z-index: 820;
 }
 .layout-top-nav .content-wrapper,
 .layout-top-nav .right-side,
-.layout-top-nav .main-footer {
+.layout-top-nav .main-footer{
   margin-left: 0;
 }
 @media (max-width: 767px) {
@@ -99,7 +99,8 @@ body {
   background-color: #ecf0f5;
   z-index: 800;
 }
-.main-footer {
+
+.main-footer{
   background: #fff;
   padding: 15px;
   color: #444;

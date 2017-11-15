@@ -58,5 +58,4 @@ public class LoginSesionImp implements daoLoginSesion {
         }
         return usuario;
     }
-
 }

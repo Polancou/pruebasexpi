@@ -13,7 +13,7 @@
         <div id="login">
             <h:form>
                 <h:graphicImage name="images/imagen1.png" ></h:graphicImage>
-                <p:fieldset id="fieldLogin" legend="Bienvenido al portal de Odontología de la UAC" style="text-align: center; margin-bottom:20px">
+                <p:fieldset id="fieldLogin" legend="Bienvenido alumno al portal de Odontología de la UAC" style="text-align: center; margin-bottom:20px">
                     <h:panelGrid columns="2" cellpadding="5" >
                         <p:outputLabel for="nomeUsuario" value="Usuario: " />
                         <p:inputText id="nomeUsuario" value="#{LoginMB.usuario.usuario}" />
@@ -24,9 +24,8 @@
                         <p:commandButton value="Ingresar al portal" icon="ui-icon-star" action="#{LoginMB.login(actionEvent)}" ajax="false" />
                         <p:commandButton value="¿Olvidó su contraseña?" icon="ui-icon-star"  />
                     </h:panelGrid>
-                    <p:splitButton value="¿Nuevo usuario?" actionListener="#"  icon="iu-user-plus">
-                        <p:menuitem value="Docente" url="AltaLogin.xhtml" icon="ui-icon-extlink" />
-                        <p:menuitem value="Farmacia" url="AltaLogin.xhtml" icon="ui-icon-extlink" />
+                    <p:splitButton value="¿Nuevo alumno?" actionListener="#"  icon="iu-user-plus">
+                        <p:menuitem value="Alumno" url="AltaLogin.xhtml" icon="ui-icon-extlink" />
                     </p:splitButton>
                 </p:fieldset>
             </h:form>

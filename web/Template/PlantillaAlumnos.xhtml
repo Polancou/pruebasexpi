@@ -24,7 +24,7 @@
     </h:head>
 
     <h:body class="hold-transition skin-blue sidebar-mini">
-        
+
         <div class="wrapper">
             <div id="top">
                 <ui:insert name="top">
@@ -113,7 +113,7 @@
                                             <!-- The user image in the navbar-->
                                             <h:graphicImage library="images" name="men.png" class="user-image" alt="User Image"/>
                                             <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                                            <h:outputText value="#{session.getAttribute('tokenCoordinacion')}" />
+                                            <h:outputText value="#{session.getAttribute('tokenAlumno')}" />
                                         </a>
                                         <ul class="dropdown-menu">
                                             <!-- The user image in the menu -->
@@ -138,7 +138,7 @@
 
                                                 <div class="pull-right">
                                                     <h:form id="salir">
-                                                        <p:commandButton value="Salir" actionListener="#{LoginMB.logoutCoordinacion(actionEvent)}" style="font-size: 12px;" />
+                                                        <p:commandButton value="Salir" actionListener="#{LoginMB.logoutAlumno(actionEvent)}" style="font-size: 12px;" />
                                                     </h:form>
                                                 </div>
                                             </li>
@@ -190,38 +190,17 @@
                                     <li class="header">INICIO</li>
                                     <!-- Optionally, you can add icons to the links -->
                                     <li class="treeview">
-                                        <a href=""><i class="glyphicon glyphicon-user"></i> <span>Docentes</span>
+                                        <a href=""><i class="glyphicon glyphicon-user"></i> <span>Ejemplo</span>
                                             <span class="pull-right-container">
                                                 <i class="fa fa-angle-left pull-right"></i>
                                             </span>
                                         </a>
                                         <ul class="treeview-menu">
-                                            <li><a href="Maestros.xhtml">Docentes</a></li>
+                                            <li><a href="#">Ejemplo</a></li>
 
                                         </ul>
                                     </li>
 
-                                    <li class="treeview">
-                                        <a href="#"><i class="fa fa-fw fa-user-md"></i> <span>Encargados de Farmacia</span>
-                                            <span class="pull-right-container">
-                                                <i class="fa fa-angle-left pull-right"></i>
-                                            </span>
-                                        </a>
-                                        <ul class="treeview-menu">
-                                            <li><a href="EncargadaDeFarmacia.xhtml">Encargados</a></li>
-
-                                        </ul>
-                                    </li>
-                                    <li class="treeview">
-                                        <a href="#"><i class="fa fa-fw fa-file-text-o"></i> <span>Reportes</span>
-                                            <span class="pull-right-container">
-                                                <i class="fa fa-angle-left pull-right"></i>
-                                            </span>
-                                        </a>
-                                        <ul class="treeview-menu">
-                                            <li><a href="reportes.xhtml">Generar reporte</a></li>           
-                                        </ul>
-                                    </li>
                                     <li><a href="#"><i class="fa fa-link"></i> <span>Acerca de...</span></a></li>
 
                                     <!--<li class="active"><a href="#"><i class="fa fa-link"></i> <span>Acerca de</span></a></li> -->
@@ -248,7 +227,6 @@
                 </ui:insert>
             </div>
         </div>
-
     </h:body>
 
 </html>

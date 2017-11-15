@@ -1,0 +1,97 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./Template/PlantillaAltaLogin.xhtml">
+
+            <ui:define name="content">
+                <div class="content-wrapper-alta">
+
+                    <!-- Main content -->
+                    <section class="content">
+                        <h1>
+                            BIENVENIDO
+                            <small>Favor de llenar con sus datos personales y de manera correcta.</small>
+                        </h1>
+                        <h:form>
+                            <p:panelGrid columns="2" layout="grid" style="text-align: center;">
+                                <p:separator></p:separator>
+                                <p:separator></p:separator>
+                                <p:column style="text-align: center;">  
+                                    Teclee su matricula institucional: 
+                                </p:column>  
+                                <p:inputNumber id="input1" style="text-align: center;"></p:inputNumber>  
+                                <p:separator></p:separator>
+                                <p:separator></p:separator>
+                                <p:column style="text-align: center;">  
+                                    Ingrese su(s) nombre(s):
+                                </p:column>  
+                                <p:inputText />  
+                                <p:separator></p:separator>
+                                <p:separator></p:separator>
+                                <p:column style="text-align: center;">  
+                                    Ingrese su Apellido Paterno:
+                                </p:column>  
+                                <p:inputText />  
+                                <p:separator></p:separator>
+                                <p:separator></p:separator>
+                                <p:column style="text-align: center;">  
+                                    Ingrese su Apellido Materno:
+                                </p:column>  
+                                <p:inputText />  
+                                <p:separator></p:separator>
+                                <p:separator></p:separator>
+                                <p:column style="text-align: center;">  
+                                    Selecione el semestre que cursa:
+                                </p:column>  
+                                <p:selectOneMenu id="semestre" value="Semestre"
+                                                 required="true" requiredMessage="Seleccione el semestre">
+                                    <f:selectItem itemLabel="---Seleccione---" itemValue="" noSelectionOption="true"/>
+                                    <f:selectItem itemLabel="1º" itemValue="1"/>
+                                    <f:selectItem itemLabel="2º" itemValue="2"/>
+                                    <f:selectItem itemLabel="3º" itemValue="3"/>
+                                    <f:selectItem itemLabel="4º" itemValue="4"/>
+                                    <f:selectItem itemLabel="5º" itemValue="5"/>
+                                    <f:selectItem itemLabel="6º" itemValue="6"/>
+                                    <f:selectItem itemLabel="7º" itemValue="7"/>
+                                    <f:selectItem itemLabel="8º" itemValue="8"/>
+                                    <f:selectItem itemLabel="9º" itemValue="9"/>
+                                </p:selectOneMenu>
+                                <p:separator></p:separator>
+                                <p:separator></p:separator>
+                                <p:column style="text-align: center;">  
+                                    Selecione el grupo que cursa:
+                                </p:column>  
+                                <p:selectOneMenu id="grupo" value="grupo"
+                                                 required="true" requiredMessage="Seleccione el grupo">
+                                    <f:selectItem itemLabel="---Seleccione---" itemValue="" noSelectionOption="true"/>
+                                    <f:selectItem itemLabel="'A'" itemValue="1"/>
+                                    <f:selectItem itemLabel="'B'" itemValue="2"/>
+                                    <f:selectItem itemLabel="'C'" itemValue="3"/>
+                                    <f:selectItem itemLabel="'D'" itemValue="4"/>
+                                </p:selectOneMenu>
+                                <p:separator/>
+                                <p:separator/>
+                            </p:panelGrid>
+                            <p:panelGrid columns="1" layout="grid" style="text-align: center;">
+                                    <p:splitButton value="Guardar datos" actionListener="#"  icon="ui-icon-disk">
+                                        <p:menuitem value="Borrar datos" actionListener="#" icon="fa-eraser" />
+                                        <p:separator />
+                                        <p:menuitem value="Cancelar/Volver" url="Login.xhtml" icon="ui-icon-extlink" />
+                                    </p:splitButton>
+                                </p:panelGrid>
+                        </h:form>
+                    </section>    
+                </div>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
