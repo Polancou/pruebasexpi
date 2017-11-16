@@ -20,8 +20,8 @@
                         </h1>
 
                         <p:separator/>
-                        <p:growl id="mensajeGeneral" autoUpdate="true" showDetail="true" life="3000"/>
                         <h:form id="mostrarMaMateria">
+                            <p:growl id="mensajeGeneral" autoUpdate="true" showDetail="true" life="3000"/>
                             <p:commandButton value="Nuevo Maestro" actionListener="#{beanMaestro.prepararNuevoMaestro(actionEvent)}" oncomplete="PF('dlgNuevo').show();" 
                                              update=":formInsertar" style="font-size: 12px;" />
                             <p:commandButton value="Asignar Materia" actionListener="#{beanMaestroMaterias.prepararNuevoMaestroM(actionEvent)}" oncomplete="PF('dlgMateria').show();" 

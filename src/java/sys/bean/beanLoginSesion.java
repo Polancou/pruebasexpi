@@ -8,7 +8,6 @@ package sys.bean;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.io.Serializable;
-import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
@@ -16,9 +15,10 @@ import javax.inject.Named;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import org.primefaces.context.RequestContext;
 import sys.dao.daoLoginSesion;
 import sys.imp.LoginSesionImp;
+import sys.model.EncargadaClinica;
+import sys.model.Maestro;
 import sys.model.SesionAlumnos;
 import sys.model.SesionTable;
 
@@ -32,17 +32,45 @@ public class beanLoginSesion implements Serializable {
 
     private SesionTable user;
     private SesionAlumnos usuarioAlumno;
-    private String usuarioName;
-    private List<SesionTable> usuarios;
+    private Maestro maestro;
+    private EncargadaClinica encargada;
     private boolean logeado = false;
-    private String userName;
 
     public beanLoginSesion() {
         user = new SesionTable();
         usuarioAlumno = new SesionAlumnos();
+        maestro=new Maestro();
+        encargada = new EncargadaClinica();
+    }
+
+    /**
+     * @return the encargada
+     */
+    public EncargadaClinica getEncargada() {
+        return encargada;
+    }
+
+    /**
+     * @param encargada the encargada to set
+     */
+    public void setEncargada(EncargadaClinica encargada) {
+        this.encargada = encargada;
     }
     
+    /**
+     * @return the maestro
+     */
+    public Maestro getMaestro() {
+        return maestro;
+    }
 
+    /**
+     * @param maestro the maestro to set
+     */
+    public void setMaestro(Maestro maestro) {
+        this.maestro = maestro;
+    }
+    
     public boolean estaLogeado() {
         return logeado;
     }
@@ -75,13 +103,27 @@ public class beanLoginSesion implements Serializable {
     public void setUsuario(SesionTable usuario) {
         this.user = usuario;
     }
-//
-//    public void usuariosVer() {
-//        daoLoginSesion daoSesion = new LoginSesionImp();
-//        daoSesion.consultarUsuario(usuario);
-//        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "lkasd", "Ha accedido de manera satisfactoria"));
-//    }
 
+    public void insertarFarmacia(){
+        daoLoginSesion daoSesion = new LoginSesionImp();
+        boolean existe=daoSesion.consultarFarmacia(encargada, user);
+        if(existe){
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "¡Felicidades!", "Ha sido registrado en el sistema de manera exitosa."));
+        }else{
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "¡¡Error!!", "Lo sentimos, no ha sido dado de alta en el sistema.\nVerifique con los administradores."));
+        }
+    }
+    
+    public void insertarDocente(){
+        daoLoginSesion daoSesion = new LoginSesionImp();
+        boolean existe=daoSesion.consultarDocente(maestro,user);
+        if(existe){
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "¡Felicidades!", "Ha sido registrado en el sistema de manera exitosa."));
+        }else{
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "¡¡Error!!", "Lo sentimos, no ha sido dado de alta en el sistema.\nVerifique con los administradores."));
+        }
+    }
+    
     public void loguinAlumno(ActionEvent action) throws IOException{
         daoLoginSesion daoSesion = new LoginSesionImp();
         boolean existeAlumno = daoSesion.consultarAlumno(usuarioAlumno);
@@ -94,7 +136,6 @@ public class beanLoginSesion implements Serializable {
     }
     
     public void login(ActionEvent actionEvent) throws IOException {
-        RequestContext context = RequestContext.getCurrentInstance();
         daoLoginSesion daoSesion = new LoginSesionImp();
         int tipoUsuario = daoSesion.consultarUsuario(user);
         if (tipoUsuario == 0) {

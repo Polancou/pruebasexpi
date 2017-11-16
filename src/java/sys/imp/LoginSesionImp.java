@@ -12,6 +12,8 @@ import javax.servlet.http.HttpSession;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import sys.dao.daoLoginSesion;
+import sys.model.EncargadaClinica;
+import sys.model.Maestro;
 import sys.model.SesionAlumnos;
 import sys.model.SesionTable;
 import sys.util.HibernateUtil;
@@ -21,16 +23,6 @@ import sys.util.HibernateUtil;
  * @author RamsesMtnz
  */
 public class LoginSesionImp implements daoLoginSesion {
-
-    @Override
-    public void nuevoUsuario() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void eliminarUsuario() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
     @Override
     public int consultarUsuario(SesionTable loguin) {
@@ -46,9 +38,9 @@ public class LoginSesionImp implements daoLoginSesion {
             usuarioList = session.createQuery(hql).list();
             for (SesionTable users : usuarioList) {
                 if (users.getContraseña().equals(loguin.getContraseña()) && users.getUser().equals(loguin.getUser())) {
-                    System.out.println("Existe\nid del empleado es: "+users.getIdEmpleado());
+                    System.out.println("Existe\nid del empleado es: " + users.getIdEmpleado());
                     sessionUsuario.setAttribute("idEmpleado", users.getIdEmpleado());
-                    usuario = Integer.parseInt(users.getTipo());
+                    usuario = users.getTipo();
                 }
             }
             transaction.commit();
@@ -59,10 +51,9 @@ public class LoginSesionImp implements daoLoginSesion {
         }
         return usuario;
     }
-    
+
     //hacer el mapeo de la nueva tabla de loguinAlumno, aparte cambiar en la interfaz que sea de tipo usuarioAlumno,
     //y cambiar que la consulta sea igual en el nuevo mapeo.
-
     @Override
     public boolean consultarAlumno(SesionAlumnos loguin) {
         boolean usuario = false;
@@ -77,7 +68,7 @@ public class LoginSesionImp implements daoLoginSesion {
             usuarioList = session.createQuery(hql).list();
             for (SesionAlumnos users : usuarioList) {
                 if (users.getContraseña().equals(loguin.getContraseña()) && users.getUser().equals(loguin.getUser())) {
-                    System.out.println("Existe\nusuario del alumno es: "+users.getIdSesion());
+                    System.out.println("Existe\nusuario del alumno es: " + users.getIdSesion());
                     sessionAlumno.setAttribute("idSesion", users.getIdSesion());
                     usuario = true;
                 }
@@ -90,4 +81,54 @@ public class LoginSesionImp implements daoLoginSesion {
         }
         return usuario;
     }
+
+    @Override
+    public boolean consultarDocente(Maestro docente, SesionTable sesion) {
+        boolean usuario = false;
+        List<Maestro> usuarioList = null;
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction transaction = session.beginTransaction();
+        try {
+            usuarioList = session.createQuery(" from Maestro where idEmpleado=:idEmpleado").setParameter("idEmpleado", docente.getIdEmpleado()).list();
+
+            for (Maestro maestro : usuarioList) {
+                if (maestro.getIdEmpleado() == docente.getIdEmpleado()) {
+                    System.out.println("El maestro ha sido registrado");
+                    session.save(new SesionTable(2, sesion.getUser(), sesion.getContraseña(), docente.getIdEmpleado()));
+                    usuario = true;
+                }
+            }
+            transaction.commit();
+            session.close();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            transaction.rollback();
+        }
+        return usuario;
+    }
+
+    @Override
+    public boolean consultarFarmacia(EncargadaClinica encargada, SesionTable sesion) {
+        boolean usuario = false;
+        List<EncargadaClinica> encargadaList = null;
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction transaction = session.beginTransaction();
+        try {
+            encargadaList = session.createQuery(" from EncargadaClinica where idEmpleado=:idEmpleado").setParameter("idEmpleado", encargada.getIdEmpleado()).list();
+            for (EncargadaClinica encargadaFarmacia : encargadaList) {
+                if (encargadaFarmacia.getIdEmpleado() == encargada.getIdEmpleado()) {
+                    System.out.println("El maestro ha sido registrado");
+                    session.save(new SesionTable(3, sesion.getUser(), sesion.getContraseña(), encargada.getIdEmpleado()));
+                    usuario = true;
+                }
+            }
+            transaction.commit();
+            session.close();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            transaction.rollback();
+        }
+        return usuario;
+    }
+
 }

@@ -62,7 +62,9 @@ public class EncargadaClinicaImp implements daoEncargadaDeFarmacia {
         try {
             session = HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
-            session.delete(encargada);
+            //session.delete(encargada);
+            session.createQuery("delete from Maestro m where m.idEmpleado=:idEmpleado").setParameter("idEmpleado", encargada.getIdEmpleado()).executeUpdate();
+            session.createQuery("delete from SesionTable st where st.idEmpleado=:idEmpleado").setParameter("idEmpleado", encargada.getIdEmpleado()).executeUpdate();
             session.getTransaction().commit();
 
         } catch (Exception e) {

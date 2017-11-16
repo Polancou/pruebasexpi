@@ -35,7 +35,6 @@ public class beanMaestro implements Serializable {
     private Maestro maestro;
     private MaestroMaterias maestroMaterias;
     private Materias materias;
-
     private List<Maestro> listar;
    
     private List<SelectItem> listarMaterias;

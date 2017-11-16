@@ -13,6 +13,7 @@ import sys.dao.daoMaestro;
 import sys.model.Maestro;
 import sys.model.MaestroMaterias;
 import sys.model.Materias;
+import sys.model.SesionTable;
 import sys.util.HibernateUtil;
 
 /**
@@ -81,7 +82,10 @@ public class MaestroImp implements daoMaestro{
         try{
             session = HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
-            session.delete(maestro);
+            System.out.print("EL ID DEL EMPLEADO ES: "+maestro.getIdEmpleado());
+            //session.delete(maestro);
+            session.createQuery("delete from Maestro m where m.idEmpleado=:idEmpleado").setParameter("idEmpleado", maestro.getIdEmpleado()).executeUpdate();
+            session.createQuery("delete from SesionTable st where st.idEmpleado=:idEmpleado").setParameter("idEmpleado", maestro.getIdEmpleado()).executeUpdate();
             session.getTransaction().commit();
         }catch(Exception e){
             System.out.println(e.getMessage());

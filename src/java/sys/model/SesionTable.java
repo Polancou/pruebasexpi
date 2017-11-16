@@ -21,7 +21,7 @@ import javax.persistence.Table;
 public class SesionTable {
 
     private int idEmpleado;
-    private String tipo;
+    private int tipo;
     private String user;
     private String contraseña;
     
@@ -29,14 +29,14 @@ public class SesionTable {
         
     }
 
-    public SesionTable(String tipo, String usuario,String contraseña, int id){
+    public SesionTable(int tipo, String usuario,String contraseña, int id){
         this.contraseña=contraseña;
         this.idEmpleado=id;
         this.tipo=tipo;
         this.user=usuario;
     }
     
-    public SesionTable(String usuario, String contraseña, String tipo){
+    public SesionTable(String usuario, String contraseña, int tipo){
         this.user=usuario;
         this.tipo=tipo;
         this.contraseña=contraseña;
@@ -47,7 +47,6 @@ public class SesionTable {
      */
     @Id
     @Column(name = "id_empleado")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int getIdEmpleado() {
         return idEmpleado;
     }
@@ -63,14 +62,14 @@ public class SesionTable {
      * @return the tipo
      */
     @Column(name = "tipo")
-    public String getTipo() {
+    public int getTipo() {
         return tipo;
     }
 
     /**
      * @param tipo the tipo to set
      */
-    public void setTipo(String tipo) {
+    public void setTipo(int tipo) {
         this.tipo = tipo;
     }
 
