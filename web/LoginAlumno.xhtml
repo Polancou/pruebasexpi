@@ -11,17 +11,18 @@
     <h:body>
         <br></br>
         <div id="login">
+            <p:growl id="mensajeGeneral" autoUpdate="true" showDetail="true" life="3000"/>
             <h:form>
                 <h:graphicImage name="images/imagen1.png" ></h:graphicImage>
                 <p:fieldset id="fieldLogin" legend="Bienvenido alumno al portal de Odontología de la UAC" style="text-align: center; margin-bottom:20px">
                     <h:panelGrid columns="2" cellpadding="5" >
                         <p:outputLabel for="nomeUsuario" value="Usuario: " />
-                        <p:inputText id="nomeUsuario" value="#{LoginMB.usuario.usuario}" />
+                        <p:inputText id="nomeUsuario" value="#{LoginMB.usuarioAlumno.user}" />
                         <p:outputLabel id="senha" value="Contraseña:"/>
-                        <p:password id="senhaUsuario" value="#{LoginMB.usuario.contraseña}" />
+                        <p:password id="senhaUsuario" value="#{LoginMB.usuarioAlumno.contraseña}" />
                     </h:panelGrid>
                     <h:panelGrid columns="2" cellpadding="5" >
-                        <p:commandButton value="Ingresar al portal" icon="ui-icon-star" action="#{LoginMB.login(actionEvent)}" ajax="false" />
+                        <p:commandButton value="Ingresar al portal" icon="ui-icon-star" action="#{LoginMB.loguinAlumno(action)}" ajax="false" />
                         <p:commandButton value="¿Olvidó su contraseña?" icon="ui-icon-star"  />
                     </h:panelGrid>
                     <p:splitButton value="¿Nuevo alumno?" actionListener="#"  icon="iu-user-plus">

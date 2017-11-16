@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import sys.dao.daoLoginSesion;
+import sys.model.SesionAlumnos;
 import sys.model.SesionTable;
 import sys.util.HibernateUtil;
 
@@ -44,10 +45,41 @@ public class LoginSesionImp implements daoLoginSesion {
         try {
             usuarioList = session.createQuery(hql).list();
             for (SesionTable users : usuarioList) {
-                if (users.getContraseña().equals(loguin.getContraseña()) && users.getUsuario().equals(loguin.getUsuario())) {
+                if (users.getContraseña().equals(loguin.getContraseña()) && users.getUser().equals(loguin.getUser())) {
                     System.out.println("Existe\nid del empleado es: "+users.getIdEmpleado());
                     sessionUsuario.setAttribute("idEmpleado", users.getIdEmpleado());
                     usuario = Integer.parseInt(users.getTipo());
+                }
+            }
+            transaction.commit();
+            session.close();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            transaction.rollback();
+        }
+        return usuario;
+    }
+    
+    //hacer el mapeo de la nueva tabla de loguinAlumno, aparte cambiar en la interfaz que sea de tipo usuarioAlumno,
+    //y cambiar que la consulta sea igual en el nuevo mapeo.
+
+    @Override
+    public boolean consultarAlumno(SesionAlumnos loguin) {
+        boolean usuario = false;
+        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        HttpSession sessionAlumno = request.getSession();
+        List<SesionAlumnos> usuarioList = null;
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction transaction = session.beginTransaction();
+        String hql = "From SesionAlumnos";
+
+        try {
+            usuarioList = session.createQuery(hql).list();
+            for (SesionAlumnos users : usuarioList) {
+                if (users.getContraseña().equals(loguin.getContraseña()) && users.getUser().equals(loguin.getUser())) {
+                    System.out.println("Existe\nusuario del alumno es: "+users.getIdSesion());
+                    sessionAlumno.setAttribute("idSesion", users.getIdSesion());
+                    usuario = true;
                 }
             }
             transaction.commit();

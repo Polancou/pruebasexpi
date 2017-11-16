@@ -6,6 +6,7 @@
 package sys.dao;
 
 import java.util.List;
+import sys.model.SesionAlumnos;
 import sys.model.SesionTable;
 
 /**
@@ -20,4 +21,5 @@ public interface daoLoginSesion {
     
     public int consultarUsuario(SesionTable login);
     
+    public boolean consultarAlumno(SesionAlumnos login);
 }

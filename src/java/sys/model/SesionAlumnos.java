@@ -17,67 +17,46 @@ import javax.persistence.Table;
  * @author RamsesMtnz
  */
 @Entity
-@Table(name = "usuarios")
-public class SesionTable {
-
-    private int idEmpleado;
-    private String tipo;
+@Table(name = "sesionAlumnos")
+public class SesionAlumnos {
+    
+    private int idSesion;
     private String user;
     private String contraseña;
     
-    public SesionTable(){
+    public SesionAlumnos(){
         
     }
+    
+    public SesionAlumnos(int id, String user, String pass){
+        this.contraseña=pass;
+        this.idSesion=id;
+        this.user=user;
+    }
+    
+    public SesionAlumnos(String user, String pass){
+        this.contraseña=pass;
+        this.user=user;
+    }
 
-    public SesionTable(String tipo, String usuario,String contraseña, int id){
-        this.contraseña=contraseña;
-        this.idEmpleado=id;
-        this.tipo=tipo;
-        this.user=usuario;
-    }
-    
-    public SesionTable(String usuario, String contraseña, String tipo){
-        this.user=usuario;
-        this.tipo=tipo;
-        this.contraseña=contraseña;
-    }
-    
     /**
-     * @return the idEmpleado
+     * @return the idSesion
      */
     @Id
-    @Column(name = "id_empleado")
+    @Column(name = "id_sesion")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public int getIdEmpleado() {
-        return idEmpleado;
+    public int getIdSesion() {
+        return idSesion;
     }
 
     /**
-     * @param idEmpleado the idEmpleado to set
+     * @param idSesion the idSesion to set
      */
-    public void setIdEmpleado(int idEmpleado) {
-        this.idEmpleado = idEmpleado;
+    public void setIdSesion(int idSesion) {
+        this.idSesion = idSesion;
     }
 
     /**
-     * @return the tipo
-     */
-    @Column(name = "tipo")
-    public String getTipo() {
-        return tipo;
-    }
-
-    /**
-     * @param tipo the tipo to set
-     */
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
-
-    /**
-     * @return the usuario
-     */
-       /**
      * @return the contraseña
      */
     @Column(name = "contraseña")
@@ -95,7 +74,7 @@ public class SesionTable {
     /**
      * @return the user
      */
-    @Column(name = "usuario") 
+    @Column(name = "usuario")
     public String getUser() {
         return user;
     }
@@ -107,5 +86,4 @@ public class SesionTable {
         this.user = user;
     }
     
-
 }
