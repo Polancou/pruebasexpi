@@ -42,6 +42,7 @@ public class TratamientosImp implements daoAreaTratamientos {
     public void insertarMenuTratamientos(MenuTratamientos menu) {
        Session session = null;
        try{
+           System.out.println("TRAE COMO DATOS"+menu.getAreaTratamientos()+"\n"+menu.getBitacoraReciboses());
            session = HibernateUtil.getSessionFactory().openSession();
            session.beginTransaction();
            session.save(menu);

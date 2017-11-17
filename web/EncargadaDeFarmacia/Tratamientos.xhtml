@@ -81,8 +81,8 @@
                                     <p:spacer></p:spacer>
                                     <p:spacer></p:spacer>
                                     <f:facet name="footer" >
-                                        <p:commandButton  value="Guardar" actionListener="#{beanTratamiento.insertarTratamientos()}" update=":formInsertarTratamiento" oncomplete="PF('dlgNuevoM').hide();"/>
-                                        <p:commandButton  value="Cancelar" update=":formInsertarMTratamiento" immediate="true" onclick="PF('dlgNuevoM').hide();" />
+                                        <p:commandButton  value="Guardar" actionListener="#{beanTratamiento.insertarMenuTratamientos()}" update=":formInsertarTratamiento" oncomplete="PF('dlgNuevoT').hide();"/>
+                                        <p:commandButton  value="Cancelar" update=":formInsertarTratamiento" immediate="true" onclick="PF('dlgNuevoT').hide();" />
                                     </f:facet>  
                                 </h:panelGrid>
                             </h:form>
@@ -179,7 +179,7 @@
 
 
                                     <p:commandButton id="btn_reset" value="Borrar todo" type="reset"/>
-                                    <p:commandButton id="btn_add" value="Agregar" update=":formAgregarTratamientos:tablaAgregarTratamientos" action="#{beanTratamiento.reinit()}" >
+                                    <p:commandButton id="btn_add" value="Agregar" oncomplete="PF('dlgNuevoA').hide();" update=":formAgregarTratamientos:tablaAgregarTratamientos" action="#{beanTratamiento.reinit()}" >
                                         <p:collector value="#{beanTratamiento.bitacora}" addTo="#{beanTratamiento.bita}" unique="true"/>
                                     </p:commandButton>
 
