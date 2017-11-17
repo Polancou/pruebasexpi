@@ -18,17 +18,20 @@ import sys.util.HibernateUtil;
 public class AlumnosImp implements daoAlumnos{
 
     @Override
-    public void insertarAlumnos(Alumnos alumnos) {
+    public boolean insertarAlumnos(Alumnos alumnos) {
+        boolean seRegistro=false;
         Session session = null;
         try{
             session = HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
             session.save(alumnos);
             session.getTransaction().commit();
+            seRegistro=true;
         }catch(Exception e){
             System.out.println(e.getMessage());
             session.getTransaction().rollback();
         }
+        return seRegistro;
     }
     
     

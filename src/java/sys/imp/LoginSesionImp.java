@@ -12,9 +12,9 @@ import javax.servlet.http.HttpSession;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import sys.dao.daoLoginSesion;
+import sys.model.Alumnos;
 import sys.model.EncargadaClinica;
 import sys.model.Maestro;
-import sys.model.SesionAlumnos;
 import sys.model.SesionTable;
 import sys.util.HibernateUtil;
 
@@ -55,21 +55,21 @@ public class LoginSesionImp implements daoLoginSesion {
     //hacer el mapeo de la nueva tabla de loguinAlumno, aparte cambiar en la interfaz que sea de tipo usuarioAlumno,
     //y cambiar que la consulta sea igual en el nuevo mapeo.
     @Override
-    public boolean consultarAlumno(SesionAlumnos loguin) {
+    public boolean consultarAlumno(Alumnos loguin) {
         boolean usuario = false;
         HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
         HttpSession sessionAlumno = request.getSession();
-        List<SesionAlumnos> usuarioList = null;
+        List<Alumnos> usuarioList = null;
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
-        String hql = "From SesionAlumnos";
+        String hql = "From Alumnos";
 
         try {
             usuarioList = session.createQuery(hql).list();
-            for (SesionAlumnos users : usuarioList) {
-                if (users.getContraseña().equals(loguin.getContraseña()) && users.getUser().equals(loguin.getUser())) {
-                    System.out.println("Existe\nusuario del alumno es: " + users.getIdSesion());
-                    sessionAlumno.setAttribute("idSesion", users.getIdSesion());
+            for (Alumnos users : usuarioList) {
+                if (users.getContraseña().equals(loguin.getContraseña()) && users.getUsuario().equals(loguin.getUsuario())) {
+                    System.out.println("Existe\nMatricula del alumno es: " + users.getMatricula());
+                    sessionAlumno.setAttribute("idSesion", users.getMatricula());
                     usuario = true;
                 }
             }

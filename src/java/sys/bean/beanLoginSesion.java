@@ -17,9 +17,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import sys.dao.daoLoginSesion;
 import sys.imp.LoginSesionImp;
+import sys.model.Alumnos;
 import sys.model.EncargadaClinica;
 import sys.model.Maestro;
-import sys.model.SesionAlumnos;
 import sys.model.SesionTable;
 
 /**
@@ -29,16 +29,16 @@ import sys.model.SesionTable;
 @Named(value = "LoginMB")
 @ViewScoped
 public class beanLoginSesion implements Serializable {
-
+    
     private SesionTable user;
-    private SesionAlumnos usuarioAlumno;
     private Maestro maestro;
+    private Alumnos alumno;
     private EncargadaClinica encargada;
     private boolean logeado = false;
 
     public beanLoginSesion() {
         user = new SesionTable();
-        usuarioAlumno = new SesionAlumnos();
+        alumno = new Alumnos();
         maestro=new Maestro();
         encargada = new EncargadaClinica();
     }
@@ -56,6 +56,21 @@ public class beanLoginSesion implements Serializable {
     public void setEncargada(EncargadaClinica encargada) {
         this.encargada = encargada;
     }
+    
+    /**
+     * @return the alumno
+     */
+    public Alumnos getAlumno() {
+        return alumno;
+    }
+
+    /**
+     * @param alumno the alumno to set
+     */
+    public void setAlumno(Alumnos alumno) {
+        this.alumno = alumno;
+    }
+
     
     /**
      * @return the maestro
@@ -80,20 +95,6 @@ public class beanLoginSesion implements Serializable {
      */
     public SesionTable getUsuario() {
         return user;
-    }
-    
-    /**
-     * @return the usuarioAlumno
-     */
-    public SesionAlumnos getUsuarioAlumno() {
-        return usuarioAlumno;
-    }
-
-    /**
-     * @param usuarioAlumno the usuarioAlumno to set
-     */
-    public void setUsuarioAlumno(SesionAlumnos usuarioAlumno) {
-        this.usuarioAlumno = usuarioAlumno;
     }
     
 
@@ -126,7 +127,7 @@ public class beanLoginSesion implements Serializable {
     
     public void loguinAlumno(ActionEvent action) throws IOException{
         daoLoginSesion daoSesion = new LoginSesionImp();
-        boolean existeAlumno = daoSesion.consultarAlumno(usuarioAlumno);
+        boolean existeAlumno = daoSesion.consultarAlumno(alumno);
         if (existeAlumno){
             logeado = true;
             responseAndRequestAlumno("/FdO-3.0/pages/Alumnos/Principal.xhtml","tokenAlumno");
@@ -190,7 +191,7 @@ public class beanLoginSesion implements Serializable {
         HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
         HttpSession session = request.getSession();
         session.setAttribute(tokenName, user.getUser());
-        System.out.println("El usuario del token es: " + user.getUser().toString());
+        System.out.println("El usuario del token es: " + user.getUser());
         HttpServletResponse sResponse = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
         sResponse.sendRedirect(ruta);
     }
@@ -198,8 +199,8 @@ public class beanLoginSesion implements Serializable {
     private void responseAndRequestAlumno(String ruta,String tokenName) throws IOException {
         HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
         HttpSession session = request.getSession();
-        session.setAttribute(tokenName, usuarioAlumno.getUser());
-        System.out.println("El usuario del token es: " + usuarioAlumno.getUser().toString());
+        session.setAttribute(tokenName, alumno.getUsuario());
+        System.out.println("El usuario del token es: " + alumno.getUsuario());
         HttpServletResponse sResponse = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
         sResponse.sendRedirect(ruta);
     }

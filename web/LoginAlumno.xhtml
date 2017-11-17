@@ -18,9 +18,9 @@
                 <p:fieldset id="fieldLogin" legend="Bienvenido alumno al portal de Odontología de la UAC" style="text-align: center; margin-bottom:20px">
                     <h:panelGrid columns="2" cellpadding="5" >
                         <p:outputLabel for="nomeUsuario" value="Usuario: " />
-                        <p:inputText id="nomeUsuario" value="#{LoginMB.usuarioAlumno.user}" />
+                        <p:inputText id="nomeUsuario" value="#{LoginMB.alumno.usuario}" />
                         <p:outputLabel id="senha" value="Contraseña:"/>
-                        <p:password id="senhaUsuario" value="#{LoginMB.usuarioAlumno.contraseña}" />
+                        <p:password id="senhaUsuario" value="#{LoginMB.alumno.contraseña}" />
                     </h:panelGrid>
                     <h:panelGrid columns="2" cellpadding="5" >
                         <p:commandButton value="Ingresar al portal" icon="ui-icon-star" action="#{LoginMB.loguinAlumno(action)}" ajax="false" style="font-size: 12px;" />
@@ -35,7 +35,7 @@
  
             <p:dialog id="dlgNuevoMaestro" header="Nuevo Alumno" widgetVar="dlgNuevo" showEffect="drop" hideEffect="drop" modal="true">
                 <h:form id="formInsertar">
-                    <p:panelGrid columns="2" style="margin: 0 auto; font-size: 11px;">
+                    <h:panelGrid columns="2" >
                         <p:outputLabel value="Matricula:"/>
                         <p:inputText value="#{beanAlumnos.alumnos.matricula}"
                                      required="true" requiredMessage="Matricula es obligatorio"/>
@@ -98,7 +98,7 @@
                                          update=":formInsertar" immediate="true" 
                                          onclick="PF('dlgNuevo').hide();" />
 
-                    </p:panelGrid>
+                    </h:panelGrid>
                 </h:form>
             </p:dialog>
         </div>

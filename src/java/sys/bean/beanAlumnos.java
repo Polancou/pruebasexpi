@@ -8,6 +8,8 @@ package sys.bean;
 import java.io.Serializable;
 import javax.inject.Named;
 import javax.enterprise.context.Dependent;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import sys.dao.daoAlumnos;
 import sys.imp.AlumnosImp;
@@ -44,8 +46,13 @@ public class beanAlumnos implements Serializable{
     
     public void insertarAlumno(){
         daoAlumnos adao = new AlumnosImp();
-        adao.insertarAlumnos(alumnos);
+        boolean registro=adao.insertarAlumnos(alumnos);
         alumnos = new Alumnos();
+        if(registro){
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "¡Bienvenido!", "Se ha registrado exitosamente."));
+        }else{
+         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "¡ERROR FATAL!", "Ha ocurrido un error al realizar su registro."));   
+        }
     }
     
 }
