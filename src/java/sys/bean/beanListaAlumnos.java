@@ -9,6 +9,8 @@ import java.io.Serializable;
 import java.util.List;
 import javax.inject.Named;
 import javax.enterprise.context.Dependent;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import sys.dao.daoListaAlumnos;
 import sys.imp.ListaAlumnosImp;
@@ -22,18 +24,17 @@ import sys.model.MaestroMaterias;
  */
 @Named(value = "beanListaAlumnos")
 @ViewScoped
-public class beanListaAlumnos implements Serializable{
+public class beanListaAlumnos implements Serializable {
 
     /**
      * Creates a new instance of beanListaAlumnos
      */
-    
     private MaestroMaterias mmaterias;
     private Alumnos alumnos;
     private ListaAlumnos listAlumnos;
-    private List<ListaAlumnos> lista;
+    private List<ListaAlumnos> list;
     private String año;
-    
+
     public beanListaAlumnos() {
         mmaterias = new MaestroMaterias();
         alumnos = new Alumnos();
@@ -57,6 +58,7 @@ public class beanListaAlumnos implements Serializable{
     }
 
     public ListaAlumnos getListAlumnos() {
+       
         return listAlumnos;
     }
 
@@ -71,22 +73,23 @@ public class beanListaAlumnos implements Serializable{
     public void setAño(String año) {
         this.año = año;
     }
+
+    public List<ListaAlumnos> getList() {
+         daoListaAlumnos ldao = new ListaAlumnosImp();
+        list = ldao.MostrarClases(alumnos,mmaterias);
+        return list;
+    }
+
+    public void setList(List<ListaAlumnos> list) {
+        this.list = list;
+    }
     
     
 
-    public List<ListaAlumnos> getLista() {
-       
-        return lista;
-    }
-    public void buscarLista(){
+    public void insertarMateria() {
+        listAlumnos.getAlumnos().setMatricula(49247);
         daoListaAlumnos ldao = new ListaAlumnosImp();
-        lista = ldao.MostrarAlumnos(mmaterias);
+        ldao.insertarListaAlumnos(listAlumnos);    
     }
 
-    public void setLista(List<ListaAlumnos> lista) {
-        this.lista = lista;
-    }
-    
-    
-    
 }

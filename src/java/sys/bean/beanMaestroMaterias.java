@@ -19,6 +19,7 @@ import sys.dao.daoMaestroMaterias;
 import sys.imp.ListaAlumnosImp;
 import sys.imp.MaestroImp;
 import sys.imp.MaestroMateriasImp;
+import sys.model.Alumnos;
 import sys.model.ListaAlumnos;
 import sys.model.Maestro;
 import sys.model.MaestroMaterias;
@@ -36,7 +37,6 @@ public class beanMaestroMaterias implements Serializable {
      * Creates a new instance of beanMaestroMaterias
      */
     private MaestroMaterias maestroMaterias;
-
     private List<MaestroMaterias> maestroM;
     private Maestro maestro;
     private Materias materias;
@@ -95,6 +95,8 @@ public class beanMaestroMaterias implements Serializable {
         this.lista = lista;
     }
 
+    
+    
     public List<ListaAlumnos> getListarAlumnos() {
         return listarAlumnos;
     }
@@ -102,8 +104,8 @@ public class beanMaestroMaterias implements Serializable {
     public void setListarAlumnos(List<ListaAlumnos> listarAlumnos) {
         this.listarAlumnos = listarAlumnos;
     }
-    
-    public void buscarLista(){
+
+    public void buscarLista() {
         daoListaAlumnos ldao = new ListaAlumnosImp();
         listarAlumnos = ldao.MostrarAlumnos(maestroMaterias);
     }
@@ -161,7 +163,5 @@ public class beanMaestroMaterias implements Serializable {
         }
         return listarGrado;
     }
-    
-    
 
 }
