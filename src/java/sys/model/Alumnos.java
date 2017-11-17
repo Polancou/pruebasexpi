@@ -11,10 +11,14 @@ import java.util.Set;
 public class Alumnos  implements java.io.Serializable {
 
 
-  private int matricula;
-     private String nombreCompleto;
+ private int matricula;
+     private String nombre;
+     private String apellidoPaterno;
+     private String apellidoMaterno;
      private String semestre;
      private String grupo;
+     private String usuario;
+     private String contraseña;
      private Set<ListaAlumnos> listaAlumnoses = new HashSet<ListaAlumnos>(0);
      private Set<BitacoraRecibos> bitacoraReciboses = new HashSet<BitacoraRecibos>(0);
 
@@ -22,15 +26,23 @@ public class Alumnos  implements java.io.Serializable {
     }
 
 	
-    public Alumnos(int matricula, String nombreCompleto) {
+    public Alumnos(int matricula, String nombre, String apellidoPaterno, String apellidoMaterno, String usuario, String contraseña) {
         this.matricula = matricula;
-        this.nombreCompleto = nombreCompleto;
+        this.nombre = nombre;
+        this.apellidoPaterno = apellidoPaterno;
+        this.apellidoMaterno = apellidoMaterno;
+        this.usuario = usuario;
+        this.contraseña = contraseña;
     }
-    public Alumnos(int matricula, String nombreCompleto, String semestre, String grupo, Set<ListaAlumnos> listaAlumnoses, Set<BitacoraRecibos> bitacoraReciboses) {
+    public Alumnos(int matricula, String nombre, String apellidoPaterno, String apellidoMaterno, String semestre, String grupo, String usuario, String contraseña, Set<ListaAlumnos> listaAlumnoses, Set<BitacoraRecibos> bitacoraReciboses) {
        this.matricula = matricula;
-       this.nombreCompleto = nombreCompleto;
+       this.nombre = nombre;
+       this.apellidoPaterno = apellidoPaterno;
+       this.apellidoMaterno = apellidoMaterno;
        this.semestre = semestre;
        this.grupo = grupo;
+       this.usuario = usuario;
+       this.contraseña = contraseña;
        this.listaAlumnoses = listaAlumnoses;
        this.bitacoraReciboses = bitacoraReciboses;
     }
@@ -42,12 +54,26 @@ public class Alumnos  implements java.io.Serializable {
     public void setMatricula(int matricula) {
         this.matricula = matricula;
     }
-    public String getNombreCompleto() {
-        return this.nombreCompleto;
+    public String getNombre() {
+        return this.nombre;
     }
     
-    public void setNombreCompleto(String nombreCompleto) {
-        this.nombreCompleto = nombreCompleto;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+    public String getApellidoPaterno() {
+        return this.apellidoPaterno;
+    }
+    
+    public void setApellidoPaterno(String apellidoPaterno) {
+        this.apellidoPaterno = apellidoPaterno;
+    }
+    public String getApellidoMaterno() {
+        return this.apellidoMaterno;
+    }
+    
+    public void setApellidoMaterno(String apellidoMaterno) {
+        this.apellidoMaterno = apellidoMaterno;
     }
     public String getSemestre() {
         return this.semestre;
@@ -63,6 +89,20 @@ public class Alumnos  implements java.io.Serializable {
     public void setGrupo(String grupo) {
         this.grupo = grupo;
     }
+    public String getUsuario() {
+        return this.usuario;
+    }
+    
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
+    public String getContraseña() {
+        return this.contraseña;
+    }
+    
+    public void setContraseña(String contraseña) {
+        this.contraseña = contraseña;
+    }
     public Set<ListaAlumnos> getListaAlumnoses() {
         return this.listaAlumnoses;
     }
@@ -77,7 +117,6 @@ public class Alumnos  implements java.io.Serializable {
     public void setBitacoraReciboses(Set<BitacoraRecibos> bitacoraReciboses) {
         this.bitacoraReciboses = bitacoraReciboses;
     }
-
 
 
 

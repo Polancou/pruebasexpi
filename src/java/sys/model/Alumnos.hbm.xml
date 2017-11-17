@@ -8,14 +8,26 @@
             <column name="matricula" />
             <generator class="assigned" />
         </id>
-        <property name="nombreCompleto" type="string">
-            <column name="nombre_completo" length="50" not-null="true" />
+        <property name="nombre" type="string">
+            <column name="nombre" length="50" not-null="true" />
+        </property>
+        <property name="apellidoPaterno" type="string">
+            <column name="apellido_paterno" length="50" not-null="true" />
+        </property>
+        <property name="apellidoMaterno" type="string">
+            <column name="apellido_materno" length="50" not-null="true" />
         </property>
         <property name="semestre" type="string">
             <column name="semestre" length="10" />
         </property>
         <property name="grupo" type="string">
             <column name="grupo" length="10" />
+        </property>
+        <property name="usuario" type="string">
+            <column name="usuario" length="45" not-null="true" />
+        </property>
+        <property name="contraseña" type="string">
+            <column name="contraseña" length="45" not-null="true" />
         </property>
         <set name="listaAlumnoses" table="lista_alumnos" inverse="true" lazy="true" fetch="select">
             <key>

@@ -38,7 +38,9 @@ public class beanAlumnos implements Serializable{
         this.alumnos = alumnos;
     }
     
-    
+    public void cancelar(){
+        alumnos = new Alumnos();
+    }
     
     public void insertarAlumno(){
         daoAlumnos adao = new AlumnosImp();
