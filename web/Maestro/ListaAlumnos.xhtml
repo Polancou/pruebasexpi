@@ -71,7 +71,7 @@
                                          emptyMessage="No hay datos" style="font-size: 11px;">
 
                                 <p:column headerText="Nombre Completo ">
-                                    <h:outputText value="#{master.alumnos.nombreCompleto}"/>
+                                    <h:outputText value="#{master.alumnos.nombre} #{master.alumnos.apellidoPaterno} #{master.alumnos.apellidoMaterno}"/>
                                 </p:column>
                                     <p:column headerText="Matricula ">
                                         <h:outputText value="#{master.alumnos.matricula}"/>
