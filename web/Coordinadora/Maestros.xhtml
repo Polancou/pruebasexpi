@@ -59,37 +59,38 @@
                         <br/>
                         <p:dialog id="dlgNuevoMaestro" header="Nuevo Docente" widgetVar="dlgNuevo" showEffect="drop" hideEffect="drop" modal="true">
                             <h:form id="formInsertar">
-                                <p:panelGrid columns="2" style="margin: 0 auto; font-size: 11px;">
-                                    <p:outputLabel value="Matriculaa:"/>
+                                <h:panelGrid columns="2" style="margin: 0 auto; font-size: 11px;">
+                                    <p:outputLabel value="Número de empleado: "/>
                                     <p:inputText value="#{beanMaestro.maestro.idEmpleado}"
-                                                 required="true" requiredMessage="Matricula es obligatorio"/>
-
+                                                 required="true" requiredMessage="Nº de empleado es obligatorio"/>
+                                    <p:spacer/><p:spacer/>
                                     <p:outputLabel value="Nombre:"/>
                                     <p:inputText value="#{beanMaestro.maestro.nombre}"
                                                  required="true" requiredMessage="Nombre es obligatorio"/>
-
+                                    <p:spacer/><p:spacer/>
                                     <p:outputLabel value="Apellido Paterno"/>
                                     <p:inputText value="#{beanMaestro.maestro.apellidoPaterno}"
                                                  required="true" requiredMessage="Apellido es obligatorio"/>
-
+                                    <p:spacer/><p:spacer/>
                                     <p:outputLabel value="Apellido Materno"/>
                                     <p:inputText value="#{beanMaestro.maestro.apellidoMaterno}"/>
-
+                                    <p:spacer/><p:spacer/>
                                     <p:outputLabel value="Correo"/>
                                     <p:inputText id="focus" title="El correo debe ser el institucional" value="#{beanMaestro.maestro.correo}"
                                                  required="true" requiredMessage="Correo es obligatorio" validatorMessage="Email invalido, Ingrese su correo institucional">
                                         <f:validateRegex
                                             pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[uacam]+(\.[uacam]{5}+)*(\.[mx]{2,})$"/>
                                     </p:inputText>
+                                    <p:spacer/><p:spacer/>
+                                    <p:spacer/><p:spacer/>
+                                        <p:commandButton value="Guardar" actionListener="#{beanMaestro.insertarMaestro()}"  
+                                                         oncomplete="PF('dlgNuevo').hide();" update=":formMostrarMaestros:tablaMostrarMaestros :formInsertar :formMateria"/>
+                                        <p:commandButton value="Cancelar" action="#{beanMaestro.cancelar()}"
+                                                         update=":formInsertar" immediate="true" 
+                                                         onclick="PF('dlgNuevo').hide();" /> 
 
-
-                                    <p:commandButton value="Guardar" actionListener="#{beanMaestro.insertarMaestro()}"  
-                                                     oncomplete="PF('dlgNuevo').hide();" update=":formMostrarMaestros:tablaMostrarMaestros :formInsertar :formMateria"/>
-                                    <p:commandButton value="Cancelar" action="#{beanMaestro.cancelar()}"
-                                                     update=":formInsertar" immediate="true" 
-                                                     onclick="PF('dlgNuevo').hide();" />
                                     <p:tooltip id="focusEmail" for="focus" showEvent="focus" hideEvent="blur"/>
-                                </p:panelGrid>
+                                </h:panelGrid>
                             </h:form>
                         </p:dialog>
 
@@ -125,7 +126,7 @@
 
                         <p:dialog id="dlgActulizarMaestro" header="Editar Registro" widgetVar="dlgEditar" showEffect="drop" hideEffect="drop" modal="true">
                             <h:form id="formActualizar">
-                                <p:panelGrid columns="2" style="margin: 0 auto; font-size: 11px;">
+                                <h:panelGrid columns="2" style="margin: 0 auto; font-size: 11px;">
                                     <p:outputLabel value="Matriculaa:"/>
                                     <p:inputText value="#{beanMaestro.maestro.idEmpleado}"
                                                  required="true" requiredMessage="Matricula es obligatorio"/>
@@ -153,7 +154,7 @@
                                     <p:commandButton value="Cancelar" onclick="PF('dlgEditar').hide();" 
                                                      immediate="true" />
 
-                                </p:panelGrid>
+                                </h:panelGrid>
                             </h:form>
 
                         </p:dialog>
@@ -172,7 +173,7 @@
 
                         <p:dialog id="dlgMaestroMateria" header="Asignar Materia" widgetVar="dlgMateria" showEffect="drop" hideEffect="drop" modal="true">
                             <h:form id="formMateria">
-                                <p:panelGrid columns="2" style="margin: 0 auto; font-size: 11px;">
+                                <h:panelGrid columns="2" style="margin: 0 auto; font-size: 11px;">
                                     <p:outputLabel value="Maestro"/>
                                     <p:selectOneMenu id="maestro" value="#{beanMaestro.maestroMaterias.maestro.idEmpleado}"
                                                      required="true" requiredMessage="Seleccione un grado">
@@ -226,14 +227,14 @@
                                     <p:commandButton value="Cancelar" onclick="PF('dlgMateria').hide();" 
                                                      immediate="true" />
 
-                                </p:panelGrid>
+                                </h:panelGrid>
                             </h:form>
 
                         </p:dialog>
 
                         <p:dialog id="dlgNuevaMateria" header="Nueva Materia" widgetVar="dlgMateriaNueva" showEffect="drop" hideEffect="drop" modal="true">
                             <h:form id="formMateriaNueva">
-                                <p:panelGrid columns="2" style="margin: 0 auto; font-size: 11px;">
+                                <h:panelGrid columns="2" style="margin: 0 auto; font-size: 11px;">
                                     <p:outputLabel value="Materia:"/>
                                     <p:inputText value="#{beanMaterias.materia.materia}"
                                                  required="true" requiredMessage="Materia es obligatorio"/>
@@ -261,7 +262,7 @@
                                     <p:commandButton value="Cancelar" onclick="PF('dlgMateriaNueva').hide();" 
                                                      immediate="true" />
 
-                                </p:panelGrid>
+                                </h:panelGrid>
                             </h:form>
 
                         </p:dialog>
