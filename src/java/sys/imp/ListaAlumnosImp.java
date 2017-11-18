@@ -6,6 +6,9 @@
 package sys.imp;
 
 import java.util.List;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import sys.dao.daoListaAlumnos;
@@ -19,6 +22,10 @@ import sys.util.HibernateUtil;
  * @author Sammy Guergachi <sguergachi at gmail.com>
  */
 public class ListaAlumnosImp implements daoListaAlumnos {
+
+    HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+    HttpSession sessionUsuario = request.getSession();
+    int user = (int) sessionUsuario.getAttribute("idSesion");
 
     @Override
     public List<ListaAlumnos> MostrarAlumnos(MaestroMaterias mmaterias) {
@@ -41,7 +48,7 @@ public class ListaAlumnosImp implements daoListaAlumnos {
 
     @Override
     public void insertarListaAlumnos(ListaAlumnos lista) {
-     
+
         Session session = null;
         try {
             session = HibernateUtil.getSessionFactory().openSession();
@@ -52,22 +59,20 @@ public class ListaAlumnosImp implements daoListaAlumnos {
             System.out.println(e.getMessage());
             session.getTransaction().rollback();
 
-        }
-        finally{
-            if(session!=null){
+        } finally {
+            if (session != null) {
                 session.close();
             }
         }
-        
 
     }
 
     @Override
     public List<ListaAlumnos> MostrarClases(Alumnos alumnos, MaestroMaterias mmaterias) {
-          List<ListaAlumnos> mostrarClases = null;
+        List<ListaAlumnos> mostrarClases = null;
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
-        String hql = "from ListaAlumnos as m inner join fetch m.maestroMaterias left join fetch m.alumnos where m.alumnos.matricula=49247";
+        String hql = "from ListaAlumnos as m inner join fetch m.maestroMaterias left join fetch m.alumnos where m.alumnos.matricula="+user;
 
         try {
             mostrarClases = session.createQuery(hql).list();

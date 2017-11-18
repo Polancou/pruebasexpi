@@ -12,6 +12,8 @@ import javax.enterprise.context.Dependent;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import sys.dao.daoListaAlumnos;
 import sys.imp.ListaAlumnosImp;
 import sys.model.Alumnos;
@@ -85,11 +87,16 @@ public class beanListaAlumnos implements Serializable {
     }
     
     
-
+  HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        HttpSession sessionUsuario = request.getSession();
+        
     public void insertarMateria() {
-        listAlumnos.getAlumnos().setMatricula(49247);
+          
+        int user=(int) sessionUsuario.getAttribute("idSesion");
+        listAlumnos.getAlumnos().setMatricula(user);
         daoListaAlumnos ldao = new ListaAlumnosImp();
         ldao.insertarListaAlumnos(listAlumnos);    
+        listAlumnos = new ListaAlumnos();
     }
 
 }
