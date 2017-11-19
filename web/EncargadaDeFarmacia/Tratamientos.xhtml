@@ -33,24 +33,6 @@
                         </h:form>
 
 
-                        <!--                        <p:dialog id="dlgNuevoMTratamiento" header="Nueva área de tratamiento" widgetVar="dlgNuevoM" showEffect="drop" hideEffect="drop" modal="true">
-                                                    <h:form id="formInsertarMTratamiento">
-                                                        <div class="ui-fuid">
-                                                            <p:panelGrid columns="2" columnClasses="ui-grid-col-6" layout="grid" styleClass="ui-panelgrid-blank">
-                                                                <p:outputLabel for="tratamiento" value="Tratamiento"/>
-                                                                <p:inputText id="tratamiento" value="#{beanTratamiento.area.tratamiento}"
-                                                                             required="true" requiredMessage="Tratamiento es obligatorio"/>
-                                                                    <p:commandButton  value="Guardar" actionListener="#{beanTratamiento.insertarTratamientos()}" update=":formInsertarTratamiento" 
-                                                                             oncomplete="PF('dlgNuevoM').hide();"/>
-                                                                    <p:commandButton  value="Cancelar"
-                                                                             update=":formInsertarMTratamiento" immediate="true" 
-                                                                             onclick="PF('dlgNuevoM').hide();" />
-                             
-                                                            </p:panelGrid>
-                                                        </div> 
-                                                        
-                                                    </h:form>
-                                                </p:dialog>-->
 
                         <p:dialog id="dlgNuevoMTratamiento" header="Nueva área de tratamiento" widgetVar="dlgNuevoM" showEffect="drop" hideEffect="drop" modal="true">
                             <h:form id="formInsertarMTratamiento">
@@ -87,31 +69,7 @@
                                 </h:panelGrid>
                             </h:form>
                         </p:dialog>
-<!--
-                        <p:dialog id="dlgNuevoTratamiento" header="Nuevo Tratamiento" widgetVar="dlgNuevoT" showEffect="drop" hideEffect="drop" modal="true">
-                            <h:form id="formInsertarTratamiento">
-                                <p:panelGrid columns="2" style="margin: 0 auto; font-size: 11px;">
-                                    <p:outputLabel value="Tratamiento"/>
-                                    <p:selectOneMenu id="mtratamiento" value="#{beanTratamiento.menu.areaTratamientos.area}"
-                                                     required="true" requiredMessage="Seleccione un grado">
-                                        <f:selectItem itemLabel="Seleccione"/>
-                                        <f:selectItems value="#{beanTratamiento.listArea}"/>
-                                        <f:ajax execute="mtratamiento"/>
-                                    </p:selectOneMenu>
 
-                                    <p:outputLabel value="Tratamiento"/>
-                                    <p:inputText value="#{beanTratamiento.menu.nameTratamiento}"
-                                                 required="true" requiredMessage="Tratamiento es obligatorio"/>
-
-                                    <p:commandButton value="Guardar" actionListener="#{beanTratamiento.insertarMenuTratamientos()}" update=":formAgregarTratamiento"
-                                                     oncomplete="PF('dlgNuevoT').hide();"/>
-                                    <p:commandButton value="Cancelar"
-                                                     update=":formInsertarTratamiento" immediate="true" 
-                                                     onclick="PF('dlgNuevoT').hide();" />
-
-                                </p:panelGrid>
-                            </h:form>
-                        </p:dialog>-->
 
                         <p:dialog id="dlgInsertCollection" header="Agregar Tratamiento" widgetVar="dlgNuevoA" showEffect="drop" hideEffect="drop" modal="true">
                             <h:form id="formAgregarTratamiento">
@@ -151,7 +109,7 @@
                                     <p:calendar id="mask" value="#{beanTratamiento.bitacora.fecha}" pattern="dd-MM-yyyy" mask="true" />
 
                                     <p:outputLabel value="Comentarios"/>
-                                    <p:inputTextarea rows="6" cols="33" />
+                                    <p:inputTextarea rows="6" cols="33" value="#{beanTratamiento.bitacora.comentario}"/>
 
 
                                     <p:outputLabel value="Sexo"/> 
@@ -179,9 +137,8 @@
 
 
                                     <p:commandButton id="btn_reset" value="Borrar todo" type="reset"/>
-                                    <p:commandButton id="btn_add" value="Agregar" oncomplete="PF('dlgNuevoA').hide();" update=":formAgregarTratamientos:tablaAgregarTratamientos" action="#{beanTratamiento.reinit()}" >
-                                        <p:collector value="#{beanTratamiento.bitacora}" addTo="#{beanTratamiento.bita}" unique="true"/>
-                                    </p:commandButton>
+                                    <p:commandButton value="Guardar" actionListener="#{beanTratamiento.insertarBitacora()}"  
+                                                         oncomplete="PF('dlgNuevo').hide();"/>
 
 
                                 </h:panelGrid>
@@ -189,29 +146,7 @@
                         </p:dialog>
                         <p:separator/>
 
-                        <h:form id="formAgregarTratamientos">
-                            <p:dataTable id="tablaAgregarTratamientos" value="#{beanTratamiento.bita}" var="bita"
-                                         emptyMessage="No hay datos" style="font-size: 11px;">
-
-                                <p:column headerText="Tratamiento ">
-                                    <h:outputText value="#{bita.menuTratamientos.areaTratamientos.area}"/>
-                                </p:column>
-                                <p:column headerText="Folio ">
-                                    <h:outputText value="#{bita.folio}"/>
-                                </p:column>
-                                <p:column headerText="Fecha ">
-                                    <h:outputText value="#{bita.fecha}"/>
-                                </p:column>
-                                <p:column headerText="Action">
-                                    <p:commandLink value="Remove" update=":formAgregarTratamientos:tablaAgregarTratamientos" process=":formAgregarTratamientos:tablaAgregarTratamientos">
-                                        <p:collector value="#{bita}" removeFrom="#{beanTratamiento.bita}" unique="true"/>
-                                    </p:commandLink>
-                                </p:column>
-
-
-
-                            </p:dataTable>
-                        </h:form>
+                        
 
                     </section><!-- /.content -->
                 </div><!-- /.content-wrapper -->

@@ -10,9 +10,13 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Named;
 import javax.enterprise.context.Dependent;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 import javax.faces.view.ViewScoped;
 import sys.dao.daoAreaTratamientos;
+import sys.dao.daoBitacora;
+import sys.imp.BitacoraImp;
 import sys.imp.TratamientosImp;
 import sys.model.AreaTratamientos;
 import sys.model.BitacoraRecibos;
@@ -117,6 +121,13 @@ public class beanTratamiento implements Serializable {
             this.listMenu.add(materiaItem);
         }
         return listMenu;
+    }
+    
+     public void insertarBitacora(){
+        daoBitacora bdao = new BitacoraImp();
+       bdao.insertarTratamiento(bitacora);
+        bitacora = new BitacoraRecibos();
+       
     }
 
 }
