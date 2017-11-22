@@ -19,7 +19,7 @@ public interface daoListaAlumnos {
     
     public List<ListaAlumnos> MostrarAlumnos(MaestroMaterias mmaterias);
     
-    public void insertarListaAlumnos(ListaAlumnos lista);
+    public boolean insertarListaAlumnos(ListaAlumnos lista);
     
     public List<ListaAlumnos> MostrarClases(Alumnos alumno,MaestroMaterias mmaterias);
 }

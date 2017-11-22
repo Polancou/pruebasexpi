@@ -47,14 +47,15 @@ public class ListaAlumnosImp implements daoListaAlumnos {
     }
 
     @Override
-    public void insertarListaAlumnos(ListaAlumnos lista) {
-
+    public boolean insertarListaAlumnos(ListaAlumnos lista) {
+        boolean inserto=false;
         Session session = null;
         try {
             session = HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
             session.save(lista);
             session.getTransaction().commit();
+            inserto=true;
         } catch (Exception e) {
             System.out.println(e.getMessage());
             session.getTransaction().rollback();
@@ -64,7 +65,7 @@ public class ListaAlumnosImp implements daoListaAlumnos {
                 session.close();
             }
         }
-
+        return inserto;
     }
 
     @Override

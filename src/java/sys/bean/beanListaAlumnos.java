@@ -95,8 +95,13 @@ public class beanListaAlumnos implements Serializable {
         int user=(int) sessionUsuario.getAttribute("idSesion");
         listAlumnos.getAlumnos().setMatricula(user);
         daoListaAlumnos ldao = new ListaAlumnosImp();
-        ldao.insertarListaAlumnos(listAlumnos);    
+        boolean inserto=ldao.insertarListaAlumnos(listAlumnos);    
         listAlumnos = new ListaAlumnos();
+        if(inserto){
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "El registro se ha ingresado satisfactoriamente"));
+        }else{
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Error", "El registro no se puede guardar en este momento. Intente más tarde o contacte a soporte técnico."));
+        }
     }
 
 }

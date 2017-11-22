@@ -78,14 +78,24 @@ public class beanTratamiento implements Serializable {
 
     public void insertarTratamientos() {
         daoAreaTratamientos adao = new TratamientosImp();
-        adao.insertarTratamiento(area);
+        boolean inserto=adao.insertarTratamiento(area);
         area = new AreaTratamientos();
+        if(inserto){
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "El registro se ha ingresado satisfactoriamente"));
+        }else{
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Error", "El registro no se puede guardar en este momento. Intente más tarde o contacte a soporte técnico."));
+        }
     }
 
     public void insertarMenuTratamientos() {
         daoAreaTratamientos adao = new TratamientosImp();
-        adao.insertarMenuTratamientos(menu);
+        boolean insertoMenu=adao.insertarMenuTratamientos(menu);
         menu = new MenuTratamientos();
+        if(insertoMenu){
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "El registro se ha ingresado satisfactoriamente"));
+        }else{
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Error", "El registro no se puede guardar en este momento. Intente más tarde o contacte a soporte técnico."));
+        }
     }
 
     public String reinit() {
@@ -125,9 +135,13 @@ public class beanTratamiento implements Serializable {
     
      public void insertarBitacora(){
         daoBitacora bdao = new BitacoraImp();
-       bdao.insertarTratamiento(bitacora);
+        boolean insertoBita=bdao.insertarTratamiento(bitacora);
         bitacora = new BitacoraRecibos();
-       
+       if(insertoBita){
+           FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "El registro se ha ingresado satisfactoriamente"));
+        }else{
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Error", "El registro no se puede guardar en este momento. Intente más tarde o contacte a soporte técnico."));
+       }
     }
 
 }
