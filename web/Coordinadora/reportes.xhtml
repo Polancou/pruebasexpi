@@ -30,12 +30,12 @@
                                 </h:panelGrid>
 
                                 <p:dialog modal="true" widgetVar="statusDialog" header="Status" draggable="false" closable="false" resizable="false">
-                                    <p:graphicImage name="../resources/images/cargando.gif" />
+                                    <p:graphicImage name="/images/cargando.gif" />
                                 </p:dialog>
 
                                 <h:form>
                                     <p:commandButton value="Descargar" ajax="false" onclick="PrimeFaces.monitorDownload(start, stop);" icon="ui-icon-arrowthick-1-s">
-                                        <p:fileDownload value="#{beanReportes.file}" />
+                                        <p:fileDownload value="#{beanReportes.exportarPDF()}" />
                                     </p:commandButton>
                                 </h:form>
                                 <p:separator style="width:1050px;height:10px" />
@@ -55,7 +55,7 @@
                                 <h:form>
                                     <p:dialog modal="true" widgetVar="statusDialog2" header="Status" draggable="false"
                                               closable="false">
-                                        <p:graphicImage value="./../resources/images/cargando.gif" />
+                                        <p:graphicImage value="/images/cargando.gif" />
                                     </p:dialog>
                                     <p:commandButton value="Download" ajax="false" onclick="PrimeFaces.monitorDownload(showStatus, hideStatus)" icon="ui-icon-arrowthick-1-s" >
                                         <p:fileDownload value="#{beanReportes.file}"/>
@@ -75,7 +75,7 @@
                                 <h:form>
                                     <p:dialog modal="true" widgetVar="statusDialog3" header="Status" draggable="false"
                                               closable="false">
-                                        <p:graphicImage value="./../resources/images/cargando.gif" />
+                                        <p:graphicImage value="/images/cargando.gif" />
                                     </p:dialog>
                                     <p:commandButton value="Download" ajax="false" onclick="PrimeFaces.monitorDownload(showStatus, hideStatus)" icon="ui-icon-arrowthick-1-s" >
                                         <p:fileDownload value="#{beanReportes.reporteGeneral()}"/>
@@ -101,7 +101,7 @@
                                 <h:form>
                                     <p:dialog modal="true" widgetVar="statusDialog4" header="Status" draggable="false"
                                               closable="false">
-                                        <p:graphicImage value="./../resources/images/cargando.gif" />
+                                        <p:graphicImage value="/images/cargando.gif" />
                                     </p:dialog>
                                     <p:commandButton value="Download" ajax="false" onclick="PrimeFaces.monitorDownload(showStatus, hideStatus)" icon="ui-icon-arrowthick-1-s" >
                                         <p:fileDownload value="#{beanReportes.reporteGeneral()}"/>
@@ -124,7 +124,7 @@
                                 <h:form>
                                     <p:dialog modal="true" widgetVar="statusDialog5" header="Status" draggable="false"
                                               closable="false">
-                                        <p:graphicImage value="./../resources/images/cargando.gif" />
+                                        <p:graphicImage value="/images/cargando.gif" />
                                     </p:dialog>
                                     <p:commandButton value="Download" ajax="false" onclick="PrimeFaces.monitorDownload(showStatus, hideStatus)" icon="ui-icon-arrowthick-1-s">
                                         <p:fileDownload value="#{beanReportes.reporteGeneral()}"/>
