@@ -93,7 +93,7 @@ public class beanMaestro implements Serializable {
     public void insertarMaestro() {
         daoMaestro mdao = new MaestroImp();
         mdao.insertarMaestro(maestro);
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "El registro se a ingresado satisfactoriamente"));
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "El registro se ha ingresado satisfactoriamente"));
     }
 
     public List<Maestro> getListar() {
@@ -106,13 +106,13 @@ public class beanMaestro implements Serializable {
         daoMaestro mdao = new MaestroImp();
         mdao.editarMaestro(maestro);
         maestro = new Maestro();
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "El registro se a actualizado satisfactoriamente"));
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "El registro se ha actualizado satisfactoriamente"));
     }
 
     public void eliminarMaestro() {
         daoMaestro mdao = new MaestroImp();
         mdao.eliminarMaestro(maestro);
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "El registro se a eliminado satisfactoriamente"));
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "El registro se ha eliminado satisfactoriamente"));
     }
 
     public List<SelectItem> getListMaestro() {
@@ -145,7 +145,7 @@ public class beanMaestro implements Serializable {
     public void insertarMaestroMaterias() {
         daoMaestro mdao = new MaestroImp();
         mdao.insertarMaestroMaterias(maestroMaterias);
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "El registro se a ingresado satisfactoriamente"));
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "El registro se ha ingresado satisfactoriamente"));
 
     }
 

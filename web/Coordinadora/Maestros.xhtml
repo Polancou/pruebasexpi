@@ -163,7 +163,7 @@
                                   hideEffect="drop" modal="true">
                             <h:form id="formEliminar" style="font-size: 11px;">
 
-                                <h:outputText value="Decea eliminar este registro?"/> <br/><br/>
+                                <h:outputText value="¿Desea eliminar este registro?"/> <br/><br/>
                                 <p:commandButton value="Si" actionListener="#{beanMaestro.eliminarMaestro()}"
                                                  update=":formMostrarMaestros :formMateria" onclick="PF('dlgEliminar').hide();" immediate="true"/>
                                 <p:commandButton value="No" onclick="PF('dlgEliminar').hide();"
