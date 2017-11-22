@@ -16,17 +16,17 @@ import sys.model.Materias;
  */
 public interface daoMaestro {
 
-    public void insertarMaestro(Maestro maestro);
+    public boolean insertarMaestro(Maestro maestro);
 
     public List<Maestro> mostrarMaestro();
 
-    public void editarMaestro(Maestro maestro);
+    public boolean editarMaestro(Maestro maestro);
 
-    public void eliminarMaestro(Maestro maestro);
+    public boolean eliminarMaestro(Maestro maestro);
 
     public List<Materias> mostrarMaterias(MaestroMaterias maestroM);
 
-    public void insertarMaestroMaterias(MaestroMaterias maestroM);
+    public boolean insertarMaestroMaterias(MaestroMaterias maestroM);
     
     public String mostrarCodigo();
 

@@ -23,13 +23,15 @@ import sys.util.HibernateUtil;
 public class MaestroImp implements daoMaestro{
 
     @Override
-    public void insertarMaestro(Maestro maestro) {
-       Session session = null;
+    public boolean insertarMaestro(Maestro maestro) {
+       boolean inserto=false;
+        Session session = null;
        try{
             session=HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
             session.save(maestro);
             session.getTransaction().commit();
+            inserto=true;
        }catch(Exception e){
            System.out.println(e.getMessage());
            session.getTransaction().rollback();
@@ -39,6 +41,7 @@ public class MaestroImp implements daoMaestro{
                 session.close();
             }
         }
+       return inserto;
     }
 
     @Override
@@ -59,13 +62,15 @@ public class MaestroImp implements daoMaestro{
     }
 
     @Override
-    public void editarMaestro(Maestro maestro) {
+    public boolean editarMaestro(Maestro maestro) {
+       boolean edito=false;
        Session session = null;
        try{
            session = HibernateUtil.getSessionFactory().openSession();
            session.beginTransaction();
            session.update(maestro);
            session.getTransaction().commit();
+           edito=true;
        }catch(Exception e){
            System.out.println(e.getMessage());
            session.getTransaction().rollback();
@@ -74,10 +79,12 @@ public class MaestroImp implements daoMaestro{
                session.close();
            }
        }
+       return edito;
     }
 
     @Override
-    public void eliminarMaestro(Maestro maestro) {
+    public boolean eliminarMaestro(Maestro maestro) {
+        boolean eliminado=false;
         Session session = null;
         try{
             session = HibernateUtil.getSessionFactory().openSession();
@@ -87,6 +94,7 @@ public class MaestroImp implements daoMaestro{
             session.createQuery("delete from Maestro m where m.idEmpleado=:idEmpleado").setParameter("idEmpleado", maestro.getIdEmpleado()).executeUpdate();
             session.createQuery("delete from SesionTable st where st.idEmpleado=:idEmpleado").setParameter("idEmpleado", maestro.getIdEmpleado()).executeUpdate();
             session.getTransaction().commit();
+            eliminado=true;
         }catch(Exception e){
             System.out.println(e.getMessage());
             session.getTransaction().rollback();
@@ -95,6 +103,7 @@ public class MaestroImp implements daoMaestro{
                 session.close();
             }
         }
+        return eliminado;
     }
 
    @Override
@@ -116,13 +125,15 @@ public class MaestroImp implements daoMaestro{
     }
     
      @Override
-    public void insertarMaestroMaterias(MaestroMaterias materia) {
+    public boolean insertarMaestroMaterias(MaestroMaterias materia) {
+        boolean insertoMateria=false;
         Session session = null;
         try{
             session = HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
             session.save(materia);
             session.getTransaction().commit();
+            insertoMateria=true;
         }catch(Exception e){
             System.out.println(e.getMessage());
             session.getTransaction().rollback();
@@ -131,6 +142,7 @@ public class MaestroImp implements daoMaestro{
                 session.close();
             }
         }
+        return insertoMateria;
     }
 
      @Override

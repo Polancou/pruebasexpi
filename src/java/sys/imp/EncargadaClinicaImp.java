@@ -19,14 +19,15 @@ import sys.util.HibernateUtil;
 public class EncargadaClinicaImp implements daoEncargadaDeFarmacia {
 
     @Override
-    public void insertarEncargada(EncargadaClinica encargada) {
+    public boolean insertarEncargada(EncargadaClinica encargada) {
+        boolean inserto=false;
         Session session = null;
         try {
             session = HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
             session.save(encargada);
             session.getTransaction().commit();
-
+            inserto = true;
         } catch (Exception e) {
             System.out.println(e.getMessage());
             session.getTransaction().rollback();
@@ -35,17 +36,19 @@ public class EncargadaClinicaImp implements daoEncargadaDeFarmacia {
                 session.close();
             }
         }
+        return inserto;
     }
 
     @Override
-    public void actualizarEncargada(EncargadaClinica encargada) {
+    public boolean actualizarEncargada(EncargadaClinica encargada) {
+        boolean actualizo=false;
         Session session = null;
         try {
             session = HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
             session.update(encargada);
             session.getTransaction().commit();
-
+            actualizo=true;
         } catch (Exception e) {
             System.out.println(e.getMessage());
             session.getTransaction().rollback();
@@ -54,10 +57,12 @@ public class EncargadaClinicaImp implements daoEncargadaDeFarmacia {
                 session.close();
             }
         }
+        return actualizo;
     }
 
     @Override
-    public void eliminarEncargada(EncargadaClinica encargada) {
+    public boolean eliminarEncargada(EncargadaClinica encargada) {
+        boolean elimino=false;
         Session session = null;
         try {
             session = HibernateUtil.getSessionFactory().openSession();
@@ -66,7 +71,7 @@ public class EncargadaClinicaImp implements daoEncargadaDeFarmacia {
             session.createQuery("delete from Maestro m where m.idEmpleado=:idEmpleado").setParameter("idEmpleado", encargada.getIdEmpleado()).executeUpdate();
             session.createQuery("delete from SesionTable st where st.idEmpleado=:idEmpleado").setParameter("idEmpleado", encargada.getIdEmpleado()).executeUpdate();
             session.getTransaction().commit();
-
+            elimino=true;
         } catch (Exception e) {
             System.out.println(e.getMessage());
             session.getTransaction().rollback();
@@ -75,6 +80,7 @@ public class EncargadaClinicaImp implements daoEncargadaDeFarmacia {
                 session.close();
             }
         }
+        return elimino;
     }
 
     @Override

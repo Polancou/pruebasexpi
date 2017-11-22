@@ -28,15 +28,15 @@ public class BitacoraImp implements daoBitacora {
         int empleado=(int) sessionUsuario.getAttribute("idEmpleado");
 
     @Override
-    public void insertarTratamiento(BitacoraRecibos bitacora) {
-       
+    public boolean insertarTratamiento(BitacoraRecibos bitacora) {
+       boolean inserto=false;
         Session session = null;
         try {
             session = HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
             session.save(bitacora);
             session.getTransaction().commit();
-           
+            inserto=true;
         } catch (Exception e) {
             System.out.println(e.getMessage());
             session.getTransaction().rollback();
@@ -45,7 +45,7 @@ public class BitacoraImp implements daoBitacora {
                 session.close();
             }
         }
-     
+        return inserto;
     }
 
     @Override

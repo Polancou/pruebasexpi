@@ -14,11 +14,11 @@ import sys.model.EncargadaClinica;
  */
 public interface daoEncargadaDeFarmacia {
     
-     public void insertarEncargada(EncargadaClinica encargada);
+     public boolean insertarEncargada(EncargadaClinica encargada);
      
-     public void actualizarEncargada(EncargadaClinica encargada);
+     public boolean actualizarEncargada(EncargadaClinica encargada);
      
-     public void eliminarEncargada(EncargadaClinica encargada);
+     public boolean eliminarEncargada(EncargadaClinica encargada);
      
      public List<EncargadaClinica> verEncargadas();
 }

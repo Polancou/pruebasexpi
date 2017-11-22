@@ -15,7 +15,7 @@ import sys.model.MaestroMaterias;
  */
 public interface daoBitacora {
     
-    public void insertarTratamiento(BitacoraRecibos bitacora);
+    public boolean insertarTratamiento(BitacoraRecibos bitacora);
     
     public List<BitacoraRecibos> mostratTratamientosPorAlumno(MaestroMaterias mmaterias);
     

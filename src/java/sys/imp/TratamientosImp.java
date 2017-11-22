@@ -21,13 +21,15 @@ import sys.util.HibernateUtil;
 public class TratamientosImp implements daoAreaTratamientos {
 
     @Override
-    public void insertarTratamiento(AreaTratamientos tratamiento) {
+    public boolean insertarTratamiento(AreaTratamientos tratamiento) {
+        boolean inserto=false;
         Session session = null;
         try {
             session = HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
             session.save(tratamiento);
             session.getTransaction().commit();
+            inserto=true;
         } catch (Exception e) {
             System.out.println(e.getMessage());
             session.getTransaction().rollback();
@@ -36,17 +38,20 @@ public class TratamientosImp implements daoAreaTratamientos {
                 session.close();
             }
         }
+        return inserto;
     }
 
     @Override
-    public void insertarMenuTratamientos(MenuTratamientos menu) {
-       Session session = null;
+    public boolean insertarMenuTratamientos(MenuTratamientos menu) {
+       boolean inserto=false;
+        Session session = null;
        try{
            System.out.println("TRAE COMO DATOS"+menu.getAreaTratamientos()+"\n"+menu.getBitacoraReciboses());
            session = HibernateUtil.getSessionFactory().openSession();
            session.beginTransaction();
            session.save(menu);
            session.getTransaction().commit();
+           inserto=true;
        }catch(Exception e){
            System.out.println(e.getMessage());
            session.getTransaction().rollback();
@@ -55,6 +60,7 @@ public class TratamientosImp implements daoAreaTratamientos {
                session.close();
            }
        }
+       return inserto;
     }
 
     @Override

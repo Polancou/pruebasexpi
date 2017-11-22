@@ -16,9 +16,9 @@ import sys.model.MenuTratamientos;
  */
 public interface daoAreaTratamientos {
     
-    public void insertarTratamiento(AreaTratamientos tratamiento);
+    public boolean insertarTratamiento(AreaTratamientos tratamiento);
      
-    public void insertarMenuTratamientos(MenuTratamientos menu);
+    public boolean insertarMenuTratamientos(MenuTratamientos menu);
     
     public List<AreaTratamientos> mostrarAreaTratamientos();
     

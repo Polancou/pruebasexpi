@@ -92,8 +92,12 @@ public class beanMaestro implements Serializable {
    
     public void insertarMaestro() {
         daoMaestro mdao = new MaestroImp();
-        mdao.insertarMaestro(maestro);
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "El registro se ha ingresado satisfactoriamente"));
+        boolean inserto=mdao.insertarMaestro(maestro);
+        if (inserto){
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "El registro se ha ingresado satisfactoriamente"));
+        }else{
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Error al guardar datos", "El registro no se puede guardar en este momento. Intente más tarde o contacte a soporte técnico."));
+        }
     }
 
     public List<Maestro> getListar() {
@@ -104,15 +108,23 @@ public class beanMaestro implements Serializable {
 
     public void actualizarMaestro() {
         daoMaestro mdao = new MaestroImp();
-        mdao.editarMaestro(maestro);
+        boolean actualizo=mdao.editarMaestro(maestro);
         maestro = new Maestro();
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "El registro se ha actualizado satisfactoriamente"));
+        if(actualizo){
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "El registro se ha actualizado satisfactoriamente"));
+        }else{
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Error", "El registro no se puede editar en este momento. Intente más tarde o contacte a soporte técnico."));
+        }
     }
 
     public void eliminarMaestro() {
         daoMaestro mdao = new MaestroImp();
-        mdao.eliminarMaestro(maestro);
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "El registro se ha eliminado satisfactoriamente"));
+        boolean borro=mdao.eliminarMaestro(maestro);
+        if(borro){
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "El registro se ha eliminado satisfactoriamente"));
+        }else{
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Error", "El registro no se puede eliminar en este momento. Intente más tarde o contacte a soporte técnico."));
+        }
     }
 
     public List<SelectItem> getListMaestro() {

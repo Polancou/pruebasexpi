@@ -41,9 +41,12 @@ public class beanEncargadaClinica implements Serializable {
 
     public void insertarEncargadaClinica() {
         daoEncargadaDeFarmacia edao = new EncargadaClinicaImp();
-        edao.insertarEncargada(encargada);
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "El registro se a ingresado satisfactoriamente"));
-
+        boolean inserto=edao.insertarEncargada(encargada);
+        if(inserto){
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "El registro se a ingresado satisfactoriamente"));
+        }else{
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Error", "El registro no se puede insertar en este momento. Intente más tarde o contacte a soporte técnico."));
+        }
     }
 
     public List<EncargadaClinica> getVerEncargada() {
@@ -54,14 +57,18 @@ public class beanEncargadaClinica implements Serializable {
 
     public void actualizarEncargada() {
         daoEncargadaDeFarmacia edao = new EncargadaClinicaImp();
-        edao.actualizarEncargada(encargada);
+        boolean actaliza=edao.actualizarEncargada(encargada);
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "El registro se a actualizado satisfactoriamente"));
     }
 
     public void eliminarEncargada() {
         daoEncargadaDeFarmacia edao = new EncargadaClinicaImp();
-        edao.eliminarEncargada(encargada);
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "El registro se a eliminado satisfactoriamente"));
+        boolean elimino=edao.eliminarEncargada(encargada);
+        if(elimino){
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "El registro se a eliminado satisfactoriamente"));
+        }else{
+           FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Error", "El registro no se puede eliminar en este momento. Intente más tarde o contacte a soporte técnico.")); 
+        }
     }
 
 }
