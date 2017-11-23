@@ -21,22 +21,22 @@ import sys.util.HibernateUtil;
  * @author Sammy Guergachi <sguergachi at gmail.com>
  */
 public class BitacoraImp implements daoBitacora {
-    
-     HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
-        HttpSession sessionUsuario = request.getSession();
-        int user=(int) sessionUsuario.getAttribute("idSesion");
-        int empleado=(int) sessionUsuario.getAttribute("idEmpleado");
+
+    HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+    HttpSession sessionUsuario = request.getSession();
+    int user = (int) sessionUsuario.getAttribute("idSesion");
+    int empleado = (int) sessionUsuario.getAttribute("idEmpleado");
 
     @Override
     public boolean insertarTratamiento(BitacoraRecibos bitacora) {
-       boolean inserto=false;
+        boolean inserto = false;
         Session session = null;
         try {
             session = HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
             session.save(bitacora);
             session.getTransaction().commit();
-            inserto=true;
+            inserto = true;
         } catch (Exception e) {
             System.out.println(e.getMessage());
             session.getTransaction().rollback();
@@ -50,16 +50,16 @@ public class BitacoraImp implements daoBitacora {
 
     @Override
     public List<BitacoraRecibos> mostratTratamientosPorAlumno(MaestroMaterias mmaterias) {
-        List<BitacoraRecibos> listBita= null;
+        List<BitacoraRecibos> listBita = null;
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
-        String hql="from BitacoraRecibos as m inner join fetch m.alumnos left join fetch m.maestroMaterias "
-                + "left join fetch m.menuTratamientos where m.maestroMaterias.clave = '"+mmaterias.getClave()+"' and m.alumnos.matricula="+user;
-        try{
+        String hql = "from BitacoraRecibos as m inner join fetch m.alumnos left join fetch m.maestroMaterias "
+                + "left join fetch m.menuTratamientos where m.maestroMaterias.clave = '" + mmaterias.getClave() + "' and m.alumnos.matricula=" + user;
+        try {
             listBita = session.createQuery(hql).list();
             transaction.commit();
             session.close();
-        }catch(Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
             transaction.rollback();
         }
@@ -68,22 +68,42 @@ public class BitacoraImp implements daoBitacora {
 
     @Override
     public List<BitacoraRecibos> mostrarTratamientosPorMaestros(MaestroMaterias mmaterias) {
-        
-        List<BitacoraRecibos> listBita= null;
+
+        List<BitacoraRecibos> listBita = null;
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
-        String hql="from BitacoraRecibos as m inner join fetch m.alumnos left join fetch m.maestroMaterias "
-                + "left join fetch m.menuTratamientos where m.maestroMaterias.clave = '"+mmaterias.getClave()+"' and m.maestroMaterias.maestro.idEmpleado="+empleado;
-        try{
+        String hql = "from BitacoraRecibos as m inner join fetch m.alumnos left join fetch m.maestroMaterias "
+                + "left join fetch m.menuTratamientos where m.maestroMaterias.clave = '" + mmaterias.getClave() + "' and m.maestroMaterias.maestro.idEmpleado=" + empleado;
+        try {
             listBita = session.createQuery(hql).list();
             transaction.commit();
             session.close();
-        }catch(Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
             transaction.rollback();
         }
         return listBita;
-        
+
+    }
+
+    @Override
+    public List<BitacoraRecibos> mostrarTratamientosPorDia(int mes) {
+
+        List<BitacoraRecibos> listBita = null;
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction transaction = session.beginTransaction();
+        String hql = "from BitacoraRecibos as m inner join fetch m.maestroMaterias left join fetch "
+                + "m.alumnos left join fetch m.menuTratamientos where day(m.fecha)="+mes;
+        try {
+            listBita = session.createQuery(hql).list();
+            transaction.commit();
+            session.close();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            transaction.rollback();
+        }
+        return listBita;
+
     }
 
 }

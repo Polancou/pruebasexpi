@@ -6,6 +6,7 @@
 package sys.bean;
 
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.List;
 import javax.inject.Named;
 import javax.enterprise.context.Dependent;
@@ -14,8 +15,10 @@ import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import sys.dao.daoBitacora;
 import sys.imp.BitacoraImp;
+import sys.model.Alumnos;
 import sys.model.BitacoraRecibos;
 import sys.model.MaestroMaterias;
+import sys.model.MenuTratamientos;
 
 /**
  *
@@ -23,7 +26,7 @@ import sys.model.MaestroMaterias;
  */
 @Named(value = "beanBitacora")
 @ViewScoped
-public class beanBitacora implements Serializable{
+public class beanBitacora implements Serializable {
 
     /**
      * Creates a new instance of beanBitacora
@@ -31,11 +34,16 @@ public class beanBitacora implements Serializable{
     private BitacoraRecibos bitacora;
     private List<BitacoraRecibos> bita;
     private List<BitacoraRecibos> bitaM;
+    private List<BitacoraRecibos> bitaDia;
     private MaestroMaterias mmaterias;
-    
+    private Alumnos alumno;
+    private MenuTratamientos tratamientos;
+
     public beanBitacora() {
         bitacora = new BitacoraRecibos();
+        alumno = new Alumnos();
         mmaterias = new MaestroMaterias();
+        tratamientos = new MenuTratamientos();
     }
 
     public BitacoraRecibos getBitacora() {
@@ -66,20 +74,44 @@ public class beanBitacora implements Serializable{
         return bitaM;
     }
 
+    public List<BitacoraRecibos> getBitaDia() {
+        Calendar fecha = Calendar.getInstance();
+        int mes = fecha.get(Calendar.DAY_OF_MONTH);
+        daoBitacora bdao = new BitacoraImp();
+        bitaDia = bdao.mostrarTratamientosPorDia(mes);
+        return bitaDia;
+    }
+
     public void setBitaM(List<BitacoraRecibos> bitaM) {
         this.bitaM = bitaM;
     }
-    
-       public void verTratamientosClase(){
+
+    public void verTratamientosClase() {
         daoBitacora bdao = new BitacoraImp();
         bitaM = bdao.mostrarTratamientosPorMaestros(mmaterias);
     }
-    
-    
-    public void verTratamientos(){
+
+    public void verTratamientos() {
         daoBitacora bdao = new BitacoraImp();
         bita = bdao.mostratTratamientosPorAlumno(mmaterias);
     }
+
+    public Alumnos getAlumno() {
+        return alumno;
+    }
+
+    public void setAlumno(Alumnos alumno) {
+        this.alumno = alumno;
+    }
+
+    public MenuTratamientos getTratamientos() {
+        return tratamientos;
+    }
+
+    public void setTratamientos(MenuTratamientos tratamientos) {
+        this.tratamientos = tratamientos;
+    }
     
     
+
 }

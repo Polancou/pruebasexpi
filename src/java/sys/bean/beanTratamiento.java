@@ -7,6 +7,7 @@ package sys.bean;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import javax.inject.Named;
 import javax.enterprise.context.Dependent;
@@ -45,7 +46,7 @@ public class beanTratamiento implements Serializable {
         area = new AreaTratamientos();
         menu = new MenuTratamientos();
         bitacora = new BitacoraRecibos();
-        bita = new ArrayList<BitacoraRecibos>();
+        
     }
 
     public AreaTratamientos getArea() {
@@ -65,6 +66,10 @@ public class beanTratamiento implements Serializable {
     }
 
     public List<BitacoraRecibos> getBita() {
+        Calendar fecha = Calendar.getInstance();
+        int mes = fecha.get(Calendar.DAY_OF_MONTH);
+        daoBitacora bdao = new BitacoraImp();
+        bita = bdao.mostrarTratamientosPorDia(mes);
         return bita;
     }
 
@@ -143,5 +148,7 @@ public class beanTratamiento implements Serializable {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Error", "El registro no se puede guardar en este momento. Intente más tarde o contacte a soporte técnico."));
        }
     }
+     
+     
 
 }

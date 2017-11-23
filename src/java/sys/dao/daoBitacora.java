@@ -21,4 +21,6 @@ public interface daoBitacora {
     
     public List<BitacoraRecibos> mostrarTratamientosPorMaestros(MaestroMaterias mmaterias);
     
+    public List<BitacoraRecibos> mostrarTratamientosPorDia(int mes);
+    
 }

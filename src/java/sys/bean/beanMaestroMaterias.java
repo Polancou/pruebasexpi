@@ -51,6 +51,7 @@ public class beanMaestroMaterias implements Serializable {
         maestro = new Maestro();
         materias = new Materias();
         lista = new ListaAlumnos();
+        
     }
 
     public MaestroMaterias getMaestroMaterias() {
