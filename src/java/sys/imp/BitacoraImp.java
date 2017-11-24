@@ -21,12 +21,24 @@ import sys.util.HibernateUtil;
  * @author Sammy Guergachi <sguergachi at gmail.com>
  */
 public class BitacoraImp implements daoBitacora {
+    
+    HttpServletRequest request ;
+        HttpSession sessionUsuario;
+        int user ;
+        int empleado;
 
-    HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
-    HttpSession sessionUsuario = request.getSession();
-    int user = (int) sessionUsuario.getAttribute("idSesion");
-    int empleado = (int) sessionUsuario.getAttribute("idEmpleado");
 
+    public BitacoraImp(int i) {
+         request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+         sessionUsuario = request.getSession();
+         user = (int) sessionUsuario.getAttribute("idSesion");
+         empleado = (int) sessionUsuario.getAttribute("idEmpleado");
+    }
+
+    public BitacoraImp(){
+        
+    }
+    
     @Override
     public boolean insertarTratamiento(BitacoraRecibos bitacora) {
         boolean inserto = false;
@@ -93,7 +105,7 @@ public class BitacoraImp implements daoBitacora {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         String hql = "from BitacoraRecibos as m inner join fetch m.maestroMaterias left join fetch "
-                + "m.alumnos left join fetch m.menuTratamientos where day(m.fecha)="+mes;
+                + "m.alumnos left join fetch m.menuTratamientos where day(m.fecha)=" + mes;
         try {
             listBita = session.createQuery(hql).list();
             transaction.commit();

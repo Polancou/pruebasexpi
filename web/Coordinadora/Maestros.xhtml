@@ -127,9 +127,9 @@
                         <p:dialog id="dlgActulizarMaestro" header="Editar Registro" widgetVar="dlgEditar" showEffect="drop" hideEffect="drop" modal="true">
                             <h:form id="formActualizar">
                                 <h:panelGrid columns="2" style="margin: 0 auto; font-size: 11px;">
-                                    <p:outputLabel value="Matriculaa:"/>
+                                    <p:outputLabel value="ID de empleado:"/>
                                     <p:inputText value="#{beanMaestro.maestro.idEmpleado}"
-                                                 disabled="true" required="true" requiredMessage="Matricula es obligatorio"/>
+                                                 disabled="true" required="true" requiredMessage="El ID es obligatorio"/>
 
                                     <p:outputLabel value="Nombre:"/>
                                     <p:inputText value="#{beanMaestro.maestro.nombre}"

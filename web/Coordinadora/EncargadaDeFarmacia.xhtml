@@ -33,9 +33,9 @@
                         <p:dialog id="dlgNuevoMaestro" header="Nuevo Registro" widgetVar="dlgNuevo" showEffect="drop" hideEffect="drop" modal="true">
                             <h:form id="formInsertar">
                                 <p:panelGrid columns="2" style="margin: 0 auto; font-size: 11px;">
-                                    <p:outputLabel value="Matriculaa:"/>
+                                    <p:outputLabel value="ID del empleado:"/>
                                     <p:inputText value="#{beanEncargadaClinica.encargada.idEmpleado}"
-                                                 required="true" requiredMessage="Matricula es obligatorio"/>
+                                                 required="true" requiredMessage="El ID es obligatorio"/>
 
                                     <p:outputLabel value="Nombre:"/>
                                     <p:inputText value="#{beanEncargadaClinica.encargada.nombre}"
@@ -92,11 +92,11 @@
                                 <p:column headerText="Nombre  ">
                                     <h:outputText value="#{master.nombre} #{master.apellidoPaterno} #{master.apellidoMaterno}"/>
                                 </p:column>
-                                <p:column headerText="Correo ">
+                                <p:column headerText="Clinica ">
                                     <h:outputText value="#{master.clinica}"/>
                                 </p:column>
 
-                                <p:column headerText="Correo ">
+                                <p:column headerText="Turno ">
                                     <h:outputText value="#{master.turno}"/>
                                 </p:column>
                                 <p:column headerText="Editar - Eliminar">
@@ -169,7 +169,7 @@
                                   hideEffect="drop" modal="true">
                             <h:form id="formEliminar" style="font-size: 11px;">
 
-                                <h:outputText value="Decea eliminar este registro?"/> <br/><br/>
+                                <h:outputText value="¿Desea eliminar este registro?"/> <br/><br/>
                                 <p:commandButton value="Si" actionListener="#{beanEncargadaClinica.eliminarEncargada()}"
                                                  update=":formMostrarEncargada " onclick="PF('dlgEliminar').hide();" immediate="true"/>
                                 <p:commandButton value="No" onclick="PF('dlgEliminar').hide();"
