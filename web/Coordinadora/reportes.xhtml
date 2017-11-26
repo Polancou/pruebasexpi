@@ -70,17 +70,18 @@
                             </p:tab>
 
                             <p:tab title="Reporte de todas las clinicas dentro de fecha determinada">
+                                
+                                <h:form>
                                 <h:panelGrid columns="6" cellpadding="30" >
                                     <p:graphicImage value="../resources/images/pdf.jpg" />
                                     <h:outputText value="Usted generá un reporte de todas las clinicas dentro de un determinado tiempo que establezca." />
                                     <p:outputLabel for="popup" value="Desde: " />
-                                    <p:calendar id="popup" value="#{calendarView.date2}" />
+                                    <p:calendar pattern="dd-MM-yyyy" mask="true"  id="popup" value="#{beanReportes.fecha1}" />
                                     <p:outputLabel for="popup2" value="Hasta: " />
-                                    <p:calendar id="popup2" value="#{calendarView.date2}" />
+                                    <p:calendar pattern="dd-MM-yyyy" mask="true"  id="popup2" value="#{beanReportes.fecha2}" />
                                 </h:panelGrid>
-                                <h:form>
                                     <p:commandButton value="Download" ajax="false" onclick="PrimeFaces.monitorDownload(showStatus, hideStatus)" icon="ui-icon-arrowthick-1-s" >
-                                        <p:fileDownload value="#{beanReportes.reporteGeneral()}"/>
+                                        <p:fileDownload value="#{beanReportes.reporteClinicasPorFechas()}"/>
                                     </p:commandButton>
                                 </h:form>
                                 <p:separator style="width:1050px;height:10px" />

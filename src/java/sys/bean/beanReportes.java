@@ -11,6 +11,7 @@ import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -31,6 +32,9 @@ import net.sf.jasperreports.engine.JasperPrint;
 @ManagedBean
 @RequestScoped
 public class beanReportes implements Serializable {
+
+    String myDatePattern1 = "yyyy-MM-dd";
+    SimpleDateFormat df = new SimpleDateFormat(myDatePattern1);
 
     /**
      * @return the clinica
@@ -77,65 +81,64 @@ public class beanReportes implements Serializable {
     private String clinica;
     private Date fecha1;
     private Date fecha2;
-    
-    public void reporteGeneral() throws SQLException, IOException, JRException{
-        exportarPDF("/resources/ReportesPDF/generalNew.jasper","Reporte_Gral_Todas_Las_Clinicas_Desde_La_Implementacion",null);
+
+    public void reporteGeneral() throws SQLException, IOException, JRException {
+        exportarPDF("/resources/ReportesPDF/generalNew.jasper", "Reporte_Gral_Todas_Las_Clinicas_Desde_La_Implementacion", null);
     }
 
     public void reportePorClinica() throws SQLException, IOException, JRException {
         System.out.print("+++++");
-        Map <String,Object> parametros = new HashMap<String, Object>();
+        Map<String, Object> parametros = new HashMap<String, Object>();
         parametros.put("clinica", clinica);
-        System.out.print("+++++"+clinica);
-        //exportarPDF("/resources/ReportesPDF/soloClinica.jasper","Reporte_De_La_Clinica_"+clinica+"_Desde_La_Implementacion",  parametros);
+        System.out.print("+++++" + clinica);
+        exportarPDF("/resources/ReportesPDF/soloClinica.jasper", "Reporte_De_La_Clinica_" + clinica + "_Desde_La_Implementacion", parametros);
     }
-    
+
     public void reporteClinicasPorFechas() throws IOException, SQLException, JRException {
         System.out.print("+++++");
-        Map <String,Object> parametros = new HashMap<String, Object>();
-        parametros.put("fecha1", fecha1);
-        parametros.put("fecha2", fecha2);
-        System.out.print("+++++ "+fecha1+" +++++ "+fecha2);
-        //exportarPDF("/resources/ReportesPDF/soloClinica.jasper","Reporte_De_La_Clinica_"+clinica+"_Desde_La_Implementacion",  parametros);        
+        Map<String, Object> parametros = new HashMap<String, Object>();
+        parametros.put("fecha1", df.format(fecha1));
+        parametros.put("fecha2", df.format(fecha2));
+        System.out.print("+++++ " + df.format(fecha1) + " +++++ " + df.format(fecha2));
+        exportarPDF("/resources/ReportesPDF/fechas.jasper", "Reporte_De_Todas_Las_Clinicas_Desde_El_+" + fecha1 + "_Hasta_El_" + fecha2, parametros);
     }
-    
-    public void reportePorClinicaPorFechas(){
+
+    public void reportePorClinicaPorFechas() throws SQLException, IOException, JRException {
         System.out.print("+++++");
-        Map <String,Object> parametros = new HashMap<String, Object>();
+        Map<String, Object> parametros = new HashMap<String, Object>();
         parametros.put("clinica", clinica);
-        parametros.put("fecha1", fecha1);
-        parametros.put("fecha2", fecha2);
-        System.out.print("+++++ "+fecha1+" +++++ "+fecha2+" ++++++ "+clinica);
-        //exportarPDF("/resources/ReportesPDF/soloClinica.jasper","Reporte_De_La_Clinica_"+clinica+"_Desde_La_Implementacion",  parametros);        
+        parametros.put("fecha1", df.format(fecha1));
+        parametros.put("fecha2", df.format(fecha2));
+        System.out.print("+++++ " + fecha1 + " +++++ " + fecha2 + " ++++++ " + clinica);
+        exportarPDF("/resources/ReportesPDF/porClinica.jasper", "Reporte_De_La_Clinica_" + clinica + "_Desde_La_Implementacion", parametros);
     }
-    
-    public void alumnosDestacados(){
-        Map <String,Object> parametros = new HashMap<String, Object>();
-        parametros.put("clinica", clinica);
-        parametros.put("fecha1", fecha1);
-        parametros.put("fecha2", fecha2);
-        System.out.print("+++++ "+fecha1+" +++++ "+fecha2+" ++++++ "+clinica);
-        //exportarPDF("/resources/ReportesPDF/soloClinica.jasper","Reporte_De_La_Clinica_"+clinica+"_Desde_La_Implementacion",  parametros);        
+
+    public void alumnosDestacados() throws SQLException, IOException, JRException {
+//        Map <String,Object> parametros = new HashMap<String, Object>();
+//        parametros.put("clinica", clinica);
+//        parametros.put("fecha1", fecha1);
+//        parametros.put("fecha2", fecha2);
+//        System.out.print("+++++ "+fecha1+" +++++ "+fecha2+" ++++++ "+clinica);
+//        exportarPDF("/resources/ReportesPDF/alumno.jasper","Reporte_De_La_Clinica_"+clinica+"_Desde_La_Implementacion",  parametros);        
     }
-    
-    public void ejemplo(){
+
+    public void ejemplo() {
         System.out.print("que pedo si entra....");
     }
 
-    public void exportarPDF(String rutaArchivo,String nombreArchivo,Map parametros) throws SQLException, IOException, JRException {
+    public void exportarPDF(String rutaArchivo, String nombreArchivo, Map parametros) throws SQLException, IOException, JRException {
         //Map <String,Object> parametros = new HashMap<String, Object>();
         //parametros.put("", "");
         Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/facultad_odontologia", "root", "root");
-        File jasperReport=new File(FacesContext.getCurrentInstance().getExternalContext().getRealPath(rutaArchivo));
-        JasperPrint jasperPrint=JasperFillManager.fillReport(jasperReport.getPath(), parametros, connection);
+        File jasperReport = new File(FacesContext.getCurrentInstance().getExternalContext().getRealPath(rutaArchivo));
+        JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport.getPath(), parametros, connection);
         HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
-        response.addHeader("Content-disposition", "attachment; filename="+nombreArchivo+".pdf");
+        response.addHeader("Content-disposition", "attachment; filename=" + nombreArchivo + ".pdf");
         ServletOutputStream stream = response.getOutputStream();
         JasperExportManager.exportReportToPdfStream(jasperPrint, stream);
         stream.flush();
         stream.close();
         FacesContext.getCurrentInstance().responseComplete();
     }
-
 
 }
