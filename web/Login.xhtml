@@ -15,7 +15,11 @@
             <p:growl id="mensajeGeneral" autoUpdate="true" showDetail="true" life="3000"/>
             <h:form>
                 <h:graphicImage name="images/imagen1.png" ></h:graphicImage>
-                <p:fieldset id="fieldLogin" legend="Bienvenido al portal de Odontología de la UAC" style="text-align: center; margin-bottom:20px">
+                <h1 style="text-align: center;">
+                    BIENVENIDO<br/>
+                    <small>Al portal de Odontología</small>
+                </h1>
+                <p:fieldset id="fieldLogin" style="text-align: center; margin-bottom:20px">
                     <h:panelGrid columns="2" cellpadding="5" >
                         <p:outputLabel for="nomeUsuario" value="Usuario: " />
                         <p:inputText id="nomeUsuario" value="#{LoginMB.usuario.user}" />
@@ -24,12 +28,11 @@
                     </h:panelGrid>
                     <h:panelGrid columns="2" cellpadding="5" >
                         <p:commandButton value="Ingresar al portal" icon="ui-icon-star" action="#{LoginMB.login(actionEvent)}" ajax="false" />
-                        <p:commandButton value="¿Olvidó su contraseña?" icon="ui-icon-star"  />
+                        <p:splitButton value="¿Nuevo usuario?" actionListener="#"  icon="ui-icon-star">
+                            <p:menuitem oncomplete="PF('dlgNuevoDocente').show();" update=":formNuevoDocente" style="font-size: 12px;" value="Docente" icon="ui-icon-extlink" />/>
+                            <p:menuitem oncomplete="PF('dlgNuevoFarmacia').show();" update=":formNuevoFarmacia" style="font-size: 12px;" value="Farmacia" icon="ui-icon-extlink" />
+                        </p:splitButton>
                     </h:panelGrid>
-                    <p:splitButton value="¿Nuevo usuario?" actionListener="#"  icon="iu-user-plus">
-                        <p:menuitem oncomplete="PF('dlgNuevoDocente').show();" update=":formNuevoDocente" style="font-size: 12px;" value="Docente" icon="ui-icon-extlink" />/>
-                        <p:menuitem oncomplete="PF('dlgNuevoFarmacia').show();" update=":formNuevoFarmacia" style="font-size: 12px;" value="Farmacia" icon="ui-icon-extlink" />
-                    </p:splitButton>
                 </p:fieldset>
             </h:form>
 

@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ac1e16f5-9646-4fcb-87e3-de30aa6fa7c9">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="333"/>
+	<property name="ireport.y" value="313"/>
 	<queryString language="SQL">
 		<![CDATA[select * from materias]]>
 	</queryString>
@@ -42,18 +42,18 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial" size="12"/>
 				</textElement>
-				<textFieldExpression><![CDATA["Ha ocurrido un error al desplegar sus datos"]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Ha ocurrido un error al desplegar sus datos\nLo sentimos."]]></textFieldExpression>
 			</textField>
 		</band>
 	</title>
-	<detail>
-		<band height="660" splitType="Stretch">
+	<columnHeader>
+		<band height="641">
 			<image scaleImage="FillFrame" hAlign="Center" vAlign="Middle">
-				<reportElement x="0" y="0" width="556" height="653" uuid="76b4ad8a-f9e1-4c4e-9053-d2b7136bad87"/>
+				<reportElement x="1" y="0" width="555" height="641" uuid="76b4ad8a-f9e1-4c4e-9053-d2b7136bad87"/>
 				<imageExpression><![CDATA["C:\\FONDO_PAGG_FDO RENDER LOGO-01.png"]]></imageExpression>
 			</image>
 		</band>
-	</detail>
+	</columnHeader>
 	<columnFooter>
 		<band height="45" splitType="Stretch">
 			<staticText>

@@ -91,19 +91,19 @@
 
                                     <p:outputLabel value="Cantidad"/>
                                     <p:inputText value="#{beanTratamiento.bitacora.cantidad}"
-                                                 required="true" requiredMessage="Tratamiento es obligatorio"/>
+                                                 required="true" requiredMessage="Cantidad es obligatorio"/>
 
                                     <p:outputLabel value="Folio"/>
                                     <p:inputText value="#{beanTratamiento.bitacora.folio}"
-                                                 required="true" requiredMessage="Tratamiento es obligatorio"/>
+                                                 required="true" requiredMessage="Folio es obligatorio"/>
 
                                     <p:outputLabel value="Paciente"/>
                                     <p:inputText value="#{beanTratamiento.bitacora.nombrePaciente}"
-                                                 required="true" requiredMessage="Tratamiento es obligatorio"/>
+                                                 required="true" requiredMessage="Paciente es obligatorio"/>
 
-                                    <p:outputLabel value="Alumno"/>
+                                    <p:outputLabel value="Matricula alumno:"/>
                                     <p:inputText value="#{beanTratamiento.bitacora.alumnos.matricula}"
-                                                 required="true" requiredMessage="Tratamiento es obligatorio"/>
+                                                 required="true" requiredMessage="Matricula es obligatorio"/>
 
                                     <p:outputLabel value="Fecha"/>
                                     <p:calendar id="mask" value="#{beanTratamiento.bitacora.fecha}" pattern="dd-MM-yyyy" mask="true" />
@@ -114,7 +114,7 @@
 
                                     <p:outputLabel value="Sexo"/> 
                                     <p:selectOneMenu id="sexo" value="#{beanTratamiento.bitacora.sexo}"
-                                                     required="true" requiredMessage="Seleccione el grado">
+                                                     required="true" requiredMessage="Seleccione el sexo:">
                                         <f:selectItem itemLabel="---Seleccione---" itemValue="" noSelectionOption="true"/>
                                         <f:selectItem itemLabel="Masculino" itemValue="1"/>
                                         <f:selectItem itemLabel="Femenino" itemValue="2"/>
@@ -123,7 +123,7 @@
 
                                     <p:outputLabel value="Clinica"/>
                                     <p:selectOneMenu id="clinica" value="#{beanTratamiento.bitacora.clinica}"
-                                                     required="true" requiredMessage="Seleccione el grado">
+                                                     required="true" requiredMessage="Seleccione una clinica">
                                         <f:selectItem itemLabel="---Seleccione---" itemValue="" noSelectionOption="true"/>
                                         <f:selectItem itemLabel="Clinica 1" itemValue="1"/>
                                         <f:selectItem itemLabel="Clinica 2" itemValue="2"/>
@@ -133,7 +133,7 @@
 
                                     <p:outputLabel value="Clave"/>
                                     <p:inputText value="#{beanTratamiento.bitacora.maestroMaterias.clave}"
-                                                 required="true" requiredMessage="Tratamiento es obligatorio"/>
+                                                 required="true" requiredMessage="Clave es obligatorio"/>
 
 
                                     <p:commandButton id="btn_reset" value="Borrar todo" type="reset"/>

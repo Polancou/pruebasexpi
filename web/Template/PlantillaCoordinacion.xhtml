@@ -24,7 +24,7 @@
     </h:head>
 
     <h:body class="hold-transition skin-blue sidebar-mini">
-        
+
         <div class="wrapper">
             <div id="top">
                 <ui:insert name="top">
@@ -145,9 +145,9 @@
                                         </ul>
                                     </li>
                                     <!-- Control Sidebar Toggle Button -->
-                                    <li>
+<!--                                    <li>
                                         <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
-                                    </li>
+                                    </li>-->
                                 </ul>
                             </div>
                         </nav>
@@ -170,19 +170,19 @@
                                     <div class="pull-left info">
                                         <p>Coordinación</p>
                                         <!-- Status -->
-                                        <a href="#"><i class="fa fa-circle text-success"></i>Online</a>
+                                        <!--                                        <a href="#"><i class="fa fa-circle text-success"></i>Online</a>-->
                                     </div>
                                 </div>
 
                                 <!-- search form (Optional) -->
-                                <form action="#" method="get" class="sidebar-form">
-                                    <div class="input-group">
-                                        <input type="text" name="q" class="form-control" placeholder="Search..."/>
-                                        <span class="input-group-btn">
-                                            <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i></button>
-                                        </span>
-                                    </div>
-                                </form>
+                                <!--                                <form action="#" method="get" class="sidebar-form">
+                                                                    <div class="input-group">
+                                                                        <input type="text" name="q" class="form-control" placeholder="Search..."/>
+                                                                        <span class="input-group-btn">
+                                                                            <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i></button>
+                                                                        </span>
+                                                                    </div>
+                                                                </form>-->
                                 <!-- /.search form -->
 
                                 <!-- Sidebar Menu -->
@@ -202,7 +202,7 @@
                                     </li>
 
                                     <li class="treeview">
-                                        <a href="#"><i class="fa fa-fw fa-user-md"></i> <span>Encargados de Farmacia</span>
+                                        <a href="#"><i class="fa fa-fw fa-user-md"></i> <span>Farmacia</span>
                                             <span class="pull-right-container">
                                                 <i class="fa fa-angle-left pull-right"></i>
                                             </span>
@@ -222,9 +222,17 @@
                                             <li><a href="reportes.xhtml">Generar reporte</a></li>           
                                         </ul>
                                     </li>
-                                    <li><a href="#"><i class="fa fa-link"></i> <span>Acerca de...</span></a></li>
+                                    <li>
+                                        <a href="#"><i class="fa fa-link"></i> <span>Acerca de...</span>
+                                            <span class="pull-right-container">
+                                                <i class="fa fa-angle-left pull-right"></i>
+                                            </span>
+                                        </a>
+                                        <ul class="treeview-menu">
+                                            <li><a href="#">Portal de Odontología</a></li>           
+                                        </ul>
+                                    </li>
 
-                                    <!--<li class="active"><a href="#"><i class="fa fa-link"></i> <span>Acerca de</span></a></li> -->
                                 </ul>
                             </section>
                             <!-- /.sidebar -->
@@ -243,7 +251,7 @@
                             Prohibida la reproducción, alteración y violación de datos.
                         </div>
                         <!-- Default to the left -->
-                        <strong>Copyright 2017 <a href="http://fi.uacam.mx/">Facultad Ingenieria. Universidad Autónoma de Campeche</a>.</strong> All rights reserved.
+                        <strong>Copyright 2017 <a href="http://fi.uacam.mx/">Facultad Ingeniería. Universidad Autónoma de Campeche</a>.</strong> All rights reserved.
                     </footer>
                 </ui:insert>
             </div>

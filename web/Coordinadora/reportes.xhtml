@@ -21,48 +21,54 @@
                             Reportes
                             <small>Coordinación</small>
                         </h1>
+                        <p:dialog modal="true" widgetVar="statusDialog" header="Status" draggable="false" closable="false" resizable="false">
+                            <p:graphicImage name="/images/cargando.gif" />
+                        </p:dialog>
                         <p:accordionPanel dynamic="true">
                             <p:tab title="Reporte general">
+
                                 <h:panelGrid columns="2" cellpadding="10">
                                     <p:graphicImage value="./../resources/images/pdf.jpg"/>
                                     <h:outputText value="En esta opcion podrá imprimir toda la información del sistema desde el primer dia en que se implantó hasta
                                                   el dia de hoy. Contendrá datos de los tratamientos en las diferentes clinicas realizados por los diferentes alumnos" />
                                 </h:panelGrid>
 
-                                <p:dialog modal="true" widgetVar="statusDialog" header="Status" draggable="false" closable="false" resizable="false">
-                                    <p:graphicImage name="/images/cargando.gif" />
-                                </p:dialog>
-
                                 <h:form>
                                     <p:commandButton value="Descargar" ajax="false" onclick="PrimeFaces.monitorDownload(start, stop);" icon="ui-icon-arrowthick-1-s">
-                                        <p:fileDownload value="#{beanReportes.exportarPDF()}" />
+                                        <p:fileDownload value="#{beanReportes.reporteGeneral()}" />
                                     </p:commandButton>
                                 </h:form>
+
                                 <p:separator style="width:1050px;height:10px" />
+
                             </p:tab>
+
                             <p:tab title="Reporte por clinica">
-                                <h:panelGrid columns="3"  cellpadding="10">
-                                    <p:graphicImage value="../resources/images/pdf.jpg" />
-                                    <h:outputText value= "Favor de seleccionar una de las clinicas de la lista. Y a continuación se generará un reporte de ésta clínica 
-                                                  con toda la información del sistema desde el primer dia en que se implantó hasta el dia de hoy. "/>
-                                    <h:selectOneMenu id="txt3" value="" required="true" label="Text 3">
-                                        <f:selectItem itemLabel="Seleccione clinica" itemValue="" noSelectionOption="true" />
-                                        <f:selectItem itemLabel="Option 1" itemValue="1" />
-                                        <f:selectItem itemLabel="Option 2" itemValue="2" />
-                                        <f:selectItem itemLabel="Option 3" itemValue="3" />
-                                    </h:selectOneMenu>
-                                </h:panelGrid>
+
                                 <h:form>
-                                    <p:dialog modal="true" widgetVar="statusDialog2" header="Status" draggable="false"
-                                              closable="false">
-                                        <p:graphicImage value="/images/cargando.gif" />
-                                    </p:dialog>
-                                    <p:commandButton value="Download" ajax="false" onclick="PrimeFaces.monitorDownload(showStatus, hideStatus)" icon="ui-icon-arrowthick-1-s" >
-                                        <p:fileDownload value="#{beanReportes.file}"/>
+
+                                    <h:panelGrid columns="3"  cellpadding="10">
+                                        <p:graphicImage value="../resources/images/pdf.jpg" />
+                                        <h:outputText value= "Favor de seleccionar una de las clinicas de la lista. Y a continuación se generará un reporte de ésta clínica 
+                                                      con toda la información del sistema desde el primer dia en que se implantó hasta el dia de hoy. "/>
+                                        <h:selectOneMenu id="txt3" value="#{beanReportes.clinica}" required="true" requiredMessage="Seleccione la clinica">
+                                            <f:selectItem itemLabel="Seleccione clinica" itemValue="" noSelectionOption="true" />
+                                            <f:selectItem itemLabel="Clinica 1" itemValue="1" />
+                                            <f:selectItem itemLabel="Clinica 2" itemValue="2" />
+                                            <f:selectItem itemLabel="Clinica 3" itemValue="3" />
+                                        </h:selectOneMenu>
+                                    </h:panelGrid>
+
+                                    <p:commandButton value="Descargar" ajax="false" onclick="PrimeFaces.monitorDownload(start, stop);" icon="ui-icon-arrowthick-1-s">
+                                        <p:fileDownload value="#{beanReportes.reportePorClinica()}" />
                                     </p:commandButton>
+
                                 </h:form>
+
                                 <p:separator style="width:1050px;height:10px" />
+
                             </p:tab>
+
                             <p:tab title="Reporte de todas las clinicas dentro de fecha determinada">
                                 <h:panelGrid columns="6" cellpadding="30" >
                                     <p:graphicImage value="../resources/images/pdf.jpg" />
@@ -73,10 +79,6 @@
                                     <p:calendar id="popup2" value="#{calendarView.date2}" />
                                 </h:panelGrid>
                                 <h:form>
-                                    <p:dialog modal="true" widgetVar="statusDialog3" header="Status" draggable="false"
-                                              closable="false">
-                                        <p:graphicImage value="/images/cargando.gif" />
-                                    </p:dialog>
                                     <p:commandButton value="Download" ajax="false" onclick="PrimeFaces.monitorDownload(showStatus, hideStatus)" icon="ui-icon-arrowthick-1-s" >
                                         <p:fileDownload value="#{beanReportes.reporteGeneral()}"/>
                                     </p:commandButton>
@@ -99,10 +101,6 @@
                                     <p:calendar id="popup4" value="#{calendarView.date2}" />
                                 </h:panelGrid>
                                 <h:form>
-                                    <p:dialog modal="true" widgetVar="statusDialog4" header="Status" draggable="false"
-                                              closable="false">
-                                        <p:graphicImage value="/images/cargando.gif" />
-                                    </p:dialog>
                                     <p:commandButton value="Download" ajax="false" onclick="PrimeFaces.monitorDownload(showStatus, hideStatus)" icon="ui-icon-arrowthick-1-s" >
                                         <p:fileDownload value="#{beanReportes.reporteGeneral()}"/>
                                     </p:commandButton>
@@ -122,10 +120,6 @@
                                     </h:selectOneMenu>
                                 </h:panelGrid>
                                 <h:form>
-                                    <p:dialog modal="true" widgetVar="statusDialog5" header="Status" draggable="false"
-                                              closable="false">
-                                        <p:graphicImage value="/images/cargando.gif" />
-                                    </p:dialog>
                                     <p:commandButton value="Download" ajax="false" onclick="PrimeFaces.monitorDownload(showStatus, hideStatus)" icon="ui-icon-arrowthick-1-s">
                                         <p:fileDownload value="#{beanReportes.reporteGeneral()}"/>
                                     </p:commandButton>
