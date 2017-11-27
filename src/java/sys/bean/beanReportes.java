@@ -100,7 +100,7 @@ public class beanReportes implements Serializable {
         parametros.put("fecha1", df.format(fecha1));
         parametros.put("fecha2", df.format(fecha2));
         System.out.print("+++++ " + df.format(fecha1) + " +++++ " + df.format(fecha2));
-        exportarPDF("/resources/ReportesPDF/fechas.jasper", "Reporte_De_Todas_Las_Clinicas_Desde_El_+" + fecha1 + "_Hasta_El_" + fecha2, parametros);
+        exportarPDF("/resources/ReportesPDF/fechas.jasper", "Reporte_De_Todas_Las_Clinicas_Desde_El_+" + df.format(fecha1) + "_Hasta_El_" + df.format(fecha2), parametros);
     }
 
     public void reportePorClinicaPorFechas() throws SQLException, IOException, JRException {
@@ -110,7 +110,7 @@ public class beanReportes implements Serializable {
         parametros.put("fecha1", df.format(fecha1));
         parametros.put("fecha2", df.format(fecha2));
         System.out.print("+++++ " + fecha1 + " +++++ " + fecha2 + " ++++++ " + clinica);
-        exportarPDF("/resources/ReportesPDF/porClinica.jasper", "Reporte_De_La_Clinica_" + clinica + "_Desde_La_Implementacion", parametros);
+        exportarPDF("/resources/ReportesPDF/porClinica.jasper", "Reporte_De_La_Clinica_" + clinica + "_Desde_El_"+df.format(fecha1)+"_Hasta_El_"+df.format(fecha2), parametros);
     }
 
     public void alumnosDestacados() throws SQLException, IOException, JRException {

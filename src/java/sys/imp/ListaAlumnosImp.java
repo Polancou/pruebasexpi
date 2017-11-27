@@ -23,9 +23,7 @@ import sys.util.HibernateUtil;
  */
 public class ListaAlumnosImp implements daoListaAlumnos {
 
-    HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
-    HttpSession sessionUsuario = request.getSession();
-    int user = (int) sessionUsuario.getAttribute("idSesion");
+    
 
     @Override
     public List<ListaAlumnos> MostrarAlumnos(MaestroMaterias mmaterias) {
@@ -70,6 +68,9 @@ public class ListaAlumnosImp implements daoListaAlumnos {
 
     @Override
     public List<ListaAlumnos> MostrarClases(Alumnos alumnos, MaestroMaterias mmaterias) {
+        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+    HttpSession sessionUsuario = request.getSession();
+    int user = (int) sessionUsuario.getAttribute("idSesion");
         List<ListaAlumnos> mostrarClases = null;
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();

@@ -26,9 +26,7 @@ import sys.util.HibernateUtil;
  */
 public class MaestroMateriasImp implements daoMaestroMaterias {
 
-    HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
-        HttpSession sessionUsuario = request.getSession();
-        int user=(int) sessionUsuario.getAttribute("idEmpleado");
+    
         
     @Override
     public List<MaestroMaterias> mostrarMaestroMaterias() {
@@ -49,6 +47,9 @@ public class MaestroMateriasImp implements daoMaestroMaterias {
 
     @Override
     public List<MaestroMaterias> mostrarMaterias(MaestroMaterias maestro) {
+        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        HttpSession sessionUsuario = request.getSession();
+        int user=(int) sessionUsuario.getAttribute("idEmpleado");
         List<MaestroMaterias> mostrarMaMa = null;
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
@@ -68,6 +69,9 @@ public class MaestroMateriasImp implements daoMaestroMaterias {
 
     @Override
     public List<MaestroMaterias> mostrarGrupo(MaestroMaterias maestro) {
+        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        HttpSession sessionUsuario = request.getSession();
+        int user=(int) sessionUsuario.getAttribute("idEmpleado");
         List<MaestroMaterias> mostrarGrupo = null;
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
@@ -89,6 +93,9 @@ public class MaestroMateriasImp implements daoMaestroMaterias {
 
     @Override
     public List<MaestroMaterias> mostrarGrado(MaestroMaterias maestro) {
+        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        HttpSession sessionUsuario = request.getSession();
+        int user=(int) sessionUsuario.getAttribute("idEmpleado");
         List<MaestroMaterias> mostrarGrado = null;
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
