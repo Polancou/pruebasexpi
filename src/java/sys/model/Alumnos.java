@@ -25,6 +25,16 @@ public class Alumnos  implements java.io.Serializable {
     public Alumnos() {
     }
 
+    public Alumnos(int matricula, String nombre, String apellidoPaterno, String apellidoMaterno, String usuario, String contraseña,String semestre,String grupo) {
+        this.matricula = matricula;
+        this.nombre = nombre;
+        this.apellidoPaterno = apellidoPaterno;
+        this.apellidoMaterno = apellidoMaterno;
+        this.semestre=semestre;
+        this.grupo=grupo;
+        this.usuario = usuario;
+        this.contraseña = contraseña;
+    }
 	
     public Alumnos(int matricula, String nombre, String apellidoPaterno, String apellidoMaterno, String usuario, String contraseña) {
         this.matricula = matricula;

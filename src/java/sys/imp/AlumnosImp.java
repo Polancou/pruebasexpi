@@ -19,12 +19,14 @@ public class AlumnosImp implements daoAlumnos{
 
     @Override
     public boolean insertarAlumnos(Alumnos alumnos) {
+        LoginSesionImp encriptadoLoguin=new LoginSesionImp();
+        String contraseñaEncriptada=encriptadoLoguin.encriptado(alumnos.getContraseña());
         boolean seRegistro=false;
         Session session = null;
         try{
             session = HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
-            session.save(alumnos);
+            session.save(new Alumnos(alumnos.getMatricula(), alumnos.getNombre(), alumnos.getApellidoPaterno(), alumnos.getApellidoMaterno(), alumnos.getUsuario(), contraseñaEncriptada, alumnos.getSemestre(), alumnos.getGrupo()));
             session.getTransaction().commit();
             seRegistro=true;
         }catch(Exception e){

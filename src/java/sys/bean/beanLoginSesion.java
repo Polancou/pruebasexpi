@@ -204,5 +204,9 @@ public class beanLoginSesion implements Serializable {
         HttpServletResponse sResponse = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
         sResponse.sendRedirect(ruta);
     }
+    
+    public void editarPerfil(){
+        
+    }
 
 }
