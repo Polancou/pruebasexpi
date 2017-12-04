@@ -139,6 +139,8 @@ public class LoginSesionImp implements daoLoginSesion {
 
     @Override
     public boolean consultarFarmacia(EncargadaClinica encargada, SesionTable sesion) {
+        contraNOencriptada=sesion.getContraseña();
+        contraEncriptada=encriptado(contraNOencriptada);
         boolean usuario = false;
         List<EncargadaClinica> encargadaList = null;
         Session session = HibernateUtil.getSessionFactory().openSession();
@@ -148,7 +150,7 @@ public class LoginSesionImp implements daoLoginSesion {
             for (EncargadaClinica encargadaFarmacia : encargadaList) {
                 if (encargadaFarmacia.getIdEmpleado() == encargada.getIdEmpleado()) {
                     System.out.println("El maestro ha sido registrado");
-                    session.save(new SesionTable(3, sesion.getUser(), sesion.getContraseña(), encargada.getIdEmpleado()));
+                    session.save(new SesionTable(3, sesion.getUser(),contraEncriptada , encargada.getIdEmpleado()));
                     usuario = true;
                 }
             }

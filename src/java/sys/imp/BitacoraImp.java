@@ -62,11 +62,14 @@ public class BitacoraImp implements daoBitacora {
 
     @Override
     public List<BitacoraRecibos> mostratTratamientosPorAlumno(MaestroMaterias mmaterias) {
+        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        HttpSession sessionUsuario = request.getSession();
+        int matricula=(int)sessionUsuario.getAttribute("idSesion");
         List<BitacoraRecibos> listBita = null;
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         String hql = "from BitacoraRecibos as m inner join fetch m.alumnos left join fetch m.maestroMaterias "
-                + "left join fetch m.menuTratamientos where m.maestroMaterias.clave = '" + mmaterias.getClave() + "' and m.alumnos.matricula=" + user;
+                + "left join fetch m.menuTratamientos where m.maestroMaterias.clave = '" + mmaterias.getClave() + "' and m.alumnos.matricula=" + matricula;
         try {
             listBita = session.createQuery(hql).list();
             transaction.commit();
@@ -80,12 +83,15 @@ public class BitacoraImp implements daoBitacora {
 
     @Override
     public List<BitacoraRecibos> mostrarTratamientosPorMaestros(MaestroMaterias mmaterias) {
-
+        System.out.println("Entra al metodo de buscar tratamientos");
+        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        HttpSession sessionUsuario = request.getSession();
+        int idEmployed=(int)sessionUsuario.getAttribute("idEmpleado");
         List<BitacoraRecibos> listBita = null;
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         String hql = "from BitacoraRecibos as m inner join fetch m.alumnos left join fetch m.maestroMaterias "
-                + "left join fetch m.menuTratamientos where m.maestroMaterias.clave = '" + mmaterias.getClave() + "' and m.maestroMaterias.maestro.idEmpleado=" + empleado;
+                + "left join fetch m.menuTratamientos where m.maestroMaterias.clave = '" + mmaterias.getClave() + "' and m.maestroMaterias.maestro.idEmpleado=" + idEmployed;
         try {
             listBita = session.createQuery(hql).list();
             transaction.commit();
@@ -94,6 +100,7 @@ public class BitacoraImp implements daoBitacora {
             System.out.println(e.getMessage());
             transaction.rollback();
         }
+        System.out.println("retorna la lista de tamaño "+listBita.size());
         return listBita;
 
     }

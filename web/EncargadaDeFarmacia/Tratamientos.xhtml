@@ -137,7 +137,7 @@
 
 
                                     <p:commandButton id="btn_reset" value="Borrar todo" type="reset"/>
-                                    <p:commandButton value="Guardar" actionListener="#{beanTratamiento.insertarBitacora()}"  
+                                    <p:commandButton value="Guardar" actionListener="#{beanTratamiento.insertarBitacora()}"  update=":formMostrarTratamientoss"
                                                      oncomplete="PF('dlgNuevoA').hide();"/>
 
 
@@ -150,7 +150,11 @@
                             <p:dataTable id="tablaMostrarTratamientoo" var="master" value="#{beanBitacora.bitaDia}" rows="10" paginator="true"
                                          emptyMessage="No hay datos" style="font-size: 11px;">
 
-                                <p:column headerText="Matricula">
+                                 <p:column headerText="Matricula">
+                                     <h:outputText value="#{master.alumnos.matricula}"/>
+
+                                </p:column>
+                                <p:column headerText="Nombre completo del alumno">
                                     <h:outputText value="#{master.alumnos.nombre} #{master.alumnos.apellidoPaterno} #{master.alumnos.apellidoMaterno}"/>
 
                                 </p:column>
@@ -159,7 +163,12 @@
 
                                 </p:column>
                                 
-                                 <p:column headerText="Tratamiento">
+                                 <p:column headerText="Cantidad">
+                                     <h:outputText value="#{master.cantidad}"/>
+
+                                </p:column>
+                                
+                                 <p:column headerText="Fecha">
                                      <h:outputText value="#{master.fecha}"/>
 
                                 </p:column>
