@@ -22,5 +22,8 @@ public interface daoMaestroMaterias {
     public List<MaestroMaterias> mostrarGrupo(MaestroMaterias maestro);
     
     public List<MaestroMaterias> mostrarGrado(MaestroMaterias maestro);
+    
+    public List<MaestroMaterias> mostrarMateriasAsignadas();
+
 
 }

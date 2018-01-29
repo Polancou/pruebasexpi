@@ -9,10 +9,13 @@ import java.awt.event.ActionEvent;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 import javax.inject.Named;
 
 import javax.faces.view.ViewScoped;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import sys.dao.daoListaAlumnos;
 import sys.dao.daoMaestro;
 import sys.dao.daoMaestroMaterias;
@@ -45,6 +48,7 @@ public class beanMaestroMaterias implements Serializable {
     private List<SelectItem> listarGrado;
     private ListaAlumnos lista;
     private List<ListaAlumnos> listarAlumnos;
+    private List<MaestroMaterias> listarMateriasAsignadas;
 
     public beanMaestroMaterias() {
         maestroMaterias = new MaestroMaterias();
@@ -88,6 +92,21 @@ public class beanMaestroMaterias implements Serializable {
         return maestroM;
     }
 
+    public List<MaestroMaterias> getListarMateriasAsignadas() {
+         daoMaestroMaterias mdao = new MaestroMateriasImp();
+        listarMateriasAsignadas = mdao.mostrarMateriasAsignadas();
+        return listarMateriasAsignadas;
+    }
+
+    public void setListarMateriasAsignadas(List<MaestroMaterias> listarMateriasAsignadas) {
+        this.listarMateriasAsignadas = listarMateriasAsignadas;
+    }
+    
+     
+
+   
+     
+     
     public ListaAlumnos getLista() {
         return lista;
     }
@@ -153,6 +172,8 @@ public class beanMaestroMaterias implements Serializable {
         return listarGrupo;
     }
 
+    
+    
     public List<SelectItem> getListarGrado() {
         this.listarGrado = new ArrayList<SelectItem>();
         daoMaestroMaterias mdao = new MaestroMateriasImp();

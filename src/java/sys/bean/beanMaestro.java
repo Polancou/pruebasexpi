@@ -5,6 +5,7 @@
  */
 package sys.bean;
 
+import Algoritmos.Clave;
 import java.awt.event.ActionEvent;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -156,6 +157,8 @@ public class beanMaestro implements Serializable {
     
     public void insertarMaestroMaterias() {
         daoMaestro mdao = new MaestroImp();
+        Clave cla = new Clave();
+        maestroMaterias.setClave(cla.clave());
         mdao.insertarMaestroMaterias(maestroMaterias);
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "El registro se ha ingresado satisfactoriamente"));
 

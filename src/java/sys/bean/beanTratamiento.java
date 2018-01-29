@@ -34,7 +34,7 @@ public class beanTratamiento implements Serializable {
     /**
      * Creates a new instance of beanTratamiento
      */
-    private AreaTratamientos area;
+  private AreaTratamientos area;
     private MenuTratamientos menu;
     private BitacoraRecibos bitacora;
 
@@ -139,7 +139,7 @@ public class beanTratamiento implements Serializable {
     }
     
      public void insertarBitacora(){
-        daoBitacora bdao = new BitacoraImp();
+        daoBitacora bdao = new BitacoraImp(1);
         boolean insertoBita=bdao.insertarTratamiento(bitacora);
         bitacora = new BitacoraRecibos();
        if(insertoBita){
@@ -148,7 +148,4 @@ public class beanTratamiento implements Serializable {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Error", "El registro no se puede guardar en este momento. Intente más tarde o contacte a soporte técnico."));
        }
     }
-     
-     
-
 }

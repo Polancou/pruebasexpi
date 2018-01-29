@@ -5,6 +5,7 @@
  */
 package sys.dao;
 
+import java.util.List;
 import sys.model.Materias;
 
 /**
@@ -12,5 +13,13 @@ import sys.model.Materias;
  * @author Sammy Guergachi <sguergachi at gmail.com>
  */
 public interface daoMaterias {
+    
     public void insertarMaterias(Materias materia);
+    
+    public List<Materias> mostrarMaterias();
+        
+    public boolean actuliazarMaterias(Materias materia);
+    
+    public boolean eliminarMateria(Materias materia);
+    
 }

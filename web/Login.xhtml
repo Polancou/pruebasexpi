@@ -27,8 +27,8 @@
                         <p:password id="senhaUsuario" value="#{LoginMB.usuario.contraseña}" />
                     </h:panelGrid>
                     <h:panelGrid columns="2" cellpadding="5" >
-                        <p:commandButton value="Ingresar al portal" icon="ui-icon-star" action="#{LoginMB.login(actionEvent)}" ajax="false" />
-                        <p:splitButton value="¿Nuevo usuario?" actionListener="#"  icon="ui-icon-star">
+                        <p:commandButton value="Ingresar al portal" action="#{LoginMB.login(actionEvent)}" ajax="false" />
+                        <p:splitButton value="¿Nuevo usuario?" actionListener="#" >
                             <p:menuitem oncomplete="PF('dlgNuevoDocente').show();" update=":formNuevoDocente" style="font-size: 12px;" value="Docente" icon="ui-icon-extlink" />/>
                             <p:menuitem oncomplete="PF('dlgNuevoFarmacia').show();" update=":formNuevoFarmacia" style="font-size: 12px;" value="Farmacia" icon="ui-icon-extlink" />
                         </p:splitButton>

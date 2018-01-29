@@ -111,5 +111,27 @@ public class MaestroMateriasImp implements daoMaestroMaterias {
 
         return mostrarGrado;
     }
+    
+     @Override
+    public List<MaestroMaterias> mostrarMateriasAsignadas() {
+          HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        HttpSession sessionUsuario = request.getSession();
+        int user=(int) sessionUsuario.getAttribute("idEmpleado");
+        List<MaestroMaterias> mostrarMaterias = null;
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction transaction = session.beginTransaction();
+        String hql = "from MaestroMaterias as m inner join fetch m.materias where id_empleado='"+user+"'";
+        try {
+            mostrarMaterias = session.createQuery(hql).list();
+            transaction.commit();
+            session.close();
+        } catch (Exception e) {
+            System.out.print(e.getMessage());
+            transaction.rollback();
+        }
+
+        return mostrarMaterias;
+    }
+
 
 }
