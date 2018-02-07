@@ -13,5 +13,7 @@ import sys.model.Alumnos;
  */
 public interface daoAlumnos {
     
-    public boolean insertarAlumnos(Alumnos alumnos);
+    public int insertarAlumnos(Alumnos alumnos);
+    
+    public boolean consultarAlumno(Alumnos login);
 }

@@ -1,9 +1,10 @@
 <?xml version='1.0' encoding='UTF-8' ?> 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+<xhtml xmlns="http://www.w3.org/1999/xhtml"
+       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+       xmlns:h="http://xmlns.jcp.org/jsf/html"
+       xmlns:p="http://primefaces.org/ui"
+       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <h:head>
         <title>COORDINACION</title>
@@ -135,7 +136,47 @@
                                             </li>
                                             <!-- Menu Footer-->
                                             <li class="user-footer">
+                                                <div class="pull-left">
+                                                    <h:form id="editar">
+                                                        <p:commandButton value="Editar Perfil" oncomplete="PF('dlgNuevo').show();" 
+                                                                         update=":formEditarPerfil" style="font-size: 12px;" />
+                                                    </h:form>
+                                                    <p:dialog id="dlgEditarPerfil" header="Editar su perfil" widgetVar="dlgNuevo" showEffect="drop" hideEffect="drop" modal="true">
+                                                        <h:form id="formEditarPerfil">
+                                                            <h:panelGrid columns="2" style="margin: 0 auto; font-size: 11px;">
+                                                                <p:outputLabel value="Usuario actual: "/>
+                                                                <p:inputText value="#{LoginMB.usuario.user}"
+                                                                             required="true" requiredMessage="Su nombre de usuario es obligatorio"/>
+                                                                <p:spacer/><p:spacer/>
+                                                                <p:outputLabel value="Nuevo usuario:"/>
+                                                                <p:inputText value="#{LoginMB.newUser}"
+                                                                             required="true" requiredMessage="Nombre es obligatorio"/>
+                                                                <p:spacer/><p:spacer/>
+                                                                <p:outputLabel value="Contraseña actual:"/>
+                                                                <p:password id="pwd3" value="#{LoginMB.usuario.contraseña}" 
+                                                                            required="true" />
+                                                                <p:spacer/><p:spacer/>
+                                                                <p:outputLabel value="Contraseña"/>
+                                                                <p:password id="pwd1" value="#{LoginMB.newPass}" match="pwd2" label="Contraseña" feedback="true" weakLabel="Muy Debil"
+                                                                            goodLabel="Media" strongLabel="Fuerte" inline="true" promptLabel="Digite una contraseña" 
+                                                                            required="true"  requiredMessage="Contraseña es obligatorio"
+                                                                            validatorMessage="¡Contraseña Incorrecta! Verifiquela"/>   
+                                                                <p:spacer/><p:spacer/>
+                                                                <p:outputLabel value="Confirmar contraseña"/>
+                                                                <p:password id="pwd2" value="#" 
+                                                                            required="true" />
+                                                                <p:spacer/><p:spacer/>
+                                                                <p:spacer/><p:spacer/>
+                                                                <p:commandButton value="Guardar" actionListener="#{LoginMB.editarPerfil()}"  
+                                                                                 oncomplete="PF('dlgNuevo').hide();" update=":formEditarPerfil"/>
+                                                                <p:commandButton value="Cancelar" action="#"
+                                                                                 update=":formEditarPerfil" immediate="true" 
+                                                                                 onclick="PF('dlgNuevo').hide();" /> 
 
+                                                            </h:panelGrid>
+                                                        </h:form>
+                                                    </p:dialog>
+                                                </div>
                                                 <div class="pull-right">
                                                     <h:form id="salir">
                                                         <p:commandButton value="Salir" actionListener="#{LoginMB.logoutCoordinacion(actionEvent)}" style="font-size: 12px;" />
@@ -145,9 +186,9 @@
                                         </ul>
                                     </li>
                                     <!-- Control Sidebar Toggle Button -->
-<!--                                    <li>
-                                        <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
-                                    </li>-->
+                                    <!--                                    <li>
+                                                                            <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+                                                                        </li>-->
                                 </ul>
                             </div>
                         </nav>
@@ -212,8 +253,8 @@
 
                                         </ul>
                                     </li>
-                                    
-                                      <li class="treeview">
+
+                                    <li class="treeview">
                                         <a href="#"><i class="fa fa-book"></i> <span>Materias</span>
                                             <span class="pull-right-container">
                                                 <i class="fa fa-angle-left pull-right"></i>
@@ -224,7 +265,7 @@
 
                                         </ul>
                                     </li>
-                                    
+
                                     <li class="treeview">
                                         <a href="#"><i class="fa fa-fw fa-file-text-o"></i> <span>Reportes</span>
                                             <span class="pull-right-container">
@@ -253,7 +294,9 @@
                     </ui:insert>
                 </div>
                 <div id="content" class="left_content">
-                    <ui:insert name="content">Content</ui:insert>
+                    <ui:insert name="content">
+
+                    </ui:insert>
                 </div>
             </div>
             <div id="bottom">
@@ -272,4 +315,4 @@
 
     </h:body>
 
-</html>
+</xhtml>

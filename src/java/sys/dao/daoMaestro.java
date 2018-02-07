@@ -15,6 +15,8 @@ import sys.model.Materias;
  * @author Sammy Guergachi <sguergachi at gmail.com>
  */
 public interface daoMaestro {
+    
+    public boolean eliminarMateriaDocente(String clave);
 
     public boolean insertarMaestro(Maestro maestro);
 

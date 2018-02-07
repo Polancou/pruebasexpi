@@ -29,7 +29,8 @@ import sys.model.SesionTable;
 @Named(value = "LoginMB")
 @ViewScoped
 public class beanLoginSesion implements Serializable {
-    
+
+    private String newUser, newPass;
     private SesionTable user;
     private Maestro maestro;
     private Alumnos alumno;
@@ -39,10 +40,39 @@ public class beanLoginSesion implements Serializable {
     public beanLoginSesion() {
         user = new SesionTable();
         alumno = new Alumnos();
-        maestro=new Maestro();
+        maestro = new Maestro();
         encargada = new EncargadaClinica();
     }
 
+    /**
+     * @return the newUser
+     */
+    public String getNewUser() {
+        return newUser;
+    }
+
+    /**
+     * @param newUser the newUser to set
+     */
+    public void setNewUser(String newUser) {
+        this.newUser = newUser;
+    }
+
+    /**
+     * @return the newPass
+     */
+    public String getNewPass() {
+        return newPass;
+    }
+
+    /**
+     * @param newPass the newPass to set
+     */
+    public void setNewPass(String newPass) {
+        this.newPass = newPass;
+    }
+
+    
     /**
      * @return the encargada
      */
@@ -56,7 +86,7 @@ public class beanLoginSesion implements Serializable {
     public void setEncargada(EncargadaClinica encargada) {
         this.encargada = encargada;
     }
-    
+
     /**
      * @return the alumno
      */
@@ -71,7 +101,6 @@ public class beanLoginSesion implements Serializable {
         this.alumno = alumno;
     }
 
-    
     /**
      * @return the maestro
      */
@@ -85,7 +114,7 @@ public class beanLoginSesion implements Serializable {
     public void setMaestro(Maestro maestro) {
         this.maestro = maestro;
     }
-    
+
     public boolean estaLogeado() {
         return logeado;
     }
@@ -96,7 +125,6 @@ public class beanLoginSesion implements Serializable {
     public SesionTable getUsuario() {
         return user;
     }
-    
 
     /**
      * @param usuario the usuario to set
@@ -105,63 +133,52 @@ public class beanLoginSesion implements Serializable {
         this.user = usuario;
     }
 
-    public void insertarFarmacia(){
+    public void insertarFarmacia() {
         daoLoginSesion daoSesion = new LoginSesionImp();
-        boolean existe=daoSesion.consultarFarmacia(encargada, user);
-        if(existe){
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "¡Felicidades!", "Ha sido registrado en el sistema de manera exitosa."));
-        }else{
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "¡¡Error!!", "Lo sentimos, no ha sido dado de alta en el sistema.\nVerifique con los administradores."));
-        }
+        int existe = daoSesion.consultarFarmacia(encargada, user);
+        mensajes(existe);
     }
-    
-    public void insertarDocente(){
+
+    public void insertarDocente() {
         daoLoginSesion daoSesion = new LoginSesionImp();
-        boolean existe=daoSesion.consultarDocente(maestro,user);
-        if(existe){
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "¡Felicidades!", "Ha sido registrado en el sistema de manera exitosa."));
-        }else{
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "¡¡Error!!", "Lo sentimos, no ha sido dado de alta en el sistema.\nVerifique con los administradores."));
-        }
+        int existe = daoSesion.consultarDocente(maestro, user);
+        mensajes(existe);
+
     }
-    
-    public void loguinAlumno(ActionEvent action) throws IOException{
-        daoLoginSesion daoSesion = new LoginSesionImp();
-        boolean existeAlumno = daoSesion.consultarAlumno(alumno);
-        if (existeAlumno){
-            logeado = true;
-            responseAndRequestAlumno("/FdO-3.0/pages/Alumnos/Principal.xhtml","tokenAlumno");
-        }else{
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error", "Lo sentimos, no aparece en el sistema"));
-        }
-    }
-    
+
     public void login(ActionEvent actionEvent) throws IOException {
         daoLoginSesion daoSesion = new LoginSesionImp();
         int tipoUsuario = daoSesion.consultarUsuario(user);
-        if (tipoUsuario == 0) {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error", "Lo sentimos, no aparece en el sistema"));
-        } else if (tipoUsuario == 1) {
-            logeado = true;
-            responseAndRequest("/FdO-3.0/pages/Coordinadora/Principal.xhtml","tokenCoordinacion");
-        } else if (tipoUsuario == 2){
-            logeado = true;
-            responseAndRequest("/FdO-3.0/pages/Maestro/Principal.xhtml","tokenDocente");
-        }else if (tipoUsuario == 3){
-            logeado = true;
-            responseAndRequest("/FdO-3.0/pages/EncargadaDeFarmacia/Principal.xhtml","tokenFarmacia");
+        System.out.println("id del empleado desde el loguin: " + user.getIdEmpleado());
+        switch (tipoUsuario) {
+            case 0:
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error", "Lo sentimos, no aparece en el sistema"));
+                break;
+            case 1:
+                logeado = true;
+                responseAndRequest("/FdO-3.0/pages/Coordinadora/Principal.xhtml", "tokenCoordinacion");
+                break;
+            case 2:
+                logeado = true;
+                responseAndRequest("/FdO-3.0/pages/Maestro/Principal.xhtml", "tokenDocente");
+                break;
+            case 3:
+                logeado = true;
+                responseAndRequest("/FdO-3.0/pages/EncargadaDeFarmacia/Principal.xhtml", "tokenFarmacia");
+                break;
+            default:
+                break;
         }
 
-//    if (logeado)
-//      context.addCallbackParam("view", "Coordinadora/Principal.xhtml");
     }
-    
+
+    //Hacer un logout unico que reciba el string del atributo que va a remover y no tener mas codigo
     public void logoutCoordinacion(ActionEvent actionEvent) throws IOException {
         HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         session.removeAttribute("tokenCoordinacion");
         logeado = false;
         String path = FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath();
-        FacesContext.getCurrentInstance().getExternalContext().redirect("/FdO-3.0/pages/Login.xhtml");  
+        FacesContext.getCurrentInstance().getExternalContext().redirect("/FdO-3.0/pages/Login.xhtml");
     }
 
     public void logoutFarmacia(ActionEvent actionEvent) throws IOException {
@@ -169,25 +186,18 @@ public class beanLoginSesion implements Serializable {
         session.removeAttribute("tokenFarmacia");
         logeado = false;
         String path = FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath();
-        FacesContext.getCurrentInstance().getExternalContext().redirect("/FdO-3.0/pages/Login.xhtml");  
+        FacesContext.getCurrentInstance().getExternalContext().redirect("/FdO-3.0/pages/Login.xhtml");
     }
-    
+
     public void logoutDocente(ActionEvent actionEvent) throws IOException {
         HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         session.removeAttribute("tokenDocente");
         logeado = false;
         String path = FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath();
-        FacesContext.getCurrentInstance().getExternalContext().redirect("/FdO-3.0/pages/Login.xhtml");  
+        FacesContext.getCurrentInstance().getExternalContext().redirect("/FdO-3.0/pages/Login.xhtml");
     }
-    public void logoutAlumno(ActionEvent actionEvent) throws IOException {
-        HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
-        session.removeAttribute("tokenAlumno");
-        logeado = false;
-        String path = FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath();
-        FacesContext.getCurrentInstance().getExternalContext().redirect("/FdO-3.0/pages/LoginAlumno.xhtml");  
-    }
-    
-    private void responseAndRequest(String ruta,String tokenName) throws IOException {
+
+    private void responseAndRequest(String ruta, String tokenName) throws IOException {
         HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
         HttpSession session = request.getSession();
         session.setAttribute(tokenName, user.getUser());
@@ -195,18 +205,42 @@ public class beanLoginSesion implements Serializable {
         HttpServletResponse sResponse = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
         sResponse.sendRedirect(ruta);
     }
-    
-    private void responseAndRequestAlumno(String ruta,String tokenName) throws IOException {
-        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
-        HttpSession session = request.getSession();
-        session.setAttribute(tokenName, alumno.getUsuario());
-        System.out.println("El usuario del token es: " + alumno.getUsuario());
-        HttpServletResponse sResponse = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
-        sResponse.sendRedirect(ruta);
+
+    private void mensajes(int i) {
+        switch (i) {
+            case 0:
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error", "No se ha dado de alta desde dirección"));
+                break;
+            case 1:
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Usuario ya existente", "El usuario ya existe en el sistema. Cambielos por favor."));
+                break;
+            case 2:
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "¡Felicidades!", "Ha sido registrado de manera exitosa al sistema."));
+                break;
+            default:
+                break;
+        }
     }
-    
-    public void editarPerfil(){
-        
+
+    public void editarPerfil() {
+
+        daoLoginSesion daoSesion = new LoginSesionImp();
+        int tipoUsuario = daoSesion.editarPerfil(user, newUser, newPass);
+        switch (tipoUsuario) {
+            case 0:
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Credenciales", "El usuario o la contraseña son incorrectos. Verífiquelos"));
+                break;
+            case 1:
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Credenciales", "Se ha actualizado sus datos de sesión."));
+                break;
+            default:
+                break;
+        }
+
+//        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+//        HttpSession sessionUsuario = request.getSession();
+//        Object id=request.getSession().getAttribute("idEmpleado");
+//        System.out.println("el id del empleado es: "+id.toString());
     }
 
 }

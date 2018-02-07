@@ -19,10 +19,12 @@ public interface daoLoginSesion {
     
     public int consultarUsuario(SesionTable login);
     
-    public boolean consultarAlumno(Alumnos login);
+    //public boolean consultarAlumno(Alumnos login);
     
-    public boolean consultarDocente(Maestro docente, SesionTable user);
+    public int editarPerfil (SesionTable user, String userOld, String passOld);
     
-    public boolean consultarFarmacia(EncargadaClinica encargada, SesionTable user);
+    public int consultarDocente(Maestro docente, SesionTable user);
+    
+    public int consultarFarmacia(EncargadaClinica encargada, SesionTable user);
     
 }

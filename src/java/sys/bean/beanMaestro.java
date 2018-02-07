@@ -37,7 +37,7 @@ public class beanMaestro implements Serializable {
     private MaestroMaterias maestroMaterias;
     private Materias materias;
     private List<Maestro> listar;
-   
+
     private List<SelectItem> listarMaterias;
     private List<SelectItem> listarMaestros;
     private String clave;
@@ -56,8 +56,6 @@ public class beanMaestro implements Serializable {
         this.maestro = maestro;
     }
 
-  
-
     public Materias getMaterias() {
         return materias;
     }
@@ -73,8 +71,7 @@ public class beanMaestro implements Serializable {
     public void setMaestroMaterias(MaestroMaterias maestroMaterias) {
         this.maestroMaterias = maestroMaterias;
     }
-    
-    
+
     public void prepararNuevoMaestro(ActionEvent actionEvent) {
         maestro = new Maestro();
     }
@@ -82,21 +79,24 @@ public class beanMaestro implements Serializable {
     public String getClave() {
         return clave;
     }
-    
-   
-    public void codigo(){
-         daoMaestro mdao = new MaestroImp();
-         clave = mdao.mostrarCodigo();
-         
+
+    public void codigo() {
+        daoMaestro mdao = new MaestroImp();
+        clave = mdao.mostrarCodigo();
+
     }
     
-   
+    public void eliminarMateriaDocente(String clave){
+        daoMaestro mdao = new MaestroImp();
+        boolean inserto = mdao.eliminarMateriaDocente(clave);
+    }
+
     public void insertarMaestro() {
         daoMaestro mdao = new MaestroImp();
-        boolean inserto=mdao.insertarMaestro(maestro);
-        if (inserto){
+        boolean inserto = mdao.insertarMaestro(maestro);
+        if (inserto) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "El registro se ha ingresado satisfactoriamente"));
-        }else{
+        } else {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Error al guardar datos", "El registro no se puede guardar en este momento. Intente más tarde o contacte a soporte técnico."));
         }
     }
@@ -109,21 +109,21 @@ public class beanMaestro implements Serializable {
 
     public void actualizarMaestro() {
         daoMaestro mdao = new MaestroImp();
-        boolean actualizo=mdao.editarMaestro(maestro);
+        boolean actualizo = mdao.editarMaestro(maestro);
         maestro = new Maestro();
-        if(actualizo){
+        if (actualizo) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "El registro se ha actualizado satisfactoriamente"));
-        }else{
+        } else {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Error", "El registro no se puede editar en este momento. Intente más tarde o contacte a soporte técnico."));
         }
     }
 
     public void eliminarMaestro() {
         daoMaestro mdao = new MaestroImp();
-        boolean borro=mdao.eliminarMaestro(maestro);
-        if(borro){
+        boolean borro = mdao.eliminarMaestro(maestro);
+        if (borro) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "El registro se ha eliminado satisfactoriamente"));
-        }else{
+        } else {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Error", "El registro no se puede eliminar en este momento. Intente más tarde o contacte a soporte técnico."));
         }
     }
@@ -140,7 +140,7 @@ public class beanMaestro implements Serializable {
         return listarMaestros;
     }
 
-   public List<SelectItem> getListarMaterias() {
+    public List<SelectItem> getListarMaterias() {
         this.listarMaterias = new ArrayList<SelectItem>();
         daoMaestro mdao = new MaestroImp();
         List<Materias> m = mdao.mostrarMaterias(this.maestroMaterias);
@@ -153,23 +153,20 @@ public class beanMaestro implements Serializable {
         return listarMaterias;
     }
 
-
-    
     public void insertarMaestroMaterias() {
         daoMaestro mdao = new MaestroImp();
         Clave cla = new Clave();
         maestroMaterias.setClave(cla.clave());
-        mdao.insertarMaestroMaterias(maestroMaterias);
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "El registro se ha ingresado satisfactoriamente"));
-
+        boolean exito = mdao.insertarMaestroMaterias(maestroMaterias);
+        if (exito) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "El registro se ha ingresado satisfactoriamente"));
+        }else{
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Datos duplicados", "El registro o docente se encuentra registrado previamente"));
+        }
     }
-
-  
-    
-    
 
     public void cancelar() {
         maestro = new Maestro();
-      
+
     }
 }

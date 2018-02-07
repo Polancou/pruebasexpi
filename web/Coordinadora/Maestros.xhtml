@@ -1,10 +1,10 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<xhtml xmlns="http://www.w3.org/1999/xhtml"
+       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+       xmlns:p="http://primefaces.org/ui"
+       xmlns:h="http://xmlns.jcp.org/jsf/html"
+       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <body>
 
@@ -27,7 +27,7 @@
                             <p:commandButton value="Asignar Materia" actionListener="#{beanMaestroMaterias.prepararNuevoMaestroM(actionEvent)}" oncomplete="PF('dlgMateria').show();" 
                                              update=":formMateria" style="font-size: 12px;" />
                             <p:commandButton id="mostrarMM" value="Ver materias asignadas" type="button"  style="font-size: 12px;"/>
-                            
+
                             <p:overlayPanel id="panelMaestrosM" for="mostrarMM" hideEffect="fade" dynamic="true" style="width: 600px">
                                 <p:dataTable id="tablaMostrarMaestrosMaterias" var="master" value="#{beanMaestroMaterias.maestroM}" rows="4"
                                              emptyMessage="No hay datos" style="font-size: 11px;" paginator="true">
@@ -47,6 +47,9 @@
                                     </p:column>
                                     <p:column headerText="Clave">
                                         <h:outputText value="#{master.clave}"/>
+                                    </p:column>
+                                    <p:column headerText="Elminar materia a docente">
+                                        <p:commandButton value="Eliminar" oncomplete="PF('dlgEliminarMateria').show();" class="btn btn-danger" />
                                     </p:column>
 
 
@@ -82,11 +85,11 @@
                                     </p:inputText>
                                     <p:spacer/><p:spacer/>
                                     <p:spacer/><p:spacer/>
-                                        <p:commandButton value="Guardar" actionListener="#{beanMaestro.insertarMaestro()}"  
-                                                         oncomplete="PF('dlgNuevo').hide();" update=":formMostrarMaestros:tablaMostrarMaestros :formInsertar :formMateria"/>
-                                        <p:commandButton value="Cancelar" action="#{beanMaestro.cancelar()}"
-                                                         update=":formInsertar" immediate="true" 
-                                                         onclick="PF('dlgNuevo').hide();" /> 
+                                    <p:commandButton value="Guardar" actionListener="#{beanMaestro.insertarMaestro()}"  
+                                                     oncomplete="PF('dlgNuevo').hide();" update=":formMostrarMaestros:tablaMostrarMaestros :formInsertar :formMateria"/>
+                                    <p:commandButton value="Cancelar" action="#{beanMaestro.cancelar()}"
+                                                     update=":formInsertar" immediate="true" 
+                                                     onclick="PF('dlgNuevo').hide();" /> 
 
                                     <p:tooltip id="focusEmail" for="focus" showEvent="focus" hideEvent="blur"/>
                                 </h:panelGrid>
@@ -114,7 +117,7 @@
 
 
                                     <p:commandButton value="Eliminar" oncomplete="PF('dlgEliminar').show();" class="btn btn-danger"
-                                                     update=":formEliminar" >
+                                                     update=":formEliminarMateria" >
                                         <f:setPropertyActionListener target="#{beanMaestro.maestro}" value="#{master}"/>
                                     </p:commandButton>
                                 </p:column>
@@ -163,10 +166,25 @@
                             <h:form id="formEliminar" style="font-size: 11px;">
 
                                 <h:outputText value="¿Desea eliminar este registro? 
-                                              NOTA: SI ELIMINA A ESTE MAESTRO ELIMINARA LAS MATERIAS ASIGNADAS A EL"/> <br/><br/>
+                                              ***NOTA: SI ELIMINA A ESTE MAESTRO ELIMINARÁ LAS MATERIAS ASIGNADAS A ÉL INCLUYENDO INFORMACIÓN PERSONAL Y DE ACCESO AL PORTAL***"/> <br/><br/>
                                 <p:commandButton value="Si" actionListener="#{beanMaestro.eliminarMaestro()}"
                                                  update=":formMostrarMaestros :formMateria" onclick="PF('dlgEliminar').hide();" immediate="true"/>
                                 <p:commandButton value="No" onclick="PF('dlgEliminar').hide();"
+                                                 immediate="true"/>
+                            </h:form>
+                        </p:dialog>
+                        
+                        
+                        <p:dialog id="dlgE2" header="Eliminar materia asignada al docente" widgetVar="dlgEliminarMateria" showEffect="drop"
+                                  hideEffect="drop" modal="true">
+                            <h:form id="formEliminarMateria" style="font-size: 11px;">
+
+                                <h:outputText value="¿Desea eliminar este registro? 
+                                              NOTA: Solo eliminará la materia que tenga asignada en éste momento. No eliminará ningún dato del docente
+                                              que se encuentre en la base de datos."/> <br/><br/>
+                                <p:commandButton value="Si" actionListener="#{beanMaestro.eliminarMateriaDocente(master.clave)}" 
+                                                 update=":formMostrarMaestros :formMateria" onclick="PF('dlgEliminarMateria').hide();" immediate="true"/>
+                                <p:commandButton value="No" onclick="PF('dlgEliminarMateria').hide();"
                                                  immediate="true"/>
                             </h:form>
                         </p:dialog>
@@ -217,7 +235,7 @@
                                         <f:ajax execute="grado" />
                                     </p:selectOneMenu>
 
-                                  
+
 
                                     <p:commandButton value="Guardar" actionListener="#{beanMaestro.insertarMaestroMaterias()}" 
                                                      oncomplete="PF('dlgMateria').hide();" update=":formMateria :mostrarMaMateria:tablaMostrarMaestrosMaterias"/>
@@ -229,7 +247,7 @@
 
                         </p:dialog>
 
-                     
+
                     </section>
                 </div>
             </ui:define>
@@ -237,4 +255,4 @@
         </ui:composition>
 
     </body>
-</html>
+</xhtml>

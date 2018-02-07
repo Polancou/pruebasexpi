@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package sys.imp;
 
 import java.util.List;
@@ -17,44 +16,43 @@ import sys.model.SesionTable;
 import sys.util.HibernateUtil;
 
 /**
- * 
+ *
  * @author Sammy Guergachi <sguergachi at gmail.com>
  */
-public class MaestroImp implements daoMaestro{
+public class MaestroImp implements daoMaestro {
 
     @Override
     public boolean insertarMaestro(Maestro maestro) {
-       boolean inserto=false;
+        boolean inserto = false;
         Session session = null;
-       try{
-            session=HibernateUtil.getSessionFactory().openSession();
+        try {
+            session = HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
             session.save(maestro);
             session.getTransaction().commit();
-            inserto=true;
-       }catch(Exception e){
-           System.out.println(e.getMessage());
-           session.getTransaction().rollback();
-       }
-       finally{
-            if(session!=null){
+            inserto = true;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            session.getTransaction().rollback();
+        } finally {
+            if (session != null) {
                 session.close();
             }
         }
-       return inserto;
+        return inserto;
     }
 
     @Override
     public List<Maestro> mostrarMaestro() {
-        List<Maestro> mostrarMaestro=null;
-        Session session  = HibernateUtil.getSessionFactory().openSession();
+        List<Maestro> mostrarMaestro = null;
+        Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
-        String hql="from Maestro";
-        try{
+        String hql = "from Maestro";
+        try {
             mostrarMaestro = session.createQuery(hql).list();
             transaction.commit();
             session.close();
-        }catch(Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
             transaction.rollback();
         }
@@ -63,107 +61,145 @@ public class MaestroImp implements daoMaestro{
 
     @Override
     public boolean editarMaestro(Maestro maestro) {
-       boolean edito=false;
-       Session session = null;
-       try{
-           session = HibernateUtil.getSessionFactory().openSession();
-           session.beginTransaction();
-           session.update(maestro);
-           session.getTransaction().commit();
-           edito=true;
-       }catch(Exception e){
-           System.out.println(e.getMessage());
-           session.getTransaction().rollback();
-       }finally{
-           if(session!=null){
-               session.close();
-           }
-       }
-       return edito;
+        boolean edito = false;
+        Session session = null;
+        try {
+            session = HibernateUtil.getSessionFactory().openSession();
+            session.beginTransaction();
+            session.update(maestro);
+            session.getTransaction().commit();
+            edito = true;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            session.getTransaction().rollback();
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
+        return edito;
     }
 
     @Override
     public boolean eliminarMaestro(Maestro maestro) {
-        boolean eliminado=false;
+        boolean eliminado = false;
         Session session = null;
-        try{
+        try {
             session = HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
-            System.out.print("EL ID DEL EMPLEADO ES: "+maestro.getIdEmpleado());
+            System.out.print("EL ID DEL EMPLEADO ES: " + maestro.getIdEmpleado());
             //session.delete(maestro);
             session.createQuery("delete from Maestro m where m.idEmpleado=:idEmpleado").setParameter("idEmpleado", maestro.getIdEmpleado()).executeUpdate();
             session.createQuery("delete from SesionTable st where st.idEmpleado=:idEmpleado").setParameter("idEmpleado", maestro.getIdEmpleado()).executeUpdate();
             session.getTransaction().commit();
-            eliminado=true;
-        }catch(Exception e){
+            eliminado = true;
+        } catch (Exception e) {
             System.out.println(e.getMessage());
             session.getTransaction().rollback();
-        }finally{
-            if(session!=null){
+        } finally {
+            if (session != null) {
                 session.close();
             }
         }
         return eliminado;
     }
 
-   @Override
+    @Override
     public List<Materias> mostrarMaterias(MaestroMaterias maestroM) {
-         List<Materias> mostrarMaterias=null;
+        List<Materias> mostrarMaterias = null;
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
-        String hql="from Materias where semestre = "+maestroM.getGrupo();
-        try{
+        String hql = "from Materias where semestre = " + maestroM.getGrupo();
+        try {
             mostrarMaterias = session.createQuery(hql).list();
             transaction.commit();
             session.close();
-        }catch(Exception e){
+        } catch (Exception e) {
             System.out.print(e.getMessage());
             transaction.rollback();
         }
-        
+
         return mostrarMaterias;
     }
-    
-     @Override
+
+    @Override
     public boolean insertarMaestroMaterias(MaestroMaterias materia) {
-        boolean insertoMateria=false;
+        boolean insertoMateria = false, existe = false;
         Session session = null;
-        try{
+        try {
             session = HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
-            session.save(materia);
-            session.getTransaction().commit();
-            insertoMateria=true;
-        }catch(Exception e){
+            // comprobar que no exista en la base de datos primero
+            String hql = "From MaestroMaterias";
+            List<MaestroMaterias> docentesMaterias = null;
+
+            docentesMaterias = session.createQuery(hql).list();
+            for (MaestroMaterias docentes : docentesMaterias) {
+                if (docentes.getMaestro().getIdEmpleado() == materia.getMaestro().getIdEmpleado()
+                        && docentes.getGrupo().equals(materia.getGrupo())
+                        && docentes.getMaterias().getIdMateria() == materia.getMaterias().getIdMateria()
+                        && docentes.getAño().equals(materia.getAño())) {
+                    System.out.println("Ya existe un profe dando la misma clase en el mismo salon");
+                    existe = true;
+                }
+            }
+            if (!existe) {
+                session.save(materia);
+                session.getTransaction().commit();
+                insertoMateria = true;
+            }
+        } catch (Exception e) {
             System.out.println(e.getMessage());
             session.getTransaction().rollback();
-        }finally{
-            if(session!=null){
+        } finally {
+            if (session != null) {
                 session.close();
             }
         }
         return insertoMateria;
     }
 
-     @Override
+    @Override
     public String mostrarCodigo() {
-      
-    
-       String clave="";
-       String [] abc={"A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","1","2","3","4","5","6","7","8","9","0"};
-      
-           int numeroAleatorio1=(int)(Math.random()*35+1);
-           int numeroAleatorio2=(int)(Math.random()*35+1);
-           int numeroAleatorio3=(int)(Math.random()*35+1);
-           int numeroAleatorio4=(int)(Math.random()*35+1);
-           int numeroAleatorio5=(int)(Math.random()*35+1);
-           int numeroAleatorio6=(int)(Math.random()*35+1);
-           
-           clave=abc[numeroAleatorio1].concat(abc[numeroAleatorio2]).concat(abc[numeroAleatorio3]).concat(abc[numeroAleatorio4]).concat(abc[numeroAleatorio5].concat(abc[numeroAleatorio6]));
 
-       return clave;
+        String clave = "";
+        String[] abc = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0"};
+
+        int numeroAleatorio1 = (int) (Math.random() * 35 + 1);
+        int numeroAleatorio2 = (int) (Math.random() * 35 + 1);
+        int numeroAleatorio3 = (int) (Math.random() * 35 + 1);
+        int numeroAleatorio4 = (int) (Math.random() * 35 + 1);
+        int numeroAleatorio5 = (int) (Math.random() * 35 + 1);
+        int numeroAleatorio6 = (int) (Math.random() * 35 + 1);
+
+        clave = abc[numeroAleatorio1].concat(abc[numeroAleatorio2]).concat(abc[numeroAleatorio3]).concat(abc[numeroAleatorio4]).concat(abc[numeroAleatorio5].concat(abc[numeroAleatorio6]));
+
+        return clave;
+
+    }
+
+    @Override
+    public boolean eliminarMateriaDocente(String clave) {
+        boolean eliminado=false;
+        Session session = null;
+        try {
+            session = HibernateUtil.getSessionFactory().openSession();
+            session.beginTransaction();
+            System.out.print("LA CLAVE DE LA MATERIA ES: " + clave);
+            //session.delete(maestro);
+            session.createQuery("delete from MaestroMaterias m where m.clave=:clave").setParameter("clave", clave).executeUpdate();
+            session.getTransaction().commit();
+            eliminado = true;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            session.getTransaction().rollback();
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
         
-    
+        return true;
     }
 
 }
