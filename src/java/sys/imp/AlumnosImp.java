@@ -11,6 +11,7 @@ import java.util.List;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import sys.dao.daoAlumnos;
@@ -46,7 +47,7 @@ public class AlumnosImp implements daoAlumnos {
                     // si coincide con alguna matricula ya registrada
                     seRegistro = 2;
                     System.out.println("mismas matriculas");
-                } 
+                }
             }
             if (seRegistro == 0) {
                 System.out.println("guarda datos");
@@ -59,7 +60,7 @@ public class AlumnosImp implements daoAlumnos {
             System.out.println(e.getMessage());
             session.getTransaction().rollback();
         }
-        System.out.println("retorna entero"+seRegistro);
+        System.out.println("retorna entero" + seRegistro);
         return seRegistro;
     }
 
@@ -90,6 +91,52 @@ public class AlumnosImp implements daoAlumnos {
             transaction.rollback();
         }
         return usuario;
+    }
+
+    @Override
+    public boolean editarPerfil(Alumnos alumno, String newUser, String newPass) {
+        System.out.println("sdasdasdasd");
+        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        Object id = request.getSession().getAttribute("idSesion");
+        int matriculaAlumno = (int) id;
+        boolean edicionExitosa = false;        
+        List<Alumnos> alumnosList = null;
+        System.out.println("usuario nuevo: "+newUser+"\npass nuevo: "+newPass+"\nuser viejo: "+alumno.getUsuario()+"\npass viejo: "+alumno.getContraseña()+"\nmatricula: "+matriculaAlumno);
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction transaction = session.beginTransaction();
+        String hql = "From Alumnos";
+        try {
+            alumnosList = session.createQuery(hql).list();
+            for (Alumnos student : alumnosList) {
+                System.out.println(student.getUsuario()+"\n");
+                if (student.getUsuario().equals(alumno.getUsuario()) && student.getContraseña().equals(encriptadoLoguin.encriptado(alumno.getContraseña())) && student.getMatricula()== matriculaAlumno) {
+                    //credenciales iguales y datos personales igual
+                    String setear = "update Alumnos set usuario =:usuario , grupo =:grupo, semestre=:semestre, contraseña=:contra where matricula =:matricula";
+                    try {
+                        Query query = session.createQuery(setear);
+                        query.setParameter("grupo", alumno.getGrupo());
+                        query.setParameter("usuario", newUser);
+                        query.setParameter("semestre", alumno.getSemestre());
+                        query.setParameter("contra", encriptadoLoguin.encriptado(newPass));
+                        query.setParameter("matricula", matriculaAlumno);
+                        int result = query.executeUpdate();
+                        System.out.println("Realiza el update");
+                        edicionExitosa = true;
+                    } catch (Exception e) {
+                        System.out.println(e.getMessage());
+                        transaction.rollback();
+                    }
+                }else{
+                    System.out.println("No son inguales ningun dato");
+                }
+            }
+            transaction.commit();
+            session.close();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            transaction.rollback();
+        }
+    return edicionExitosa;
     }
 
 }

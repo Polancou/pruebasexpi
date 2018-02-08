@@ -31,9 +31,38 @@ import sys.model.Alumnos;
 public class beanAlumnos implements Serializable {
 
     private Alumnos alumnos;
+    private String newUser, newPass;
 
     public beanAlumnos() {
         alumnos = new Alumnos();
+    }
+
+    /**
+     * @return the newUser
+     */
+    public String getNewUser() {
+        return newUser;
+    }
+
+    /**
+     * @param newUser the newUser to set
+     */
+    public void setNewUser(String newUser) {
+        this.newUser = newUser;
+    }
+
+    /**
+     * @return the newPass
+     */
+    public String getNewPass() {
+        return newPass;
+    }
+
+    /**
+     * @param newPass the newPass to set
+     */
+    public void setNewPass(String newPass) {
+        this.newPass = newPass;
     }
 
     public Alumnos getAlumnos() {
@@ -80,7 +109,7 @@ public class beanAlumnos implements Serializable {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error", "Lo sentimos, no aparece en el sistema"));
         }
     }
-    
+
     public void logout(ActionEvent actionEvent) throws IOException {
         HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         session.removeAttribute("tokenAlumno");
@@ -95,6 +124,28 @@ public class beanAlumnos implements Serializable {
         System.out.println("El usuario del token es: " + alumnos.getUsuario());
         HttpServletResponse sResponse = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
         sResponse.sendRedirect(ruta);
+    }
+
+    public void editarPerfil(ActionEvent actionEvent) throws IOException {
+        daoAlumnos daoSesion = new AlumnosImp();
+        boolean existeAlumno = daoSesion.editarPerfil(alumnos, newUser, newPass);
+        if (existeAlumno) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error", "Lo sentimos, no aparece en el sistema"));
+        } else {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error", "Lo sentimos, no aparece en el sistema"));
+        }
+    }
+
+    public void editar() {
+        System.out.println("entra al metodo");
+        daoAlumnos daoSesion = new AlumnosImp();
+        System.out.println("usuario: "+newUser+"\npass: "+newPass);
+        boolean existeAlumno = daoSesion.editarPerfil(alumnos,newUser,newPass);
+        if (existeAlumno) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Exito", "Lo sentimos, no aparece en el sistema"));
+        } else {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error", "Lo sentimos, no aparece en el sistema"));
+        }
     }
 
 }

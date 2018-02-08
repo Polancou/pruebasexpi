@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8' ?> 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+<xhtml xmlns="http://www.w3.org/1999/xhtml"
+       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+       xmlns:h="http://xmlns.jcp.org/jsf/html"
+       xmlns:p="http://primefaces.org/ui">
 
     <h:head>
         <title>Alumno</title>
@@ -135,7 +135,55 @@
                                             </li>
                                             <!-- Menu Footer-->
                                             <li class="user-footer">
+                                                <div class="pull-left">
+                                                    <h:form id="editar">
+                                                        <p:commandButton value="Editar Perfil" oncomplete="PF('dlgNuevo').show();" 
+                                                                         update=":formEditarPerfil" style="font-size: 12px;" />
+                                                    </h:form>
+                                                    <p:dialog id="dlgEditarPerfil" header="Editar su perfil" widgetVar="dlgNuevo" showEffect="drop" hideEffect="drop" modal="true">
+                                                        <h:form id="formEditarPerfil">
+                                                            <h:panelGrid columns="2" style="margin: 0 auto; font-size: 11px;">
+                                                                <p:outputLabel value="Usuario actual: "/>
+                                                                <p:inputText value="#{beanAlumnos.alumnos.usuario}"
+                                                                             required="true" requiredMessage="Su nombre de usuario es obligatorio"/>
+                                                                <p:spacer/><p:spacer/>
+                                                                <p:outputLabel value="Nuevo usuario:"/>
+                                                                <p:inputText value="#{beanAlumnos.newUser}"
+                                                                             required="true" requiredMessage="Nuevo usuario es obligatorio"/>
+                                                                <p:spacer/><p:spacer/>
+                                                                <p:outputLabel value="Contraseña actual:"/>
+                                                                <p:password id="pwd3" value="#{beanAlumnos.alumnos.contraseña}" 
+                                                                            required="true" />
+                                                                <p:spacer/><p:spacer/>
+                                                                <p:outputLabel value="Nueva contraseña:"/>
+                                                                <p:password id="pwd1" value="#{beanAlumnos.newPass}" match="pwd2" label="Contraseña" feedback="true" weakLabel="Muy Debil"
+                                                                            goodLabel="Media" strongLabel="Fuerte" inline="true" promptLabel="Digite una contraseña" 
+                                                                            required="true"  requiredMessage="Contraseña es obligatorio"
+                                                                            validatorMessage="¡Contraseña Incorrecta! Verifiquela"/>   
+                                                                <p:spacer/><p:spacer/>
+                                                                <p:outputLabel value="Confirmar contraseña"/>
+                                                                <p:password id="pwd2" value="#" 
+                                                                            required="true" />
+                                                                <p:spacer/><p:spacer/>
+                                                                <p:outputLabel value="Semestre cursando:"/>
+                                                                <p:inputText value="#{beanAlumnos.alumnos.semestre}"
+                                                                             required="true" requiredMessage="Semestre es obligatorio"/>
+                                                                <p:spacer/><p:spacer/>
+                                                                <p:outputLabel value="Grupo: "/>
+                                                                <p:inputText value="#{beanAlumnos.alumnos.grupo}"
+                                                                             required="true" requiredMessage="Grupo es obligatorio"/>
+                                                                <p:spacer/><p:spacer/>
+                                                                <p:spacer/><p:spacer/> 
+                                                                <p:commandButton value="Guardar" actionListener="#{beanAlumnos.editar()}"  
+                                                                                 oncomplete="PF('dlgNuevo').hide();" update=":formEditarPerfil"/>
+                                                                <p:commandButton value="Cancelar" action="#"
+                                                                                 update=":formEditarPerfil" immediate="true" 
+                                                                                 onclick="PF('dlgNuevo').hide();" /> 
 
+                                                            </h:panelGrid>
+                                                        </h:form>
+                                                    </p:dialog>
+                                                </div>
                                                 <div class="pull-right">
                                                     <h:form id="salir">
                                                         <p:commandButton value="Salir" actionListener="#{beanAlumnos.logout(actionEvent)}" style="font-size: 12px;" />
@@ -237,4 +285,4 @@
         </div>
     </h:body>
 
-</html>
+</xhtml>

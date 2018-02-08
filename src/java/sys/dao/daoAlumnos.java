@@ -16,4 +16,6 @@ public interface daoAlumnos {
     public int insertarAlumnos(Alumnos alumnos);
     
     public boolean consultarAlumno(Alumnos login);
+    
+    public boolean editarPerfil(Alumnos alumno,String newUser,String newPass);
 }
