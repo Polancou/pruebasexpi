@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.0.final using JasperReports Library version 6.3.0  -->
+<!-- 2018-02-08T10:29:29 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="064f30b0-6ce0-4fce-9360-cd3e61cd1ba9">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
@@ -110,9 +112,9 @@ inner join area_tratamientos T3 where T1.contador=T2.tratamiento and T3.area=T1.
 			<staticText>
 				<reportElement x="73" y="59" width="400" height="20" uuid="eaa39f4c-c792-487e-97ae-645f56a5df07"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Arial" size="16" isBold="false"/>
+					<font fontName="Arial" size="12" isBold="false"/>
 				</textElement>
-				<text><![CDATA[Informe mensual de actividades clinicas]]></text>
+				<text><![CDATA[Informe de actividades clinicas desde la implementación hasta hoy.]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="73" y="0" width="400" height="28" uuid="52a2377a-99a2-4f16-bc6d-cc17ef882743"/>
@@ -186,7 +188,9 @@ inner join area_tratamientos T3 where T1.contador=T2.tratamiento and T3.area=T1.
 						<jr:columnHeader style="table 1_CH" height="30" rowSpan="1">
 							<staticText>
 								<reportElement x="0" y="0" width="201" height="30" uuid="c261f45c-f40d-41f4-8fd4-f26aa91ea3bc"/>
-								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10"/>
+								</textElement>
 								<text><![CDATA[Nombre del Tratamiento]]></text>
 							</staticText>
 						</jr:columnHeader>
@@ -217,6 +221,28 @@ inner join area_tratamientos T3 where T1.contador=T2.tratamiento and T3.area=T1.
 				<reportElement x="0" y="34" width="130" height="20" uuid="ed05c201-b42f-4a5a-8a0d-c451146dbba9"/>
 				<text><![CDATA[Facultad de Odontología.]]></text>
 			</staticText>
+			<staticText>
+				<reportElement x="150" y="34" width="70" height="20" uuid="a6b61d2e-f92e-416c-9489-b01dfbdc9762"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Impreso el dia ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="300" y="34" width="30" height="20" uuid="e79d8866-baef-4b07-a1e1-bb96971d7004"/>
+				<textElement textAlignment="Left"/>
+				<text><![CDATA[ a las]]></text>
+			</staticText>
+			<textField pattern="HH:mm">
+				<reportElement x="330" y="34" width="88" height="20" uuid="a342c277-1e14-4823-9007-5670e0015450"/>
+				<textElement textAlignment="Left">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField pattern="MMMMM dd, yyyy">
+				<reportElement x="220" y="34" width="80" height="20" uuid="57cfa8f1-9c82-4e35-a268-7007a5f00842"/>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
 		</band>
 	</pageFooter>
 </jasperReport>

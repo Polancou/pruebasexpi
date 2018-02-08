@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.3.0.final using JasperReports Library version 6.3.0  -->
-<!-- 2017-11-25T14:46:27 -->
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4c9741e5-2b82-470f-a116-fd7e773a6c86">
+<!-- 2018-02-08T11:45:20 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="595" pageHeight="842" whenNoDataType="NoDataSection" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4c9741e5-2b82-470f-a116-fd7e773a6c86">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
@@ -127,7 +127,7 @@
 			<pen lineWidth="0.5" lineColor="#000000"/>
 		</box>
 	</style>
-	<style name="Crosstab Data Text"  />
+	<style name="Crosstab Data Text"/>
 	<style name="table 6">
 		<box>
 			<pen lineWidth="1.0" lineColor="#000000"/>
@@ -294,7 +294,7 @@ $P{fecha1}  and $P{fecha2} group by T1.apellido_paterno order by cantidad desc l
 		</band>
 	</columnFooter>
 	<pageFooter>
-		<band height="50">
+		<band height="51">
 			<staticText>
 				<reportElement x="-2" y="30" width="124" height="20" uuid="2f30f8da-ecc8-491e-8cc1-4f3125bdcf4e"/>
 				<text><![CDATA[Facultad de Odontología]]></text>
@@ -308,6 +308,105 @@ $P{fecha1}  and $P{fecha2} group by T1.apellido_paterno order by cantidad desc l
 				<reportElement x="514" y="30" width="40" height="20" uuid="b83be683-029d-4903-a187-ebcb8dd7ecbb"/>
 				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
+			<textField pattern="HH:mm">
+				<reportElement x="341" y="31" width="88" height="20" uuid="eaa51ea3-a9a5-485d-b8e8-247e6950fe0c"/>
+				<textElement textAlignment="Left">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="311" y="31" width="30" height="20" uuid="ca336caa-6677-4fc8-ad37-6ca82a084d77"/>
+				<textElement textAlignment="Left"/>
+				<text><![CDATA[ a las]]></text>
+			</staticText>
+			<textField pattern="MMMMM dd, yyyy">
+				<reportElement x="231" y="31" width="80" height="20" uuid="c5ca07b3-8e1a-4480-8e56-06b39924b811"/>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="161" y="31" width="70" height="20" uuid="46b55d64-ff6d-4cdb-85d6-e3bb8cd32ffe"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Impreso el dia ]]></text>
+			</staticText>
 		</band>
 	</pageFooter>
+	<noData>
+		<band height="801">
+			<image scaleImage="FillFrame">
+				<reportElement x="0" y="111" width="556" height="690" uuid="730f77de-3c47-43b2-b346-570e43bae66c"/>
+				<imageExpression><![CDATA["C:\\FONDO_PAGG_FDO RENDER LOGO-01.png"]]></imageExpression>
+			</image>
+			<image scaleImage="FillFrame" hAlign="Center" vAlign="Middle">
+				<reportElement x="473" y="0" width="82" height="79" uuid="1d04f7ed-f649-425e-886d-b040129fb090"/>
+				<imageExpression><![CDATA["C:\\FDO RENDER LOGO-01.png"]]></imageExpression>
+			</image>
+			<image scaleImage="FillFrame" hAlign="Center" vAlign="Middle">
+				<reportElement x="0" y="0" width="73" height="79" uuid="25011028-e8da-4f15-88bb-c1627e22128b"/>
+				<imageExpression><![CDATA["C:\\logo-uac-avanza-255x300.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="73" y="0" width="400" height="28" uuid="2423ca65-a263-4e64-b12b-6f73413b4dae"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Universidad Autónoma de Campeche.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="73" y="28" width="400" height="28" uuid="1df05038-4dc2-4535-af2a-057892015140"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Facultad de Odontología.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="-5" y="397" width="555" height="107" uuid="93449633-91cc-468d-aa75-124f2608dc12"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Lo sentimos, por el momento no se encuentra nigún dato registrado para la información que desea filtrar.]]></text>
+			</staticText>
+			<textField pattern="HH:mm">
+				<reportElement x="341" y="780" width="88" height="20" uuid="da414555-e48e-4b48-9006-8d42d092fe73"/>
+				<textElement textAlignment="Left">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="311" y="780" width="30" height="20" uuid="f5b99b89-1c28-4932-b636-8a1e20973c78"/>
+				<textElement textAlignment="Left"/>
+				<text><![CDATA[ a las]]></text>
+			</staticText>
+			<textField pattern="MMMMM dd, yyyy">
+				<reportElement x="231" y="780" width="80" height="20" uuid="be0838e6-47b8-42c8-8244-2771792239b2"/>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="161" y="780" width="70" height="20" uuid="1e29bb68-d664-47df-beab-69b82594581e"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Impreso el dia ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="-1" y="780" width="124" height="20" uuid="40105024-d1a0-4ba8-82ec-3dd4915f6214"/>
+				<text><![CDATA[Facultad de Odontología]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="73" y="59" width="400" height="20" uuid="aa09bf93-6a07-4ba3-8f77-73cfb5b97d49"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="16" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Reporte General]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="0" y="80" width="555" height="31" uuid="e9872b9f-7174-4812-af87-44bcc60fe1c3"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Correspondiente a las fechas: "+$P{fecha1}+" al "+$P{fecha2}+" de los primeros 10 \nalumnos más destacados de todas las clínicas"]]></textFieldExpression>
+			</textField>
+		</band>
+	</noData>
 </jasperReport>

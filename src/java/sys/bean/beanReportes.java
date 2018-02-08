@@ -82,51 +82,47 @@ public class beanReportes implements Serializable {
     private Date fecha1;
     private Date fecha2;
 
-    public void reporteGeneral() throws SQLException, IOException, JRException {
-        exportarPDF("/resources/ReportesPDF/generalNew.jasper", "Reporte_Gral_Todas_Las_Clinicas_Desde_La_Implementacion", null);
+    public void reporteGeneral1() throws SQLException, IOException, JRException {
+        exportarPDF("/resources/ReportesPDF/generalNew.jasper", "General-de-todas-las-clinicas-desde-la-implementación", null);
     }
 
-    public void reportePorClinica() throws SQLException, IOException, JRException {
+    public void reportePorClinica2() throws SQLException, IOException, JRException {
         System.out.print("+++++");
         Map<String, Object> parametros = new HashMap<String, Object>();
         parametros.put("clinica", clinica);
         System.out.print("+++++" + clinica);
-        exportarPDF("/resources/ReportesPDF/soloClinica.jasper", "Reporte_De_La_Clinica_" + clinica + "_Desde_La_Implementacion", parametros);
+        exportarPDF("/resources/ReportesPDF/soloClinica.jasper", "Clinica-" + clinica + "-desde-la-implementación", parametros);
     }
 
-    public void reporteClinicasPorFechas() throws IOException, SQLException, JRException {
+    public void reporteClinicasDentroDeFechaDet3() throws IOException, SQLException, JRException {
         System.out.print("+++++");
         Map<String, Object> parametros = new HashMap<String, Object>();
         parametros.put("fecha1", df.format(fecha1));
         parametros.put("fecha2", df.format(fecha2));
         System.out.print("+++++ " + df.format(fecha1) + " +++++ " + df.format(fecha2));
-        exportarPDF("/resources/ReportesPDF/fechas.jasper", "Reporte_De_Todas_Las_Clinicas_Desde_El_+" + df.format(fecha1) + "_Hasta_El_" + df.format(fecha2), parametros);
+        exportarPDF("/resources/ReportesPDF/fechas.jasper", "Todas-las-clinicas-desde-el-" + df.format(fecha1) + "-hasta-el-" + df.format(fecha2), parametros);
     }
 
-    public void reportePorClinicaPorFechas() throws SQLException, IOException, JRException {
+    public void reportePorClinicaPorFechas4() throws SQLException, IOException, JRException {
         System.out.print("+++++");
         Map<String, Object> parametros = new HashMap<String, Object>();
         parametros.put("clinica", clinica);
         parametros.put("fecha1", df.format(fecha1));
         parametros.put("fecha2", df.format(fecha2));
         System.out.print("+++++ " + fecha1 + " +++++ " + fecha2 + " ++++++ " + clinica);
-        exportarPDF("/resources/ReportesPDF/porClinica.jasper", "Reporte_De_La_Clinica_" + clinica + "_Desde_El_"+df.format(fecha1)+"_Hasta_El_"+df.format(fecha2), parametros);
+        exportarPDF("/resources/ReportesPDF/porClinica.jasper", "Clinica " + clinica + " desde el "+df.format(fecha1)+" hasta el "+df.format(fecha2), parametros);
     }
 
-    public void alumnosDestacados() throws SQLException, IOException, JRException {
-//        Map <String,Object> parametros = new HashMap<String, Object>();
-//        parametros.put("clinica", clinica);
-//        parametros.put("fecha1", fecha1);
-//        parametros.put("fecha2", fecha2);
-//        System.out.print("+++++ "+fecha1+" +++++ "+fecha2+" ++++++ "+clinica);
-//        exportarPDF("/resources/ReportesPDF/alumno.jasper","Reporte_De_La_Clinica_"+clinica+"_Desde_La_Implementacion",  parametros);        
+    public void alumnosDestacados5() throws SQLException, IOException, JRException {
+        Map <String,Object> parametros = new HashMap<String, Object>();
+        parametros.put("fecha1", df.format(fecha1));
+        parametros.put("fecha2", df.format(fecha2));
+        System.out.print("+++++ "+fecha1+" +++++ "+fecha2+" ++++++ ");
+        exportarPDF("/resources/ReportesPDF/alumno.jasper","Alumnos-destacados-de-todas-las-clinicas",  parametros);        
     }
 
-    public void ejemplo() {
-        System.out.print("que pedo si entra....");
-    }
 
-    public void exportarPDF(String rutaArchivo, String nombreArchivo, Map parametros) throws SQLException, IOException, JRException {
+    private void exportarPDF(String rutaArchivo, String nombreArchivo, Map parametros) throws SQLException, IOException, JRException {
         //Map <String,Object> parametros = new HashMap<String, Object>();
         //parametros.put("", "");
         Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/facultad_odontologia", "root", "root");
