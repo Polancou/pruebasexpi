@@ -177,17 +177,15 @@ public class MaestroImp implements daoMaestro {
         return clave;
 
     }
-
-    @Override
-    public boolean eliminarMateriaDocente(String clave) {
-        boolean eliminado=false;
+    
+     @Override
+    public boolean eliminarMateriaMaestro(MaestroMaterias mmaterias) {
+       boolean eliminado = false;
         Session session = null;
         try {
             session = HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
-            System.out.print("LA CLAVE DE LA MATERIA ES: " + clave);
-            //session.delete(maestro);
-            session.createQuery("delete from MaestroMaterias m where m.clave=:clave").setParameter("clave", clave).executeUpdate();
+            session.delete(mmaterias);
             session.getTransaction().commit();
             eliminado = true;
         } catch (Exception e) {
@@ -198,8 +196,9 @@ public class MaestroImp implements daoMaestro {
                 session.close();
             }
         }
-        
-        return true;
+        return eliminado;
     }
 
+
+   
 }

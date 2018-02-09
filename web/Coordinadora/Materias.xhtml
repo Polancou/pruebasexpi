@@ -32,11 +32,12 @@
                             <p:dataTable id="materias" var="materias" value="#{beanMaterias.listar}" sortBy="#{materias.semestre}" expandableRowGroups="true" style="font-size: 11px;">
                                 <p:headerRow>
                                     <p:column colspan="2">
-                                        <h:outputText value="#{materias.semestre} Semestre" />
+                                        <h:outputText value="#{materias.semestre} Semestre"/>
                                     </p:column>
                                 </p:headerRow>
                                 <p:column headerText="Materias">
-                                    <h:outputText value="#{materias.materia}" />
+                                 
+                                    <h:outputText value="#{materias.materia}" style="text-align: center" />
                                 </p:column>
 
                                 <p:column headerText="Actualziar - Eliminar">

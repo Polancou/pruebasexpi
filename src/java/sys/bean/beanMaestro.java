@@ -86,11 +86,7 @@ public class beanMaestro implements Serializable {
 
     }
     
-    public void eliminarMateriaDocente(String clave){
-        daoMaestro mdao = new MaestroImp();
-        boolean inserto = mdao.eliminarMateriaDocente(clave);
-    }
-
+    
     public void insertarMaestro() {
         daoMaestro mdao = new MaestroImp();
         boolean inserto = mdao.insertarMaestro(maestro);
@@ -164,6 +160,17 @@ public class beanMaestro implements Serializable {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Datos duplicados", "El registro o docente se encuentra registrado previamente"));
         }
     }
+    
+     public void eliminarMateriaMaestro() {
+        daoMaestro mdao = new MaestroImp();
+        boolean borro=mdao.eliminarMateriaMaestro(maestroMaterias);
+        if(borro){
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "El registro se ha eliminado satisfactoriamente"));
+        }else{
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Error", "El registro no se puede eliminar en este momento. Intente más tarde o contacte a soporte técnico."));
+        }
+    }
+
 
     public void cancelar() {
         maestro = new Maestro();

@@ -25,5 +25,4 @@ public interface daoMaestroMaterias {
     
     public List<MaestroMaterias> mostrarMateriasAsignadas();
 
-
 }

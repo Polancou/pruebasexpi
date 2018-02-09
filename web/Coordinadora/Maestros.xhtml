@@ -49,7 +49,10 @@
                                         <h:outputText value="#{master.clave}"/>
                                     </p:column>
                                     <p:column headerText="Elminar materia a docente">
-                                        <p:commandButton value="Eliminar" oncomplete="PF('dlgEliminarMateria').show();" class="btn btn-danger" />
+                                        <p:commandButton value="Eliminar" oncomplete="PF('dlgEliminarMateria').show();" class="btn btn-danger"
+                                                         >
+                                            <f:setPropertyActionListener target="#{beanMaestro.maestroMaterias}" value="#{master}"/>
+                                        </p:commandButton>                                    
                                     </p:column>
 
 
@@ -173,8 +176,8 @@
                                                  immediate="true"/>
                             </h:form>
                         </p:dialog>
-                        
-                        
+
+
                         <p:dialog id="dlgE2" header="Eliminar materia asignada al docente" widgetVar="dlgEliminarMateria" showEffect="drop"
                                   hideEffect="drop" modal="true">
                             <h:form id="formEliminarMateria" style="font-size: 11px;">
@@ -182,8 +185,8 @@
                                 <h:outputText value="¿Desea eliminar este registro? 
                                               NOTA: Solo eliminará la materia que tenga asignada en éste momento. No eliminará ningún dato del docente
                                               que se encuentre en la base de datos."/> <br/><br/>
-                                <p:commandButton value="Si" actionListener="#{beanMaestro.eliminarMateriaDocente(master.clave)}" 
-                                                 update=":formMostrarMaestros :formMateria" onclick="PF('dlgEliminarMateria').hide();" immediate="true"/>
+                                <p:commandButton value="Si" actionListener="#{beanMaestro.eliminarMateriaMaestro()}" 
+                                                 update=":mostrarMaMateria :formMateria" onclick="PF('dlgEliminarMateria').hide();" immediate="true"/>
                                 <p:commandButton value="No" onclick="PF('dlgEliminarMateria').hide();"
                                                  immediate="true"/>
                             </h:form>
