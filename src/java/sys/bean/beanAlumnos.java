@@ -128,11 +128,11 @@ public class beanAlumnos implements Serializable {
 
     public void editarPerfil(ActionEvent actionEvent) throws IOException {
         daoAlumnos daoSesion = new AlumnosImp();
-        boolean existeAlumno = daoSesion.editarPerfil(alumnos, newUser, newPass);
-        if (existeAlumno) {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error", "Lo sentimos, no aparece en el sistema"));
+        boolean actualizoDatos = daoSesion.editarPerfil(alumnos, newUser, newPass);
+        if (actualizoDatos) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Actualización", "Sus datos han sido actualizados exitosamente."));
         } else {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error", "Lo sentimos, no aparece en el sistema"));
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Sus datos no coinciden, verifíquelos e intente de nuevo."));
         }
     }
 
