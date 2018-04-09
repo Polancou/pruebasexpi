@@ -1,0 +1,118 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+        <p:panel header="Datos del Paciente">
+            <p:messages />
+            <h:panelGrid columns="2" cellpadding="5">
+                <h:outputText value="Folio: *" />
+                <p:inputText value="#{carpetaAzul.folio}" required="true" label="Folio"/>
+
+                <h:outputText value="Nombre: *" />
+                <p:inputText value="#{carpetaAzul.nombre}" required="true" label="Nombre"/>
+
+                <h:outputText value="Edad: *" />
+                <p:inputText value="#{carpetaAzul.edad}" required="true" label="Edad"/>
+
+                    <p:outputLabel for="sexo" value="Sexo:" />
+                    <p:selectOneRadio id="sexo" value="#{carpetaAzul.sexo}">
+                        <f:selectItem itemLabel="Masculino" itemValue="M" />
+                        <f:selectItem itemLabel="Femenino" itemValue="F" />
+                    </p:selectOneRadio>
+
+                    <p:outputLabel for="fechaNacimiento" value="Fecha de Nacimiento: " />
+                    <p:inputMask id="fechaNacimiento" value="#{carpetaAzul.fechaNacimiento}" mask="9999-99-99"/>
+
+                <p:outputLabel for="phone" value="Teléfono:" />
+                <p:inputMask id="phone" value="#{carpetaAzul.telefono}" mask="(999) 999 9999"/>
+
+                <h:outputText value="Estatura (cm): *" />
+                <p:inputText id="Estatura" value="#{carpetaAzul.estatura}"/>
+
+                <h:outputText value="Peso (kg): *" />
+                <p:inputText id="Peso" value="#{carpetaAzul.peso}"/>
+
+
+                <p:outputLabel for="EstadoCivil" value="Estado civil:" />
+                <p:selectOneMenu id="EstadoCivil" value="#{carpetaAzul.estadoCivil}">
+                    <f:selectItem itemLabel="Soltero" itemValue="Soltero" />
+                    <f:selectItem itemLabel="Casado" itemValue="Casado" />
+                    <f:selectItem itemLabel="Divorciado" itemValue="Divorciado" />
+                    <f:selectItem itemLabel="Otro" itemValue="Otro"/>
+                </p:selectOneMenu>
+
+                <p:outputLabel for="NivelEstudios" value="Nivel de Estudios:" />
+                <p:selectOneMenu id="NivelEstudios" value="#{carpetaAzul.nivelEstudios}">
+                    <f:selectItem itemLabel="Básico" itemValue="Básico" />
+                    <f:selectItem itemLabel="Medio Superior" itemValue="Medio Superior" />
+                    <f:selectItem itemLabel="Licenciatura" itemValue="Licenciatura" />
+                    <f:selectItem itemLabel="Maestría" itemValue="Maestría"/>
+                    <f:selectItem itemLabel="Doctorado" itemValue="Doctorado"/>
+                </p:selectOneMenu>
+
+                <p:outputLabel for="EstadoSalud" value="¿Cómo considera su estado de salud?" />
+                <p:selectOneRadio id="EstadoSalud" value="#{carpetaAzul.edoSalud}">
+                        <f:selectItem itemLabel="Bueno" itemValue="Bueno" />
+                        <f:selectItem itemLabel="Malo" itemValue="Malo" />
+                        <f:selectItem itemLabel="Regular" itemValue="Regular"/>
+                    </p:selectOneRadio>
+
+                <h4>Domicilio:</h4>
+                <h:outputText value="" />
+
+                <h:outputText value="Pais: *" />
+                <p:inputText id="Pais" value="#{carpetaAzul.pais}"/>
+
+                <h:outputText value="Estado: *" />
+                <p:inputText id="Estado" value="#{carpetaAzul.estado}"/>
+
+                <h:outputText value="Ciudad: *" />
+                <p:inputText id="Ciudad" value="#{carpetaAzul.ciudad}"/>
+
+                <h:outputText value="Calle: *" />
+                <p:inputText id="calle" value="#{carpetaAzul.calle}"/>
+
+                <h:outputText value="Colonia: *" />
+                <p:inputText id="colonia" value="#{carpetaAzul.colonia}"/>
+
+                <h4>Ocupación:</h4>
+                <h:outputText value="" />
+
+                <h:outputText value="Ocupación: *" />
+                <p:inputText id="Ocupacion" value="#{carpetaAzul.ocupacion}"/>
+
+                <h:outputText value="Dirección de oficina: *" />
+                <p:inputText id="DireccionOficina" value="#{carpetaAzul.direccionOficina}"/>
+
+                <h:outputText value="Teléfono oficina: *" />
+                <p:inputMask id="TelOficina" value="#{carpetaAzul.telefonoOficina}" mask="(999) 999 9999"/>
+
+                <h4>Médico :</h4>
+                <h:outputText value="" />
+
+                <h:outputText value="Nombre: *" />
+                <p:inputText id="NombreMedico" value="#{carpetaAzul.nombreMedico}"/>
+
+                <h:outputText value="Teléfono: *" />
+                <p:inputMask id="TelMedico" value="#{carpetaAzul.telefonoMedico}" mask="(999) 999 9999"/>
+
+                <h:outputText value="Dirección: *" />
+                <p:inputText id="DireccionMedico" value="#{carpetaAzul.direccionMedico}"/>
+
+                <h:outputText value="¿Por qué solicita un tratamiento?"/>
+                <p:inputTextarea rows="6" cols="33" value="#{carpetaAzul.causaSolicitaTratamiento}"/>
+
+                <h:outputText value="Observaciones"/>
+                <p:inputTextarea rows="6" cols="33" value="#{carpetaAzul.observaciones}" />
+
+            </h:panelGrid>
+
+        </p:panel>
+
+
+
+</html>

@@ -9,7 +9,6 @@ import java.io.IOException;
 import java.io.Serializable;
 import javafx.event.ActionEvent;
 import javax.inject.Named;
-import javax.enterprise.context.Dependent;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
@@ -17,9 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import sys.dao.daoAlumnos;
-import sys.dao.daoLoginSesion;
 import sys.imp.AlumnosImp;
-import sys.imp.LoginSesionImp;
 import sys.model.Alumnos;
 
 /**
