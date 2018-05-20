@@ -1,0 +1,313 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <p:panel header="Odontograma Inicial">
+        <h:outputStylesheet library="css" name="odontograma.css"/>
+        <script>
+            function estado(espacio) {
+                var toot = espacio.match(/\d/g);
+                var diente = toot.join("");
+                var imagenspan = "diente" + diente;
+                var valor = document.getElementById(imagenspan).getAttribute("value");
+
+                if (document.getElementById('obturacion').checked) {
+                    var img = "svg/" + valor + "/obturacion/" + diente + "o.png";
+                    document.getElementById(imagenspan).setAttribute("src", img);
+                    var estado = "Obturación";
+                    imagecommand([{name: 'diente', value: diente}, {name: 'estado', value: estado}, {name: 'img', value: img}]);
+                } else if (document.getElementById('none').checked) {
+                    var img = "svg/" + valor + "/tachados/" + diente + "x.png";
+                    document.getElementById(imagenspan).setAttribute("src", img);
+                    var estado = "Ausente";
+                    imagecommand([{name: 'diente', value: diente}, {name: 'estado', value: estado}, {name: 'img', value: img}]);
+                } else if (document.getElementById('caries').checked) {
+                    var img = "svg/" + valor + "/caries/" + diente + "c.png";
+                    document.getElementById(imagenspan).setAttribute("src", img);
+                    var estado = "Caries";
+                    imagecommand([{name: 'diente', value: diente}, {name: 'estado', value: estado}, {name: 'img', value: img}]);
+                } else if (document.getElementById('restab').checked) {
+                    var img = "svg/" + valor + "/" + diente + ".png";
+                    document.getElementById(imagenspan).setAttribute("src", img);
+                    var estado = "Normal";
+                    imagecommand([{name: 'diente', value: diente}, {name: 'estado', value: estado}, {name: 'img', value: img}]);
+                } else if (document.getElementById('obtucaries').checked) {
+                    var img = "svg/" + valor + "/obtucarie/" + diente + "oc.png";
+                    document.getElementById(imagenspan).setAttribute("src", img);
+                    var estado = "Obturación con caries";
+                    imagecommand([{name: 'diente', value: diente}, {name: 'estado', value: estado}, {name: 'img', value: img}]);
+                }
+            }
+            ;
+        </script>
+        <p:remoteCommand name="imagecommand" action="#{vistaDientes.pruebas}" process="@this" />
+        <p:panelGrid class="panelGridCenter">
+
+            <h:panelGrid class="panelGridCenter" cellspacing="5">
+                <h3>Seleccione una de las siguientes opciones:</h3>
+                <p:panelGrid columns="3" class="panelGridCenter">
+                    
+                    <p:outputLabel value="No esá el diente"/>
+                    <input type="radio" id="none" name="opciones" value="0"/>
+                    <p:graphicImage library="svg" name="tache.png" height="5%"/>
+                    
+                    <p:outputLabel value="Obturación"/>
+                    <input type="radio" id="obturacion" name="opciones" value="1"/>
+                    <p:graphicImage library="svg" name="svg/azul.png" height="5%"/>
+                    
+                    <p:outputLabel value="Caries"/>
+                    <input type="radio" id="caries" name="opciones" value="2"/>
+                    <p:graphicImage library="svg" name="rojo.png" height="5%"/>
+                    
+                    <p:outputLabel value="Obturación con caries"/>
+                    <input type="radio" id="obtucaries" name="opciones" value="3"/>
+                    <p:graphicImage library="svg" name="amarillo.png" height="5%"/>
+                    
+                    <p:outputLabel value="Deshacer cambios"/>
+                    <input type="radio" id="restab" name="opciones" value="4"/>
+                    <p:graphicImage library="svg" name="reset.png" height="5%"/>
+                </p:panelGrid>
+                
+            </h:panelGrid>
+            <h:panelGrid class="panelGridCenter">
+                <h3>Seleccione los dientes afectados:</h3>
+            </h:panelGrid>
+            <p:panelGrid columns="16" class="panelGridCenter">
+                <h:outputLabel value="18"/>
+                <h:outputLabel value="17"/>
+                <h:outputLabel value="16"/>
+                <h:outputLabel value="15"/>
+                <h:outputLabel value="14"/>
+                <h:outputLabel value="13"/>
+                <h:outputLabel value="12"/>
+                <h:outputLabel value="11"/>
+                <h:outputLabel value="21"/>
+                <h:outputLabel value="22"/>
+                <h:outputLabel value="23"/>
+                <h:outputLabel value="24"/>
+                <h:outputLabel value="25"/>
+                <h:outputLabel value="26"/>
+                <h:outputLabel value="27"/>
+                <h:outputLabel value="28"/>
+
+                <h:panelGrid>
+                   <img src="svg/11-18/18.png" onclick="estado(this.id)" value="11-18" id="diente18" height="75%"/> 
+                </h:panelGrid>
+                <h:panelGrid>
+                    <img src="svg/11-18/17.png" onclick="estado(this.id)" value="11-18" id="diente17" height="75%"/>
+                </h:panelGrid>
+                <h:panelGrid>
+                    <img src="svg/11-18/16.png" onclick="estado(this.id)" value="11-18" id="diente16" height="75%"/>
+                </h:panelGrid>
+                <h:panelGrid>
+                    <img src="svg/11-18/15.png" onclick="estado(this.id)" value="11-18" id="diente15" height="75%"/>
+                </h:panelGrid>
+                <h:panelGrid>
+                    <img src="svg/11-18/14.png" onclick="estado(this.id)" value="11-18" id="diente14" height="75%"/>
+                </h:panelGrid>
+                <h:panelGrid>
+                    <img src="svg/11-18/13.png" onclick="estado(this.id)" value="11-18" id="diente13" height="75%"/>
+                </h:panelGrid>
+                <h:panelGrid>
+                    <img src="svg/11-18/12.png" onclick="estado(this.id)" value="11-18" id="diente12" height="75%"/>
+                </h:panelGrid>
+                <h:panelGrid>
+                    <img src="svg/11-18/11.png" onclick="estado(this.id)" value="11-18" id="diente11" height="75%"/>
+                </h:panelGrid>
+
+                <h:panelGrid>
+                    <img src="svg/21-28/21.png" onclick="estado(this.id)" value="21-28" id="diente21" height="75%"/>
+                </h:panelGrid>
+                <h:panelGrid>
+                    <img src="svg/21-28/22.png" onclick="estado(this.id)" value="21-28" id="diente22" height="75%"/>
+                </h:panelGrid>
+                <h:panelGrid>
+                    <img src="svg/21-28/23.png" onclick="estado(this.id)" value="21-28" id="diente23" height="75%"/>
+                </h:panelGrid>
+                <h:panelGrid>
+                    <img src="svg/21-28/24.png" onclick="estado(this.id)" value="21-28" id="diente24" height="75%"/>
+                </h:panelGrid>
+                <h:panelGrid>
+                    <img src="svg/21-28/25.png" onclick="estado(this.id)" value="21-28" id="diente25" height="75%"/>
+                </h:panelGrid>
+                <h:panelGrid>
+                    <img src="svg/21-28/26.png" onclick="estado(this.id)" value="21-28" id="diente26" height="75%"/>
+                </h:panelGrid>
+                <h:panelGrid>
+                    <img src="svg/21-28/27.png" onclick="estado(this.id)" value="21-28" id="diente27" height="75%"/>
+                </h:panelGrid>
+                <h:panelGrid>
+                    <img src="svg/21-28/28.png" onclick="estado(this.id)" value="21-28" id="diente28" height="75%"/>
+                </h:panelGrid>
+
+            </p:panelGrid>
+            <p:spacer/>
+
+
+            <p:panelGrid columns="10" class="panelGridCenter">
+                <h:panelGrid>
+                    <img src="svg/51-55/55.png" onclick="estado(this.id)" value="51-55" id="diente55" height="25%"/>
+                </h:panelGrid>
+                <h:panelGrid>
+                    <img src="svg/51-55/54.png" onclick="estado(this.id)" value="51-55" id="diente54" height="25%"/>
+                </h:panelGrid>
+                <h:panelGrid>
+                    <img src="svg/51-55/53.png" onclick="estado(this.id)" value="51-55" id="diente53" height="25%"/>
+                </h:panelGrid>
+                <h:panelGrid>
+                    <img src="svg/51-55/52.png" onclick="estado(this.id)" value="51-55" id="diente52" height="25%"/>
+                </h:panelGrid>
+                <h:panelGrid>
+                    <img src="svg/51-55/51.png" onclick="estado(this.id)" value="51-55" id="diente51" height="25%"/>
+                </h:panelGrid>
+
+                <h:panelGrid>
+                    <img src="svg/61-65/61.png" onclick="estado(this.id)" value="61-65" id="diente61" height="25%"/>
+                </h:panelGrid>
+                <h:panelGrid>
+                    <img src="svg/61-65/62.png" onclick="estado(this.id)" value="61-65" id="diente62" height="25%"/>
+                </h:panelGrid>
+                <h:panelGrid>
+                    <img src="svg/61-65/63.png" onclick="estado(this.id)" value="61-65" id="diente63" height="25%"/>
+                </h:panelGrid>
+                <h:panelGrid>
+                    <img src="svg/61-65/64.png" onclick="estado(this.id)" value="61-65" id="diente64" height="25%"/>
+                </h:panelGrid>
+                <h:panelGrid>
+                    <img src="svg/61-65/65.png" onclick="estado(this.id)" value="61-65" id="diente65" height="25%"/>
+                </h:panelGrid>
+
+                <h:outputLabel value="55"/>
+                <h:outputLabel value="54"/>
+                <h:outputLabel value="53"/>
+                <h:outputLabel value="52"/>
+                <h:outputLabel value="51"/>
+                <h:outputLabel value="61"/>
+                <h:outputLabel value="62"/>
+                <h:outputLabel value="63"/>
+                <h:outputLabel value="64"/>
+                <h:outputLabel value="65"/>
+            </p:panelGrid>
+            <p:spacer/>
+            <p:panelGrid columns="10" class="panelGridCenter">
+                <h:outputLabel value="85"/>
+                <h:outputLabel value="84"/>
+                <h:outputLabel value="83"/>
+                <h:outputLabel value="82"/>
+                <h:outputLabel value="81"/>
+                <h:outputLabel value="71"/>
+                <h:outputLabel value="72"/>
+                <h:outputLabel value="73"/>
+                <h:outputLabel value="74"/>
+                <h:outputLabel value="75"/>
+
+                <h:panelGrid>
+                    <img src="svg/81-85/85.png" onclick="estado(this.id)" value="81-85" id="diente85" height="25%"/>
+                </h:panelGrid>
+                <h:panelGrid>
+                    <img src="svg/81-85/84.png" onclick="estado(this.id)" value="81-85" id="diente84" height="25%"/>
+                </h:panelGrid>
+                <h:panelGrid>
+                    <img src="svg/81-85/83.png" onclick="estado(this.id)" value="81-85" id="diente83" height="25%"/>
+                </h:panelGrid>
+                <h:panelGrid>
+                    <img src="svg/81-85/82.png" onclick="estado(this.id)" value="81-85" id="diente82" height="25%"/>
+                </h:panelGrid>
+                <h:panelGrid>
+                    <img src="svg/81-85/81.png" onclick="estado(this.id)" value="81-85" id="diente81" height="25%"/>
+                </h:panelGrid>
+                <h:panelGrid>
+                    <img src="svg/71-75/71.png" onclick="estado(this.id)" value="71-75" id="diente71" height="25%"/>
+                </h:panelGrid>
+                <h:panelGrid>
+                    <img src="svg/71-75/72.png" onclick="estado(this.id)" value="71-75" id="diente72" height="25%"/>
+                </h:panelGrid>
+                <h:panelGrid>
+                    <img src="svg/71-75/73.png" onclick="estado(this.id)" value="71-75" id="diente73" height="25%"/>
+                </h:panelGrid>
+                <h:panelGrid>
+                    <img src="svg/71-75/74.png" onclick="estado(this.id)" value="71-75" id="diente74" height="25%"/>
+                </h:panelGrid>
+                <h:panelGrid>
+                    <img src="svg/71-75/75.png" onclick="estado(this.id)" value="71-75" id="diente75" height="25%"/>
+                </h:panelGrid>
+            </p:panelGrid>
+
+            <p:spacer/>
+
+            <p:panelGrid columns="16" class="panelGridCenter">
+
+                <h:panelGrid>
+                    <img src="svg/41-48/48.png" onclick="estado(this.id)" value="41-48" id="diente48" height="75%"/>
+                </h:panelGrid>
+                <h:panelGrid>
+                    <img src="svg/41-48/47.png" onclick="estado(this.id)" value="41-48" id="diente47" height="75%"/>
+                </h:panelGrid>
+                <h:panelGrid>
+                    <img src="svg/41-48/46.png" onclick="estado(this.id)" value="41-48" id="diente46" height="75%"/>
+                </h:panelGrid>
+                <h:panelGrid>
+                    <img src="svg/41-48/45.png" onclick="estado(this.id)" value="41-48" id="diente45" height="75%"/>
+                </h:panelGrid>
+                <h:panelGrid>
+                    <img src="svg/41-48/44.png" onclick="estado(this.id)" value="41-48" id="diente44" height="75%"/>
+                </h:panelGrid>
+                <h:panelGrid>
+                    <img src="svg/41-48/43.png" onclick="estado(this.id)" value="41-48" id="diente43" height="75%"/>
+                </h:panelGrid>
+                <h:panelGrid>
+                    <img src="svg/41-48/42.png" onclick="estado(this.id)" value="41-48" id="diente42" height="75%"/>
+                </h:panelGrid>
+                <h:panelGrid>
+                    <img src="svg/41-48/41.png" onclick="estado(this.id)" value="41-48" id="diente41" height="75%"/>
+                </h:panelGrid>
+
+                <h:panelGrid>
+                    <img src="svg/31-38/31.png" onclick="estado(this.id)" value="31-38" id="diente31" height="75%"/>
+                </h:panelGrid>
+                <h:panelGrid>
+                    <img src="svg/31-38/32.png" onclick="estado(this.id)" value="31-38" id="diente32" height="75%"/>
+                </h:panelGrid>
+                <h:panelGrid>
+                    <img src="svg/31-38/33.png" onclick="estado(this.id)" value="31-38" id="diente33" height="75%"/>
+                </h:panelGrid>
+                <h:panelGrid>
+                    <img src="svg/31-38/34.png" onclick="estado(this.id)" value="31-38" id="diente34" height="75%"/>
+                </h:panelGrid>
+                <h:panelGrid>
+                    <img src="svg/31-38/35.png" onclick="estado(this.id)" value="31-38" id="diente35" height="75%"/>
+                </h:panelGrid>
+                <h:panelGrid>
+                    <img src="svg/31-38/36.png" onclick="estado(this.id)" value="31-38" id="diente36" height="75%"/>
+                </h:panelGrid>
+                <h:panelGrid>
+                    <img src="svg/31-38/37.png" onclick="estado(this.id)" value="31-38" id="diente37" height="75%"/>
+                </h:panelGrid>
+                <h:panelGrid>
+                    <img src="svg/31-38/38.png" onclick="estado(this.id)" value="31-38" id="diente38" height="75%"/>
+                </h:panelGrid>
+
+                <h:outputLabel value="48"/>
+                <h:outputLabel value="47"/>
+                <h:outputLabel value="46"/>
+                <h:outputLabel value="45"/>
+                <h:outputLabel value="44"/>
+                <h:outputLabel value="43"/>
+                <h:outputLabel value="42"/>
+                <h:outputLabel value="411"/>
+                <h:outputLabel value="31"/>
+                <h:outputLabel value="32"/>
+                <h:outputLabel value="33"/>
+                <h:outputLabel value="34"/>
+                <h:outputLabel value="35"/>
+                <h:outputLabel value="36"/>
+                <h:outputLabel value="37"/>
+                <h:outputLabel value="38"/>
+            </p:panelGrid>
+        </p:panelGrid>
+    </p:panel>
+</html>

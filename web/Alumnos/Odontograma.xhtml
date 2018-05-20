@@ -7,17 +7,82 @@
 
     <p:panel header="Control de placa dentobacteriana">
         <h:outputStylesheet library="css" name="odontograma.css"/>
-        <h:outputScript library="js" name="odontograma.js"/>
-        
+        <script>
+            function operacion(espacio) {
+                var white = "#ffffff";
+                var red = "#ff0000";
+                var izquierda = "M0 0-70 70A99 99 0 0 1-70-70Z";
+                var superior = "M0 0-70-70A99 99 0 0 1 70-70Z";
+                var derecha = "M0 0 70-70A99 99 0 0 1 70 70Z";
+                var inferior = "M0 0 70 70A99 99 0 0 1-70 70Z";
+                var color = document.getElementById(espacio).getAttribute("fill");
+                var d = document.getElementById(espacio).getAttribute("d");
+                var toot = espacio.match(/\d/g);
+                diente = toot.join("");
+                if (d === izquierda) {
+                    var posicion = "izquierda";
+                    if (color === white) {
+                        document.getElementById(espacio).setAttribute("fill", red);
+                        document.getElementById(espacio).value = red;
+                        ColorCommand([{name: 'diente', value: diente}, {name: 'posicion', value: posicion}, {name: 'color', value: red}]);
+
+                    } else {
+                        document.getElementById(espacio).setAttribute("fill", white);
+                        document.getElementById(espacio).value = white;
+                        ColorCommand([{name: 'diente', value: diente}, {name: 'posicion', value: posicion}, {name: 'color', value: white}]);
+                    }
+                } else if (d === derecha) {
+                    var posicion = "derecha";
+                    if (color === white) {
+                        document.getElementById(espacio).setAttribute("fill", red);
+                        document.getElementById(espacio).value = red;
+                        ColorCommand([{name: 'diente', value: diente}, {name: 'posicion', value: posicion}, {name: 'color', value: red}]);
+
+                    } else {
+                        document.getElementById(espacio).setAttribute("fill", white);
+                        document.getElementById(espacio).value = white;
+                        ColorCommand([{name: 'diente', value: diente}, {name: 'posicion', value: posicion}, {name: 'color', value: white}]);
+                    }
+                } else if (d === superior) {
+                    var posicion = "superior";
+                    if (color === white) {
+                        document.getElementById(espacio).setAttribute("fill", red);
+                        document.getElementById(espacio).value = red;
+                        ColorCommand([{name: 'diente', value: diente}, {name: 'posicion', value: posicion}, {name: 'color', value: red}]);
+
+                    } else {
+                        document.getElementById(espacio).setAttribute("fill", white);
+                        document.getElementById(espacio).value = white;
+                        ColorCommand([{name: 'diente', value: diente}, {name: 'posicion', value: posicion}, {name: 'color', value: white}]);
+                    }
+                } else if (d === inferior) {
+                    var posicion = "inferior";
+                    if (color === white) {
+                        document.getElementById(espacio).setAttribute("fill", red);
+                        document.getElementById(espacio).value = red;
+                        ColorCommand([{name: 'diente', value: diente}, {name: 'posicion', value: posicion}, {name: 'color', value: red}]);
+
+                    } else {
+                        document.getElementById(espacio).setAttribute("fill", white);
+                        document.getElementById(espacio).value = white;
+                        ColorCommand([{name: 'diente', value: diente}, {name: 'posicion', value: posicion}, {name: 'color', value: white}]);
+                    }
+                }
+            }
+            ;
+        </script>
+
+        <p:remoteCommand name="ColorCommand" action="#{odontograma.hola()}" process="@this" />
+
         <h:panelGrid columns="2" cellpadding="5">
             <p:outputLabel value="Total de dientes: "/>
-            <p:inputNumber id="Num_dientes" value=""/>
+            <p:inputText id="Num_dientes" value=""/>
 
             <p:outputLabel value="Número de superficies con placa"/>
-            <p:inputNumber id="Superfices_placa" value=""/>
+            <p:inputText id="Superfices_placa" value=""/>
 
             <p:outputLabel value="Total de superficies"/>
-            <p:inputNumber id="Num_superfices" value=""/>
+            <p:inputText id="Num_superfices" value=""/>
 
             <p:outputLabel value="Extensión de placa"/>
             <p:inputText id="Extension_placa" value=""/>
@@ -27,7 +92,6 @@
         </h:panelGrid>
 
         <p:spacer/>
-
         <p:panelGrid columns="16" class="panelGridCenter">
             <h:outputLabel value="18"/>
             <h:outputLabel value="17"/>
@@ -49,160 +113,160 @@
             <h:panelGrid>
                 <svg width="50" height="50" viewBox="0 0 200 200">
                     <g transform="translate(100,100)" stroke="#000" stroke-width="2">
-                        <path id="18-izquierda" d="M0 0-70 70A99 99 0 0 1-70-70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="18-superior" d="M0 0-70-70A99 99 0 0 1 70-70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="18-derecha" d="M0 0 70-70A99 99 0 0 1 70 70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="18-inferior" d="M0 0 70 70A99 99 0 0 1-70 70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
+                        <path id="18-izquierda"  d="M0 0-70 70A99 99 0 0 1-70-70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="18-superior" d="M0 0-70-70A99 99 0 0 1 70-70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="18-derecha" d="M0 0 70-70A99 99 0 0 1 70 70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="18-inferior" d="M0 0 70 70A99 99 0 0 1-70 70Z" onclick="operacion(this.id)" fill="#ffffff"/>
                     </g>
                 </svg>
             </h:panelGrid>
             <h:panelGrid>
                 <svg width="50" height="50" viewBox="0 0 200 200">
                     <g transform="translate(100,100)" stroke="#000" stroke-width="2">
-                        <path id="17-izquierda" d="M0 0-70 70A99 99 0 0 1-70-70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="17-superior" d="M0 0-70-70A99 99 0 0 1 70-70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="17-derecha" d="M0 0 70-70A99 99 0 0 1 70 70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="17-inferior" d="M0 0 70 70A99 99 0 0 1-70 70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
+                        <path id="17-izquierda" d="M0 0-70 70A99 99 0 0 1-70-70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="17-superior" d="M0 0-70-70A99 99 0 0 1 70-70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="17-derecha" d="M0 0 70-70A99 99 0 0 1 70 70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="17-inferior" d="M0 0 70 70A99 99 0 0 1-70 70Z" onclick="operacion(this.id)" fill="#ffffff"/>
                     </g>
                 </svg>
             </h:panelGrid>
             <h:panelGrid>
                 <svg width="50" height="50" viewBox="0 0 200 200">
                     <g transform="translate(100,100)" stroke="#000" stroke-width="2">
-                        <path id="16-izquierda" d="M0 0-70 70A99 99 0 0 1-70-70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="16-superior" d="M0 0-70-70A99 99 0 0 1 70-70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="16-derecha" d="M0 0 70-70A99 99 0 0 1 70 70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="16-inferior" d="M0 0 70 70A99 99 0 0 1-70 70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
+                        <path id="16-izquierda" d="M0 0-70 70A99 99 0 0 1-70-70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="16-superior" d="M0 0-70-70A99 99 0 0 1 70-70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="16-derecha" d="M0 0 70-70A99 99 0 0 1 70 70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="16-inferior" d="M0 0 70 70A99 99 0 0 1-70 70Z" onclick="operacion(this.id)" fill="#ffffff"/>
                     </g>
                 </svg>
             </h:panelGrid>
             <h:panelGrid>
                 <svg width="50" height="50" viewBox="0 0 200 200">
                     <g transform="translate(100,100)" stroke="#000" stroke-width="2">
-                        <path id="15-izquierda" d="M0 0-70 70A99 99 0 0 1-70-70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="15-superior" d="M0 0-70-70A99 99 0 0 1 70-70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="15-derecha" d="M0 0 70-70A99 99 0 0 1 70 70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="15-inferior" d="M0 0 70 70A99 99 0 0 1-70 70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
+                        <path id="15-izquierda" d="M0 0-70 70A99 99 0 0 1-70-70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="15-superior" d="M0 0-70-70A99 99 0 0 1 70-70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="15-derecha" d="M0 0 70-70A99 99 0 0 1 70 70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="15-inferior" d="M0 0 70 70A99 99 0 0 1-70 70Z" onclick="operacion(this.id)" fill="#ffffff"/>
                     </g>
                 </svg>
             </h:panelGrid>
             <h:panelGrid>
                 <svg width="50" height="50" viewBox="0 0 200 200">
                     <g transform="translate(100,100)" stroke="#000" stroke-width="2">
-                        <path id="14-izquierda" d="M0 0-70 70A99 99 0 0 1-70-70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="14-superior" d="M0 0-70-70A99 99 0 0 1 70-70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="14-derecha" d="M0 0 70-70A99 99 0 0 1 70 70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="14-inferior" d="M0 0 70 70A99 99 0 0 1-70 70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
+                        <path id="14-izquierda" d="M0 0-70 70A99 99 0 0 1-70-70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="14-superior" d="M0 0-70-70A99 99 0 0 1 70-70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="14-derecha" d="M0 0 70-70A99 99 0 0 1 70 70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="14-inferior" d="M0 0 70 70A99 99 0 0 1-70 70Z" onclick="operacion(this.id)" fill="#ffffff"/>
                     </g>
                 </svg>
             </h:panelGrid>
             <h:panelGrid>
                 <svg width="50" height="50" viewBox="0 0 200 200">
                     <g transform="translate(100,100)" stroke="#000" stroke-width="2">
-                        <path id="13-izquierda" d="M0 0-70 70A99 99 0 0 1-70-70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="13-superior" d="M0 0-70-70A99 99 0 0 1 70-70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="13-derecha" d="M0 0 70-70A99 99 0 0 1 70 70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="13-inferior" d="M0 0 70 70A99 99 0 0 1-70 70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
+                        <path id="13-izquierda" d="M0 0-70 70A99 99 0 0 1-70-70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="13-superior" d="M0 0-70-70A99 99 0 0 1 70-70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="13-derecha" d="M0 0 70-70A99 99 0 0 1 70 70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="13-inferior" d="M0 0 70 70A99 99 0 0 1-70 70Z" onclick="operacion(this.id)" fill="#ffffff"/>
                     </g>
                 </svg>
             </h:panelGrid>
             <h:panelGrid>
                 <svg width="50" height="50" viewBox="0 0 200 200">
                     <g transform="translate(100,100)" stroke="#000" stroke-width="2">
-                        <path id="12-izquierda" d="M0 0-70 70A99 99 0 0 1-70-70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="12-superior" d="M0 0-70-70A99 99 0 0 1 70-70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="12-derecha" d="M0 0 70-70A99 99 0 0 1 70 70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="12-inferior" d="M0 0 70 70A99 99 0 0 1-70 70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
+                        <path id="12-izquierda" d="M0 0-70 70A99 99 0 0 1-70-70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="12-superior" d="M0 0-70-70A99 99 0 0 1 70-70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="12-derecha" d="M0 0 70-70A99 99 0 0 1 70 70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="12-inferior" d="M0 0 70 70A99 99 0 0 1-70 70Z" onclick="operacion(this.id)" fill="#ffffff"/>
                     </g>
                 </svg>
             </h:panelGrid>
             <h:panelGrid>
                 <svg width="50" height="50" viewBox="0 0 200 200">
                     <g transform="translate(100,100)" stroke="#000" stroke-width="2">
-                        <path id="11-izquierda" d="M0 0-70 70A99 99 0 0 1-70-70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="11-superior" d="M0 0-70-70A99 99 0 0 1 70-70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="11-derecha" d="M0 0 70-70A99 99 0 0 1 70 70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="11-inferior" d="M0 0 70 70A99 99 0 0 1-70 70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
+                        <path id="11-izquierda" d="M0 0-70 70A99 99 0 0 1-70-70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="11-superior" d="M0 0-70-70A99 99 0 0 1 70-70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="11-derecha" d="M0 0 70-70A99 99 0 0 1 70 70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="11-inferior" d="M0 0 70 70A99 99 0 0 1-70 70Z" onclick="operacion(this.id)" fill="#ffffff"/>
                     </g>
                 </svg>
             </h:panelGrid>
             <h:panelGrid>
                 <svg width="50" height="50" viewBox="0 0 200 200">
                     <g transform="translate(100,100)" stroke="#000" stroke-width="2">
-                        <path id="21-izquierda" d="M0 0-70 70A99 99 0 0 1-70-70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="21-superior" d="M0 0-70-70A99 99 0 0 1 70-70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="21-derecha" d="M0 0 70-70A99 99 0 0 1 70 70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="21-inferior" d="M0 0 70 70A99 99 0 0 1-70 70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
+                        <path id="21-izquierda" d="M0 0-70 70A99 99 0 0 1-70-70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="21-superior" d="M0 0-70-70A99 99 0 0 1 70-70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="21-derecha" d="M0 0 70-70A99 99 0 0 1 70 70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="21-inferior" d="M0 0 70 70A99 99 0 0 1-70 70Z" onclick="operacion(this.id)" fill="#ffffff"/>
                     </g>
                 </svg>
             </h:panelGrid>
             <h:panelGrid>
                 <svg width="50" height="50" viewBox="0 0 200 200">
                     <g transform="translate(100,100)" stroke="#000" stroke-width="2">
-                        <path id="22-izquierda" d="M0 0-70 70A99 99 0 0 1-70-70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="22-superior" d="M0 0-70-70A99 99 0 0 1 70-70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="22-derecha" d="M0 0 70-70A99 99 0 0 1 70 70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="22-inferior" d="M0 0 70 70A99 99 0 0 1-70 70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
+                        <path id="22-izquierda" d="M0 0-70 70A99 99 0 0 1-70-70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="22-superior" d="M0 0-70-70A99 99 0 0 1 70-70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="22-derecha" d="M0 0 70-70A99 99 0 0 1 70 70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="22-inferior" d="M0 0 70 70A99 99 0 0 1-70 70Z" onclick="operacion(this.id)" fill="#ffffff"/>
                     </g>
                 </svg>
             </h:panelGrid>
             <h:panelGrid>
                 <svg width="50" height="50" viewBox="0 0 200 200">
                     <g transform="translate(100,100)" stroke="#000" stroke-width="2">
-                        <path id="23-izquierda" d="M0 0-70 70A99 99 0 0 1-70-70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="23-superior" d="M0 0-70-70A99 99 0 0 1 70-70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="23-derecha" d="M0 0 70-70A99 99 0 0 1 70 70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="23-inferior" d="M0 0 70 70A99 99 0 0 1-70 70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
+                        <path id="23-izquierda" d="M0 0-70 70A99 99 0 0 1-70-70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="23-superior" d="M0 0-70-70A99 99 0 0 1 70-70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="23-derecha" d="M0 0 70-70A99 99 0 0 1 70 70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="23-inferior" d="M0 0 70 70A99 99 0 0 1-70 70Z" onclick="operacion(this.id)" fill="#ffffff"/>
                     </g>
                 </svg>
             </h:panelGrid>
             <h:panelGrid>
                 <svg width="50" height="50" viewBox="0 0 200 200">
                     <g transform="translate(100,100)" stroke="#000" stroke-width="2">
-                        <path id="24-izquierda" d="M0 0-70 70A99 99 0 0 1-70-70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="24-superior" d="M0 0-70-70A99 99 0 0 1 70-70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="24-derecha" d="M0 0 70-70A99 99 0 0 1 70 70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="24-inferior" d="M0 0 70 70A99 99 0 0 1-70 70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
+                        <path id="24-izquierda" d="M0 0-70 70A99 99 0 0 1-70-70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="24-superior" d="M0 0-70-70A99 99 0 0 1 70-70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="24-derecha" d="M0 0 70-70A99 99 0 0 1 70 70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="24-inferior" d="M0 0 70 70A99 99 0 0 1-70 70Z" onclick="operacion(this.id)" fill="#ffffff"/>
                     </g>
                 </svg>
             </h:panelGrid>
             <h:panelGrid>
                 <svg width="50" height="50" viewBox="0 0 200 200">
                     <g transform="translate(100,100)" stroke="#000" stroke-width="2">
-                        <path id="25-izquierda" d="M0 0-70 70A99 99 0 0 1-70-70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="25-superior" d="M0 0-70-70A99 99 0 0 1 70-70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="25-derecha" d="M0 0 70-70A99 99 0 0 1 70 70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="25-inferior" d="M0 0 70 70A99 99 0 0 1-70 70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
+                        <path id="25-izquierda" d="M0 0-70 70A99 99 0 0 1-70-70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="25-superior" d="M0 0-70-70A99 99 0 0 1 70-70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="25-derecha" d="M0 0 70-70A99 99 0 0 1 70 70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="25-inferior" d="M0 0 70 70A99 99 0 0 1-70 70Z" onclick="operacion(this.id)" fill="#ffffff"/>
                     </g>
                 </svg>
             </h:panelGrid>
             <h:panelGrid>
                 <svg width="50" height="50" viewBox="0 0 200 200">
                     <g transform="translate(100,100)" stroke="#000" stroke-width="2">
-                        <path id="26-izquierda" d="M0 0-70 70A99 99 0 0 1-70-70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="26-superior" d="M0 0-70-70A99 99 0 0 1 70-70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="26-derecha" d="M0 0 70-70A99 99 0 0 1 70 70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="26-inferior" d="M0 0 70 70A99 99 0 0 1-70 70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
+                        <path id="26-izquierda" d="M0 0-70 70A99 99 0 0 1-70-70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="26-superior" d="M0 0-70-70A99 99 0 0 1 70-70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="26-derecha" d="M0 0 70-70A99 99 0 0 1 70 70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="26-inferior" d="M0 0 70 70A99 99 0 0 1-70 70Z" onclick="operacion(this.id)" fill="#ffffff"/>
                     </g>
                 </svg>
             </h:panelGrid>
             <h:panelGrid>
                 <svg width="50" height="50" viewBox="0 0 200 200">
                     <g transform="translate(100,100)" stroke="#000" stroke-width="2">
-                        <path id="27-izquierda" d="M0 0-70 70A99 99 0 0 1-70-70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="27-superior" d="M0 0-70-70A99 99 0 0 1 70-70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="27-derecha" d="M0 0 70-70A99 99 0 0 1 70 70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="27-inferior" d="M0 0 70 70A99 99 0 0 1-70 70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
+                        <path id="27-izquierda" d="M0 0-70 70A99 99 0 0 1-70-70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="27-superior" d="M0 0-70-70A99 99 0 0 1 70-70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="27-derecha" d="M0 0 70-70A99 99 0 0 1 70 70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="27-inferior" d="M0 0 70 70A99 99 0 0 1-70 70Z" onclick="operacion(this.id)" fill="#ffffff"/>
                     </g>
                 </svg>
             </h:panelGrid>
             <h:panelGrid>
                 <svg width="50" height="50" viewBox="0 0 200 200">
                     <g transform="translate(100,100)" stroke="#000" stroke-width="2">
-                        <path id="28-izquierda" d="M0 0-70 70A99 99 0 0 1-70-70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="28-superior" d="M0 0-70-70A99 99 0 0 1 70-70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="28-derecha" d="M0 0 70-70A99 99 0 0 1 70 70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="28-inferior" d="M0 0 70 70A99 99 0 0 1-70 70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
+                        <path id="28-izquierda" d="M0 0-70 70A99 99 0 0 1-70-70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="28-superior" d="M0 0-70-70A99 99 0 0 1 70-70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="28-derecha" d="M0 0 70-70A99 99 0 0 1 70 70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="28-inferior" d="M0 0 70 70A99 99 0 0 1-70 70Z" onclick="operacion(this.id)" fill="#ffffff"/>
                     </g>
                 </svg>
             </h:panelGrid>
@@ -214,100 +278,100 @@
             <h:panelGrid>
                 <svg width="50" height="50" viewBox="0 0 200 200">
                     <g transform="translate(100,100)" stroke="#000" stroke-width="2">
-                        <path id="55-izquierda" d="M0 0-70 70A99 99 0 0 1-70-70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="55-superior" d="M0 0-70-70A99 99 0 0 1 70-70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="55-derecha" d="M0 0 70-70A99 99 0 0 1 70 70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="55-inferior" d="M0 0 70 70A99 99 0 0 1-70 70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
+                        <path id="55-izquierda" d="M0 0-70 70A99 99 0 0 1-70-70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="55-superior" d="M0 0-70-70A99 99 0 0 1 70-70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="55-derecha" d="M0 0 70-70A99 99 0 0 1 70 70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="55-inferior" d="M0 0 70 70A99 99 0 0 1-70 70Z" onclick="operacion(this.id)" fill="#ffffff"/>
                     </g>
                 </svg>
             </h:panelGrid>
             <h:panelGrid>
                 <svg width="50" height="50" viewBox="0 0 200 200">
                     <g transform="translate(100,100)" stroke="#000" stroke-width="2">
-                        <path id="54-izquierda" d="M0 0-70 70A99 99 0 0 1-70-70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="54-superior" d="M0 0-70-70A99 99 0 0 1 70-70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="54-derecha" d="M0 0 70-70A99 99 0 0 1 70 70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="54-inferior" d="M0 0 70 70A99 99 0 0 1-70 70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
+                        <path id="54-izquierda" d="M0 0-70 70A99 99 0 0 1-70-70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="54-superior" d="M0 0-70-70A99 99 0 0 1 70-70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="54-derecha" d="M0 0 70-70A99 99 0 0 1 70 70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="54-inferior" d="M0 0 70 70A99 99 0 0 1-70 70Z" onclick="operacion(this.id)" fill="#ffffff"/>
                     </g>
                 </svg>
             </h:panelGrid>
             <h:panelGrid>
                 <svg width="50" height="50" viewBox="0 0 200 200">
                     <g transform="translate(100,100)" stroke="#000" stroke-width="2">
-                        <path id="53-izquierda" d="M0 0-70 70A99 99 0 0 1-70-70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="53-superior" d="M0 0-70-70A99 99 0 0 1 70-70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="53-derecha" d="M0 0 70-70A99 99 0 0 1 70 70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="53-inferior" d="M0 0 70 70A99 99 0 0 1-70 70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
+                        <path id="53-izquierda" d="M0 0-70 70A99 99 0 0 1-70-70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="53-superior" d="M0 0-70-70A99 99 0 0 1 70-70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="53-derecha" d="M0 0 70-70A99 99 0 0 1 70 70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="53-inferior" d="M0 0 70 70A99 99 0 0 1-70 70Z" onclick="operacion(this.id)" fill="#ffffff"/>
                     </g>
                 </svg>
             </h:panelGrid>
             <h:panelGrid>
                 <svg width="50" height="50" viewBox="0 0 200 200">
                     <g transform="translate(100,100)" stroke="#000" stroke-width="2">
-                        <path id="52-izquierda" d="M0 0-70 70A99 99 0 0 1-70-70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="52-superior" d="M0 0-70-70A99 99 0 0 1 70-70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="52-derecha" d="M0 0 70-70A99 99 0 0 1 70 70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="52-inferior" d="M0 0 70 70A99 99 0 0 1-70 70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
+                        <path id="52-izquierda" d="M0 0-70 70A99 99 0 0 1-70-70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="52-superior" d="M0 0-70-70A99 99 0 0 1 70-70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="52-derecha" d="M0 0 70-70A99 99 0 0 1 70 70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="52-inferior" d="M0 0 70 70A99 99 0 0 1-70 70Z" onclick="operacion(this.id)" fill="#ffffff"/>
                     </g>
                 </svg>
             </h:panelGrid>
             <h:panelGrid>
                 <svg width="50" height="50" viewBox="0 0 200 200">
                     <g transform="translate(100,100)" stroke="#000" stroke-width="2">
-                        <path id="51-izquierda" d="M0 0-70 70A99 99 0 0 1-70-70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="51-superior" d="M0 0-70-70A99 99 0 0 1 70-70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="51-derecha" d="M0 0 70-70A99 99 0 0 1 70 70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="51-inferior" d="M0 0 70 70A99 99 0 0 1-70 70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
+                        <path id="51-izquierda" d="M0 0-70 70A99 99 0 0 1-70-70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="51-superior" d="M0 0-70-70A99 99 0 0 1 70-70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="51-derecha" d="M0 0 70-70A99 99 0 0 1 70 70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="51-inferior" d="M0 0 70 70A99 99 0 0 1-70 70Z" onclick="operacion(this.id)" fill="#ffffff"/>
                     </g>
                 </svg>
             </h:panelGrid>
             <h:panelGrid>
                 <svg width="50" height="50" viewBox="0 0 200 200">
                     <g transform="translate(100,100)" stroke="#000" stroke-width="2">
-                        <path id="61-izquierda" d="M0 0-70 70A99 99 0 0 1-70-70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="61-superior" d="M0 0-70-70A99 99 0 0 1 70-70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="61-derecha" d="M0 0 70-70A99 99 0 0 1 70 70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="61-inferior" d="M0 0 70 70A99 99 0 0 1-70 70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
+                        <path id="61-izquierda" d="M0 0-70 70A99 99 0 0 1-70-70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="61-superior" d="M0 0-70-70A99 99 0 0 1 70-70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="61-derecha" d="M0 0 70-70A99 99 0 0 1 70 70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="61-inferior" d="M0 0 70 70A99 99 0 0 1-70 70Z" onclick="operacion(this.id)" fill="#ffffff"/>
                     </g>
                 </svg>
             </h:panelGrid>
             <h:panelGrid>
                 <svg width="50" height="50" viewBox="0 0 200 200">
                     <g transform="translate(100,100)" stroke="#000" stroke-width="2">
-                        <path id="62-izquierda" d="M0 0-70 70A99 99 0 0 1-70-70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="62-superior" d="M0 0-70-70A99 99 0 0 1 70-70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="62-derecha" d="M0 0 70-70A99 99 0 0 1 70 70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="62-inferior" d="M0 0 70 70A99 99 0 0 1-70 70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
+                        <path id="62-izquierda" d="M0 0-70 70A99 99 0 0 1-70-70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="62-superior" d="M0 0-70-70A99 99 0 0 1 70-70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="62-derecha" d="M0 0 70-70A99 99 0 0 1 70 70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="62-inferior" d="M0 0 70 70A99 99 0 0 1-70 70Z" onclick="operacion(this.id)" fill="#ffffff"/>
                     </g>
                 </svg>
             </h:panelGrid>
             <h:panelGrid>
                 <svg width="50" height="50" viewBox="0 0 200 200">
                     <g transform="translate(100,100)" stroke="#000" stroke-width="2">
-                        <path id="63-izquierda" d="M0 0-70 70A99 99 0 0 1-70-70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="63-superior" d="M0 0-70-70A99 99 0 0 1 70-70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="63-derecha" d="M0 0 70-70A99 99 0 0 1 70 70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="63-inferior" d="M0 0 70 70A99 99 0 0 1-70 70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
+                        <path id="63-izquierda" d="M0 0-70 70A99 99 0 0 1-70-70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="63-superior" d="M0 0-70-70A99 99 0 0 1 70-70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="63-derecha" d="M0 0 70-70A99 99 0 0 1 70 70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="63-inferior" d="M0 0 70 70A99 99 0 0 1-70 70Z" onclick="operacion(this.id)" fill="#ffffff"/>
                     </g>
                 </svg>
             </h:panelGrid>
             <h:panelGrid>
                 <svg width="50" height="50" viewBox="0 0 200 200">
                     <g transform="translate(100,100)" stroke="#000" stroke-width="2">
-                        <path id="64-izquierda" d="M0 0-70 70A99 99 0 0 1-70-70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="64-superior" d="M0 0-70-70A99 99 0 0 1 70-70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="64-derecha" d="M0 0 70-70A99 99 0 0 1 70 70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="64-inferior" d="M0 0 70 70A99 99 0 0 1-70 70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
+                        <path id="64-izquierda" d="M0 0-70 70A99 99 0 0 1-70-70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="64-superior" d="M0 0-70-70A99 99 0 0 1 70-70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="64-derecha" d="M0 0 70-70A99 99 0 0 1 70 70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="64-inferior" d="M0 0 70 70A99 99 0 0 1-70 70Z" onclick="operacion(this.id)" fill="#ffffff"/>
                     </g>
                 </svg>
             </h:panelGrid>
             <h:panelGrid>
                 <svg width="50" height="50" viewBox="0 0 200 200">
                     <g transform="translate(100,100)" stroke="#000" stroke-width="2">
-                        <path id="65-izquierda" d="M0 0-70 70A99 99 0 0 1-70-70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="65-superior" d="M0 0-70-70A99 99 0 0 1 70-70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="65-derecha" d="M0 0 70-70A99 99 0 0 1 70 70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="65-inferior" d="M0 0 70 70A99 99 0 0 1-70 70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
+                        <path id="65-izquierda" d="M0 0-70 70A99 99 0 0 1-70-70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="65-superior" d="M0 0-70-70A99 99 0 0 1 70-70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="65-derecha" d="M0 0 70-70A99 99 0 0 1 70 70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="65-inferior" d="M0 0 70 70A99 99 0 0 1-70 70Z" onclick="operacion(this.id)" fill="#ffffff"/>
                     </g>
                 </svg>
             </h:panelGrid>
@@ -341,100 +405,100 @@
             <h:panelGrid>
                 <svg width="50" height="50" viewBox="0 0 200 200">
                     <g transform="translate(100,100)" stroke="#000" stroke-width="2">
-                        <path id="85-izquierda" d="M0 0-70 70A99 99 0 0 1-70-70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="85-superior" d="M0 0-70-70A99 99 0 0 1 70-70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="85-derecha" d="M0 0 70-70A99 99 0 0 1 70 70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="85-inferior" d="M0 0 70 70A99 99 0 0 1-70 70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
+                        <path id="85-izquierda" d="M0 0-70 70A99 99 0 0 1-70-70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="85-superior" d="M0 0-70-70A99 99 0 0 1 70-70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="85-derecha" d="M0 0 70-70A99 99 0 0 1 70 70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="85-inferior" d="M0 0 70 70A99 99 0 0 1-70 70Z" onclick="operacion(this.id)" fill="#ffffff"/>
                     </g>
                 </svg>
             </h:panelGrid>
             <h:panelGrid>
                 <svg width="50" height="50" viewBox="0 0 200 200">
                     <g transform="translate(100,100)" stroke="#000" stroke-width="2">
-                        <path id="84-izquierda" d="M0 0-70 70A99 99 0 0 1-70-70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="84-superior" d="M0 0-70-70A99 99 0 0 1 70-70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="84-derecha" d="M0 0 70-70A99 99 0 0 1 70 70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="84-inferior" d="M0 0 70 70A99 99 0 0 1-70 70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
+                        <path id="84-izquierda" d="M0 0-70 70A99 99 0 0 1-70-70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="84-superior" d="M0 0-70-70A99 99 0 0 1 70-70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="84-derecha" d="M0 0 70-70A99 99 0 0 1 70 70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="84-inferior" d="M0 0 70 70A99 99 0 0 1-70 70Z" onclick="operacion(this.id)" fill="#ffffff"/>
                     </g>
                 </svg>
             </h:panelGrid>
             <h:panelGrid>
                 <svg width="50" height="50" viewBox="0 0 200 200">
                     <g transform="translate(100,100)" stroke="#000" stroke-width="2">
-                        <path id="83-izquierda" d="M0 0-70 70A99 99 0 0 1-70-70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="83-superior" d="M0 0-70-70A99 99 0 0 1 70-70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="83-derecha" d="M0 0 70-70A99 99 0 0 1 70 70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="83-inferior" d="M0 0 70 70A99 99 0 0 1-70 70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
+                        <path id="83-izquierda" d="M0 0-70 70A99 99 0 0 1-70-70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="83-superior" d="M0 0-70-70A99 99 0 0 1 70-70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="83-derecha" d="M0 0 70-70A99 99 0 0 1 70 70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="83-inferior" d="M0 0 70 70A99 99 0 0 1-70 70Z" onclick="operacion(this.id)" fill="#ffffff"/>
                     </g>
                 </svg>
             </h:panelGrid>
             <h:panelGrid>
                 <svg width="50" height="50" viewBox="0 0 200 200">
                     <g transform="translate(100,100)" stroke="#000" stroke-width="2">
-                        <path id="82-izquierda" d="M0 0-70 70A99 99 0 0 1-70-70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="82-superior" d="M0 0-70-70A99 99 0 0 1 70-70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="82-derecha" d="M0 0 70-70A99 99 0 0 1 70 70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="82-inferior" d="M0 0 70 70A99 99 0 0 1-70 70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
+                        <path id="82-izquierda" d="M0 0-70 70A99 99 0 0 1-70-70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="82-superior" d="M0 0-70-70A99 99 0 0 1 70-70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="82-derecha" d="M0 0 70-70A99 99 0 0 1 70 70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="82-inferior" d="M0 0 70 70A99 99 0 0 1-70 70Z" onclick="operacion(this.id)" fill="#ffffff"/>
                     </g>
                 </svg>
             </h:panelGrid>
             <h:panelGrid>
                 <svg width="50" height="50" viewBox="0 0 200 200">
                     <g transform="translate(100,100)" stroke="#000" stroke-width="2">
-                        <path id="81-izquierda" d="M0 0-70 70A99 99 0 0 1-70-70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="81-superior" d="M0 0-70-70A99 99 0 0 1 70-70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="81-derecha" d="M0 0 70-70A99 99 0 0 1 70 70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="81-inferior" d="M0 0 70 70A99 99 0 0 1-70 70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
+                        <path id="81-izquierda" d="M0 0-70 70A99 99 0 0 1-70-70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="81-superior" d="M0 0-70-70A99 99 0 0 1 70-70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="81-derecha" d="M0 0 70-70A99 99 0 0 1 70 70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="81-inferior" d="M0 0 70 70A99 99 0 0 1-70 70Z" onclick="operacion(this.id)" fill="#ffffff"/>
                     </g>
                 </svg>
             </h:panelGrid>
             <h:panelGrid>
                 <svg width="50" height="50" viewBox="0 0 200 200">
                     <g transform="translate(100,100)" stroke="#000" stroke-width="2">
-                        <path id="71-izquierda" d="M0 0-70 70A99 99 0 0 1-70-70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="71-superior" d="M0 0-70-70A99 99 0 0 1 70-70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="71-derecha" d="M0 0 70-70A99 99 0 0 1 70 70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="71-inferior" d="M0 0 70 70A99 99 0 0 1-70 70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
+                        <path id="71-izquierda" d="M0 0-70 70A99 99 0 0 1-70-70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="71-superior" d="M0 0-70-70A99 99 0 0 1 70-70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="71-derecha" d="M0 0 70-70A99 99 0 0 1 70 70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="71-inferior" d="M0 0 70 70A99 99 0 0 1-70 70Z" onclick="operacion(this.id)" fill="#ffffff"/>
                     </g>
                 </svg>
             </h:panelGrid>
             <h:panelGrid>
                 <svg width="50" height="50" viewBox="0 0 200 200">
                     <g transform="translate(100,100)" stroke="#000" stroke-width="2">
-                        <path id="72-izquierda" d="M0 0-70 70A99 99 0 0 1-70-70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="72-superior" d="M0 0-70-70A99 99 0 0 1 70-70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="72-derecha" d="M0 0 70-70A99 99 0 0 1 70 70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="72-inferior" d="M0 0 70 70A99 99 0 0 1-70 70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
+                        <path id="72-izquierda" d="M0 0-70 70A99 99 0 0 1-70-70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="72-superior" d="M0 0-70-70A99 99 0 0 1 70-70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="72-derecha" d="M0 0 70-70A99 99 0 0 1 70 70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="72-inferior" d="M0 0 70 70A99 99 0 0 1-70 70Z" onclick="operacion(this.id)" fill="#ffffff"/>
                     </g>
                 </svg>
             </h:panelGrid>
             <h:panelGrid>
                 <svg width="50" height="50" viewBox="0 0 200 200">
                     <g transform="translate(100,100)" stroke="#000" stroke-width="2">
-                        <path id="73-izquierda" d="M0 0-70 70A99 99 0 0 1-70-70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="73-superior" d="M0 0-70-70A99 99 0 0 1 70-70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="73-derecha" d="M0 0 70-70A99 99 0 0 1 70 70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="73-inferior" d="M0 0 70 70A99 99 0 0 1-70 70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
+                        <path id="73-izquierda" d="M0 0-70 70A99 99 0 0 1-70-70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="73-superior" d="M0 0-70-70A99 99 0 0 1 70-70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="73-derecha" d="M0 0 70-70A99 99 0 0 1 70 70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="73-inferior" d="M0 0 70 70A99 99 0 0 1-70 70Z" onclick="operacion(this.id)" fill="#ffffff"/>
                     </g>
                 </svg>
             </h:panelGrid>
             <h:panelGrid>
                 <svg width="50" height="50" viewBox="0 0 200 200">
                     <g transform="translate(100,100)" stroke="#000" stroke-width="2">
-                        <path id="74-izquierda" d="M0 0-70 70A99 99 0 0 1-70-70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="74-superior" d="M0 0-70-70A99 99 0 0 1 70-70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="74-derecha" d="M0 0 70-70A99 99 0 0 1 70 70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="74-inferior" d="M0 0 70 70A99 99 0 0 1-70 70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
+                        <path id="74-izquierda" d="M0 0-70 70A99 99 0 0 1-70-70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="74-superior" d="M0 0-70-70A99 99 0 0 1 70-70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="74-derecha" d="M0 0 70-70A99 99 0 0 1 70 70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="74-inferior" d="M0 0 70 70A99 99 0 0 1-70 70Z" onclick="operacion(this.id)" fill="#ffffff"/>
                     </g>
                 </svg>
             </h:panelGrid>
             <h:panelGrid>
                 <svg width="50" height="50" viewBox="0 0 200 200">
                     <g transform="translate(100,100)" stroke="#000" stroke-width="2">
-                        <path id="75-izquierda" d="M0 0-70 70A99 99 0 0 1-70-70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="75-superior" d="M0 0-70-70A99 99 0 0 1 70-70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="75-derecha" d="M0 0 70-70A99 99 0 0 1 70 70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="75-inferior" d="M0 0 70 70A99 99 0 0 1-70 70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
+                        <path id="75-izquierda" d="M0 0-70 70A99 99 0 0 1-70-70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="75-superior" d="M0 0-70-70A99 99 0 0 1 70-70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="75-derecha" d="M0 0 70-70A99 99 0 0 1 70 70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="75-inferior" d="M0 0 70 70A99 99 0 0 1-70 70Z" onclick="operacion(this.id)" fill="#ffffff"/>
                     </g>
                 </svg>
             </h:panelGrid>
@@ -446,160 +510,160 @@
             <h:panelGrid>
                 <svg width="50" height="50" viewBox="0 0 200 200">
                     <g transform="translate(100,100)" stroke="#000" stroke-width="2">
-                        <path id="48-izquierda" d="M0 0-70 70A99 99 0 0 1-70-70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="48-superior" d="M0 0-70-70A99 99 0 0 1 70-70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="48-derecha" d="M0 0 70-70A99 99 0 0 1 70 70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="48-inferior" d="M0 0 70 70A99 99 0 0 1-70 70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
+                        <path id="48-izquierda" d="M0 0-70 70A99 99 0 0 1-70-70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="48-superior" d="M0 0-70-70A99 99 0 0 1 70-70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="48-derecha" d="M0 0 70-70A99 99 0 0 1 70 70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="48-inferior" d="M0 0 70 70A99 99 0 0 1-70 70Z" onclick="operacion(this.id)" fill="#ffffff"/>
                     </g>
                 </svg>
             </h:panelGrid>
             <h:panelGrid>
                 <svg width="50" height="50" viewBox="0 0 200 200">
                     <g transform="translate(100,100)" stroke="#000" stroke-width="2">
-                        <path id="47-izquierda" d="M0 0-70 70A99 99 0 0 1-70-70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="47-superior" d="M0 0-70-70A99 99 0 0 1 70-70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="47-derecha" d="M0 0 70-70A99 99 0 0 1 70 70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="47-inferior" d="M0 0 70 70A99 99 0 0 1-70 70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
+                        <path id="47-izquierda" d="M0 0-70 70A99 99 0 0 1-70-70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="47-superior" d="M0 0-70-70A99 99 0 0 1 70-70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="47-derecha" d="M0 0 70-70A99 99 0 0 1 70 70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="47-inferior" d="M0 0 70 70A99 99 0 0 1-70 70Z" onclick="operacion(this.id)" fill="#ffffff"/>
                     </g>
                 </svg>
             </h:panelGrid>
             <h:panelGrid>
                 <svg width="50" height="50" viewBox="0 0 200 200">
                     <g transform="translate(100,100)" stroke="#000" stroke-width="2">
-                        <path id="46-izquierda" d="M0 0-70 70A99 99 0 0 1-70-70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="46-superior" d="M0 0-70-70A99 99 0 0 1 70-70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="46-derecha" d="M0 0 70-70A99 99 0 0 1 70 70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="46-inferior" d="M0 0 70 70A99 99 0 0 1-70 70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
+                        <path id="46-izquierda" d="M0 0-70 70A99 99 0 0 1-70-70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="46-superior" d="M0 0-70-70A99 99 0 0 1 70-70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="46-derecha" d="M0 0 70-70A99 99 0 0 1 70 70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="46-inferior" d="M0 0 70 70A99 99 0 0 1-70 70Z" onclick="operacion(this.id)" fill="#ffffff"/>
                     </g>
                 </svg>
             </h:panelGrid>
             <h:panelGrid>
                 <svg width="50" height="50" viewBox="0 0 200 200">
                     <g transform="translate(100,100)" stroke="#000" stroke-width="2">
-                        <path id="45-izquierda" d="M0 0-70 70A99 99 0 0 1-70-70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="45-superior" d="M0 0-70-70A99 99 0 0 1 70-70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="45-derecha" d="M0 0 70-70A99 99 0 0 1 70 70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="45-inferior" d="M0 0 70 70A99 99 0 0 1-70 70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
+                        <path id="45-izquierda" d="M0 0-70 70A99 99 0 0 1-70-70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="45-superior" d="M0 0-70-70A99 99 0 0 1 70-70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="45-derecha" d="M0 0 70-70A99 99 0 0 1 70 70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="45-inferior" d="M0 0 70 70A99 99 0 0 1-70 70Z" onclick="operacion(this.id)" fill="#ffffff"/>
                     </g>
                 </svg>
             </h:panelGrid>
             <h:panelGrid>
                 <svg width="50" height="50" viewBox="0 0 200 200">
                     <g transform="translate(100,100)" stroke="#000" stroke-width="2">
-                        <path id="44-izquierda" d="M0 0-70 70A99 99 0 0 1-70-70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="44-superior" d="M0 0-70-70A99 99 0 0 1 70-70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="44-derecha" d="M0 0 70-70A99 99 0 0 1 70 70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="44-inferior" d="M0 0 70 70A99 99 0 0 1-70 70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
+                        <path id="44-izquierda" d="M0 0-70 70A99 99 0 0 1-70-70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="44-superior" d="M0 0-70-70A99 99 0 0 1 70-70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="44-derecha" d="M0 0 70-70A99 99 0 0 1 70 70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="44-inferior" d="M0 0 70 70A99 99 0 0 1-70 70Z" onclick="operacion(this.id)" fill="#ffffff"/>
                     </g>
                 </svg>
             </h:panelGrid>
             <h:panelGrid>
                 <svg width="50" height="50" viewBox="0 0 200 200">
                     <g transform="translate(100,100)" stroke="#000" stroke-width="2">
-                        <path id="43-izquierda" d="M0 0-70 70A99 99 0 0 1-70-70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="43-superior" d="M0 0-70-70A99 99 0 0 1 70-70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="43-derecha" d="M0 0 70-70A99 99 0 0 1 70 70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="43-inferior" d="M0 0 70 70A99 99 0 0 1-70 70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
+                        <path id="43-izquierda" d="M0 0-70 70A99 99 0 0 1-70-70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="43-superior" d="M0 0-70-70A99 99 0 0 1 70-70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="43-derecha" d="M0 0 70-70A99 99 0 0 1 70 70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="43-inferior" d="M0 0 70 70A99 99 0 0 1-70 70Z" onclick="operacion(this.id)" fill="#ffffff"/>
                     </g>
                 </svg>
             </h:panelGrid>
             <h:panelGrid>
                 <svg width="50" height="50" viewBox="0 0 200 200">
                     <g transform="translate(100,100)" stroke="#000" stroke-width="2">
-                        <path id="42-izquierda" d="M0 0-70 70A99 99 0 0 1-70-70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="42-superior" d="M0 0-70-70A99 99 0 0 1 70-70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="42-derecha" d="M0 0 70-70A99 99 0 0 1 70 70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="42-inferior" d="M0 0 70 70A99 99 0 0 1-70 70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
+                        <path id="42-izquierda" d="M0 0-70 70A99 99 0 0 1-70-70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="42-superior" d="M0 0-70-70A99 99 0 0 1 70-70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="42-derecha" d="M0 0 70-70A99 99 0 0 1 70 70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="42-inferior" d="M0 0 70 70A99 99 0 0 1-70 70Z" onclick="operacion(this.id)" fill="#ffffff"/>
                     </g>
                 </svg>
             </h:panelGrid>
             <h:panelGrid>
                 <svg width="50" height="50" viewBox="0 0 200 200">
                     <g transform="translate(100,100)" stroke="#000" stroke-width="2">
-                        <path id="41-izquierda" d="M0 0-70 70A99 99 0 0 1-70-70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="41-superior" d="M0 0-70-70A99 99 0 0 1 70-70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="41-derecha" d="M0 0 70-70A99 99 0 0 1 70 70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="41-inferior" d="M0 0 70 70A99 99 0 0 1-70 70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
+                        <path id="41-izquierda" d="M0 0-70 70A99 99 0 0 1-70-70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="41-superior" d="M0 0-70-70A99 99 0 0 1 70-70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="41-derecha" d="M0 0 70-70A99 99 0 0 1 70 70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="41-inferior" d="M0 0 70 70A99 99 0 0 1-70 70Z" onclick="operacion(this.id)" fill="#ffffff"/>
                     </g>
                 </svg>
             </h:panelGrid>
             <h:panelGrid>
                 <svg width="50" height="50" viewBox="0 0 200 200">
                     <g transform="translate(100,100)" stroke="#000" stroke-width="2">
-                        <path id="31-izquierda" d="M0 0-70 70A99 99 0 0 1-70-70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="31-superior" d="M0 0-70-70A99 99 0 0 1 70-70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="31-derecha" d="M0 0 70-70A99 99 0 0 1 70 70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="31-inferior" d="M0 0 70 70A99 99 0 0 1-70 70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
+                        <path id="31-izquierda" d="M0 0-70 70A99 99 0 0 1-70-70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="31-superior" d="M0 0-70-70A99 99 0 0 1 70-70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="31-derecha" d="M0 0 70-70A99 99 0 0 1 70 70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="31-inferior" d="M0 0 70 70A99 99 0 0 1-70 70Z" onclick="operacion(this.id)" fill="#ffffff"/>
                     </g>
                 </svg>
             </h:panelGrid>
             <h:panelGrid>
                 <svg width="50" height="50" viewBox="0 0 200 200">
                     <g transform="translate(100,100)" stroke="#000" stroke-width="2">
-                        <path id="32-izquierda" d="M0 0-70 70A99 99 0 0 1-70-70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="32-superior" d="M0 0-70-70A99 99 0 0 1 70-70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="32-derecha" d="M0 0 70-70A99 99 0 0 1 70 70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="32-inferior" d="M0 0 70 70A99 99 0 0 1-70 70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
+                        <path id="32-izquierda" d="M0 0-70 70A99 99 0 0 1-70-70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="32-superior" d="M0 0-70-70A99 99 0 0 1 70-70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="32-derecha" d="M0 0 70-70A99 99 0 0 1 70 70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="32-inferior" d="M0 0 70 70A99 99 0 0 1-70 70Z" onclick="operacion(this.id)" fill="#ffffff"/>
                     </g>
                 </svg>
             </h:panelGrid>
             <h:panelGrid>
                 <svg width="50" height="50" viewBox="0 0 200 200">
                     <g transform="translate(100,100)" stroke="#000" stroke-width="2">
-                        <path id="33-izquierda" d="M0 0-70 70A99 99 0 0 1-70-70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="33-superior" d="M0 0-70-70A99 99 0 0 1 70-70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="33-derecha" d="M0 0 70-70A99 99 0 0 1 70 70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="33-inferior" d="M0 0 70 70A99 99 0 0 1-70 70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
+                        <path id="33-izquierda" d="M0 0-70 70A99 99 0 0 1-70-70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="33-superior" d="M0 0-70-70A99 99 0 0 1 70-70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="33-derecha" d="M0 0 70-70A99 99 0 0 1 70 70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="33-inferior" d="M0 0 70 70A99 99 0 0 1-70 70Z" onclick="operacion(this.id)" fill="#ffffff"/>
                     </g>
                 </svg>
             </h:panelGrid>
             <h:panelGrid>
                 <svg width="50" height="50" viewBox="0 0 200 200">
                     <g transform="translate(100,100)" stroke="#000" stroke-width="2">
-                        <path id="34-izquierda" d="M0 0-70 70A99 99 0 0 1-70-70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="34-superior" d="M0 0-70-70A99 99 0 0 1 70-70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="34-derecha" d="M0 0 70-70A99 99 0 0 1 70 70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="34-inferior" d="M0 0 70 70A99 99 0 0 1-70 70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
+                        <path id="34-izquierda" d="M0 0-70 70A99 99 0 0 1-70-70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="34-superior" d="M0 0-70-70A99 99 0 0 1 70-70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="34-derecha" d="M0 0 70-70A99 99 0 0 1 70 70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="34-inferior" d="M0 0 70 70A99 99 0 0 1-70 70Z" onclick="operacion(this.id)" fill="#ffffff"/>
                     </g>
                 </svg>
             </h:panelGrid>
             <h:panelGrid>
                 <svg width="50" height="50" viewBox="0 0 200 200">
                     <g transform="translate(100,100)" stroke="#000" stroke-width="2">
-                        <path id="35-izquierda" d="M0 0-70 70A99 99 0 0 1-70-70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="35-superior" d="M0 0-70-70A99 99 0 0 1 70-70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="35-derecha" d="M0 0 70-70A99 99 0 0 1 70 70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="35-inferior" d="M0 0 70 70A99 99 0 0 1-70 70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
+                        <path id="35-izquierda" d="M0 0-70 70A99 99 0 0 1-70-70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="35-superior" d="M0 0-70-70A99 99 0 0 1 70-70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="35-derecha" d="M0 0 70-70A99 99 0 0 1 70 70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="35-inferior" d="M0 0 70 70A99 99 0 0 1-70 70Z" onclick="operacion(this.id)" fill="#ffffff"/>
                     </g>
                 </svg>
             </h:panelGrid>
             <h:panelGrid>
                 <svg width="50" height="50" viewBox="0 0 200 200">
                     <g transform="translate(100,100)" stroke="#000" stroke-width="2">
-                        <path id="36-izquierda" d="M0 0-70 70A99 99 0 0 1-70-70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="36-superior" d="M0 0-70-70A99 99 0 0 1 70-70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="36-derecha" d="M0 0 70-70A99 99 0 0 1 70 70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="36-inferior" d="M0 0 70 70A99 99 0 0 1-70 70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
+                        <path id="36-izquierda" d="M0 0-70 70A99 99 0 0 1-70-70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="36-superior" d="M0 0-70-70A99 99 0 0 1 70-70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="36-derecha" d="M0 0 70-70A99 99 0 0 1 70 70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="36-inferior" d="M0 0 70 70A99 99 0 0 1-70 70Z" onclick="operacion(this.id)" fill="#ffffff"/>
                     </g>
                 </svg>
             </h:panelGrid>
             <h:panelGrid>
                 <svg width="50" height="50" viewBox="0 0 200 200">
                     <g transform="translate(100,100)" stroke="#000" stroke-width="2">
-                        <path id="37-izquierda" d="M0 0-70 70A99 99 0 0 1-70-70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="37-superior" d="M0 0-70-70A99 99 0 0 1 70-70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="37-derecha" d="M0 0 70-70A99 99 0 0 1 70 70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="37-inferior" d="M0 0 70 70A99 99 0 0 1-70 70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
+                        <path id="37-izquierda" d="M0 0-70 70A99 99 0 0 1-70-70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="37-superior" d="M0 0-70-70A99 99 0 0 1 70-70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="37-derecha" d="M0 0 70-70A99 99 0 0 1 70 70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="37-inferior" d="M0 0 70 70A99 99 0 0 1-70 70Z" onclick="operacion(this.id)" fill="#ffffff"/>
                     </g>
                 </svg>
             </h:panelGrid>
             <h:panelGrid>
                 <svg width="50" height="50" viewBox="0 0 200 200">
                     <g transform="translate(100,100)" stroke="#000" stroke-width="2">
-                        <path id="38-izquierda" d="M0 0-70 70A99 99 0 0 1-70-70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="38-superior" d="M0 0-70-70A99 99 0 0 1 70-70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="38-derecha" d="M0 0 70-70A99 99 0 0 1 70 70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
-                        <path id="38-inferior" d="M0 0 70 70A99 99 0 0 1-70 70Z" onclick="operacion(this.id)" value="ffffff" fill="#ffffff" />
+                        <path id="38-izquierda" d="M0 0-70 70A99 99 0 0 1-70-70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="38-superior" d="M0 0-70-70A99 99 0 0 1 70-70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="38-derecha" d="M0 0 70-70A99 99 0 0 1 70 70Z" onclick="operacion(this.id)" fill="#ffffff"/>
+                        <path id="38-inferior" d="M0 0 70 70A99 99 0 0 1-70 70Z" onclick="operacion(this.id)" fill="#ffffff"/>
                     </g>
                 </svg>
             </h:panelGrid>
@@ -611,7 +675,7 @@
             <h:outputLabel value="44"/>
             <h:outputLabel value="43"/>
             <h:outputLabel value="42"/>
-            <h:outputLabel value="31"/>
+            <h:outputLabel value="41"/>
             <h:outputLabel value="31"/>
             <h:outputLabel value="32"/>
             <h:outputLabel value="33"/>
@@ -621,6 +685,7 @@
             <h:outputLabel value="37"/>
             <h:outputLabel value="38"/>
         </p:panelGrid>
+
     </p:panel>
 
 </html>

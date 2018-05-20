@@ -24,6 +24,8 @@ public class FormaResidual  implements java.io.Serializable {
      //private Set atms = new HashSet(0);
 
     public FormaResidual() {
+        residualMandibular=new ResidualMandibular();
+        residualMaxilar = new ResidualMaxilar();
     }
 
 	

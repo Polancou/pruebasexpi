@@ -89,7 +89,7 @@
                                         <f:selectItem itemLabel="Si" itemValue="Si" />
                                         <f:selectItem itemLabel="No" itemValue="No" />
                                     </p:selectOneRadio>
-                                    <p:selectManyCheckbox id="grid3" value="#{ExamenOrofacial.habitosTension}" layout="responsive" columns="1">
+                                    <p:selectManyCheckbox id="grid3" value="#{ExamenOrofacial.habitosTensionList}" layout="responsive" columns="1">
                                         <f:selectItem itemLabel="Bruxismo" itemValue="Bruxismo"/>
                                         <f:selectItem itemLabel="Unicofagia" itemValue="Unicofagia"/>
                                         <f:selectItem itemLabel="Succión labial" itemValue="Succión labial"/>
@@ -132,7 +132,7 @@
                             <p:panel>
                                 <h:panelGrid columns="2" cellpadding="5">
                                     <h4>Tamaño de la lengua</h4>
-                                    <p:selectOneRadio id="lengua" value="#{ExamenOrofacial}">
+                                    <p:selectOneRadio id="lengua" value="#{ExamenOrofacial.atm.tamanoLengua}">
                                         <f:selectItem itemLabel="Normal" itemValue="Normal"/>
                                         <f:selectItem itemLabel="Mediana" itemValue="Mediana"/>
                                         <f:selectItem itemLabel="Grande" itemValue="Grande"/>
@@ -224,7 +224,7 @@
                             <p:spacer/>
                             <h:panelGrid columns="2" cellpadding="5">
                                 <h:outputLabel value="Contacto dentario anterior en oclusión céntrica"/>
-                                <p:inputText id="contactodentario" value=""/>
+                                <p:inputText id="contactodentario" value="#{ExamenOrofacial.analisisOclusion.contactoDentatorio}"/>
                             </h:panelGrid>
                             <p:spacer/>
                             <p:panel>
@@ -279,7 +279,7 @@
                                     <p:inputText id="duracion" value="#{ExamenOrofacial.dolor.duracion}" />
                                     <p:outputLabel value="Estímulo"/>
                                     <h:panelGrid columns="1" cellpadding="5">
-                                        <p:selectOneRadio id="estimulo">
+                                        <p:selectOneRadio id="estimulo" value="#{ExamenOrofacial.dolor.estimulo}">
                                             <f:selectItem itemLabel="Frío" itemValue="Frio" />
                                             <f:selectItem itemLabel="Calor" itemValue="Calor" />
                                             <f:selectItem itemLabel="Ácido" itemValue="Acido" />
@@ -295,13 +295,13 @@
                                 <h:panelGrid>
                                     <h4>Lesión pulpar</h4>
                                     <h:panelGrid columns="3" cellpadding="5">
-                                        <p:selectOneRadio id="lesionpulpar">
+                                        <p:selectOneRadio id="lesionpulpar" value="#{ExamenOrofacial.examenOral.lesionPulpar}">
                                             <f:selectItem itemLabel="Física" itemValue="Fisica"/>
                                             <f:selectItem itemLabel="Química" itemValue="Quimica"/>
                                             <f:selectItem itemLabel="Bacteriana" itemValue="Bacteriana"/>
                                         </p:selectOneRadio>
                                         <p:outputLabel for="otralesionpulpar" value="Otra "/>
-                                        <p:inputText id="otralesionpulpar" value="" />
+                                        <p:inputText id="otralesionpulpar" value="#{ExamenOrofacial.examenOral.lesionPulpar}" />
                                     </h:panelGrid>
                                 </h:panelGrid>
                             </p:panel>
@@ -311,12 +311,12 @@
                                 <h:panelGrid columns="1" cellpadding="5">
                                     <h4>Exposición pulpar por</h4>
                                     <h:panelGrid columns="3" cellpadding="5">
-                                        <p:selectOneRadio id="exposicionpulpar">
+                                        <p:selectOneRadio id="exposicionpulpar" value="#{ExamenOrofacial.examenOral.exposicionPulpar}">
                                             <f:selectItem itemLabel="Caries" itemValue="Caries"/>
                                             <f:selectItem itemLabel="Fractura" itemValue="Fractura"/>
                                         </p:selectOneRadio>
                                         <p:outputLabel value="Otra "/>
-                                        <p:inputText id="otraexposicionpulpar" value=""/>
+                                        <p:inputText id="otraexposicionpulpar" value="#{ExamenOrofacial.examenOral.exposicionPulpar}"/>
                                     </h:panelGrid>
                                 </h:panelGrid>
                             </p:panel>
@@ -325,7 +325,7 @@
                                 <h4>Inflamación</h4>
                                 <h:panelGrid columns="2" cellpadding="5">
 
-                                    <p:selectOneRadio>
+                                    <p:selectOneRadio value="#{ExamenOrofacial.examenOral.inflamacion}">
                                         <f:selectItem itemLabel="Extraoral" itemValue="Extraoral"/>
                                         <f:selectItem itemLabel="Intraoral" itemValue="Intraoral"/>
                                         <f:selectItem itemLabel="Endurecida" itemValue="Endurecida"/>
@@ -343,10 +343,10 @@
                                         <h4>Frío</h4>
                                         <h:panelGrid columns="2" cellpadding="5">
                                             <p:outputLabel value="Organo dentario testigo "/>
-                                            <p:inputText id="organofrio" value=""/>
+                                            <p:inputText id="organofrio" value="#{ExamenOrofacial.pruebasFrio.organo}"/>
                                         </h:panelGrid>
                                         <p:spacer/>
-                                        <p:selectOneRadio id="pruebasfrio">
+                                        <p:selectOneRadio id="pruebasfrio" value="#{ExamenOrofacial.pruebasTermicas.pruebasFrio}">
                                             <f:selectItem itemLabel="Normal" itemValue="Normal"/>
                                             <f:selectItem itemLabel="Fugaz" itemValue="Fugaz"/>
                                             <f:selectItem itemLabel="Ninguno" itemValue="Ninguno"/>
@@ -361,10 +361,10 @@
                                         <h4>Calor</h4>
                                         <h:panelGrid columns="2" cellpadding="5">
                                             <p:outputLabel value="Organo dentario testigo "/>
-                                            <p:inputText id="organocalor" value=""/>
+                                            <p:inputText id="organocalor" value="#{ExamenOrofacial.pruebasCalor.organo}"/>
                                         </h:panelGrid>
                                         <p:spacer/>
-                                        <p:selectOneRadio id="pruebascalor">
+                                        <p:selectOneRadio id="pruebascalor" value="#{ExamenOrofacial.pruebasTermicas.pruebasCalor}">
                                             <f:selectItem itemLabel="Normal" itemValue="Normal"/>
                                             <f:selectItem itemLabel="Fugaz" itemValue="Fugaz"/>
                                             <f:selectItem itemLabel="Ninguno" itemValue="Ninguno"/>
@@ -386,16 +386,16 @@
                                     <h:panelGrid columns="2" cellpadding="5">
                                        <h:panelGrid columns="2" cellpadding="5">
                                            <p:outputLabel value="Organo dentario testigo "/>
-                                           <p:inputText id="organopercusion" value=""/>
+                                           <p:inputText id="organopercusion" value="#{ExamenOrofacial.pruebaPercusion.organo}"/>
                                        </h:panelGrid>
                                        <p:spacer/>
                                        <h:panelGrid columns="2" cellpadding="5">
                                            <p:outputLabel value="Vertical (++ / --)"/>
-                                           <p:inputText id="vertical" value=""/>
+                                           <p:inputText id="vertical" value="#{ExamenOrofacial.pruebaPercusion.vertical}"/>
                                            <p:outputLabel value="Horizontal (++ / --)"/>
-                                           <p:inputText id="horizontal" value=""/>
+                                           <p:inputText id="horizontal" value="#{ExamenOrofacial.pruebaPercusion.horizontal}"/>
                                            <p:outputLabel value="Palpación (++ / --)" />
-                                           <p:inputText id="palpacion" value=""/>
+                                           <p:inputText id="palpacion" value="#{ExamenOrofacial.pruebaPercusion.palpacion}"/>
                                        </h:panelGrid>
                                     </h:panelGrid>
                                 </p:panel>
@@ -409,23 +409,23 @@
                             <h2>Hallazgos radiográficos</h2>
                             <h:panelGrid columns="2" cellpadding="5">
                                 <p:outputLabel value="Tipo de Rx"/>
-                                <p:selectOneRadio id="tiporx">
+                                <p:selectOneRadio id="tiporx" value="#{ExamenOrofacial.hallazgosRadiograficos.tipoRx}">
                                     <f:selectItem itemLabel="Periapical" itemValue="Periapical"/>
                                     <f:selectItem itemLabel="Oclusal" itemValue="Oclusal"/>
                                     <f:selectItem itemLabel="Panorámica" itemValue="Panoramica"/>
                                 </p:selectOneRadio>
                                 <p:outputLabel value="Soporte óseo"/>
-                                <p:inputText id="soporteoseo" value=""/>
+                                <p:inputText id="soporteoseo" value="#{ExamenOrofacial.hallazgosRadiograficos.soporteOseo}"/>
                                 <p:outputLabel value="Relación corona-raíz"/>
-                                <p:inputText id="corona_raiz" value=""/>
+                                <p:inputText id="corona_raiz" value="#{ExamenOrofacial.hallazgosRadiograficos.relacionCoronaRaiz}"/>
                                 <p:outputLabel value="Altura de roborde"/>
-                                <p:inputText id="alturareborde" value=""/>
+                                <p:inputText id="alturareborde" value="#{ExamenOrofacial.hallazgosRadiograficos.alturaReborde}"/>
                                 <p:outputLabel value="Engrosamiento de ligamento periodontal"/>
-                                <p:inputText id="engrosamiento" value=""/>
+                                <p:inputText id="engrosamiento" value="#{ExamenOrofacial.hallazgosRadiograficos.engrosamientoLigamentoPeriodontal}"/>
                                 <p:spacer/>
                                 <p:spacer/>
                                 <p:outputLabel value="Interpretación radiográfica"/>
-                                <p:inputTextarea rows="6" cols="33" id="interpretacionradiograf" value=""/>
+                                <p:inputTextarea rows="6" cols="33" id="interpretacionradiograf" value="#{ExamenOrofacial.hallazgosRadiograficos.interpretacion}"/>
                             </h:panelGrid>
                         </h:panelGrid>
                     </p:panel>

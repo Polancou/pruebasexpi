@@ -6,6 +6,7 @@
 package sys.bean;
 
 import java.io.Serializable;
+import java.util.AbstractList;
 import java.util.List;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
@@ -48,6 +49,7 @@ public class BeanExaOrofacial implements Serializable{
     private Torus torus;
     private Desviacion desciacion;
     private HabitosTension habitosTension;
+    private String[] habitosTensionList;
     private Atm atm;
     private MovimientoMandibular movimientoMandibular;
     private ResidualMandibular respiracionMandibular;
@@ -58,13 +60,29 @@ public class BeanExaOrofacial implements Serializable{
     private Cara cara;
     private ExamenOrofacial examenOrofacial;
     private List<String> listaHabitosTension;
-
-    public List<String> getListaHabitosTension() {
-        return listaHabitosTension;
-    }
-
-    public void setListaHabitosTension(List<String> listaHabitosTension) {
-        this.listaHabitosTension = listaHabitosTension;
+    
+    public BeanExaOrofacial (){
+        torus= new Torus();
+        pruebasCalor = new PruebasCalor();
+        analisisOclusion = new AnalisisOclusion();
+        atm = new Atm();
+        cara = new Cara();
+        desciacion = new Desviacion();
+        dolor= new Dolor();
+        examenOral = new ExamenOral();
+        examenOrofacial = new ExamenOrofacial();
+        formaResidual = new FormaResidual();
+        habitosTension = new HabitosTension();
+        hallazgosRadiograficos = new HallazgosRadiograficos();
+        movimientoMandibular=new MovimientoMandibular();
+        pruebaPercusion = new PruebaPercusion();
+        pruebasCalor = new PruebasCalor();
+        pruebasFrio =new PruebasFrio();
+        pruebasTermicas=new PruebasTermicas();
+        relacionIncisal = new RelacionIncisal();
+        residualMandibular = new ResidualMandibular();
+        respiracionMandibular = new ResidualMandibular();
+        sistemaEstomatognatico = new SistemaEstomatognatico();
     }
 
     public BeanExaOrofacial(PruebasFrio pruebasFrio, PruebasCalor pruebasCalor, PruebasTermicas pruebasTermicas, PruebaPercusion pruebaPercusion, Dolor dolor, ExamenOral examenOral, ResidualMandibular residualMandibular, FormaResidual formaResidual, Torus torus, Desviacion desciacion, HabitosTension habitosTension, Atm atm, MovimientoMandibular movimientoMandibular, ResidualMandibular respiracionMandibular, RelacionIncisal relacionIncisal, AnalisisOclusion analisisOclusion, HallazgosRadiograficos hallazgosRadiograficos, SistemaEstomatognatico sistemaEstomatognatico, Cara cara, ExamenOrofacial examenOrofacial, List<String> listaHabitosTension) {
@@ -91,6 +109,22 @@ public class BeanExaOrofacial implements Serializable{
         this.listaHabitosTension = listaHabitosTension;
     }
 
+    public List<String> getListaHabitosTension() {
+        return listaHabitosTension;
+    }
+
+    public void setListaHabitosTension(List<String> listaHabitosTension) {
+        this.listaHabitosTension = listaHabitosTension;
+    }
+
+    public String[] getHabitosTensionList() {
+        return habitosTensionList;
+    }
+
+    public void setHabitosTensionList(String[] habitosTensionList) {
+        this.habitosTensionList = habitosTensionList;
+    }
+    
     public PruebasFrio getPruebasFrio() {
         return pruebasFrio;
     }
