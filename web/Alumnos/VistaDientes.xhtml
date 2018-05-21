@@ -44,34 +44,52 @@
             }
             ;
         </script>
+        <style>
+            .imgpeque{
+                height:25px;
+                width: 25px;
+            }
+            .normalpic{
+                max-height: 75%;
+                height:auto;
+                width:auto;
+                max-width: 75%;
+            }
+            .temporales{
+                max-height: 75px;
+                height:auto;
+                width: auto;
+                max-width: 75x;
+            }
+        </style>
         <p:remoteCommand name="imagecommand" action="#{vistaDientes.pruebas}" process="@this" />
         <p:panelGrid class="panelGridCenter">
 
             <h:panelGrid class="panelGridCenter" cellspacing="5">
                 <h3>Seleccione una de las siguientes opciones:</h3>
-                <p:panelGrid columns="3" class="panelGridCenter">
-                    
-                    <p:outputLabel value="No esá el diente"/>
+                <p:panelGrid columns="2" class="panelGridCenter">
+
+                    <p:outputLabel value="No está¡ el diente"/>
                     <input type="radio" id="none" name="opciones" value="0"/>
-                    <p:graphicImage library="svg" name="tache.png" height="5%"/>
-                    
+                    <img src="svg/tache.png" class="imgpeque"/>
+
                     <p:outputLabel value="Obturación"/>
                     <input type="radio" id="obturacion" name="opciones" value="1"/>
-                    <p:graphicImage library="svg" name="svg/azul.png" height="5%"/>
-                    
+                    <img src="svg/azul.png" class="imgpeque"/>
+
                     <p:outputLabel value="Caries"/>
                     <input type="radio" id="caries" name="opciones" value="2"/>
-                    <p:graphicImage library="svg" name="rojo.png" height="5%"/>
-                    
+                    <img src="svg/rojo.png" class="imgpeque"/>
+
                     <p:outputLabel value="Obturación con caries"/>
                     <input type="radio" id="obtucaries" name="opciones" value="3"/>
-                    <p:graphicImage library="svg" name="amarillo.png" height="5%"/>
-                    
+                    <img src="svg/amarillo.png" class="imgpeque"/>
+
                     <p:outputLabel value="Deshacer cambios"/>
                     <input type="radio" id="restab" name="opciones" value="4"/>
-                    <p:graphicImage library="svg" name="reset.png" height="5%"/>
+                    <img src="svg/reset.png" class="imgpeque"/>
                 </p:panelGrid>
-                
+
             </h:panelGrid>
             <h:panelGrid class="panelGridCenter">
                 <h3>Seleccione los dientes afectados:</h3>
@@ -95,53 +113,53 @@
                 <h:outputLabel value="28"/>
 
                 <h:panelGrid>
-                   <img src="svg/11-18/18.png" onclick="estado(this.id)" value="11-18" id="diente18" height="75%"/> 
+                    <img src="svg/11-18/18.png" onclick="estado(this.id)" class="normalpic" value="11-18" id="diente18" /> 
                 </h:panelGrid>
                 <h:panelGrid>
-                    <img src="svg/11-18/17.png" onclick="estado(this.id)" value="11-18" id="diente17" height="75%"/>
+                    <img src="svg/11-18/17.png" onclick="estado(this.id)" value="11-18" id="diente17" class="normalpic"/>
                 </h:panelGrid>
                 <h:panelGrid>
-                    <img src="svg/11-18/16.png" onclick="estado(this.id)" value="11-18" id="diente16" height="75%"/>
+                    <img src="svg/11-18/16.png" onclick="estado(this.id)" value="11-18" id="diente16" class="normalpic"/>
                 </h:panelGrid>
                 <h:panelGrid>
-                    <img src="svg/11-18/15.png" onclick="estado(this.id)" value="11-18" id="diente15" height="75%"/>
+                    <img src="svg/11-18/15.png" onclick="estado(this.id)" value="11-18" id="diente15" class="normalpic"/>
                 </h:panelGrid>
                 <h:panelGrid>
-                    <img src="svg/11-18/14.png" onclick="estado(this.id)" value="11-18" id="diente14" height="75%"/>
+                    <img src="svg/11-18/14.png" onclick="estado(this.id)" value="11-18" id="diente14" class="normalpic"/>
                 </h:panelGrid>
                 <h:panelGrid>
-                    <img src="svg/11-18/13.png" onclick="estado(this.id)" value="11-18" id="diente13" height="75%"/>
+                    <img src="svg/11-18/13.png" onclick="estado(this.id)" value="11-18" id="diente13" class="normalpic"/>
                 </h:panelGrid>
                 <h:panelGrid>
-                    <img src="svg/11-18/12.png" onclick="estado(this.id)" value="11-18" id="diente12" height="75%"/>
+                    <img src="svg/11-18/12.png" onclick="estado(this.id)" value="11-18" id="diente12" class="normalpic"/>
                 </h:panelGrid>
                 <h:panelGrid>
-                    <img src="svg/11-18/11.png" onclick="estado(this.id)" value="11-18" id="diente11" height="75%"/>
+                    <img src="svg/11-18/11.png" onclick="estado(this.id)" value="11-18" id="diente11" class="normalpic"/>
                 </h:panelGrid>
 
                 <h:panelGrid>
-                    <img src="svg/21-28/21.png" onclick="estado(this.id)" value="21-28" id="diente21" height="75%"/>
+                    <img src="svg/21-28/21.png" onclick="estado(this.id)" value="21-28" id="diente21" class="normalpic"/>
                 </h:panelGrid>
                 <h:panelGrid>
-                    <img src="svg/21-28/22.png" onclick="estado(this.id)" value="21-28" id="diente22" height="75%"/>
+                    <img src="svg/21-28/22.png" onclick="estado(this.id)" value="21-28" id="diente22" class="normalpic"/>
                 </h:panelGrid>
                 <h:panelGrid>
-                    <img src="svg/21-28/23.png" onclick="estado(this.id)" value="21-28" id="diente23" height="75%"/>
+                    <img src="svg/21-28/23.png" onclick="estado(this.id)" value="21-28" id="diente23" class="normalpic"/>
                 </h:panelGrid>
                 <h:panelGrid>
-                    <img src="svg/21-28/24.png" onclick="estado(this.id)" value="21-28" id="diente24" height="75%"/>
+                    <img src="svg/21-28/24.png" onclick="estado(this.id)" value="21-28" id="diente24" class="normalpic"/>
                 </h:panelGrid>
                 <h:panelGrid>
-                    <img src="svg/21-28/25.png" onclick="estado(this.id)" value="21-28" id="diente25" height="75%"/>
+                    <img src="svg/21-28/25.png" onclick="estado(this.id)" value="21-28" id="diente25" class="normalpic"/>
                 </h:panelGrid>
                 <h:panelGrid>
-                    <img src="svg/21-28/26.png" onclick="estado(this.id)" value="21-28" id="diente26" height="75%"/>
+                    <img src="svg/21-28/26.png" onclick="estado(this.id)" value="21-28" id="diente26" class="normalpic"/>
                 </h:panelGrid>
                 <h:panelGrid>
-                    <img src="svg/21-28/27.png" onclick="estado(this.id)" value="21-28" id="diente27" height="75%"/>
+                    <img src="svg/21-28/27.png" onclick="estado(this.id)" value="21-28" id="diente27" class="normalpic"/>
                 </h:panelGrid>
                 <h:panelGrid>
-                    <img src="svg/21-28/28.png" onclick="estado(this.id)" value="21-28" id="diente28" height="75%"/>
+                    <img src="svg/21-28/28.png" onclick="estado(this.id)" value="21-28" id="diente28" class="normalpic"/>
                 </h:panelGrid>
 
             </p:panelGrid>
@@ -150,35 +168,35 @@
 
             <p:panelGrid columns="10" class="panelGridCenter">
                 <h:panelGrid>
-                    <img src="svg/51-55/55.png" onclick="estado(this.id)" value="51-55" id="diente55" height="25%"/>
+                    <img src="svg/51-55/55.png" onclick="estado(this.id)" value="51-55" id="diente55" class="temporales"/>
                 </h:panelGrid>
                 <h:panelGrid>
-                    <img src="svg/51-55/54.png" onclick="estado(this.id)" value="51-55" id="diente54" height="25%"/>
+                    <img src="svg/51-55/54.png" onclick="estado(this.id)" value="51-55" id="diente54" class="temporales"/>
                 </h:panelGrid>
                 <h:panelGrid>
-                    <img src="svg/51-55/53.png" onclick="estado(this.id)" value="51-55" id="diente53" height="25%"/>
+                    <img src="svg/51-55/53.png" onclick="estado(this.id)" value="51-55" id="diente53" class="temporales"/>
                 </h:panelGrid>
                 <h:panelGrid>
-                    <img src="svg/51-55/52.png" onclick="estado(this.id)" value="51-55" id="diente52" height="25%"/>
+                    <img src="svg/51-55/52.png" onclick="estado(this.id)" value="51-55" id="diente52" class="temporales"/>
                 </h:panelGrid>
                 <h:panelGrid>
-                    <img src="svg/51-55/51.png" onclick="estado(this.id)" value="51-55" id="diente51" height="25%"/>
+                    <img src="svg/51-55/51.png" onclick="estado(this.id)" value="51-55" id="diente51" class="temporales"/>
                 </h:panelGrid>
 
                 <h:panelGrid>
-                    <img src="svg/61-65/61.png" onclick="estado(this.id)" value="61-65" id="diente61" height="25%"/>
+                    <img src="svg/61-65/61.png" onclick="estado(this.id)" value="61-65" id="diente61" class="temporales"/>
                 </h:panelGrid>
                 <h:panelGrid>
-                    <img src="svg/61-65/62.png" onclick="estado(this.id)" value="61-65" id="diente62" height="25%"/>
+                    <img src="svg/61-65/62.png" onclick="estado(this.id)" value="61-65" id="diente62" class="temporales"/>
                 </h:panelGrid>
                 <h:panelGrid>
-                    <img src="svg/61-65/63.png" onclick="estado(this.id)" value="61-65" id="diente63" height="25%"/>
+                    <img src="svg/61-65/63.png" onclick="estado(this.id)" value="61-65" id="diente63" class="temporales"/>
                 </h:panelGrid>
                 <h:panelGrid>
-                    <img src="svg/61-65/64.png" onclick="estado(this.id)" value="61-65" id="diente64" height="25%"/>
+                    <img src="svg/61-65/64.png" onclick="estado(this.id)" value="61-65" id="diente64" class="temporales"/>
                 </h:panelGrid>
                 <h:panelGrid>
-                    <img src="svg/61-65/65.png" onclick="estado(this.id)" value="61-65" id="diente65" height="25%"/>
+                    <img src="svg/61-65/65.png" onclick="estado(this.id)" value="61-65" id="diente65" class="temporales"/>
                 </h:panelGrid>
 
                 <h:outputLabel value="55"/>
@@ -206,34 +224,34 @@
                 <h:outputLabel value="75"/>
 
                 <h:panelGrid>
-                    <img src="svg/81-85/85.png" onclick="estado(this.id)" value="81-85" id="diente85" height="25%"/>
+                    <img src="svg/81-85/85.png" onclick="estado(this.id)" value="81-85" id="diente85" class="temporales"/>
                 </h:panelGrid>
                 <h:panelGrid>
-                    <img src="svg/81-85/84.png" onclick="estado(this.id)" value="81-85" id="diente84" height="25%"/>
+                    <img src="svg/81-85/84.png" onclick="estado(this.id)" value="81-85" id="diente84" class="temporales"/>
                 </h:panelGrid>
                 <h:panelGrid>
-                    <img src="svg/81-85/83.png" onclick="estado(this.id)" value="81-85" id="diente83" height="25%"/>
+                    <img src="svg/81-85/83.png" onclick="estado(this.id)" value="81-85" id="diente83" class="temporales"/>
                 </h:panelGrid>
                 <h:panelGrid>
-                    <img src="svg/81-85/82.png" onclick="estado(this.id)" value="81-85" id="diente82" height="25%"/>
+                    <img src="svg/81-85/82.png" onclick="estado(this.id)" value="81-85" id="diente82" class="temporales"/>
                 </h:panelGrid>
                 <h:panelGrid>
-                    <img src="svg/81-85/81.png" onclick="estado(this.id)" value="81-85" id="diente81" height="25%"/>
+                    <img src="svg/81-85/81.png" onclick="estado(this.id)" value="81-85" id="diente81" class="temporales"/>
                 </h:panelGrid>
                 <h:panelGrid>
-                    <img src="svg/71-75/71.png" onclick="estado(this.id)" value="71-75" id="diente71" height="25%"/>
+                    <img src="svg/71-75/71.png" onclick="estado(this.id)" value="71-75" id="diente71" class="temporales"/>
                 </h:panelGrid>
                 <h:panelGrid>
-                    <img src="svg/71-75/72.png" onclick="estado(this.id)" value="71-75" id="diente72" height="25%"/>
+                    <img src="svg/71-75/72.png" onclick="estado(this.id)" value="71-75" id="diente72" class="temporales"/>
                 </h:panelGrid>
                 <h:panelGrid>
-                    <img src="svg/71-75/73.png" onclick="estado(this.id)" value="71-75" id="diente73" height="25%"/>
+                    <img src="svg/71-75/73.png" onclick="estado(this.id)" value="71-75" id="diente73" class="temporales"/>
                 </h:panelGrid>
                 <h:panelGrid>
-                    <img src="svg/71-75/74.png" onclick="estado(this.id)" value="71-75" id="diente74" height="25%"/>
+                    <img src="svg/71-75/74.png" onclick="estado(this.id)" value="71-75" id="diente74" class="temporales"/>
                 </h:panelGrid>
                 <h:panelGrid>
-                    <img src="svg/71-75/75.png" onclick="estado(this.id)" value="71-75" id="diente75" height="25%"/>
+                    <img src="svg/71-75/75.png" onclick="estado(this.id)" value="71-75" id="diente75" class="temporales"/>
                 </h:panelGrid>
             </p:panelGrid>
 
@@ -242,53 +260,53 @@
             <p:panelGrid columns="16" class="panelGridCenter">
 
                 <h:panelGrid>
-                    <img src="svg/41-48/48.png" onclick="estado(this.id)" value="41-48" id="diente48" height="75%"/>
+                    <img src="svg/41-48/48.png" onclick="estado(this.id)" value="41-48" id="diente48" class="normalpic"/>
                 </h:panelGrid>
                 <h:panelGrid>
-                    <img src="svg/41-48/47.png" onclick="estado(this.id)" value="41-48" id="diente47" height="75%"/>
+                    <img src="svg/41-48/47.png" onclick="estado(this.id)" value="41-48" id="diente47" class="normalpic"/>
                 </h:panelGrid>
                 <h:panelGrid>
-                    <img src="svg/41-48/46.png" onclick="estado(this.id)" value="41-48" id="diente46" height="75%"/>
+                    <img src="svg/41-48/46.png" onclick="estado(this.id)" value="41-48" id="diente46" class="normalpic"/>
                 </h:panelGrid>
                 <h:panelGrid>
-                    <img src="svg/41-48/45.png" onclick="estado(this.id)" value="41-48" id="diente45" height="75%"/>
+                    <img src="svg/41-48/45.png" onclick="estado(this.id)" value="41-48" id="diente45" class="normalpic"/>
                 </h:panelGrid>
                 <h:panelGrid>
-                    <img src="svg/41-48/44.png" onclick="estado(this.id)" value="41-48" id="diente44" height="75%"/>
+                    <img src="svg/41-48/44.png" onclick="estado(this.id)" value="41-48" id="diente44" class="normalpic"/>
                 </h:panelGrid>
                 <h:panelGrid>
-                    <img src="svg/41-48/43.png" onclick="estado(this.id)" value="41-48" id="diente43" height="75%"/>
+                    <img src="svg/41-48/43.png" onclick="estado(this.id)" value="41-48" id="diente43" class="normalpic"/>
                 </h:panelGrid>
                 <h:panelGrid>
-                    <img src="svg/41-48/42.png" onclick="estado(this.id)" value="41-48" id="diente42" height="75%"/>
+                    <img src="svg/41-48/42.png" onclick="estado(this.id)" value="41-48" id="diente42" class="normalpic"/>
                 </h:panelGrid>
                 <h:panelGrid>
-                    <img src="svg/41-48/41.png" onclick="estado(this.id)" value="41-48" id="diente41" height="75%"/>
+                    <img src="svg/41-48/41.png" onclick="estado(this.id)" value="41-48" id="diente41" class="normalpic"/>
                 </h:panelGrid>
 
                 <h:panelGrid>
-                    <img src="svg/31-38/31.png" onclick="estado(this.id)" value="31-38" id="diente31" height="75%"/>
+                    <img src="svg/31-38/31.png" onclick="estado(this.id)" value="31-38" id="diente31" class="normalpic"/>
                 </h:panelGrid>
                 <h:panelGrid>
-                    <img src="svg/31-38/32.png" onclick="estado(this.id)" value="31-38" id="diente32" height="75%"/>
+                    <img src="svg/31-38/32.png" onclick="estado(this.id)" value="31-38" id="diente32" class="normalpic"/>
                 </h:panelGrid>
                 <h:panelGrid>
-                    <img src="svg/31-38/33.png" onclick="estado(this.id)" value="31-38" id="diente33" height="75%"/>
+                    <img src="svg/31-38/33.png" onclick="estado(this.id)" value="31-38" id="diente33" class="normalpic"/>
                 </h:panelGrid>
                 <h:panelGrid>
-                    <img src="svg/31-38/34.png" onclick="estado(this.id)" value="31-38" id="diente34" height="75%"/>
+                    <img src="svg/31-38/34.png" onclick="estado(this.id)" value="31-38" id="diente34" class="normalpic"/>
                 </h:panelGrid>
                 <h:panelGrid>
-                    <img src="svg/31-38/35.png" onclick="estado(this.id)" value="31-38" id="diente35" height="75%"/>
+                    <img src="svg/31-38/35.png" onclick="estado(this.id)" value="31-38" id="diente35" class="normalpic"/>
                 </h:panelGrid>
                 <h:panelGrid>
-                    <img src="svg/31-38/36.png" onclick="estado(this.id)" value="31-38" id="diente36" height="75%"/>
+                    <img src="svg/31-38/36.png" onclick="estado(this.id)" value="31-38" id="diente36" class="normalpic"/>
                 </h:panelGrid>
                 <h:panelGrid>
-                    <img src="svg/31-38/37.png" onclick="estado(this.id)" value="31-38" id="diente37" height="75%"/>
+                    <img src="svg/31-38/37.png" onclick="estado(this.id)" value="31-38" id="diente37" class="normalpic"/>
                 </h:panelGrid>
                 <h:panelGrid>
-                    <img src="svg/31-38/38.png" onclick="estado(this.id)" value="31-38" id="diente38" height="75%"/>
+                    <img src="svg/31-38/38.png" onclick="estado(this.id)" value="31-38" id="diente38" class="normalpic"/>
                 </h:panelGrid>
 
                 <h:outputLabel value="48"/>
