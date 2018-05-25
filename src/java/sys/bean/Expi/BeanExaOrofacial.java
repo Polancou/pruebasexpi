@@ -3,11 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sys.bean;
+package sys.bean.Expi;
 
 import java.io.Serializable;
 import java.util.AbstractList;
 import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import sys.model.pacientes.AnalisisOclusion;
@@ -36,8 +37,8 @@ import sys.model.pacientes.Torus;
  */
 @Named(value = "ExamenOrofacial")
 @ViewScoped
-public class BeanExaOrofacial implements Serializable{
-    
+public class BeanExaOrofacial implements Serializable {
+
     private PruebasFrio pruebasFrio;
     private PruebasCalor pruebasCalor;
     private PruebasTermicas pruebasTermicas;
@@ -60,25 +61,64 @@ public class BeanExaOrofacial implements Serializable{
     private Cara cara;
     private ExamenOrofacial examenOrofacial;
     private List<String> listaHabitosTension;
-    
-    public BeanExaOrofacial (){
-        torus= new Torus();
+
+    @PostConstruct
+    protected void initialize() {
+        cara.setForma("Ovoide");
+        cara.setLabios("Activos");
+        cara.setBordesBermellon("Visibles");
+        atm.setCrepitacion("Si");
+        atm.setSensibilidad("Si");
+        atm.setDolor("Si");
+        atm.setSubluxacion("Si");
+        desciacion.setDesviacion("Si");
+        habitosTension.setHabitosTension("Si");
+        atm.setTamanoLengua("Normal");
+        torus.setMadibula("Ninguno");
+        torus.setMaxilar("Ninguno");
+        analisisOclusion.setClasificacion("I");
+        analisisOclusion.setProteccionCanina("Izquierda");
+        analisisOclusion.setProteccionAnterior("Si");
+        analisisOclusion.setFuncionGrupo("Izquierda");
+        analisisOclusion.setMordidaCruzada("Izquierda");
+        analisisOclusion.setMordidaAbierta("Si");
+        analisisOclusion.setSobremordida("Si");
+        analisisOclusion.setProteccionMutua("Si");
+        movimientoMandibular.setProtusivo("Normal");
+        movimientoMandibular.setIzquierdo("Normal");
+        movimientoMandibular.setDerecho("Normal");
+        dolor.setSiNo("Si");
+        dolor.setUbicacion("Difuso");
+        dolor.setEstimulo("Frio");
+        examenOral.setLesionPulpar("Fisica");
+        examenOral.setExposicionPulpar("Caries");
+        examenOral.setInflamacion("Extraoral");
+        pruebasFrio.setNormal("Normal");
+        pruebasCalor.setNormal("Normal");
+        
+        hallazgosRadiograficos.setTipoRx("Periapical");
+        
+        
+    }
+
+    public BeanExaOrofacial() {
+        torus = new Torus();
         pruebasCalor = new PruebasCalor();
         analisisOclusion = new AnalisisOclusion();
         atm = new Atm();
         cara = new Cara();
         desciacion = new Desviacion();
-        dolor= new Dolor();
+        dolor = new Dolor();
         examenOral = new ExamenOral();
         examenOrofacial = new ExamenOrofacial();
         formaResidual = new FormaResidual();
         habitosTension = new HabitosTension();
         hallazgosRadiograficos = new HallazgosRadiograficos();
-        movimientoMandibular=new MovimientoMandibular();
+        movimientoMandibular = new MovimientoMandibular();
         pruebaPercusion = new PruebaPercusion();
         pruebasCalor = new PruebasCalor();
-        pruebasFrio =new PruebasFrio();
-        pruebasTermicas=new PruebasTermicas();
+        pruebasFrio = new PruebasFrio();
+        pruebasTermicas = new PruebasTermicas();
         relacionIncisal = new RelacionIncisal();
         residualMandibular = new ResidualMandibular();
         respiracionMandibular = new ResidualMandibular();
@@ -124,7 +164,7 @@ public class BeanExaOrofacial implements Serializable{
     public void setHabitosTensionList(String[] habitosTensionList) {
         this.habitosTensionList = habitosTensionList;
     }
-    
+
     public PruebasFrio getPruebasFrio() {
         return pruebasFrio;
     }
@@ -284,7 +324,5 @@ public class BeanExaOrofacial implements Serializable{
     public void setExamenOrofacial(ExamenOrofacial examenOrofacial) {
         this.examenOrofacial = examenOrofacial;
     }
-    
-    
-    
+
 }

@@ -70,7 +70,7 @@
                             <p:panel>
                                 <h:panelGrid columns="2" cellpadding="5">
                                     <h4>Desviación</h4>
-                                    <p:selectOneRadio id="desviacion" value="#{ExamenOrofacial.atm.desviacion}">
+                                    <p:selectOneRadio id="desviacion" value="#{ExamenOrofacial.desciacion.desviacion}">
                                         <f:selectItem itemLabel="Si" itemValue="Si" />
                                         <f:selectItem itemLabel="No" itemValue="No" />
                                     </p:selectOneRadio>
@@ -346,7 +346,7 @@
                                             <p:inputText id="organofrio" value="#{ExamenOrofacial.pruebasFrio.organo}"/>
                                         </h:panelGrid>
                                         <p:spacer/>
-                                        <p:selectOneRadio id="pruebasfrio" value="#{ExamenOrofacial.pruebasTermicas.pruebasFrio}">
+                                        <p:selectOneRadio id="pruebasfrio" value="#{ExamenOrofacial.pruebasFrio.normal}">
                                             <f:selectItem itemLabel="Normal" itemValue="Normal"/>
                                             <f:selectItem itemLabel="Fugaz" itemValue="Fugaz"/>
                                             <f:selectItem itemLabel="Ninguno" itemValue="Ninguno"/>
@@ -364,7 +364,7 @@
                                             <p:inputText id="organocalor" value="#{ExamenOrofacial.pruebasCalor.organo}"/>
                                         </h:panelGrid>
                                         <p:spacer/>
-                                        <p:selectOneRadio id="pruebascalor" value="#{ExamenOrofacial.pruebasTermicas.pruebasCalor}">
+                                        <p:selectOneRadio id="pruebascalor" value="#{ExamenOrofacial.pruebasCalor.normal}">
                                             <f:selectItem itemLabel="Normal" itemValue="Normal"/>
                                             <f:selectItem itemLabel="Fugaz" itemValue="Fugaz"/>
                                             <f:selectItem itemLabel="Ninguno" itemValue="Ninguno"/>

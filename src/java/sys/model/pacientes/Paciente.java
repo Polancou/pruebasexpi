@@ -7,6 +7,7 @@ import java.util.Date;
 //import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -20,9 +21,9 @@ public class Paciente  implements java.io.Serializable {
 
 
      private Integer id;
-     private DireccionPaciente direccionPaciente;
-     private MedicoPaciente medicoPaciente;
-     private TrabajoPaciente trabajoPaciente;
+     private int direccionPaciente;
+     private int medicoPaciente;
+     private int trabajoPaciente;
      private String folio;
      private String nombre;
      private int edad;
@@ -46,7 +47,7 @@ public class Paciente  implements java.io.Serializable {
     }
 
 	
-    public Paciente(DireccionPaciente direccionPaciente, MedicoPaciente medicoPaciente, TrabajoPaciente trabajoPaciente, String folio, String nombre, int edad, String sexo, Date fechaNacim, String telefono, String estatura, String peso, String estadoCivil, String nivelEstudios, String estadoSalud, String porqueSolicita, String observaciones, Date fechaRegistro) {
+    public Paciente(int direccionPaciente, int medicoPaciente, int trabajoPaciente, String folio, String nombre, int edad, String sexo, Date fechaNacim, String telefono, String estatura, String peso, String estadoCivil, String nivelEstudios, String estadoSalud, String porqueSolicita, String observaciones, Date fechaRegistro) {
         this.direccionPaciente = direccionPaciente;
         this.medicoPaciente = medicoPaciente;
         this.trabajoPaciente = trabajoPaciente;
@@ -92,6 +93,7 @@ public class Paciente  implements java.io.Serializable {
    
     @Id
     @Column(name = "id")
+    @GeneratedValue
     public Integer getId() {
         return this.id;
     }
@@ -101,29 +103,29 @@ public class Paciente  implements java.io.Serializable {
     }
     
     @Column(name = "domicilio")
-    public DireccionPaciente getDireccionPaciente() {
+    public int getDireccionPaciente() {
         return this.direccionPaciente;
     }
     
-    public void setDireccionPaciente(DireccionPaciente direccionPaciente) {
+    public void setDireccionPaciente(int direccionPaciente) {
         this.direccionPaciente = direccionPaciente;
     }
     
     @Column(name = "medico")
-    public MedicoPaciente getMedicoPaciente() {
+    public int getMedicoPaciente() {
         return this.medicoPaciente;
     }
     
-    public void setMedicoPaciente(MedicoPaciente medicoPaciente) {
+    public void setMedicoPaciente(int medicoPaciente) {
         this.medicoPaciente = medicoPaciente;
     }
     
     @Column(name = "ocupacion")
-    public TrabajoPaciente getTrabajoPaciente() {
+    public int getTrabajoPaciente() {
         return this.trabajoPaciente;
     }
     
-    public void setTrabajoPaciente(TrabajoPaciente trabajoPaciente) {
+    public void setTrabajoPaciente(int trabajoPaciente) {
         this.trabajoPaciente = trabajoPaciente;
     }
     

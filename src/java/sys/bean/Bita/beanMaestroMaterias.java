@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sys.bean;
+package sys.bean.Bita;
 
 import java.awt.event.ActionEvent;
 import java.io.Serializable;

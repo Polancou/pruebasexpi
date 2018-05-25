@@ -185,22 +185,22 @@
                     <h:outputText value="" />
                     <h:outputText value="¿Padece o ha padecido alguna de las siguientes enfermedades?"/>
                     <h:outputText value=""/>
-                    <p:selectManyCheckbox id="custom" value="#{Cuestionario.selectedConsoles}" layout="responsive" columns="3">
-                        <f:selectItem itemLabel="Hepatitis" itemValue="Hepatitis" />
-                        <f:selectItem itemLabel="Ictericia" itemValue="Ictericia" />
-                        <f:selectItem itemLabel="Tuberculosis" itemValue="Tuberculosis" />
-                        <f:selectItem itemLabel="Enfermedades venéreas" itemValue="Enfermedades venéreas" />
-                        <f:selectItem itemLabel="Infarto al miocardio" itemValue="Infarto al miocardio"/>
-                        <f:selectItem itemLabel="Angina de pecho" itemValue="Angina de pecho"/>
-                        <f:selectItem itemLabel="Embolia" itemValue="Embolia"/>
-                        <f:selectItem itemLabel="Epilepsia" itemValue="Epilepsia"/>
-                        <f:selectItem itemLabel="Diabetes" itemValue="Diabetes"/>
-                        <f:selectItem itemLabel="Varicela" itemValue="Varicela"/>
-                        <f:selectItem itemLabel="Fiebre reumática" itemValue="Fiebre reumática"/>
-                        <f:selectItem itemLabel="Sarampión" itemValue="Sarampión"/>
-                        <f:selectItem itemLabel="Asma" itemValue="Asma"/>
-                        <f:selectItem itemLabel="Hipertensión arterial" itemValue="Hipertensión arterial"/>
-                        <f:selectItem itemLabel="Cáncer" itemValue="Cáncer"/>
+                    <p:selectManyCheckbox id="custom" layout="responsive" columns="3">
+                        <f:selectItem itemLabel="Hepatitis" itemValue="#{Cuestionario.padecimientos.hepatitis}" />
+                        <f:selectItem itemLabel="Ictericia" itemValue="#{Cuestionario.padecimientos.ictericia}" />
+                        <f:selectItem itemLabel="Tuberculosis" itemValue="#{Cuestionario.padecimientos.tuberculosis}" />
+                        <f:selectItem itemLabel="Enfermedades venéreas" itemValue="#{Cuestionario.padecimientos.enfermedadesVeneras}" />
+                        <f:selectItem itemLabel="Infarto al miocardio" itemValue="#{Cuestionario.padecimientos.infartoMiocardio}"/>
+                        <f:selectItem itemLabel="Angina de pecho" itemValue="#{Cuestionario.padecimientos.anginaPecho}"/>
+                        <f:selectItem itemLabel="Embolia" itemValue="#{Cuestionario.padecimientos.embolia}"/>
+                        <f:selectItem itemLabel="Epilepsia" itemValue="#{Cuestionario.padecimientos.epilepsia}"/>
+                        <f:selectItem itemLabel="Diabetes" itemValue="#{Cuestionario.padecimientos.diabetes}"/>
+                        <f:selectItem itemLabel="Varicela" itemValue="#{Cuestionario.padecimientos.varicela}"/>
+                        <f:selectItem itemLabel="Fiebre reumática" itemValue="#{Cuestionario.padecimientos.fiebreReumatica}"/>
+                        <f:selectItem itemLabel="Sarampión" itemValue="#{Cuestionario.padecimientos.sarampiom}"/>
+                        <f:selectItem itemLabel="Asma" itemValue="#{Cuestionario.padecimientos.asma}"/>
+                        <f:selectItem itemLabel="Hipertensión arterial" itemValue="#{Cuestionario.padecimientos.hipertensionArterial}"/>
+                        <f:selectItem itemLabel="Cáncer" itemValue="#{Cuestionario.padecimientos.cancer}"/>
                     </p:selectManyCheckbox>
                     <h:outputText value="" />
                     <h:outputText value="¿Es usted alérgico a alguno de los siguientes medicamentos?"/>
@@ -212,6 +212,9 @@
                         <f:selectItem itemLabel="Sulfas" itemValue="Sulfas"/>
                         <f:selectItem itemLabel="Cortisona" itemValue="Cortisona"/>
                     </p:selectManyCheckbox>
+                    
+                    <p:commandButton value="Guardar datos" action="#{Cuestionario.imprimir()}" ajax="false" />
+            
                 </h:panelGrid>
                 <h:panelGrid columns="2" cellpadding="5">
                     <h:outputText value="Otros"/>

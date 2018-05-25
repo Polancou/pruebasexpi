@@ -9,7 +9,7 @@
 
     <body>
 
-        <ui:composition template="./../Template/PlantillaAlumnos.xhtml">
+        <ui:composition template="./../Template/VistasMarcos/PlantillaAlumnos.xhtml">
 
             <ui:define name="content">
 
@@ -26,29 +26,29 @@
                             <p:wizard>
 
                                 <p:tab id="Datos_Paciente" title="Datos Personales">
-                                    <ui:include src="Paciente.xhtml" />
+                                    <ui:include src="svg/Paciente.xhtml" />
                                 </p:tab>
 
                                 <p:tab id="Cuestionario" title="Cuestionario">
                                     <p:panel header="Cuestionario">
-                                        <ui:include src="Cuestionario.xhtml"/>
+                                        <ui:include src="svg/Cuestionario.xhtml"/>
                                     </p:panel>
                                 </p:tab>
 
                                 <p:tab id="Examen_Orofacial" title="Examen Orofacial">
                                     <p:panel header="Examen Orofacial">
-                                        <ui:include src="ExaOrofacial.xhtml"/>
+                                        <ui:include src="svg/ExaOrofacial.xhtml"/>
                                     </p:panel>
                                 </p:tab>
                                 
                                 <p:tab id="dientes" title="Datos Personales">
-                                    <ui:include src="VistaDientes.xhtml"/>
+                                    <ui:include src="svg/VistaDientes.xhtml"/>
                                 </p:tab>
 
                                 <p:tab id="confirm" title="Odontograma">
                                     <p:panel header="Odontograma">
-                                        <ui:include src="Odontograma.xhtml"/>
-                                        <p:commandButton value="Submit" actionListener="#{newwizard.acito}" update="growl" process="@this"/>
+                                        <ui:include src="svg/Odontograma.xhtml"/>
+                                        <p:commandButton value="Submit" actionListener="#" update="growl" process="@this"/>
                                     </p:panel>
                                 </p:tab>
                                 

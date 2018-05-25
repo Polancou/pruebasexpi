@@ -6,6 +6,7 @@ package sys.model.pacientes;
 //import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 /**
@@ -42,6 +43,7 @@ public class MedicoPaciente  implements java.io.Serializable {
    
     @Id
     @Column(name = "id")
+    @GeneratedValue
     public Integer getId() {
         return this.id;
     }

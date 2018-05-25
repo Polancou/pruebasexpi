@@ -3,12 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sys.bean;
+package sys.bean.Bita;
 
 import java.io.Serializable;
 import java.util.List;
 import javax.inject.Named;
-import javax.enterprise.context.Dependent;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
