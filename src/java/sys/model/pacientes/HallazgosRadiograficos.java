@@ -6,6 +6,7 @@ package sys.model.pacientes;
 //import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -19,109 +20,99 @@ public class HallazgosRadiograficos  implements java.io.Serializable {
 
 
      private Integer id;
-     private String tipoRx;
-     private String soporteOseo;
-     private String relacionCoronaRaiz;
-     private String alturaReborde;
-     private String engrosamientoLigamentoPeriodontal;
-     private String interpretacion;
-     //private Set sistemaEstomatognaticos = new HashSet(0);
+     private String folio,tipo_rx,soporte_oseo,relacion_corona_raiz,altura_reborde,engrosamiento_ligamento_periodontal,
+             interpretacion;
+     
 
     public HallazgosRadiograficos() {
     }
 
-	
-    public HallazgosRadiograficos(String tipoRx, String soporteOseo, String relacionCoronaRaiz, String alturaReborde, String engrosamientoLigamentoPeriodontal, String interpretacion) {
-        this.tipoRx = tipoRx;
-        this.soporteOseo = soporteOseo;
-        this.relacionCoronaRaiz = relacionCoronaRaiz;
-        this.alturaReborde = alturaReborde;
-        this.engrosamientoLigamentoPeriodontal = engrosamientoLigamentoPeriodontal;
+    public HallazgosRadiograficos(String folio, String tipo_rx, String soporte_oseo, String relacion_corona_raiz, String altura_reborde, String engrosamiento_ligamento_periodontal, String interpretacion) {
+        this.folio = folio;
+        this.tipo_rx = tipo_rx;
+        this.soporte_oseo = soporte_oseo;
+        this.relacion_corona_raiz = relacion_corona_raiz;
+        this.altura_reborde = altura_reborde;
+        this.engrosamiento_ligamento_periodontal = engrosamiento_ligamento_periodontal;
         this.interpretacion = interpretacion;
     }
-    /*
-    public HallazgosRadiograficos(String tipoRx, String soporteOseo, String relacionCoronaRaiz, String alturaReborde, String engrosamientoLigamentoPeriodontal, String interpretacion, Set sistemaEstomatognaticos) {
-       this.tipoRx = tipoRx;
-       this.soporteOseo = soporteOseo;
-       this.relacionCoronaRaiz = relacionCoronaRaiz;
-       this.alturaReborde = alturaReborde;
-       this.engrosamientoLigamentoPeriodontal = engrosamientoLigamentoPeriodontal;
-       this.interpretacion = interpretacion;
-       this.sistemaEstomatognaticos = sistemaEstomatognaticos;
-    }*/
-   
+
     @Id
     @Column(name = "id")
+    @GeneratedValue
     public Integer getId() {
-        return this.id;
+        return id;
     }
-    
+
     public void setId(Integer id) {
         this.id = id;
     }
-    
+
+    @Column(name = "folio")
+    public String getFolio() {
+        return folio;
+    }
+
+    public void setFolio(String folio) {
+        this.folio = folio;
+    }
+
     @Column(name = "tipo_rx")
-    public String getTipoRx() {
-        return this.tipoRx;
+    public String getTipo_rx() {
+        return tipo_rx;
     }
-    
-    public void setTipoRx(String tipoRx) {
-        this.tipoRx = tipoRx;
+
+    public void setTipo_rx(String tipo_rx) {
+        this.tipo_rx = tipo_rx;
     }
-    
+
     @Column(name = "soporte_oseo")
-    public String getSoporteOseo() {
-        return this.soporteOseo;
+    public String getSoporte_oseo() {
+        return soporte_oseo;
     }
-    
-    public void setSoporteOseo(String soporteOseo) {
-        this.soporteOseo = soporteOseo;
+
+    public void setSoporte_oseo(String soporte_oseo) {
+        this.soporte_oseo = soporte_oseo;
     }
-    
+
     @Column(name = "relacion_corona_raiz")
-    public String getRelacionCoronaRaiz() {
-        return this.relacionCoronaRaiz;
+    public String getRelacion_corona_raiz() {
+        return relacion_corona_raiz;
     }
-    
-    public void setRelacionCoronaRaiz(String relacionCoronaRaiz) {
-        this.relacionCoronaRaiz = relacionCoronaRaiz;
+
+    public void setRelacion_corona_raiz(String relacion_corona_raiz) {
+        this.relacion_corona_raiz = relacion_corona_raiz;
     }
-    
+
     @Column(name = "altura_reborde")
-    public String getAlturaReborde() {
-        return this.alturaReborde;
+    public String getAltura_reborde() {
+        return altura_reborde;
     }
-    
-    public void setAlturaReborde(String alturaReborde) {
-        this.alturaReborde = alturaReborde;
+
+    public void setAltura_reborde(String altura_reborde) {
+        this.altura_reborde = altura_reborde;
     }
-    
+
     @Column(name = "engrosamiento_ligamento_periodontal")
-    public String getEngrosamientoLigamentoPeriodontal() {
-        return this.engrosamientoLigamentoPeriodontal;
+    public String getEngrosamiento_ligamento_periodontal() {
+        return engrosamiento_ligamento_periodontal;
     }
-    
-    public void setEngrosamientoLigamentoPeriodontal(String engrosamientoLigamentoPeriodontal) {
-        this.engrosamientoLigamentoPeriodontal = engrosamientoLigamentoPeriodontal;
+
+    public void setEngrosamiento_ligamento_periodontal(String engrosamiento_ligamento_periodontal) {
+        this.engrosamiento_ligamento_periodontal = engrosamiento_ligamento_periodontal;
     }
-    
+
     @Column(name = "interpretacion")
     public String getInterpretacion() {
-        return this.interpretacion;
+        return interpretacion;
     }
-    
+
     public void setInterpretacion(String interpretacion) {
         this.interpretacion = interpretacion;
     }
-    /*
-    @Column(name = "sistema_estomatognatico")
-    public Set getSistemaEstomatognaticos() {
-        return this.sistemaEstomatognaticos;
-    }
+
     
-    public void setSistemaEstomatognaticos(Set sistemaEstomatognaticos) {
-        this.sistemaEstomatognaticos = sistemaEstomatognaticos;
-    }*/
+    
 }
 
 

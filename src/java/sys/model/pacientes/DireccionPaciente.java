@@ -23,30 +23,21 @@ public class DireccionPaciente  implements java.io.Serializable {
      private String estado;
      private String ciudad;
      private String calle;
-     private String colonia;
-     //private Set pacientes = new HashSet(0);
+     private String colonia,folio;
 
     public DireccionPaciente() {
     }
 
 	
-    public DireccionPaciente(String pais, String estado, String ciudad, String calle, String colonia) {
+    public DireccionPaciente(String folio,String pais, String estado, String ciudad, String calle, String colonia) {
+        this.folio=folio;
         this.pais = pais;
         this.estado = estado;
         this.ciudad = ciudad;
         this.calle = calle;
         this.colonia = colonia;
     }
-    /*
-    public DireccionPaciente(String pais, String estado, String ciudad, String calle, String colonia, Set pacientes) {
-       this.pais = pais;
-       this.estado = estado;
-       this.ciudad = ciudad;
-       this.calle = calle;
-       this.colonia = colonia;
-       this.pacientes = pacientes;
-    }*/
-   
+
     @Id
     @Column(name = "id")    
     @GeneratedValue
@@ -58,6 +49,15 @@ public class DireccionPaciente  implements java.io.Serializable {
         this.id = id;
     }
     
+    @Column(name = "folio")
+    public String getFolio() {
+        return folio;
+    }
+
+    public void setFolio(String folio) {
+        this.folio = folio;
+    }
+   
     @Column(name = "pais")
     public String getPais() {
         return this.pais;

@@ -6,13 +6,12 @@
 package sys.bean.Expi;
 
 import java.io.Serializable;
+import java.util.Arrays;
 import javax.annotation.PostConstruct;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import sys.dao.daoNuevoPaciente;
 import sys.imp.NuevoPacienteImp;
-import sys.model.pacientes.AlergiasMedicamentos;
-import sys.model.pacientes.Padecimientos;
 import sys.model.pacientes.PreguntasPaciente;
 
 /**
@@ -24,8 +23,6 @@ import sys.model.pacientes.PreguntasPaciente;
 public class BeanCuestionario implements Serializable {
 
     private PreguntasPaciente preguntasPaciente;
-    private AlergiasMedicamentos alergiasMedicamentos;
-    private Padecimientos padecimientos;
     private String[] alergias;
     private String[] selectedConsoles;
 
@@ -64,28 +61,24 @@ public class BeanCuestionario implements Serializable {
         preguntasPaciente.setP31("Si");
         preguntasPaciente.setP32("Si");
         preguntasPaciente.setP33("Si");
-        
+
     }
-    
-    public void imprimir(){
-        System.out.println(padecimientos.getAnginaPecho() + "   "+padecimientos.getAsma());
-    }
-    
-    public void guardar(){
+
+    public void guardar() {
+        preguntasPaciente.setPadecimientos(Arrays.toString(selectedConsoles));
+        preguntasPaciente.setAlergiasMedicamentos(Arrays.toString(alergias));
         System.out.println("Entra al metodo");
         daoNuevoPaciente daoNuevo = new NuevoPacienteImp();
-        boolean guardó=daoNuevo.cuestionario(preguntasPaciente, selectedConsoles, alergias);
-        if (guardó){
+        boolean guardó = daoNuevo.cuestionario(preguntasPaciente);
+        if (guardó) {
             System.out.println("Guardó datos");
-        }else{
+        } else {
             System.out.println("Pura madre");
         }
     }
 
     public BeanCuestionario() {
         preguntasPaciente = new PreguntasPaciente();
-        alergiasMedicamentos = new AlergiasMedicamentos();
-        padecimientos = new Padecimientos();
     }
 
     public PreguntasPaciente getPreguntasPaciente() {
@@ -94,22 +87,6 @@ public class BeanCuestionario implements Serializable {
 
     public void setPreguntasPaciente(PreguntasPaciente preguntasPaciente) {
         this.preguntasPaciente = preguntasPaciente;
-    }
-
-    public AlergiasMedicamentos getAlergiasMedicamentos() {
-        return alergiasMedicamentos;
-    }
-
-    public void setAlergiasMedicamentos(AlergiasMedicamentos alergiasMedicamentos) {
-        this.alergiasMedicamentos = alergiasMedicamentos;
-    }
-
-    public Padecimientos getPadecimientos() {
-        return padecimientos;
-    }
-
-    public void setPadecimientos(Padecimientos padecimientos) {
-        this.padecimientos = padecimientos;
     }
 
     public String[] getSelectedConsoles() {

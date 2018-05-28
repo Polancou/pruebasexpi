@@ -20,16 +20,16 @@ import javax.persistence.Table;
 public class Paciente  implements java.io.Serializable {
 
 
-     private Integer id;
+     private int id;
      private int direccionPaciente;
-     private int medicoPaciente;
+     private int medico;
      private int trabajoPaciente;
      private String folio;
      private String nombre;
      private int edad;
      private String sexo;
      private Date fechaNacim;
-     private String telefono;
+     private String telefono,ocupacion;
      private String estatura;
      private String peso;
      private String estadoCivil;
@@ -38,18 +38,13 @@ public class Paciente  implements java.io.Serializable {
      private String porqueSolicita;
      private String observaciones;
      private Date fechaRegistro;
-     //private Set examenOrofacials = new HashSet(0);
-     //private Set planTratamientos = new HashSet(0);
-     //private Set preguntasPacientes = new HashSet(0);
-     //private Set odontogramas = new HashSet(0);
 
     public Paciente() {
     }
 
-	
-    public Paciente(int direccionPaciente, int medicoPaciente, int trabajoPaciente, String folio, String nombre, int edad, String sexo, Date fechaNacim, String telefono, String estatura, String peso, String estadoCivil, String nivelEstudios, String estadoSalud, String porqueSolicita, String observaciones, Date fechaRegistro) {
+    public Paciente(int direccionPaciente, int medico, int trabajoPaciente, String folio, String nombre, int edad, String sexo, Date fechaNacim, String telefono, String ocupacion, String estatura, String peso, String estadoCivil, String nivelEstudios, String estadoSalud, String porqueSolicita, String observaciones, Date fechaRegistro) {
         this.direccionPaciente = direccionPaciente;
-        this.medicoPaciente = medicoPaciente;
+        this.medico = medico;
         this.trabajoPaciente = trabajoPaciente;
         this.folio = folio;
         this.nombre = nombre;
@@ -57,6 +52,7 @@ public class Paciente  implements java.io.Serializable {
         this.sexo = sexo;
         this.fechaNacim = fechaNacim;
         this.telefono = telefono;
+        this.ocupacion = ocupacion;
         this.estatura = estatura;
         this.peso = peso;
         this.estadoCivil = estadoCivil;
@@ -66,30 +62,6 @@ public class Paciente  implements java.io.Serializable {
         this.observaciones = observaciones;
         this.fechaRegistro = fechaRegistro;
     }
-    /*
-    public Paciente(DireccionPaciente direccionPaciente, MedicoPaciente medicoPaciente, TrabajoPaciente trabajoPaciente, String folio, String nombre, int edad, String sexo, Date fechaNacim, String telefono, String estatura, String peso, String estadoCivil, String nivelEstudios, String estadoSalud, String porqueSolicita, String observaciones, Date fechaRegistro, Set examenOrofacials, Set planTratamientos, Set preguntasPacientes, Set odontogramas) {
-       this.direccionPaciente = direccionPaciente;
-       this.medicoPaciente = medicoPaciente;
-       this.trabajoPaciente = trabajoPaciente;
-       this.folio = folio;
-       this.nombre = nombre;
-       this.edad = edad;
-       this.sexo = sexo;
-       this.fechaNacim = fechaNacim;
-       this.telefono = telefono;
-       this.estatura = estatura;
-       this.peso = peso;
-       this.estadoCivil = estadoCivil;
-       this.nivelEstudios = nivelEstudios;
-       this.estadoSalud = estadoSalud;
-       this.porqueSolicita = porqueSolicita;
-       this.observaciones = observaciones;
-       this.fechaRegistro = fechaRegistro;
-       this.examenOrofacials = examenOrofacials;
-       this.planTratamientos = planTratamientos;
-       this.preguntasPacientes = preguntasPacientes;
-       this.odontogramas = odontogramas;
-    }*/
    
     @Id
     @Column(name = "id")
@@ -97,7 +69,7 @@ public class Paciente  implements java.io.Serializable {
     public Integer getId() {
         return this.id;
     }
-    
+
     public void setId(Integer id) {
         this.id = id;
     }
@@ -113,11 +85,11 @@ public class Paciente  implements java.io.Serializable {
     
     @Column(name = "medico")
     public int getMedicoPaciente() {
-        return this.medicoPaciente;
+        return this.medico;
     }
     
     public void setMedicoPaciente(int medicoPaciente) {
-        this.medicoPaciente = medicoPaciente;
+        this.medico = medicoPaciente;
     }
     
     @Column(name = "ocupacion")
@@ -254,35 +226,5 @@ public class Paciente  implements java.io.Serializable {
     public void setFechaRegistro(Date fechaRegistro) {
         this.fechaRegistro = fechaRegistro;
     }
-    /*
-    public Set getExamenOrofacials() {
-        return this.examenOrofacials;
-    }
-    
-    public void setExamenOrofacials(Set examenOrofacials) {
-        this.examenOrofacials = examenOrofacials;
-    }
-    public Set getPlanTratamientos() {
-        return this.planTratamientos;
-    }
-    
-    public void setPlanTratamientos(Set planTratamientos) {
-        this.planTratamientos = planTratamientos;
-    }
-    public Set getPreguntasPacientes() {
-        return this.preguntasPacientes;
-    }
-    
-    public void setPreguntasPacientes(Set preguntasPacientes) {
-        this.preguntasPacientes = preguntasPacientes;
-    }
-    public Set getOdontogramas() {
-        return this.odontogramas;
-    }
-    
-    public void setOdontogramas(Set odontogramas) {
-        this.odontogramas = odontogramas;
-    }*/
+     
 }
-
-

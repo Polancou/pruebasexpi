@@ -5,6 +5,7 @@ package sys.model.pacientes;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 /**
@@ -16,67 +17,127 @@ import javax.persistence.Table;
 public class ExamenOrofacial  implements java.io.Serializable {
 
 
-     private Integer id;
-     private Cara cara;
-     private Paciente paciente;
-     private SistemaEstomatognatico sistemaEstomatognatico;
+     private Integer id,paciente,atm,analisisOclusion,examenOral,hallazgosRadiograficos;
      private Date fecha;
+     private String folio,caraForma,caraLabios,bordesBermellon;
 
     public ExamenOrofacial() {
     }
 
-    public ExamenOrofacial(Cara cara, Paciente paciente, SistemaEstomatognatico sistemaEstomatognatico, Date fecha) {
-       this.cara = cara;
-       this.paciente = paciente;
-       this.sistemaEstomatognatico = sistemaEstomatognatico;
-       this.fecha = fecha;
+    public ExamenOrofacial(Integer paciente, Integer atm, Integer analisisOclusion, Integer examenOral, Integer hallazgosRadiograficos, Date fecha, String folio, String caraForma, String caraLabios, String bordesBermellon) {
+        this.paciente = paciente;
+        this.atm = atm;
+        this.analisisOclusion = analisisOclusion;
+        this.examenOral = examenOral;
+        this.hallazgosRadiograficos = hallazgosRadiograficos;
+        this.fecha = fecha;
+        this.folio = folio;
+        this.caraForma = caraForma;
+        this.caraLabios = caraLabios;
+        this.bordesBermellon = bordesBermellon;
     }
-   
+
     @Id
     @Column(name = "id")
+    @GeneratedValue
     public Integer getId() {
-        return this.id;
+        return id;
     }
-    
+
     public void setId(Integer id) {
         this.id = id;
     }
-    
-    @Column(name = "cara")
-    public Cara getCara() {
-        return this.cara;
-    }
-    
-    public void setCara(Cara cara) {
-        this.cara = cara;
-    }
-    
+
     @Column(name = "paciente")
-    public Paciente getPaciente() {
-        return this.paciente;
+    public Integer getPaciente() {
+        return paciente;
     }
-    
-    public void setPaciente(Paciente paciente) {
+
+    public void setPaciente(Integer paciente) {
         this.paciente = paciente;
     }
-    
-    @Column(name = "sistema_estomatognatico")
-    public SistemaEstomatognatico getSistemaEstomatognatico() {
-        return this.sistemaEstomatognatico;
+
+    @Column(name = "atm")
+    public Integer getAtm() {
+        return atm;
     }
-    
-    public void setSistemaEstomatognatico(SistemaEstomatognatico sistemaEstomatognatico) {
-        this.sistemaEstomatognatico = sistemaEstomatognatico;
+
+    public void setAtm(Integer atm) {
+        this.atm = atm;
     }
-    
+
+    @Column(name = "analisis_oclusion")
+    public Integer getAnalisisOclusion() {
+        return analisisOclusion;
+    }
+
+    public void setAnalisisOclusion(Integer analisisOclusion) {
+        this.analisisOclusion = analisisOclusion;
+    }
+
+    @Column(name = "examen_oral")
+    public Integer getExamenOral() {
+        return examenOral;
+    }
+
+    public void setExamenOral(Integer examenOral) {
+        this.examenOral = examenOral;
+    }
+
+    @Column(name = "hallazgos_radiograficos")
+    public Integer getHallazgosRadiograficos() {
+        return hallazgosRadiograficos;
+    }
+
+    public void setHallazgosRadiograficos(Integer hallazgosRadiograficos) {
+        this.hallazgosRadiograficos = hallazgosRadiograficos;
+    }
+
     @Column(name = "fecha")
     public Date getFecha() {
-        return this.fecha;
+        return fecha;
     }
-    
+
     public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
+
+    @Column(name = "folio")
+    public String getFolio() {
+        return folio;
+    }
+
+    public void setFolio(String folio) {
+        this.folio = folio;
+    }
+
+    @Column(name = "cara_forma")
+    public String getCaraForma() {
+        return caraForma;
+    }
+
+    public void setCaraForma(String caraForma) {
+        this.caraForma = caraForma;
+    }
+
+    @Column(name = "cara_labios")
+    public String getCaraLabios() {
+        return caraLabios;
+    }
+
+    public void setCaraLabios(String caraLabios) {
+        this.caraLabios = caraLabios;
+    }
+
+    @Column(name = "border_bermellon")
+    public String getBordesBermellon() {
+        return bordesBermellon;
+    }
+
+    public void setBordesBermellon(String bordesBermellon) {
+        this.bordesBermellon = bordesBermellon;
+    }
+    
 }
 
 

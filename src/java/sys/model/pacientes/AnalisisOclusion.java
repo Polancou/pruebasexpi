@@ -6,6 +6,7 @@ package sys.model.pacientes;
 //import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 /**
@@ -18,9 +19,7 @@ public class AnalisisOclusion  implements java.io.Serializable {
 
 
      private Integer id;
-     private MovimientoMandibular movimientoMandibular;
-     private RelacionIncisal relacionIncisal;
-     private String clasificacion;
+     private String clasificacion,folio;
      private String proteccionCanina;
      private String proteccionAnterior;
      private String funcionGrupo;
@@ -28,17 +27,15 @@ public class AnalisisOclusion  implements java.io.Serializable {
      private String mordidaCruzada;
      private String mordidaAbierta;
      private String sobremordida;
-     private String contactoDentatorio;
-     //private Set sistemaEstomatognaticos = new HashSet(0);
+     private String contactoDentatorio,incisal_horizontal,incisal_vertical,mandibular_protusivo,mandibular_derecho,
+            madibular_izquierdo;
 
     public AnalisisOclusion() {
     }
 
-	
-    public AnalisisOclusion(MovimientoMandibular movimientoMandibular, RelacionIncisal relacionIncisal, String clasificacion, String proteccionCanina, String proteccionAnterior, String funcionGrupo, String proteccionMutua, String mordidaCruzada, String mordidaAbierta, String sobremordida, String contactoDentatorio) {
-        this.movimientoMandibular = movimientoMandibular;
-        this.relacionIncisal = relacionIncisal;
+    public AnalisisOclusion(String clasificacion, String folio, String proteccionCanina, String proteccionAnterior, String funcionGrupo, String proteccionMutua, String mordidaCruzada, String mordidaAbierta, String sobremordida, String contactoDentatorio, String incisal_horizontal, String incisal_vertical, String mandibular_protusivo, String mandibular_derecho, String madibular_izquierdo) {
         this.clasificacion = clasificacion;
+        this.folio = folio;
         this.proteccionCanina = proteccionCanina;
         this.proteccionAnterior = proteccionAnterior;
         this.funcionGrupo = funcionGrupo;
@@ -47,50 +44,32 @@ public class AnalisisOclusion  implements java.io.Serializable {
         this.mordidaAbierta = mordidaAbierta;
         this.sobremordida = sobremordida;
         this.contactoDentatorio = contactoDentatorio;
+        this.incisal_horizontal = incisal_horizontal;
+        this.incisal_vertical = incisal_vertical;
+        this.mandibular_protusivo = mandibular_protusivo;
+        this.mandibular_derecho = mandibular_derecho;
+        this.madibular_izquierdo = madibular_izquierdo;
     }
-    /*
-    public AnalisisOclusion(MovimientoMandibular movimientoMandibular, RelacionIncisal relacionIncisal, String clasificacion, String proteccionCanina, String proteccionAnterior, String funcionGrupo, String proteccionMutua, String mordidaCruzada, String mordidaAbierta, String sobremordida, String contactoDentatorio, Set sistemaEstomatognaticos) {
-       this.movimientoMandibular = movimientoMandibular;
-       this.relacionIncisal = relacionIncisal;
-       this.clasificacion = clasificacion;
-       this.proteccionCanina = proteccionCanina;
-       this.proteccionAnterior = proteccionAnterior;
-       this.funcionGrupo = funcionGrupo;
-       this.proteccionMutua = proteccionMutua;
-       this.mordidaCruzada = mordidaCruzada;
-       this.mordidaAbierta = mordidaAbierta;
-       this.sobremordida = sobremordida;
-       this.contactoDentatorio = contactoDentatorio;
-       this.sistemaEstomatognaticos = sistemaEstomatognaticos;
-    }
-    */
+
     
     @Id
     @Column(name = "id")
+    @GeneratedValue
     public Integer getId() {
         return this.id;
     }
-    
+
     public void setId(Integer id) {
         this.id = id;
     }
     
-    @Column(name = "movimiento_mandibular")
-    public MovimientoMandibular getMovimientoMandibular() {
-        return this.movimientoMandibular;
+    @Column(name = "folio")
+    public String getFolio() {
+        return folio;
     }
-    
-    public void setMovimientoMandibular(MovimientoMandibular movimientoMandibular) {
-        this.movimientoMandibular = movimientoMandibular;
-    }
-    
-    @Column(name = "relacion_incisal")
-    public RelacionIncisal getRelacionIncisal() {
-        return this.relacionIncisal;
-    }
-    
-    public void setRelacionIncisal(RelacionIncisal relacionIncisal) {
-        this.relacionIncisal = relacionIncisal;
+
+    public void setFolio(String folio) {
+        this.folio = folio;
     }
     
     @Column(name = "clasificacion")
@@ -173,17 +152,54 @@ public class AnalisisOclusion  implements java.io.Serializable {
     public void setContactoDentatorio(String contactoDentatorio) {
         this.contactoDentatorio = contactoDentatorio;
     }
-    
-    /*
-    @Column(name = "movimiento_mandibular")
-    public Set getSistemaEstomatognaticos() {
-        return this.sistemaEstomatognaticos;
+
+    @Column(name = "incisal_horizontal")
+    public String getIncisal_horizontal() {
+        return incisal_horizontal;
+    }
+
+    public void setIncisal_horizontal(String incisal_horizontal) {
+        this.incisal_horizontal = incisal_horizontal;
+    }
+
+    @Column(name = "incisal_vertical")
+    public String getIncisal_vertical() {
+        return incisal_vertical;
+    }
+
+    public void setIncisal_vertical(String incisal_vertical) {
+        this.incisal_vertical = incisal_vertical;
+    }
+
+    @Column(name = "mandibular_protusivo")
+    public String getMandibular_protusivo() {
+        return mandibular_protusivo;
+    }
+
+    public void setMandibular_protusivo(String mandibular_protusivo) {
+        this.mandibular_protusivo = mandibular_protusivo;
+    }
+
+    @Column(name = "mandibular_derecho")
+    public String getMandibular_derecho() {
+        return mandibular_derecho;
+    }
+
+    public void setMandibular_derecho(String mandibular_derecho) {
+        this.mandibular_derecho = mandibular_derecho;
+    }
+
+    @Column(name = "mandibular_izquierdo")
+    public String getMadibular_izquierdo() {
+        return madibular_izquierdo;
+    }
+
+    public void setMadibular_izquierdo(String madibular_izquierdo) {
+        this.madibular_izquierdo = madibular_izquierdo;
     }
     
-    public void setSistemaEstomatognaticos(Set sistemaEstomatognaticos) {
-        this.sistemaEstomatognaticos = sistemaEstomatognaticos;
-    }
-    */
+    
+    
 }
 
 

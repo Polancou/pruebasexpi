@@ -3,6 +3,7 @@ package sys.model.pacientes;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -15,11 +16,11 @@ import javax.persistence.Table;
 public class PreguntasPaciente  implements java.io.Serializable {
 
 
-     private Integer id;
-     private AlergiasMedicamentos alergiasMedicamentos;
-     private Paciente paciente;
-     private Padecimientos padecimientos;
-     private String p1;
+     private int id;
+     private String alergiasMedicamentos;
+     private int paciente;
+     private String padecimientos;
+     private String p1,folio;
      private String p2;
      private String p3;
      private String p4;
@@ -57,48 +58,52 @@ public class PreguntasPaciente  implements java.io.Serializable {
     public PreguntasPaciente() {
     }
 
-    public PreguntasPaciente(AlergiasMedicamentos alergiasMedicamentos, Paciente paciente, Padecimientos padecimientos, String p1, String p2, String p3, String p4, String p5, String p6, String p7, String p8, String p9, String p10, String p11, String p12, String p13, String p14, String p15, String p16, String p17, String p18, String p19, String p20, String p21, String p22, String p23, String p24, String p25, String p26, String p27, String p28, String p29, String p30, String p31, String p32, String p33, String otros) {
-       this.alergiasMedicamentos = alergiasMedicamentos;
-       this.paciente = paciente;
-       this.padecimientos = padecimientos;
-       this.p1 = p1;
-       this.p2 = p2;
-       this.p3 = p3;
-       this.p4 = p4;
-       this.p5 = p5;
-       this.p6 = p6;
-       this.p7 = p7;
-       this.p8 = p8;
-       this.p9 = p9;
-       this.p10 = p10;
-       this.p11 = p11;
-       this.p12 = p12;
-       this.p13 = p13;
-       this.p14 = p14;
-       this.p15 = p15;
-       this.p16 = p16;
-       this.p17 = p17;
-       this.p18 = p18;
-       this.p19 = p19;
-       this.p20 = p20;
-       this.p21 = p21;
-       this.p22 = p22;
-       this.p23 = p23;
-       this.p24 = p24;
-       this.p25 = p25;
-       this.p26 = p26;
-       this.p27 = p27;
-       this.p28 = p28;
-       this.p29 = p29;
-       this.p30 = p30;
-       this.p31 = p31;
-       this.p32 = p32;
-       this.p33 = p33;
-       this.otros = otros;
+    public PreguntasPaciente(String alergiasMedicamentos, int paciente, String padecimientos, String p1, String folio, String p2, String p3, String p4, String p5, String p6, String p7, String p8, String p9, String p10, String p11, String p12, String p13, String p14, String p15, String p16, String p17, String p18, String p19, String p20, String p21, String p22, String p23, String p24, String p25, String p26, String p27, String p28, String p29, String p30, String p31, String p32, String p33, String otros) {
+        this.alergiasMedicamentos = alergiasMedicamentos;
+        this.paciente = paciente;
+        this.padecimientos = padecimientos;
+        this.p1 = p1;
+        this.folio = folio;
+        this.p2 = p2;
+        this.p3 = p3;
+        this.p4 = p4;
+        this.p5 = p5;
+        this.p6 = p6;
+        this.p7 = p7;
+        this.p8 = p8;
+        this.p9 = p9;
+        this.p10 = p10;
+        this.p11 = p11;
+        this.p12 = p12;
+        this.p13 = p13;
+        this.p14 = p14;
+        this.p15 = p15;
+        this.p16 = p16;
+        this.p17 = p17;
+        this.p18 = p18;
+        this.p19 = p19;
+        this.p20 = p20;
+        this.p21 = p21;
+        this.p22 = p22;
+        this.p23 = p23;
+        this.p24 = p24;
+        this.p25 = p25;
+        this.p26 = p26;
+        this.p27 = p27;
+        this.p28 = p28;
+        this.p29 = p29;
+        this.p30 = p30;
+        this.p31 = p31;
+        this.p32 = p32;
+        this.p33 = p33;
+        this.otros = otros;
     }
+
+    
    
     @Id
     @Column(name = "id")
+    @GeneratedValue
     public Integer getId() {
         return this.id;
     }
@@ -107,29 +112,29 @@ public class PreguntasPaciente  implements java.io.Serializable {
         this.id = id;
     }
     @Column(name = "alergias_medicamentos")
-    public AlergiasMedicamentos getAlergiasMedicamentos() {
+    public String getAlergiasMedicamentos() {
         return this.alergiasMedicamentos;
     }
     
-    public void setAlergiasMedicamentos(AlergiasMedicamentos alergiasMedicamentos) {
+    public void setAlergiasMedicamentos(String alergiasMedicamentos) {
         this.alergiasMedicamentos = alergiasMedicamentos;
     }
     
     @Column(name = "paciente")
-    public Paciente getPaciente() {
+    public int getPaciente() {
         return this.paciente;
     }
     
-    public void setPaciente(Paciente paciente) {
+    public void setPaciente(int paciente) {
         this.paciente = paciente;
     }
     
     @Column(name = "padecimientos")
-    public Padecimientos getPadecimientos() {
+    public String getPadecimientos() {
         return this.padecimientos;
     }
     
-    public void setPadecimientos(Padecimientos padecimientos) {
+    public void setPadecimientos(String padecimientos) {
         this.padecimientos = padecimientos;
     }
     
@@ -438,6 +443,18 @@ public class PreguntasPaciente  implements java.io.Serializable {
     public void setOtros(String otros) {
         this.otros = otros;
     }
+
+    @Column(name = "folio")
+    public String getFolio() {
+        return folio;
+    }
+
+    public void setFolio(String folio) {
+        this.folio = folio;
+    }
+    
+    
+    
 }
 
 

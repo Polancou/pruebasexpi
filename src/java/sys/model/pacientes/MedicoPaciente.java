@@ -19,7 +19,7 @@ public class MedicoPaciente  implements java.io.Serializable {
 
 
      private Integer id;
-     private String nombreMedico;
+     private String nombreMedico,folio;
      private String telefonoMedico;
      private String direccionMedico;
      //private Set pacientes = new HashSet(0);
@@ -27,19 +27,12 @@ public class MedicoPaciente  implements java.io.Serializable {
     public MedicoPaciente() {
     }
 
-	
-    public MedicoPaciente(String nombreMedico, String telefonoMedico, String direccionMedico) {
+    public MedicoPaciente(String nombreMedico, String folio, String telefonoMedico, String direccionMedico) {
         this.nombreMedico = nombreMedico;
+        this.folio = folio;
         this.telefonoMedico = telefonoMedico;
         this.direccionMedico = direccionMedico;
     }
-    /*
-    public MedicoPaciente(String nombreMedico, String telefonoMedico, String direccionMedico, Set pacientes) {
-       this.nombreMedico = nombreMedico;
-       this.telefonoMedico = telefonoMedico;
-       this.direccionMedico = direccionMedico;
-       this.pacientes = pacientes;
-    }*/
    
     @Id
     @Column(name = "id")
@@ -78,14 +71,16 @@ public class MedicoPaciente  implements java.io.Serializable {
     public void setDireccionMedico(String direccionMedico) {
         this.direccionMedico = direccionMedico;
     }
-    /*
-    public Set getPacientes() {
-        return this.pacientes;
+
+    @Column(name="folio")
+    public String getFolio() {
+        return folio;
+    }
+
+    public void setFolio(String folio) {
+        this.folio = folio;
     }
     
-    public void setPacientes(Set pacientes) {
-        this.pacientes = pacientes;
-    }*/
 }
 
 

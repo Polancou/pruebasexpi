@@ -5,6 +5,7 @@ package sys.model.pacientes;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 /**
@@ -16,22 +17,24 @@ import javax.persistence.Table;
 public class PlanTratamiento  implements java.io.Serializable {
 
 
-     private Integer id;
-     private Paciente paciente;
-     private Tratamientos tratamientos;
+     private int id;
+     private int idPaciente,idTratamiento;
+     private String folio;
      private Date fecha;
 
     public PlanTratamiento() {
     }
 
-    public PlanTratamiento(Paciente paciente, Tratamientos tratamientos, Date fecha) {
-       this.paciente = paciente;
-       this.tratamientos = tratamientos;
-       this.fecha = fecha;
+    public PlanTratamiento(int idPaciente, int idTratamiento, String folio, Date fecha) {
+        this.idPaciente = idPaciente;
+        this.idTratamiento = idTratamiento;
+        this.folio = folio;
+        this.fecha = fecha;
     }
-   
+
     @Id
     @Column(name = "id")
+    @GeneratedValue
     public Integer getId() {
         return this.id;
     }
@@ -39,23 +42,32 @@ public class PlanTratamiento  implements java.io.Serializable {
     public void setId(Integer id) {
         this.id = id;
     }
-    
+
     @Column(name = "id_paciente")
-    public Paciente getPaciente() {
-        return this.paciente;
+    public int getIdPaciente() {
+        return idPaciente;
     }
-    
-    public void setPaciente(Paciente paciente) {
-        this.paciente = paciente;
+
+    public void setIdPaciente(int idPaciente) {
+        this.idPaciente = idPaciente;
     }
-    
+
     @Column(name = "id_tratamiento")
-    public Tratamientos getTratamientos() {
-        return this.tratamientos;
+    public int getIdTratamiento() {
+        return idTratamiento;
     }
-    
-    public void setTratamientos(Tratamientos tratamientos) {
-        this.tratamientos = tratamientos;
+
+    public void setIdTratamiento(int idTratamiento) {
+        this.idTratamiento = idTratamiento;
+    }
+
+    @Column(name = "folio")
+    public String getFolio() {
+        return folio;
+    }
+
+    public void setFolio(String folio) {
+        this.folio = folio;
     }
     
     @Column(name = "fecha")

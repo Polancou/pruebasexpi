@@ -3,6 +3,7 @@ package sys.model.pacientes;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -14,89 +15,104 @@ import javax.persistence.Table;
 public class EstadoDiente  implements java.io.Serializable {
 
 
-     private Integer id;
-     private Dientes dientes;
-     private Odontograma odontograma;
-     private int espacioArriba;
-     private int espacioDerecho;
-     private int espacioAbajo;
-     private int espacioIzquierdo;
+     private int id;
+     private int idOdontograma;
+     private String folio;
+     private int diente;
+     private String izquierda;
+     private String superior;
+     private String derecha;
+     private String inferior;
 
     public EstadoDiente() {
     }
 
-    public EstadoDiente(Dientes dientes, Odontograma odontograma, int espacioArriba, int espacioDerecho, int espacioAbajo, int espacioIzquierdo) {
-       this.dientes = dientes;
-       this.odontograma = odontograma;
-       this.espacioArriba = espacioArriba;
-       this.espacioDerecho = espacioDerecho;
-       this.espacioAbajo = espacioAbajo;
-       this.espacioIzquierdo = espacioIzquierdo;
+    public EstadoDiente(int id, int idOdontograma, String folio, String izquierda, String superior, String derecha, String inferior) {
+        this.id = id;
+        this.idOdontograma = idOdontograma;
+        this.folio = folio;
+        this.izquierda = izquierda;
+        this.superior = superior;
+        this.derecha = derecha;
+        this.inferior = inferior;
     }
-   
+
     @Id
     @Column(name = "id")
-    public Integer getId() {
-        return this.id;
+    @GeneratedValue
+    public int getId() {
+        return id;
     }
-    
-    public void setId(Integer id) {
+
+    public void setId(int id) {
         this.id = id;
     }
-    
-    @Column(name = "id_diente")
-    public Dientes getDientes() {
-        return this.dientes;
-    }
-    
-    public void setDientes(Dientes dientes) {
-        this.dientes = dientes;
-    }
-    
+
     @Column(name = "id_odontograma")
-    public Odontograma getOdontograma() {
-        return this.odontograma;
+    public int getIdOdontograma() {
+        return idOdontograma;
     }
+
+    public void setIdOdontograma(int idOdontograma) {
+        this.idOdontograma = idOdontograma;
+    }
+
+    @Column(name = "folio")
+    public String getFolio() {
+        return folio;
+    }
+
+    public void setFolio(String folio) {
+        this.folio = folio;
+    }
+
+    @Column(name = "diente")
+    public int getDiente() {
+        return diente;
+    }
+
+    public void setDiente(int diente) {
+        this.diente = diente;
+    }
+
+    @Column(name = "izquierda")
+    public String getIzquierda() {
+        return izquierda;
+    }
+
+    public void setIzquierda(String izquierda) {
+        this.izquierda = izquierda;
+    }
+
+    @Column(name = "superior")
+    public String getSuperior() {
+        return superior;
+    }
+
+    public void setSuperior(String superior) {
+        this.superior = superior;
+    }
+
+    @Column(name = "derecha")
+    public String getDerecha() {
+        return derecha;
+    }
+
+    public void setDerecha(String derecha) {
+        this.derecha = derecha;
+    }
+
+    @Column(name = "inferior")
+    public String getInferior() {
+        return inferior;
+    }
+
+    public void setInferior(String inferior) {
+        this.inferior = inferior;
+    }
+
     
-    public void setOdontograma(Odontograma odontograma) {
-        this.odontograma = odontograma;
-    }
     
-    @Column(name = "espacio_arriba")
-    public int getEspacioArriba() {
-        return this.espacioArriba;
-    }
-    
-    public void setEspacioArriba(int espacioArriba) {
-        this.espacioArriba = espacioArriba;
-    }
-    
-    @Column(name = "espacio_derecho")
-    public int getEspacioDerecho() {
-        return this.espacioDerecho;
-    }
-    
-    public void setEspacioDerecho(int espacioDerecho) {
-        this.espacioDerecho = espacioDerecho;
-    }
-    
-    @Column(name = "espacio_abajo")
-    public int getEspacioAbajo() {
-        return this.espacioAbajo;
-    }
-    
-    public void setEspacioAbajo(int espacioAbajo) {
-        this.espacioAbajo = espacioAbajo;
-    }
-    
-    @Column(name = "espacio_izquierdo")
-    public int getEspacioIzquierdo() {
-        return this.espacioIzquierdo;
-    }
-    
-    public void setEspacioIzquierdo(int espacioIzquierdo) {
-        this.espacioIzquierdo = espacioIzquierdo;
-    }
 }
 
 

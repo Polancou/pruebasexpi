@@ -19,7 +19,7 @@ public class Tratamientos  implements java.io.Serializable {
 
 
      private Integer id;
-     private String nombre;
+     private String nombre,folio;
      private float precio;
      //private Set planTratamientos = new HashSet(0);
 
@@ -27,16 +27,11 @@ public class Tratamientos  implements java.io.Serializable {
     }
 
 	
-    public Tratamientos(String nombre, float precio) {
+    public Tratamientos(String nombre, float precio,String folio) {
         this.nombre = nombre;
         this.precio = precio;
+        this.folio=folio;
     }
-    /*
-    public Tratamientos(String nombre, float precio, Set planTratamientos) {
-       this.nombre = nombre;
-       this.precio = precio;
-       this.planTratamientos = planTratamientos;
-    }*/
    
     @Id
     @Column(name = "id")
@@ -65,14 +60,18 @@ public class Tratamientos  implements java.io.Serializable {
     public void setPrecio(float precio) {
         this.precio = precio;
     }
-    /*
-    public Set getPlanTratamientos() {
-        return this.planTratamientos;
+
+    @Column(name = "folio")
+    public String getFolio() {
+        return folio;
+    }
+
+    public void setFolio(String folio) {
+        this.folio = folio;
     }
     
-    public void setPlanTratamientos(Set planTratamientos) {
-        this.planTratamientos = planTratamientos;
-    }*/
+    
+    
 }
 
 
