@@ -19,7 +19,7 @@ public class AnalisisOclusion  implements java.io.Serializable {
 
 
      private Integer id;
-     private String clasificacion,folio;
+     private String clasificacion;
      private String proteccionCanina;
      private String proteccionAnterior;
      private String funcionGrupo;
@@ -33,9 +33,8 @@ public class AnalisisOclusion  implements java.io.Serializable {
     public AnalisisOclusion() {
     }
 
-    public AnalisisOclusion(String clasificacion, String folio, String proteccionCanina, String proteccionAnterior, String funcionGrupo, String proteccionMutua, String mordidaCruzada, String mordidaAbierta, String sobremordida, String contactoDentatorio, String incisal_horizontal, String incisal_vertical, String mandibular_protusivo, String mandibular_derecho, String madibular_izquierdo) {
+    public AnalisisOclusion(String clasificacion, String proteccionCanina, String proteccionAnterior, String funcionGrupo, String proteccionMutua, String mordidaCruzada, String mordidaAbierta, String sobremordida, String contactoDentatorio, String incisal_horizontal, String incisal_vertical, String mandibular_protusivo, String mandibular_derecho, String madibular_izquierdo) {
         this.clasificacion = clasificacion;
-        this.folio = folio;
         this.proteccionCanina = proteccionCanina;
         this.proteccionAnterior = proteccionAnterior;
         this.funcionGrupo = funcionGrupo;
@@ -61,15 +60,6 @@ public class AnalisisOclusion  implements java.io.Serializable {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-    
-    @Column(name = "folio")
-    public String getFolio() {
-        return folio;
-    }
-
-    public void setFolio(String folio) {
-        this.folio = folio;
     }
     
     @Column(name = "clasificacion")
@@ -189,7 +179,7 @@ public class AnalisisOclusion  implements java.io.Serializable {
         this.mandibular_derecho = mandibular_derecho;
     }
 
-    @Column(name = "mandibular_izquierdo")
+    @Column(name = "madibular_izquierdo")
     public String getMadibular_izquierdo() {
         return madibular_izquierdo;
     }

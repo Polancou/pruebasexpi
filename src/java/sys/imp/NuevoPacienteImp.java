@@ -5,17 +5,36 @@
  */
 package sys.imp;
 
+import java.io.IOException;
+import java.sql.SQLException;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import net.sf.jasperreports.engine.JRException;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
+import sys.bean.Bita.beanReportes;
+import sys.bean.Expi.BeanControlPlaca;
+import static sys.bean.Expi.BeanControlPlaca.prueba;
+import sys.bean.Expi.BeanCuestionario;
+import static sys.bean.Expi.BeanCuestionario.alergias;
+import static sys.bean.Expi.BeanCuestionario.selectedConsoles;
+import sys.bean.Expi.BeanDatosPersonales;
+import sys.bean.Expi.BeanExaOrofacial;
+import sys.bean.Expi.BeanPeri;
+import static sys.bean.Expi.BeanPeri.pruebaperi;
 import sys.dao.daoNuevoPaciente;
 import sys.model.pacientes.AnalisisOclusion;
 import sys.model.pacientes.Atm;
+import sys.model.pacientes.ControlPlaca;
 import sys.model.pacientes.DireccionPaciente;
 import sys.model.pacientes.ExamenOral;
 import sys.model.pacientes.ExamenOrofacial;
 import sys.model.pacientes.HallazgosRadiograficos;
 import sys.model.pacientes.MedicoPaciente;
 import sys.model.pacientes.Paciente;
+import sys.model.pacientes.Periodontograma;
 import sys.model.pacientes.PreguntasPaciente;
 import sys.model.pacientes.TrabajoPaciente;
 import sys.util.HibernateUtil;
@@ -27,10 +46,16 @@ import sys.util.HibernateUtil;
 public class NuevoPacienteImp implements daoNuevoPaciente {
 
     @Override
-    public boolean datosPersonales(Paciente paciente, MedicoPaciente medico, DireccionPaciente direccion, TrabajoPaciente trabajo) {
-        boolean inserto = false;
+    public String insertarNuevoPaciente() {
+        String inserto = "";
         Session session = null;
         try {
+            
+            //primera pestaña del paciente
+            DireccionPaciente direccion = BeanDatosPersonales.dirreccionPaciente;
+            MedicoPaciente medico = BeanDatosPersonales.medico;
+            TrabajoPaciente trabajo = BeanDatosPersonales.trabajoPaciente;
+            Paciente paciente = BeanDatosPersonales.paciente;
             session = HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
             session.save(direccion);
@@ -39,33 +64,56 @@ public class NuevoPacienteImp implements daoNuevoPaciente {
             paciente.setDireccionPaciente(direccion.getId());
             paciente.setMedicoPaciente(medico.getId());
             paciente.setTrabajoPaciente(trabajo.getId());
-            paciente.setFechaRegistro(paciente.getFechaNacim());
+            paciente.setFechaRegistro(new Date());
             session.save(paciente);
-            session.getTransaction().commit();
-            inserto = true;
-        } catch (HibernateException e) {
-            System.out.println(e.getMessage());
-            session.getTransaction().rollback();
-        } finally {
-            if (session != null) {
-                session.close();
-            }
-        }
-        return inserto;
-    }
-
-    @Override
-    public boolean cuestionario(PreguntasPaciente preguntas) {
-       boolean inserto = false;
-        Session session = null;
-        try {
-            session = HibernateUtil.getSessionFactory().openSession();
-            session.beginTransaction();
-            preguntas.setFolio("87987");
-            preguntas.setPaciente(1);
+            
+            //segunda pestaña del cuestionario
+            PreguntasPaciente preguntas = BeanCuestionario.preguntasPaciente;
+            preguntas.setPadecimientos(Arrays.toString(selectedConsoles));
+            preguntas.setAlergiasMedicamentos(Arrays.toString(alergias));
+            preguntas.setPaciente(paciente.getId());
             session.save(preguntas);
+            
+            //tercera pestaña de examenes oral y orofacial
+            ExamenOral examenoral= BeanExaOrofacial.examenOral;
+            ExamenOrofacial examen = BeanExaOrofacial.examenOrofacial;
+            Atm atm = BeanExaOrofacial.atm;
+            AnalisisOclusion analisis = BeanExaOrofacial.analisisOclusion;
+            HallazgosRadiograficos hallazgos = BeanExaOrofacial.hallazgosRadiograficos;
+            session.save(examenoral);
+            session.save(atm);
+            session.save(analisis);
+            session.save(hallazgos);
+            examen.setAtm(atm.getId());
+            examen.setAnalisisOclusion(analisis.getId());
+            examen.setHallazgosRadiograficos(hallazgos.getId());
+            examen.setExamenOral(examenoral.getId());
+            examen.setPaciente(paciente.getId());
+            examen.setFecha(new Date());
+            session.save(examen);
+            
+            //insertar la placa dentobacteriana
+            ControlPlaca control = BeanControlPlaca.control;
+            control.setEstado("nuevo");
+            System.out.println(prueba.getDiente());
+            control.setDientes(prueba.getDiente());
+            control.setPaciente(paciente.getId());
+            session.save(control);
+            
+            
+            //insertar tabla odontograma
+            Periodontograma periodonto = BeanPeri.periodonto;
+            periodonto.setEstado("nuevo");
+            periodonto.setPaciente(paciente.getId());
+            periodonto.setDientes(pruebaperi.getDiente());
+            session.save(periodonto);
+            
+            
+            
             session.getTransaction().commit();
-            inserto = true;
+            
+            
+            inserto = paciente.getNombre();
         } catch (HibernateException e) {
             System.out.println(e.getMessage());
             session.getTransaction().rollback();
@@ -74,16 +122,10 @@ public class NuevoPacienteImp implements daoNuevoPaciente {
                 session.close();
             }
         }
+        
         return inserto;
-    }
-
-    @Override
-    public boolean examenOrofacial() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
     
-
-   
+    
+    }
 
 }

@@ -19,16 +19,14 @@ public class PlanTratamiento  implements java.io.Serializable {
 
      private int id;
      private int idPaciente,idTratamiento;
-     private String folio;
      private Date fecha;
 
     public PlanTratamiento() {
     }
 
-    public PlanTratamiento(int idPaciente, int idTratamiento, String folio, Date fecha) {
+    public PlanTratamiento(int idPaciente, int idTratamiento, Date fecha) {
         this.idPaciente = idPaciente;
         this.idTratamiento = idTratamiento;
-        this.folio = folio;
         this.fecha = fecha;
     }
 
@@ -59,15 +57,6 @@ public class PlanTratamiento  implements java.io.Serializable {
 
     public void setIdTratamiento(int idTratamiento) {
         this.idTratamiento = idTratamiento;
-    }
-
-    @Column(name = "folio")
-    public String getFolio() {
-        return folio;
-    }
-
-    public void setFolio(String folio) {
-        this.folio = folio;
     }
     
     @Column(name = "fecha")

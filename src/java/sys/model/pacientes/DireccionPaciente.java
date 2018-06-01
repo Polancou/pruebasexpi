@@ -23,14 +23,13 @@ public class DireccionPaciente  implements java.io.Serializable {
      private String estado;
      private String ciudad;
      private String calle;
-     private String colonia,folio;
+     private String colonia;
 
     public DireccionPaciente() {
     }
 
 	
-    public DireccionPaciente(String folio,String pais, String estado, String ciudad, String calle, String colonia) {
-        this.folio=folio;
+    public DireccionPaciente(String pais, String estado, String ciudad, String calle, String colonia) {
         this.pais = pais;
         this.estado = estado;
         this.ciudad = ciudad;
@@ -47,15 +46,6 @@ public class DireccionPaciente  implements java.io.Serializable {
     
     public void setId(Integer id) {
         this.id = id;
-    }
-    
-    @Column(name = "folio")
-    public String getFolio() {
-        return folio;
-    }
-
-    public void setFolio(String folio) {
-        this.folio = folio;
     }
    
     @Column(name = "pais")

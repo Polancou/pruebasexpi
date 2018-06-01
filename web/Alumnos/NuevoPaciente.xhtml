@@ -17,41 +17,38 @@
 
                     <!-- Main content -->
                     <section class="content">
-
-
                         <h:form>
 
                             <p:growl id="growl" sticky="true" showDetail="true"/>
 
                             <p:wizard>
-<!--
-                                <p:tab id="Datos_Paciente" title="Datos Personales">
+
+<!--                                <p:tab id="Datos_Paciente" title="Datos Personales">
                                     <ui:include src="svg/Paciente.xhtml" />
                                 </p:tab>
 
                                 <p:tab id="Cuestionario" title="Cuestionario">
-                                    <p:panel header="Cuestionario">
+                                    
                                         <ui:include src="svg/Cuestionario.xhtml"/>
-                                    </p:panel>
-                                </p:tab>-->
+                                </p:tab>
 
                                 <p:tab id="Examen_Orofacial" title="Examen Orofacial">
-                                    <p:panel header="Examen Orofacial">
                                         <ui:include src="svg/ExaOrofacial.xhtml"/>
-                                    </p:panel>
                                 </p:tab>
                                 
-                                <p:tab id="dientes" title="Datos Personales">
-                                    <ui:include src="svg/VistaDientes.xhtml"/>
-                                </p:tab>
-
-                                <p:tab id="confirm" title="Odontograma">
-                                    <p:panel header="Odontograma">
-                                        <ui:include src="svg/Odontograma.xhtml"/>
-                                        <p:commandButton value="Submit" actionListener="#" update="growl" process="@this"/>
-                                    </p:panel>
+                                <p:tab id="odonto" title="Control de placa">
+                                        <ui:include src="svg/ControlPlaca.xhtml"/>
                                 </p:tab>
                                 
+                                <p:tab id="periodonto" title="Periodontograma">
+                                    <ui:include src="svg/Periodontograma.xhtml"/>
+                                    <p:commandButton value="Submit" actionListener="#{ExamenOrofacial.guardar()}" update="growl" process="@this"/>
+                                   
+                                </p:tab>
+                                -->
+                                <p:tab id="consentimiento" title="Consentimiento">
+                                    <ui:include src="svg/consentimiento.xhtml"/>
+                                </p:tab>
 
                             </p:wizard>
 

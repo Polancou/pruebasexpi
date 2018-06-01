@@ -19,19 +19,18 @@ public class ExamenOrofacial  implements java.io.Serializable {
 
      private Integer id,paciente,atm,analisisOclusion,examenOral,hallazgosRadiograficos;
      private Date fecha;
-     private String folio,caraForma,caraLabios,bordesBermellon;
+     private String caraForma,caraLabios,bordesBermellon;
 
     public ExamenOrofacial() {
     }
 
-    public ExamenOrofacial(Integer paciente, Integer atm, Integer analisisOclusion, Integer examenOral, Integer hallazgosRadiograficos, Date fecha, String folio, String caraForma, String caraLabios, String bordesBermellon) {
+    public ExamenOrofacial(Integer paciente, Integer atm, Integer analisisOclusion, Integer examenOral, Integer hallazgosRadiograficos, Date fecha, String caraForma, String caraLabios, String bordesBermellon) {
         this.paciente = paciente;
         this.atm = atm;
         this.analisisOclusion = analisisOclusion;
         this.examenOral = examenOral;
         this.hallazgosRadiograficos = hallazgosRadiograficos;
         this.fecha = fecha;
-        this.folio = folio;
         this.caraForma = caraForma;
         this.caraLabios = caraLabios;
         this.bordesBermellon = bordesBermellon;
@@ -102,15 +101,6 @@ public class ExamenOrofacial  implements java.io.Serializable {
         this.fecha = fecha;
     }
 
-    @Column(name = "folio")
-    public String getFolio() {
-        return folio;
-    }
-
-    public void setFolio(String folio) {
-        this.folio = folio;
-    }
-
     @Column(name = "cara_forma")
     public String getCaraForma() {
         return caraForma;
@@ -129,7 +119,7 @@ public class ExamenOrofacial  implements java.io.Serializable {
         this.caraLabios = caraLabios;
     }
 
-    @Column(name = "border_bermellon")
+    @Column(name = "bordes_bermellon")
     public String getBordesBermellon() {
         return bordesBermellon;
     }

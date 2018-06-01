@@ -21,7 +21,7 @@ public class ExamenOral  implements java.io.Serializable {
 
      private Integer id;
      private Date dolor_duracion;
-     private String folio,dolor_organo,dolor_ubicacion,dolor_estimulo,lesion_pulpar,exposicion_pulpar,inflamacion,
+     private String dolor,dolor_organo,dolor_ubicacion,dolor_estimulo,lesion_pulpar,exposicion_pulpar,inflamacion,
              percusion_organo,percusion_vertical,percusion_horizontal,percusion_palpacion,frio_organo,frio_estado,
              calor_organo,calor_estado;
      //private Set sistemaEstomatognaticos = new HashSet(0);
@@ -29,8 +29,9 @@ public class ExamenOral  implements java.io.Serializable {
     public ExamenOral() {
     }
 
-    public ExamenOral(String folio, String dolor_organo, String dolor_ubicacion, String dolor_estimulo, String lesion_pulpar, String exposicion_pulpar, String inflamacion, String percusion_organo, String percusion_vertical, String percusion_horizontal, String percusion_palpacion, String frio_organo, String frio_estado, String calor_organo, String calor_estado) {
-        this.folio = folio;
+    public ExamenOral(Date dolor_duracion, String dolor, String dolor_organo, String dolor_ubicacion, String dolor_estimulo, String lesion_pulpar, String exposicion_pulpar, String inflamacion, String percusion_organo, String percusion_vertical, String percusion_horizontal, String percusion_palpacion, String frio_organo, String frio_estado, String calor_organo, String calor_estado) {
+        this.dolor_duracion = dolor_duracion;
+        this.dolor = dolor;
         this.dolor_organo = dolor_organo;
         this.dolor_ubicacion = dolor_ubicacion;
         this.dolor_estimulo = dolor_estimulo;
@@ -45,7 +46,7 @@ public class ExamenOral  implements java.io.Serializable {
         this.frio_estado = frio_estado;
         this.calor_organo = calor_organo;
         this.calor_estado = calor_estado;
-    }
+    }    
 
     @Id
     @Column(name = "id")
@@ -57,16 +58,7 @@ public class ExamenOral  implements java.io.Serializable {
     public void setId(Integer id) {
         this.id = id;
     }
-
-    @Column(name = "folio")
-    public String getFolio() {
-        return folio;
-    }
-
-    public void setFolio(String folio) {
-        this.folio = folio;
-    }
-
+    
     @Column(name = "dolor_organo")
     public String getDolor_organo() {
         return dolor_organo;
@@ -191,6 +183,24 @@ public class ExamenOral  implements java.io.Serializable {
 
     public void setCalor_estado(String calor_estado) {
         this.calor_estado = calor_estado;
+    }
+
+    @Column(name = "dolor_duracion")
+    public Date getDolor_duracion() {
+        return dolor_duracion;
+    }
+
+    public void setDolor_duracion(Date dolor_duracion) {
+        this.dolor_duracion = dolor_duracion;
+    }
+
+    @Column(name = "dolor")
+    public String getDolor() {
+        return dolor;
+    }
+
+    public void setDolor(String dolor) {
+        this.dolor = dolor;
     }
 
     

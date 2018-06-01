@@ -5,8 +5,6 @@
  */
 package sys.imp;
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.List;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
@@ -14,8 +12,10 @@ import javax.servlet.http.HttpSession;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import sys.bean.Expi.BeanDatosPersonales;
 import sys.dao.daoAlumnos;
 import sys.model.Alumnos;
+import sys.model.pacientes.DireccionPaciente;
 import sys.util.HibernateUtil;
 
 /**
@@ -81,6 +81,8 @@ public class AlumnosImp implements daoAlumnos {
                 if (users.getContraseña().equals(contraEncriptada) && users.getUsuario().equals(loguin.getUsuario())) {
                     System.out.println("Existe\nMatricula del alumno es: " + users.getMatricula());
                     sessionUsuario.setAttribute("idSesion", users.getMatricula());
+                    sessionUsuario.setAttribute("nombreCompletoAlumno",users.getNombre()+" "+users.getApellidoMaterno()
+                    +" "+users.getApellidoPaterno());
                     usuario = true;
                 }
             }

@@ -20,15 +20,14 @@ public class HallazgosRadiograficos  implements java.io.Serializable {
 
 
      private Integer id;
-     private String folio,tipo_rx,soporte_oseo,relacion_corona_raiz,altura_reborde,engrosamiento_ligamento_periodontal,
+     private String tipo_rx,soporte_oseo,relacion_corona_raiz,altura_reborde,engrosamiento_ligamento_periodontal,
              interpretacion;
      
 
     public HallazgosRadiograficos() {
     }
 
-    public HallazgosRadiograficos(String folio, String tipo_rx, String soporte_oseo, String relacion_corona_raiz, String altura_reborde, String engrosamiento_ligamento_periodontal, String interpretacion) {
-        this.folio = folio;
+    public HallazgosRadiograficos( String tipo_rx, String soporte_oseo, String relacion_corona_raiz, String altura_reborde, String engrosamiento_ligamento_periodontal, String interpretacion) {
         this.tipo_rx = tipo_rx;
         this.soporte_oseo = soporte_oseo;
         this.relacion_corona_raiz = relacion_corona_raiz;
@@ -46,15 +45,6 @@ public class HallazgosRadiograficos  implements java.io.Serializable {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    @Column(name = "folio")
-    public String getFolio() {
-        return folio;
-    }
-
-    public void setFolio(String folio) {
-        this.folio = folio;
     }
 
     @Column(name = "tipo_rx")

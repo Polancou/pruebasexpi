@@ -22,9 +22,9 @@ import sys.model.pacientes.PreguntasPaciente;
 @ViewScoped
 public class BeanCuestionario implements Serializable {
 
-    private PreguntasPaciente preguntasPaciente;
-    private String[] alergias;
-    private String[] selectedConsoles;
+    public static PreguntasPaciente preguntasPaciente;
+    public static String[] alergias;
+    public static String[] selectedConsoles;
 
     @PostConstruct
     protected void init() {
@@ -61,20 +61,20 @@ public class BeanCuestionario implements Serializable {
         preguntasPaciente.setP31("Si");
         preguntasPaciente.setP32("Si");
         preguntasPaciente.setP33("Si");
-
     }
 
     public void guardar() {
+        //Mandar los array al metodo para liego setearlos desde la implementacion
         preguntasPaciente.setPadecimientos(Arrays.toString(selectedConsoles));
         preguntasPaciente.setAlergiasMedicamentos(Arrays.toString(alergias));
         System.out.println("Entra al metodo");
         daoNuevoPaciente daoNuevo = new NuevoPacienteImp();
-        boolean guardó = daoNuevo.cuestionario(preguntasPaciente);
-        if (guardó) {
-            System.out.println("Guardó datos");
-        } else {
-            System.out.println("Pura madre");
-        }
+//        boolean guardó = daoNuevo.cuestionario(preguntasPaciente);
+//        if (guardó) {
+//            System.out.println("Guardó datos");
+//        } else {
+//            System.out.println("Pura madre");
+//        }
     }
 
     public BeanCuestionario() {

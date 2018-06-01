@@ -9,8 +9,6 @@ import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
-import sys.dao.daoNuevoPaciente;
-import sys.imp.NuevoPacienteImp;
 import sys.model.pacientes.DireccionPaciente;
 import sys.model.pacientes.MedicoPaciente;
 import sys.model.pacientes.Paciente;
@@ -24,26 +22,15 @@ import sys.model.pacientes.TrabajoPaciente;
 @ViewScoped
 public class BeanDatosPersonales implements Serializable {
 
-    private DireccionPaciente dirreccionPaciente;
-    private MedicoPaciente medico;
-    private TrabajoPaciente trabajoPaciente;
-    private Paciente paciente;
+    public static DireccionPaciente dirreccionPaciente;
+    public static MedicoPaciente medico;
+    public static TrabajoPaciente trabajoPaciente;
+    public static Paciente paciente;
 
     @PostConstruct
     protected void init() {
         paciente.setSexo("M");
         paciente.setEstadoSalud("Bueno");
-    }
-
-    public void guardar(){
-        System.out.println("Entra al metodo");
-        daoNuevoPaciente daoNuevo = new NuevoPacienteImp();
-        boolean guardó=daoNuevo.datosPersonales(paciente, medico, dirreccionPaciente, trabajoPaciente);
-        if (guardó){
-            System.out.println("Guardó datos");
-        }else{
-            System.out.println("Pura madre");
-        }
     }
     
     public BeanDatosPersonales() {

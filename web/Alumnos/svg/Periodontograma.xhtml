@@ -4,7 +4,7 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:h="http://xmlns.jcp.org/jsf/html">
 
-    <p:panel header="Odontograma Subsecuente">
+    <p:panel header="Odontograma Inicial">
         <h:outputStylesheet library="css" name="odontograma.css"/>
         <script>
             function estado(espacio) {
@@ -52,8 +52,8 @@
                     texto[i] = newdiente18[i].getAttribute("src");
                 }
                 var nuevotexto = texto.toString();
-                Enviatodo([{name: 'nuevotexto', value: nuevotexto}]);
-                Mensaje();
+                Enviaimg([{name: 'nuevotexto', value: nuevotexto}]);
+                Mensajes();
             };
         </script>
         <style>
@@ -61,8 +61,8 @@
                 align-content: center;
                 height:auto;
                 width:auto;
-                height:10px;
-                width: 10px;
+                height:18px;
+                width: 18px;
             }
             .normalpic{
                 align-content: center;
@@ -79,19 +79,19 @@
                 max-width: 50px;
             }
         </style>
-        <p:remoteCommand name="Enviatodo" action="#{beanPeri.Obtienetodo}" process="@this"/>
-        <p:remoteCommand name="Mensaje" action="#{nuevoBean.info}" process="@this"/>
+        <p:remoteCommand name="Enviaimg" action="#{beanPeri.Obtienetodo}" process="@this"/>
+        <p:remoteCommand name="Mensajes" action="#{beanPeri.info}" process="@this"/>
         <p:panelGrid class="panelGridCenter">
 
             <h:panelGrid class="panelGridCenter" cellspacing="5">
                 <h3>Seleccione una de las siguientes opciones:</h3>
                 <p:panelGrid columns="2" class="panelGridCenter">
                     
-                    <p:outputLabel value="No está el diente"/>
+                    <p:outputLabel value="No esÃ¡ el diente"/>
                     <input type="radio" id="none" name="opciones" value="0"/>
                     <img src="svg/tache.png" class="imgpeque"/>
                     
-                    <p:outputLabel value="Obturación"/>
+                    <p:outputLabel value="ObturaciÃ³n"/>
                     <input type="radio" id="obturacion" name="opciones" value="1"/>
                     <img src="svg/azul.png" class="imgpeque"/>
                     
@@ -99,7 +99,7 @@
                     <input type="radio" id="caries" name="opciones" value="2"/>
                     <img src="svg/rojo.png" class="imgpeque"/>
                     
-                    <p:outputLabel value="Obturación con caries"/>
+                    <p:outputLabel value="ObturaciÃ³n con caries"/>
                     <input type="radio" id="obtucaries" name="opciones" value="3"/>
                     <img src="svg/amarillo.png" class="imgpeque"/>
                     
@@ -113,8 +113,7 @@
                 <h3>Seleccione los dientes afectados:</h3>
             </h:panelGrid>
             <p:panelGrid>
-                <p:spacer/>
-                <p:messages id="mensajeCorrect" showDetail="true" autoUpdate="true" closable="true"/>
+                <p:messages id="Correct" showDetail="true" autoUpdate="true" closable="true"/>
                 <p:spacer/>
                 <p:panelGrid columns="16" class="panelGridCenter">
                     <h:outputLabel value="18"/>

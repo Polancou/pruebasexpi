@@ -63,16 +63,16 @@ Contributor(s):
     <mapping class="sys.model.pacientes.AnalisisOclusion"/>
     <mapping class="sys.model.pacientes.Atm"/>
     <mapping class="sys.model.pacientes.DireccionPaciente"/>
-    <mapping class="sys.model.pacientes.EstadoDiente"/>
     <mapping class="sys.model.pacientes.ExamenOral"/>
     <mapping class="sys.model.pacientes.ExamenOrofacial"/>
     <mapping class="sys.model.pacientes.HallazgosRadiograficos"/>
     <mapping class="sys.model.pacientes.MedicoPaciente"/>
-    <mapping class="sys.model.pacientes.Odontograma"/>
     <mapping class="sys.model.pacientes.Paciente"/>
     <mapping class="sys.model.pacientes.PlanTratamiento"/>
     <mapping class="sys.model.pacientes.PreguntasPaciente"/>
     <mapping class="sys.model.pacientes.TrabajoPaciente"/>
     <mapping class="sys.model.pacientes.Tratamientos"/>
+    <mapping class="sys.model.pacientes.ControlPlaca"/>
+    <mapping class="sys.model.pacientes.Periodontograma"/>
   </session-factory>
 </hibernate-configuration>

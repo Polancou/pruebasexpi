@@ -17,7 +17,6 @@ public class Atm  implements java.io.Serializable {
 
 
      private Integer id;
-     private String folio;
      private String crepitacion;
      private String sensibilidad;
      private String dolor;
@@ -73,15 +72,6 @@ public class Atm  implements java.io.Serializable {
     
     public void setSubluxacion(String subluxacion) {
         this.subluxacion = subluxacion;
-    }
-
-    @Column(name = "folio")
-    public String getFolio() {
-        return folio;
-    }
-
-    public void setFolio(String folio) {
-        this.folio = folio;
     }
 
     @Column(name = "habitos_tension")

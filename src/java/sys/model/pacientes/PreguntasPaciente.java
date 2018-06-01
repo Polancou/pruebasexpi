@@ -20,7 +20,7 @@ public class PreguntasPaciente  implements java.io.Serializable {
      private String alergiasMedicamentos;
      private int paciente;
      private String padecimientos;
-     private String p1,folio;
+     private String p1;
      private String p2;
      private String p3;
      private String p4;
@@ -58,12 +58,11 @@ public class PreguntasPaciente  implements java.io.Serializable {
     public PreguntasPaciente() {
     }
 
-    public PreguntasPaciente(String alergiasMedicamentos, int paciente, String padecimientos, String p1, String folio, String p2, String p3, String p4, String p5, String p6, String p7, String p8, String p9, String p10, String p11, String p12, String p13, String p14, String p15, String p16, String p17, String p18, String p19, String p20, String p21, String p22, String p23, String p24, String p25, String p26, String p27, String p28, String p29, String p30, String p31, String p32, String p33, String otros) {
+    public PreguntasPaciente(String alergiasMedicamentos, int paciente, String padecimientos, String p1, String p2, String p3, String p4, String p5, String p6, String p7, String p8, String p9, String p10, String p11, String p12, String p13, String p14, String p15, String p16, String p17, String p18, String p19, String p20, String p21, String p22, String p23, String p24, String p25, String p26, String p27, String p28, String p29, String p30, String p31, String p32, String p33, String otros) {
         this.alergiasMedicamentos = alergiasMedicamentos;
         this.paciente = paciente;
         this.padecimientos = padecimientos;
         this.p1 = p1;
-        this.folio = folio;
         this.p2 = p2;
         this.p3 = p3;
         this.p4 = p4;
@@ -443,18 +442,6 @@ public class PreguntasPaciente  implements java.io.Serializable {
     public void setOtros(String otros) {
         this.otros = otros;
     }
-
-    @Column(name = "folio")
-    public String getFolio() {
-        return folio;
-    }
-
-    public void setFolio(String folio) {
-        this.folio = folio;
-    }
-    
-    
-    
 }
 
 

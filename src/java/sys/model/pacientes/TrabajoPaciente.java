@@ -22,17 +22,16 @@ public class TrabajoPaciente  implements java.io.Serializable {
      private Integer id;
      private String ocupacion;
      private String lugarTrabajo;
-     private String telefonoTrabajo,folio;
+     private String telefonoTrabajo;
      //private Set pacientes = new HashSet(0);
 
     public TrabajoPaciente() {
     }
 
-    public TrabajoPaciente(String ocupacion, String lugarTrabajo, String telefonoTrabajo, String folio) {
+    public TrabajoPaciente(String ocupacion, String lugarTrabajo, String telefonoTrabajo) {
         this.ocupacion = ocupacion;
         this.lugarTrabajo = lugarTrabajo;
         this.telefonoTrabajo = telefonoTrabajo;
-        this.folio = folio;
     }
    
     @Id
@@ -71,15 +70,6 @@ public class TrabajoPaciente  implements java.io.Serializable {
     
     public void setTelefonoTrabajo(String telefonoTrabajo) {
         this.telefonoTrabajo = telefonoTrabajo;
-    }
-
-    @Column(name = "folio")
-    public String getFolio() {
-        return folio;
-    }
-
-    public void setFolio(String folio) {
-        this.folio = folio;
     }
         
 }

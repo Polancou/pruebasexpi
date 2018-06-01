@@ -22,15 +22,14 @@ public class Odontograma  implements java.io.Serializable {
 
 
      private Integer id,id_paciente;
-     private String folio,estado_odontograma,Num_dientes,Superficies_placa,Extension_placa,Num_superficies;
+     private String estado_odontograma,Num_dientes,Superficies_placa,Extension_placa,Num_superficies;
      private Date fecha;
 
     public Odontograma() {
     }
 
-    public Odontograma(Integer id_paciente, String folio, String estado_odontograma, String Num_dientes, String Superficies_placa, String Extension_placa, String Num_superficies, Date fecha) {
+    public Odontograma(Integer id_paciente, String estado_odontograma, String Num_dientes, String Superficies_placa, String Extension_placa, String Num_superficies, Date fecha) {
         this.id_paciente = id_paciente;
-        this.folio = folio;
         this.estado_odontograma = estado_odontograma;
         this.Num_dientes = Num_dientes;
         this.Superficies_placa = Superficies_placa;
@@ -57,15 +56,6 @@ public class Odontograma  implements java.io.Serializable {
 
     public void setId_paciente(Integer id_paciente) {
         this.id_paciente = id_paciente;
-    }
-
-    @Column(name = "folio")
-    public String getFolio() {
-        return folio;
-    }
-
-    public void setFolio(String folio) {
-        this.folio = folio;
     }
 
     @Column(name = "estado_odontograma")

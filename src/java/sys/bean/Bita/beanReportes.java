@@ -20,10 +20,13 @@ import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
+import sys.bean.Expi.BeanDatosPersonales;
+import sys.model.pacientes.Paciente;
 
 /**
  *
@@ -33,9 +36,8 @@ import net.sf.jasperreports.engine.JasperPrint;
 @RequestScoped
 public class beanReportes implements Serializable {
 
-    String myDatePattern1 = "yyyy-MM-dd";
-    SimpleDateFormat df = new SimpleDateFormat(myDatePattern1);
-
+   private final String myDatePattern1 = "yyyy-MM-dd";
+   private final SimpleDateFormat df = new SimpleDateFormat(myDatePattern1);
     /**
      * @return the clinica
      */
@@ -78,7 +80,15 @@ public class beanReportes implements Serializable {
         this.fecha2 = fecha2;
     }
 
-    private String clinica;
+    public String getProfe() {
+        return profe;
+    }
+
+    public void setProfe(String profe) {
+        this.profe = profe;
+    }
+
+    private String clinica,profe;
     private Date fecha1;
     private Date fecha2;
 
@@ -137,4 +147,17 @@ public class beanReportes implements Serializable {
         FacesContext.getCurrentInstance().responseComplete();
     }
 
+    public void consentimientoPDF(String paciente) throws SQLException, IOException, JRException{
+        HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+        String nombreAlum=(String) session.getAttribute("nombreCompletoAlumno");
+        System.out.println("Nombre del alumno "+nombreAlum);
+        Map <String,Object> parametros = new HashMap<String, Object>();
+        System.out.println("Nombre del paciente "+paciente);
+        parametros.put("paciente", paciente );
+        parametros.put("maestro", getProfe());
+        parametros.put("alumno", nombreAlum);
+        exportarPDF("/resources/ReportesPDF/Consentimiento.jasper","Consentimiento_del_paciente",  parametros);        
+    
+    }
+    
 }

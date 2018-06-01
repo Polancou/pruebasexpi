@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+    <p:growl id="mensajesConsentimiento" autoUpdate="true" showDetail="true" life="3000"/>
+
+    <p:panel header="Consentimiento">
+        <h:panelGrid columns="2" cellpadding="5">
+            <p:panel header="Hoja de consentimiento del paciente">
+                <p:growl id="mensajeConsentimiento" autoUpdate="true" showDetail="true" life="3000"/>
+                <h:panelGrid columns="1" class="panelGridCenter" cellpadding="5">
+
+                    <p:commandButton  value="Generar hoja de consentimiento" action="#{beanReportes.consentimientoPDF(beanReportes.profe)}" ajax="false" />
+            
+
+                </h:panelGrid>
+            </p:panel>
+        </h:panelGrid>
+
+
+    </p:panel>
+
+</html>

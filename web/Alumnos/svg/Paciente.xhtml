@@ -25,7 +25,7 @@
             </p:selectOneRadio>
 
             <p:outputLabel  value="Fecha de Nacimiento: " />
-            <p:calendar value="#{DatosPersonales.paciente.fechaNacim}" mode="popup" required="true" requiredMessage="Fecha de nacimiento es obligatorio"/>
+            <p:calendar id="german" value="#{DatosPersonales.paciente.fechaNacim}" locale="de" navigator="true" pattern="dd-MM-yyyy" />
             <p:outputLabel for="phone" value="Teléfono:" />
             <p:inputMask id="phone" value="#{DatosPersonales.paciente.telefono}" mask="(999) 999 9999" required="true" requiredMessage="Telefono es obligatorio"/>
 
@@ -108,9 +108,16 @@
             <h:outputText value="Observaciones"/>
             <p:inputTextarea rows="6" cols="33" value="#{DatosPersonales.paciente.observaciones}" />
 
-            <p:commandButton value="Guardar datos" action="#{DatosPersonales.guardar()}" ajax="false" />
-                        
+            <p:spacer></p:spacer>
+            <p:spacer></p:spacer>
+            <p:spacer></p:spacer>
+            <p:spacer></p:spacer>
+            
+            <h:outputText value="Nombre del Docente a cargo:"/>
+            <p:inputText id="docente" value="#{beanReportes.profe}" required="true" requiredMessage="Ocupación es obligatorio"/>
+
         </h:panelGrid>
+        
 
     </p:panel>
 

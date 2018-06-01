@@ -5,13 +5,15 @@
  */
 package sys.bean.Expi;
 
+import java.io.IOException;
 import java.io.Serializable;
-import java.util.AbstractList;
+import java.sql.SQLException;
 import java.util.Arrays;
-import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
+import net.sf.jasperreports.engine.JRException;
+import sys.bean.Bita.beanReportes;
 import sys.dao.daoNuevoPaciente;
 import sys.imp.NuevoPacienteImp;
 import sys.model.pacientes.AnalisisOclusion;
@@ -29,53 +31,65 @@ import sys.model.pacientes.HallazgosRadiograficos;
 public class BeanExaOrofacial implements Serializable {
 
     
-    private ExamenOral examenOral;
-    private String[] habitosTensionList;
-    private Atm atm; 
-    private AnalisisOclusion analisisOclusion;
-    private HallazgosRadiograficos hallazgosRadiograficos;
-    private ExamenOrofacial examenOrofacial;
-    private List<String> listaHabitosTension;
+    public static ExamenOral examenOral;
+    public static String[] habitosTensionList;
+    public static Atm atm; 
+    public static AnalisisOclusion analisisOclusion;
+    public static HallazgosRadiograficos hallazgosRadiograficos;
+    public static ExamenOrofacial examenOrofacial;
 
     @PostConstruct
-    protected void initialize() {
+    protected void init() {
+        examenOrofacial.setCaraForma("Ovoide");
+        examenOrofacial.setCaraLabios("Activos");
+        examenOrofacial.setBordesBermellon("Visibles");
         atm.setCrepitacion("Si");
         atm.setSensibilidad("Si");
         atm.setDolor("Si");
         atm.setSubluxacion("Si");
+        atm.setDesviacion("Si");
+        atm.setHabitos_tension("Si");
+        atm.setTamano_lengua("Normal");
+        atm.setTorus_maxilar("Ninguno");
+        atm.setTorus_mandibular("Ninguno");
         analisisOclusion.setClasificacion("I");
         analisisOclusion.setProteccionCanina("Izquierda");
         analisisOclusion.setProteccionAnterior("Si");
         analisisOclusion.setFuncionGrupo("Izquierda");
+        analisisOclusion.setProteccionMutua("Si");
         analisisOclusion.setMordidaCruzada("Izquierda");
         analisisOclusion.setMordidaAbierta("Si");
         analisisOclusion.setSobremordida("Si");
-        analisisOclusion.setProteccionMutua("Si");
+        analisisOclusion.setMandibular_protusivo("Normal");
+        analisisOclusion.setMandibular_derecho("Normal");
+        analisisOclusion.setMadibular_izquierdo("Normal");
+        examenOral.setDolor("Si");
+        examenOral.setDolor_ubicacion("Difuso");
+        examenOral.setDolor_estimulo("Frio");
+        examenOral.setLesion_pulpar("Frio");
+        examenOral.setExposicion_pulpar("Caries");
         examenOral.setInflamacion("Extraoral");
-
-        
+        examenOral.setFrio_estado("Normal");
+        examenOral.setCalor_estado("Normal");
+        hallazgosRadiograficos.setTipo_rx("Periapical");        
     }
     
-    public void guardar() {
-        atm.setHabitos_tension(Arrays.toString(habitosTensionList));
+    public void guardar() throws SQLException, IOException, JRException {
+       // atm.setHabitos_tension(Arrays.toString(habitosTensionList));
         System.out.println("Entra al metodo");
         daoNuevoPaciente daoNuevo = new NuevoPacienteImp();
-        boolean guardó = daoNuevo.examenOrofacial();
-        if (guardó) {
-            System.out.println("Guardó datos");
-        } else {
-            System.out.println("Pura madre");
-        }
+        String namePaciente = daoNuevo.insertarNuevoPaciente();
+                //examenOrofacial(atm, examenOral, analisisOclusion, hallazgosRadiograficos, examenOrofacial);
+        beanReportes bean=new beanReportes();
+        bean.consentimientoPDF(namePaciente);
     }
 
-    public BeanExaOrofacial(ExamenOral examenOral, String[] habitosTensionList, Atm atm, AnalisisOclusion analisisOclusion, HallazgosRadiograficos hallazgosRadiograficos, ExamenOrofacial examenOrofacial, List<String> listaHabitosTension) {
-        this.examenOral = examenOral;
-        this.habitosTensionList = habitosTensionList;
-        this.atm = atm;
-        this.analisisOclusion = analisisOclusion;
-        this.hallazgosRadiograficos = hallazgosRadiograficos;
-        this.examenOrofacial = examenOrofacial;
-        this.listaHabitosTension = listaHabitosTension;
+    public BeanExaOrofacial() {
+        this.examenOral = new ExamenOral();
+        this.atm = new Atm();
+        this.analisisOclusion = new AnalisisOclusion();
+        this.hallazgosRadiograficos = new HallazgosRadiograficos();
+        this.examenOrofacial = new ExamenOrofacial();
     }
 
     public ExamenOral getExamenOral() {
@@ -125,15 +139,5 @@ public class BeanExaOrofacial implements Serializable {
     public void setExamenOrofacial(ExamenOrofacial examenOrofacial) {
         this.examenOrofacial = examenOrofacial;
     }
-
-    public List<String> getListaHabitosTension() {
-        return listaHabitosTension;
-    }
-
-    public void setListaHabitosTension(List<String> listaHabitosTension) {
-        this.listaHabitosTension = listaHabitosTension;
-    }
-
-    
     
 }
