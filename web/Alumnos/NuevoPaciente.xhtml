@@ -23,7 +23,7 @@
 
                             <p:wizard>
 
-<!--                                <p:tab id="Datos_Paciente" title="Datos Personales">
+                                <p:tab id="Datos_Paciente" title="Datos Personales">
                                     <ui:include src="svg/Paciente.xhtml" />
                                 </p:tab>
 
@@ -42,10 +42,11 @@
                                 
                                 <p:tab id="periodonto" title="Periodontograma">
                                     <ui:include src="svg/Periodontograma.xhtml"/>
-                                    <p:commandButton value="Submit" actionListener="#{ExamenOrofacial.guardar()}" update="growl" process="@this"/>
-                                   
+                                    <p:panelGrid class="panelGridCenter">
+                                        <p:commandButton value="Submit" actionListener="#{ExamenOrofacial.guardar()}" update="growl" process="@this"/>
+                                    </p:panelGrid>
                                 </p:tab>
-                                -->
+                                
                                 <p:tab id="consentimiento" title="Consentimiento">
                                     <ui:include src="svg/consentimiento.xhtml"/>
                                 </p:tab>

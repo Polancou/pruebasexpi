@@ -275,8 +275,8 @@
                                             <f:selectItem itemLabel="Localizado" itemValue="Localizado" />
                                         </p:selectOneRadio>
                                     </h:panelGrid>
-                                    <p:outputLabel value="Duración (Seg/Min/Hrs) "/>
-                                    <p:calendar id="duracion" value="#{ExamenOrofacial.examenOral.dolor_duracion}" pattern="ss:mm:HH" timeOnly="true"  />
+                                    <p:outputLabel value="Duración (ss:mm:HH) "/>
+                                    <p:calendar id="duracion" value="#{ExamenOrofacial.examenOral.dolor_duracion}" pattern="HH:mm:ss" timeOnly="true"  />
     
                                     <p:outputLabel value="Estímulo"/>
                                     <h:panelGrid columns="1" cellpadding="5">
@@ -422,8 +422,6 @@
                                 <p:inputTextarea rows="6" cols="33" id="interpretacionradiograf" value="#{ExamenOrofacial.hallazgosRadiograficos.interpretacion}"/>
                             </h:panelGrid>
                         </h:panelGrid>
-                        <p:commandButton value="Guardar datos" action="#{ExamenOrofacial.guardar()}" ajax="false" />
-
                     </p:panel>
                 </h:panelGrid>
             </p:panel>

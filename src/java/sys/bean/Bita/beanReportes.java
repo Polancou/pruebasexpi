@@ -135,7 +135,7 @@ public class beanReportes implements Serializable {
     private void exportarPDF(String rutaArchivo, String nombreArchivo, Map parametros) throws SQLException, IOException, JRException {
         //Map <String,Object> parametros = new HashMap<String, Object>();
         //parametros.put("", "");
-        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/facultad_odontologia", "root", "root");
+        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/facultad_odontologia", "root", "");
         File jasperReport = new File(FacesContext.getCurrentInstance().getExternalContext().getRealPath(rutaArchivo));
         JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport.getPath(), parametros, connection);
         HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
