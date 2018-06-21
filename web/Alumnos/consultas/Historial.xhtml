@@ -9,7 +9,7 @@
 
     <body>
 
-        <ui:composition template="./../Template/VistasMarcos/PlantillaAlumnos.xhtml">
+        <ui:composition template="./../../Template/VistasMarcos/PlantillaAlumnos.xhtml">
 
             <ui:define name="content">
 
@@ -19,7 +19,7 @@
                     <section class="content">
                         
                         <h:form>
-
+                           
                             <p:dataTable id="tableStateDT" var="car" value="#{dtTableStateView.cars}" widgetVar="DataPacientes" multiViewState="true"
                                          rows="10" paginator="true"
                                          paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
@@ -34,17 +34,18 @@
                                     </p:outputPanel>
                                 </f:facet>
 
-                                <p:column headerText="Folio" filterBy="#{DatosPersonales.paciente.folio}" sortBy="#{DatosPersonales.paciente.folio}" filterMatchMode="contains">
+                                <p:column headerText="Fecha de consulta" filterBy="#{DatosPersonales.paciente.folio}" sortBy="#{DatosPersonales.paciente.folio}" filterMatchMode="contains">
                                     <h:outputText value="#{DatosPersonales.paciente.folio}" />
                                 </p:column>
 
-                                <p:column headerText="Nombre" filterBy="#{DatosPersonales.paciente.nombre}" sortBy="#{DatosPersonales.paciente.nombre}" filterMatchMode="contains">
-                                    <h:outputText value="#{DatosPersonales.paciente.nombre}" />
+                                <p:column headerText="Control de placa" filterBy="#{DatosPersonales.paciente.nombre}" sortBy="#{DatosPersonales.paciente.nombre}" filterMatchMode="contains">
+                                    <p:commandButton value="Ver detalles"  class="btn btn-info" />
                                 </p:column>
 
 
-                                <p:column headerText="Acciones">
-                                    <p:commandButton value="Ver Expediente"  class="btn btn-info" />
+                                <p:column headerText="Periodontograma">
+                                    
+                                    <p:commandButton value="Ver Detalles" style="background: grey;" class="btn btn-danger" />
                                 </p:column>
 
 
